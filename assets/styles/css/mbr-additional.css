@@ -943,6 +943,13 @@ section.lazy-placeholder:after {
   animation-duration: 60s;
   background-image: url("../../../assets/images/img-20190213-164929-2000x1500.jpg");
 }
+@media (max-width: 850px) {
+  .cid-sbEYnoesmw .scroll-wrapper {
+    background-position-x: right;
+  }
+}
+
+
 .cid-sbEYnoesmw .scroll-wrapper.second {
   left: calc(100% - 1px);
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Layout>
     <Header />
     <Banner />
     <Whois />
@@ -8,7 +8,7 @@
     <OtherSkills />
     <Achievements />
     <Footer />
-  </div>
+  </Layout>
 </template>
 
 <script>

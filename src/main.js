@@ -13,34 +13,22 @@ import "/static/assets/socicon/css/styles.css"
 import "/static/assets/theme/css/style.css"
 import "/static/assets/styles/css/mbr-additional.css"
 
-// import Jquery from "/static/assets/web/assets/jquery/jquery.min.js"
-// import Popper from "/static/assets/popper/popper.min.js"
-// import Tether from "/static/assets/tether/tether.min.js"
-// import Bootstrap from "/static/assets/bootstrap/js/bootstrap.min.js"
-import SmothScroll from "/static/assets/smoothscroll/smooth-scroll.js"
-// import NavDropDown from "/static/assets/dropdown/js/nav-dropdown.js"
-// import NavbarDropdown from "/static/assets/dropdown/js/navbar-dropdown.js"
-// import JqueryTouchSwipe from "/static/assets/touchswipe/jquery.touch-swipe.min.js"
-// import BootstrapCarousel from "/static/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"
-// import MbrTestimonialsSlide from "/static/assets/mbr-testimonials-slider/mbr-testimonials-slider.js"
-// import ViewportChecker from "/static/assets/viewportchecker/jquery.viewportchecker.js"
-// import SocialLikes from "/static/assets/sociallikes/social-likes.js"
-// import Script from "/static/assets/theme/js/script.js"
-
 export default function(Vue, { router, head, isClient }) {
+  // Statics scripts
+  head.script.push({ src: '/assets/web/assets/jquery/jquery.min.js' })
+  head.script.push({ src: '/assets/popper/popper.min.js' })
+  head.script.push({ src: '/assets/tether/tether.min.js' })
+  head.script.push({ src: '/assets/bootstrap/js/bootstrap.min.js' })
+  head.script.push({ src: '/assets/smoothscroll/smooth-scroll.js' })
+  head.script.push({ src: '/assets/dropdown/js/nav-dropdown.js' })
+  head.script.push({ src: '/assets/dropdown/js/navbar-dropdown.js' })
+  head.script.push({ src: '/assets/touchswipe/jquery.touch-swipe.min.js' })
+  head.script.push({ src: '/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js' })
+  head.script.push({ src: '/assets/mbr-testimonials-slider/mbr-testimonials-slider.js' })
+  head.script.push({ src: '/assets/viewportchecker/jquery.viewportchecker.js' })
+  head.script.push({ src: '/assets/sociallikes/social-likes.js' })
+  head.script.push({ src: '/assets/theme/js/script.js' })
+
   // Set default layout as a global component
   Vue.component("Layout", DefaultLayout)
-  // Vue.use(Jquery)
-  // Vue.use(Popper)
-  // Vue.use(Tether)
-  // Vue.use(Bootstrap)
-  Vue.use(SmothScroll)
-  // Vue.use(NavDropDown)
-  // Vue.use(NavbarDropdown)
-  // Vue.use(JqueryTouchSwipe)
-  // Vue.use(BootstrapCarousel)
-  // Vue.use(MbrTestimonialsSlide)
-  // Vue.use(ViewportChecker)
-  // Vue.use(SocialLikes)
-  // Vue.use(Script)
 }

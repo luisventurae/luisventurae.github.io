@@ -5,11 +5,16 @@
 </template>
 
 <script>
-import HomeTemplate from '@/components/templates/HomeTemplate.vue'
+import HomeTemplate from "@/components/templates/HomeTemplate.vue"
 
 export default {
   metaInfo: {
-    title: 'Hello, world!'
+    title: "Portafolio",
+    meta: [
+      {
+        key: 'fullstack, js, javascript, node, nodejs, ingeniero, sistemas, web, aplicacion, engineer, luisventurae, luis, miguel, ventura, universidad, autonoma, peru, leader, lima',
+      }
+    ],
   },
   components: {
     HomeTemplate,
@@ -17,5 +22,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

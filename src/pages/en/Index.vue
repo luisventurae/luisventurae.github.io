@@ -72,12 +72,12 @@ export default {
     link: [
       {
         rel: "alternate",
-        hreflang: "es",
+        hreflang: "en",
         href: "https://luisventurae.github.io/",
       },
       {
         rel: "alternate",
-        hreflang: "es",
+        hreflang: "en",
         href: "https://luisventurae.github.io/en/",
       },
     ],

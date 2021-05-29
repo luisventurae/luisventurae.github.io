@@ -2,7 +2,7 @@
   <Layout>
     <Header />
     <Banner />
-    <Whois />
+    <Whois :data="page.whois" />
     <Front />
     <Back />
     <OtherSkills />
@@ -32,6 +32,15 @@ export default {
     Back,
     OtherSkills,
     Achievements,
+  },
+  props: {
+    page: {
+      type: Object,
+      required: true,
+    }
+  },
+  mounted() {
+    /* console.log(page) */
   },
 }
 </script>

@@ -1,0 +1,19 @@
+{
+    "whois": {
+        "title": "¿Quién soy? :3",
+        "slider": [
+            {
+                "key": "1",
+                "image": "/assets/images/img-20190809-wa0092-400x711.jpeg",
+                "image_alt": "Luis Miguel Ventura",
+                "text": "Disfruto mucho de la naturaleza, me gusta viajar, salir a explorar y conocer nuevos lugares. Estoy aprendiendo a tocar el piano en mi ratos libres, considero que la música es parte escencial de alguien que está mucho tiempo frente a un ordenador, así que, por qué no conocerla un poco más."
+            },
+            {
+                "key": "2",
+                "image": "/assets/images/img-20190403-140947-400x533.jpeg",
+                "image_alt": "Luis Miguel Ventura",
+                "text": "Soy amante de la tecnología y curioso de las nuevas tendencias que estén a disposición y aunque hayan muchas que aún no conozca, me gusta sorprenderme de lo que estas me puedan ofrecer y ver todas las posibilidades en las que lo pueda aplicar."
+            }
+        ]
+    }
+}

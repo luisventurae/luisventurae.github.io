@@ -1,11 +1,12 @@
 <template>
   <Layout>
-    <HomeTemplate />
+    <HomeTemplate :page="page" />
   </Layout>
 </template>
 
 <script>
-import HomeTemplate from "@/components/templates/HomeTemplate.vue";
+import HomeTemplate from "@/components/templates/HomeTemplate.vue"
+import Page_Es from '@/assets/content/home/es.json'
 
 export default {
   metaInfo: {
@@ -85,7 +86,10 @@ export default {
   components: {
     HomeTemplate,
   },
-};
+  data: () => ({
+    page: Page_Es,
+  })
+}
 </script>
 
 <style></style>

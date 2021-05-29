@@ -11,7 +11,7 @@
     ></div>
     <div class="container text-center">
       <h2 class="mbr-section-title mbr-fonts-style mbr-white display-2">
-        ¿Quién soy?
+        {{ data.title }}
       </h2>
       <div class="underline align-center">
         <div class="line"></div>
@@ -29,45 +29,24 @@
           >
             <div class="slider-testimonials">
               <div class="carousel-inner">
-                <div class="carousel-item">
+                <!-- Slider -->
+                <div
+                  class="carousel-item"
+                  v-for="slide in data.slider"
+                  :key="slide.key"
+                >
                   <div class="user col-md-8">
                     <div class="user_image">
-                      <img
-                        src="assets/images/img-20190809-wa0092-400x711.jpeg"
-                        alt=""
-                      />
+                      <img :src="slide.image" :alt="slide.image_alt" />
                     </div>
                     <div class="user_text">
                       <p class="mbr-fonts-style display-7">
-                        Disfruto mucho de la naturaleza, me gusta viajar, salir
-                        a explorar y conocer nuevos lugares. Estoy aprendiendo a
-                        tocar el piano en mi ratos libres, considero que la
-                        música es parte escencial de alguien que está mucho
-                        tiempo frente a un ordenador, así que, por qué no
-                        conocerla un poco más.
+                        {{ slide.text }}
                       </p>
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item">
-                  <div class="user col-md-8">
-                    <div class="user_image">
-                      <img
-                        src="assets/images/img-20190403-140947-400x533.jpeg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="user_text">
-                      <p class="mbr-fonts-style display-7">
-                        Soy amante de la tecnología y curioso de las nuevas
-                        tendencias que estén a disposición y aunque hayan muchas
-                        que aún no conozca, me gusta sorprenderme de lo que
-                        estas me puedan ofrecer y ver todas las posibilidades en
-                        las que lo pueda aplicar.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <!-- End Slider -->
               </div>
             </div>
           </div>
@@ -105,5 +84,11 @@
 <script>
 export default {
   name: "Whois",
-}
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>

@@ -1,0 +1,19 @@
+{
+    "whois": {
+        "title": "My introducing",
+        "slider": [
+            {
+                "key": "1",
+                "image": "/assets/images/img-20190809-wa0092-400x711.jpeg",
+                "image_alt": "Luis Miguel Ventura",
+                "text": "I love nature, I like traveling, going out to explore and visiting new places. I am learning to play the piano in my spare time, I consider music is an essential part of someone who spends a lot of time in front of a computer, so why not get to know it a little more."
+            },
+            {
+                "key": "2",
+                "image": "/assets/images/img-20190403-140947-400x533.jpeg",
+                "image_alt": "Luis Miguel Ventura",
+                "text": "I am a technology lover and curious about the new tech trends that are available and although there are many that I still do not know, I like to be surprised at what it can offer me and see all the possibilities in which I can apply it."
+            }
+        ]
+    }
+}

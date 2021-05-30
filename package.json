@@ -2,6 +2,7 @@
   "name": "my-gridsome-site",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "develop": "gridsome develop",
     "explore": "gridsome explore",

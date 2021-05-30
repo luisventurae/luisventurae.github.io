@@ -61,7 +61,7 @@
       <div class="row justify-content-center">
         <ul class="foot-menu">
           <li class="foot-menu-item mbr-fonts-style display-7">
-            <a href="index.html#top" class="text-warning text-primary"
+            <a href="#top" class="text-warning text-primary"
               >{{ data.restart_text }}
             </a>
           </li>

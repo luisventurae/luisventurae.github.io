@@ -4,17 +4,17 @@
             {
                 "key": "1",
                 "text": "¿QUIÉN SOY?",
-                "href":"index.html#testimonials1-4"
+                "href":"#testimonials1-4"
             },
             {
                 "key": "2",
                 "text": "HABILIDADES",
-                "href":"index.html#features1-1"
+                "href":"#features1-1"
             },
             {
                 "key": "3",
                 "text": "LOGROS",
-                "href":"index.html#content2-d"
+                "href":"#content2-d"
             }
         ],
         "contact": {

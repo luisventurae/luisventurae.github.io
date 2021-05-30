@@ -28,7 +28,10 @@ export default function(Vue, { router, head, isClient }) {
   head.script.push({ src: '/assets/mbr-testimonials-slider/mbr-testimonials-slider.js' })
   head.script.push({ src: '/assets/viewportchecker/jquery.viewportchecker.js' })
   head.script.push({ src: '/assets/sociallikes/social-likes.js' })
-  head.script.push({ src: '/assets/theme/js/script.js' })
+
+  window.onload = () => {
+    head.script.push({ src: '/assets/theme/js/script.js' })
+  }
 
   // Set default layout as a global component
   Vue.component("Layout", DefaultLayout)

@@ -13,25 +13,22 @@ import "/static/assets/socicon/css/styles.css"
 import "/static/assets/theme/css/style.css"
 import "/static/assets/styles/css/mbr-additional.css"
 
-export default function(Vue, { router, head, isClient }) {
+export default function(Vue, { isServer, router, head, isClient }) {
   /* head.htmlAttrs = { lang: '' } */
   // Statics scripts
-  head.script.push({ src: '/assets/web/assets/jquery/jquery.min.js' })
-  head.script.push({ src: '/assets/popper/popper.min.js' })
-  head.script.push({ src: '/assets/tether/tether.min.js' })
-  head.script.push({ src: '/assets/bootstrap/js/bootstrap.min.js' })
-  head.script.push({ src: '/assets/smoothscroll/smooth-scroll.js' })
-  head.script.push({ src: '/assets/dropdown/js/nav-dropdown.js' })
-  head.script.push({ src: '/assets/dropdown/js/navbar-dropdown.js' })
-  head.script.push({ src: '/assets/touchswipe/jquery.touch-swipe.min.js' })
-  head.script.push({ src: '/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js' })
-  head.script.push({ src: '/assets/mbr-testimonials-slider/mbr-testimonials-slider.js' })
-  head.script.push({ src: '/assets/viewportchecker/jquery.viewportchecker.js' })
-  head.script.push({ src: '/assets/sociallikes/social-likes.js' })
-
-  window.onload = () => {
-    head.script.push({ src: '/assets/theme/js/script.js' })
-  }
+  head.script.push({ src: '/assets/web/assets/jquery/jquery.min.js', body: true, async: true })
+  head.script.push({ src: '/assets/popper/popper.min.js', body: true, async: true })
+  head.script.push({ src: '/assets/tether/tether.min.js', body: true, async: true })
+  head.script.push({ src: '/assets/bootstrap/js/bootstrap.min.js', body: true, async: true })
+  head.script.push({ src: '/assets/smoothscroll/smooth-scroll.js', body: true, async: true })
+  head.script.push({ src: '/assets/dropdown/js/nav-dropdown.js', body: true, async: true })
+  head.script.push({ src: '/assets/dropdown/js/navbar-dropdown.js', body: true, async: true })
+  head.script.push({ src: '/assets/touchswipe/jquery.touch-swipe.min.js', body: true, async: true })
+  head.script.push({ src: '/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js', body: true, async: true })
+  head.script.push({ src: '/assets/mbr-testimonials-slider/mbr-testimonials-slider.js', body: true, async: true })
+  head.script.push({ src: '/assets/viewportchecker/jquery.viewportchecker.js', body: true, async: true })
+  head.script.push({ src: '/assets/sociallikes/social-likes.js', body: true, async: true })
+  head.script.push({ src: '/assets/theme/js/script.js', body: true, async: true, defer: true })
 
   // Set default layout as a global component
   Vue.component("Layout", DefaultLayout)

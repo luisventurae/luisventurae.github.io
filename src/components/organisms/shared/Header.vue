@@ -29,34 +29,18 @@
       <!-- Nav -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-          <li class="nav-item">
-            <a
-              class="nav-link link text-warning display-4"
-              href="index.html#testimonials1-4"
-              >¿QUIÉN SOY?</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link link text-warning display-4"
-              href="index.html#features1-1"
-              >HABILIDADES</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link link text-warning display-4"
-              href="index.html#content2-d"
-              >LOGROS</a
-            >
+          <li v-for="nav in data.navs" :key="nav.key" class="nav-item">
+            <a class="nav-link link text-warning display-4" :href="nav.href">{{
+              nav.text
+            }}</a>
           </li>
         </ul>
         <div class="navbar-buttons mbr-section-btn">
           <a
             class="btn btn-md btn-primary display-4"
-            href="https://www.linkedin.com/in/luisventurae"
+            :href="data.contact.href"
             target="_blank"
-            >CONTÁCTAME</a
+            >{{ data.contact.text }}</a
           >
         </div>
       </div>
@@ -67,5 +51,11 @@
 <script>
 export default {
   name: "Header",
-}
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>

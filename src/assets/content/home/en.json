@@ -1,4 +1,27 @@
 {
+    "menu": {
+        "navs": [
+            {
+                "key": "1",
+                "text": "INTRODUCING",
+                "href":"index.html#testimonials1-4"
+            },
+            {
+                "key": "2",
+                "text": "SKILLS",
+                "href":"index.html#features1-1"
+            },
+            {
+                "key": "3",
+                "text": "ACHIEVEMENTS",
+                "href":"index.html#content2-d"
+            }
+        ],
+        "contact": {
+            "text": "CONTACT",
+            "href": "https://www.linkedin.com/in/luisventurae"
+        }
+    },
     "whois": {
         "title": "My introducing",
         "slider": [

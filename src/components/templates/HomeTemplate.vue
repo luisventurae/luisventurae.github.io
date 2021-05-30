@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <Header />
+    <Header :data="page.menu" />
     <Banner />
     <Whois :data="page.whois" />
     <Front />

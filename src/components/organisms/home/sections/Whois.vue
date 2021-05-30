@@ -37,7 +37,7 @@
                 >
                   <div class="user col-md-8">
                     <div class="user_image">
-                      <img :src="slide.image" :alt="slide.image_alt" />
+                      <img loading="lazy" :src="slide.image" :alt="slide.image_alt" />
                     </div>
                     <div class="user_text">
                       <p class="mbr-fonts-style display-7">

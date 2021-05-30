@@ -46,7 +46,7 @@ export default {
       {
         property: "og:image",
         content:
-          "https://luisventurae.github.io/assets/images/img-20190809-wa0092-400x711.jpeg",
+          "https://luisventurae.github.io/assets/images/img-20190809-wa0092-400x711.jpg",
       },
       {
         property: "og:determiner",

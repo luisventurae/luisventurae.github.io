@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="img-item">
-            <img :src="data.images[1].image" :alt="data.images[1].image_alt" />
+            <img loading="lazy" :src="data.images[1].image" :alt="data.images[1].image_alt" />
             <div class="img-caption">
               <p
                 class="mbr-fonts-style align-left mbr-white mbr-bold display-7"

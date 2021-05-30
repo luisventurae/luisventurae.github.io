@@ -23,7 +23,7 @@
         }
     },
     "whois": {
-        "title": "¿Quién soy? :3",
+        "title": "¿Quién soy?",
         "slider": [
             {
                 "key": "1",
@@ -97,6 +97,40 @@
                     "icon": "mobi-mbri-database",
                     "tech": "SQL",
                     "level": "Intermedio"
+                }
+            ]
+        },
+        "more": {
+            "title": {
+                "primary": "OTRAS",
+                "secondary": "HABILIDADES"
+            },
+            "subtitle": "No estaría de más mencionar las siguientes habilidades que pueden complementar a los anteriores:",
+            "techs": [
+                {
+                    "key": "1",
+                    "name": "FLUJOGRAMAS",
+                    "percent": 86
+                },
+                {
+                    "key": "2",
+                    "name": "LINUX",
+                    "percent": 45
+                },
+                {
+                    "key": "3",
+                    "name": "NGINX",
+                    "percent": 41
+                },
+                {
+                    "key": "4",
+                    "name": "AUTH",
+                    "percent": 74
+                },
+                {
+                    "key": "5",
+                    "name": "SCRUM",
+                    "percent": 54
                 }
             ]
         }

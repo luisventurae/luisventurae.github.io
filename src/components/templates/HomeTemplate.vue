@@ -5,7 +5,7 @@
     <Whois :data="page.whois" />
     <Front :data="page.skills.frontend" />
     <Back :data="page.skills.backend"  />
-    <OtherSkills />
+    <OtherSkills :data="page.skills.more" />
     <Achievements />
     <Footer />
   </Layout>

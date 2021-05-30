@@ -99,6 +99,40 @@
                     "level": "Intermediate"
                 }
             ]
+        },
+        "more": {
+            "title": {
+                "primary": "COMPLEMENTARY",
+                "secondary": "SKILLS"
+            },
+            "subtitle": "It would not hurt to mention the following skills that can complement the previous ones:",
+            "techs": [
+                {
+                    "key": "1",
+                    "name": "FLOW CHARTS",
+                    "percent": 86
+                },
+                {
+                    "key": "2",
+                    "name": "LINUX",
+                    "percent": 45
+                },
+                {
+                    "key": "3",
+                    "name": "NGINX",
+                    "percent": 41
+                },
+                {
+                    "key": "4",
+                    "name": "AUTH",
+                    "percent": 74
+                },
+                {
+                    "key": "5",
+                    "name": "SCRUM",
+                    "percent": 54
+                }
+            ]
         }
     }
 }

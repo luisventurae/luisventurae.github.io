@@ -21,7 +21,7 @@
           <div class="card-img pb-3 align-left">
             <span :class="tech.icon" class="mbr-iconfont mobi-mbri"></span>
           </div>
-          <h4 class="mbr-fonts-style display-5">{{tech.tech}}</h4>
+          <h4 class="mbr-fonts-style mbr-card-title display-5">{{tech.tech}}</h4>
 
           <p class="mbr-text mbr-fonts-style display-7">
             {{ tech.description }}

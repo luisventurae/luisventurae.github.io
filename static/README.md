@@ -1,3 +1,17 @@
-Add static files here. Files in this directory will be copied directly to `dist` folder during build. For example, /static/robots.txt will be located at https://yoursite.com/robots.txt.
+# Hello! This is my briefcase
+###### By: Luis Miguel Ventura
+Use the links below to read the full content
 
-This file should be deleted.
+#### Different languages
+- Spanish https://luisventurae.github.io/
+- English https://luisventurae.github.io/en/
+
+#### Technologies used for this projects
+- Gridsome
+- Vuejs
+- Javascript
+- HTML5
+- CSS 3
+
+#### Main repository
+https://github.com/luisventurae/luisventurae.github.io/

@@ -1,3 +1,14 @@
-# Hola! Este es mi Portafolio
-## Ingresa a https://luisventurae.github.io para ver el contenido completo
-By: Luis Miguel Ventura
+# Hello! This is my briefcase
+###### By: Luis Miguel Ventura
+Use the links below to read the full content
+
+#### Different languages
+- Spanish https://luisventurae.github.io/
+- English https://luisventurae.github.io/en/
+
+#### Technologies used for this projects
+- Gridsome
+- Vuejs
+- Javascript
+- HTML5
+- CSS 3

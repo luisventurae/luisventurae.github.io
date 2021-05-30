@@ -1,0 +1,13 @@
+User-Agent: *
+Disallow:
+
+User-agent: Adsbot-Google
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Rogerbot
+Allow: /
+
+Sitemap: https://luisventurae.github.io/sitemap.xml

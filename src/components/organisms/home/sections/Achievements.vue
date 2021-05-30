@@ -23,6 +23,7 @@
         <div class="media-container-row" style="width: 66%;">
           <div class="img-item item1" style="width: 225%;">
             <img
+              loading="lazy"
               :src="data.images[0].image"
               :alt="data.images[0].image_alt"
             />

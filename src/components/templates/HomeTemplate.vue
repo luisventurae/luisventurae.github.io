@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <Header :data="page.menu" />
-    <Banner />
+    <Banner :data="page.banner" />
     <Whois :data="page.whois" />
     <Front :data="page.skills.frontend" />
     <Back :data="page.skills.backend"  />

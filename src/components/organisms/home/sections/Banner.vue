@@ -18,7 +18,7 @@
             <span>Luis Miguel Ventura</span><br />
           </h2>
           <h4 class="mbr-text mbr-fonts-style align-center mbr-bold display-1">
-            Full Stack Engineer
+            {{ data.chief }}
           </h4>
         </div>
       </div>
@@ -29,5 +29,11 @@
 <script>
 export default {
   name: "Banner",
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
 }
 </script>

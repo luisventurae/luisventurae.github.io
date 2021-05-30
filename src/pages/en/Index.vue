@@ -16,6 +16,10 @@ export default {
     },
     meta: [
       {
+        name: "description",
+        content: "Backend Engineer, Full Javascript Stack. Tech lover, autodidact for continuous improvement in web systems. Use of advanced Javascript on server side and client side.",
+      },
+      {
         name: "robots",
         content: "index, follow",
       },
@@ -29,7 +33,11 @@ export default {
       },
       {
         property: "og:title",
-        content: "Luis Miguel Ventura | Portafolio",
+        content: "Luis Miguel Ventura | Briefcase",
+      },
+      {
+        property: "og:description",
+        content: "Backend Engineer, Full Javascript Stack. Tech lover, autodidact for continuous improvement in web systems. Use of advanced Javascript on server side and client side.",
       },
       {
         property: "og:url",

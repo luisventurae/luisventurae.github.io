@@ -6,7 +6,6 @@
 
 module.exports = {
   siteName: 'Luis Miguel Ventura',
-  siteDescription: 'Full Stack Engineer, entusiasta de las nuevas tecnologías y mente abierta para la mejora continua en sistemas web. Uso de Javascript avanzado en el cliente y servidor.',
   siteUrl: 'https://luisventurae.github.io/',
   metadata: {
     author: 'Luis Miguel ventura',

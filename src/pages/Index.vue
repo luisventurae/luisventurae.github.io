@@ -16,6 +16,10 @@ export default {
     },
     meta: [
       {
+        name: "description",
+        content: "Full Stack Engineer, Web developer, entusiasta de las nuevas tecnologías y mente abierta para la mejora continua en sistemas web. Uso de Javascript avanzado en el cliente y servidor.",
+      },
+      {
         name: "robots",
         content: "index, follow",
       },
@@ -30,6 +34,10 @@ export default {
       {
         property: "og:title",
         content: "Luis Miguel Ventura | Portafolio",
+      },
+      {
+        property: "og:description",
+        content: "Full Stack Engineer, Web developer, entusiasta de las nuevas tecnologías y mente abierta para la mejora continua en sistemas web. Uso de Javascript avanzado en el cliente y servidor.",
       },
       {
         property: "og:url",

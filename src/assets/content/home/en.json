@@ -137,7 +137,7 @@
     },
     "achievement": {
         "title": "ACHIEVEMENTS",
-        "description": "Throughout my career I have participated in multiple technology contests, with the desire to seek new challenges, improve myself, meet new people and support causes.",
+        "description": "Throughout my career I have participated in multiple technology tournaments, looking new challenges to improve myself, meet people and support causes.",
         "images": [
             {
                 "key": "1",
@@ -152,5 +152,9 @@
                 "image_alt": "Luis Miguel Ventura - Hackathon Indecopi 2018"
             }
         ]
+    },
+    "footer": {
+        "copyright": "Copyright 2021 All rights reserved",
+        "restart_text": "GO TO THE TOP"
     }
 }

@@ -6,8 +6,8 @@
     <Front :data="page.skills.frontend" />
     <Back :data="page.skills.backend"  />
     <OtherSkills :data="page.skills.more" />
-    <Achievements :data="page.achievement"  />
-    <Footer />
+    <Achievements :data="page.achievement" />
+    <Footer :data="page.footer" />
   </Layout>
 </template>
 

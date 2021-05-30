@@ -152,5 +152,9 @@
                 "image_alt": "Luis Miguel Ventura - Hackathon Indecopi 2018"
             }
         ]
+    },
+    "footer": {
+        "copyright": "Copyright 2021 Todos los derechos reservados",
+        "restart_text": "VOLVER AL INCIO"
     }
 }

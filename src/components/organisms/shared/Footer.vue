@@ -62,8 +62,8 @@
         <ul class="foot-menu">
           <li class="foot-menu-item mbr-fonts-style display-7">
             <a href="index.html#top" class="text-warning text-primary"
-              >VOLVER AL INICIO</a
-            >
+              >{{ data.restart_text }}
+            </a>
           </li>
         </ul>
       </div>
@@ -71,7 +71,7 @@
         <p
           class="footer-text col-md-12 col-sm-12 mbr-fonts-style mbr-text display-7"
         >
-          © Copyright 2021&nbsp;Todos los derechos reservados
+          © {{ data.copyright }}
         </p>
       </div>
     </div>
@@ -81,5 +81,11 @@
 <script>
 export default {
   name: "Footer",
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
 }
 </script>

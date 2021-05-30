@@ -38,5 +38,67 @@
                 "text": "Soy amante de la tecnología y curioso de las nuevas tendencias que estén a disposición y aunque hayan muchas que aún no conozca, me gusta sorprenderme de lo que estas me puedan ofrecer y ver todas las posibilidades en las que lo pueda aplicar."
             }
         ]
+    },
+    "skills": {
+        "frontend": {
+            "title": "MIS HABILIDADES: FRONTEND",
+            "subtitle": "En el lado del cliente",
+            "techs": [
+                {
+                    "key": "1",
+                    "icon": "mobi-mbri-code",
+                    "tech": "VUEJS",
+                    "description": "Conocimientos avanzados del framework, uso de componentes, props, router, mixins, vuex, preprocesadores, pwa e integración con frameworks de diseño."
+                },
+                {
+                    "key": "2",
+                    "icon": "mobi-mbri-drag-n-drop-2",
+                    "tech": "SASS, STYLUS",
+                    "description": "Conocimientos intermedios avanzados de preprocesadores para la maquetación de componentes haciendo uso de buenas practicas para su mantenimiento."
+                },
+                {
+                    "key": "3",
+                    "icon": "mobi-mbri-credit-card",
+                    "tech": "MAQUETACIÓN",
+                    "description": "Conocimientos avanzados de HTML5, CSS3 y JS para la maquetación fiel al diseño, estructurada y preparación del SEO."
+                },
+                {
+                    "key": "4",
+                    "icon": "mobi-mbri-code",
+                    "tech": "JAVASCRIPT",
+                    "description": "Conocimientos avanzados del lenguaje de programación en VanillaJs y ECMAScript 6."
+                }
+            ]
+        },
+        "backend": {
+            "title": "MIS HABILIDADES: BACKEND",
+            "subtitle": "En el lado del Servidor",
+            "techs": [
+                {
+                    "key": "1",
+                    "icon": "mbr-card-title",
+                    "tech": "NODEJS",
+                    "level": "Avanzado"
+                },
+                {
+                    "key": "2",
+                    "icon": "mobi-mbri-database",
+                    "tech": "MONGODB",
+                    "level": "Intermedio"
+                },
+                {
+                    "key": "3",
+                    "icon": "mobi-mbri-code",
+                    "tech": "PHP",
+                    "level": "Básico"
+                },
+                {
+                    "key": "4",
+                    "icon": "mobi-mbri-database",
+                    "tech": "SQL",
+                    "level": "Intermedio"
+                }
+            ]
+        }
     }
 }

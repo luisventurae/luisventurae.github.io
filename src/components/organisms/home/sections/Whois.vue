@@ -25,7 +25,7 @@
             data-pause="true"
             data-keyboard="false"
             data-ride="carousel"
-            data-interval="5000"
+            :data-interval="delay"
           >
             <div class="slider-testimonials">
               <div class="carousel-inner">
@@ -90,5 +90,8 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    delay: 15000,
+  })
 };
 </script>

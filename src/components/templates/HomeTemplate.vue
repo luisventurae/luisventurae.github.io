@@ -3,8 +3,8 @@
     <Header :data="page.menu" />
     <Banner />
     <Whois :data="page.whois" />
-    <Front />
-    <Back />
+    <Front :data="page.skills.frontend" />
+    <Back :data="page.skills.backend"  />
     <OtherSkills />
     <Achievements />
     <Footer />

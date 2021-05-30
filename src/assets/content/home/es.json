@@ -134,5 +134,23 @@
                 }
             ]
         }
+    },
+    "achievement": {
+        "title": "LOGROS",
+        "description": "A lo largo de mi carrera he sido partícipe de múltiples concursos de tecnología, con el afán de buscar nuevos retos, superarme a mí mismo, conocer a nuevas personas y apoyar con las causas.",
+        "images": [
+            {
+                "key": "1",
+                "title": "ESCUELA FULLSTACK - 2018",
+                "image": "/assets/images/34087893-2119702541391833-873730600094138368-o-1-964x723.jpeg",
+                "image_alt": "Luis Miguel Ventura - Hackathon Escuela Full Stack 2018"
+            },
+            {
+                "key": "2",
+                "title": "INDECOPI - 2018",
+                "image": "/assets/images/img-20180320-162429-437x583.jpeg",
+                "image_alt": "Luis Miguel Ventura - Hackathon Indecopi 2018"
+            }
+        ]
     }
 }

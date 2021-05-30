@@ -14,6 +14,7 @@ import "/static/assets/theme/css/style.css"
 import "/static/assets/styles/css/mbr-additional.css"
 
 export default function(Vue, { router, head, isClient }) {
+  /* head.htmlAttrs = { lang: '' } */
   // Statics scripts
   head.script.push({ src: '/assets/web/assets/jquery/jquery.min.js' })
   head.script.push({ src: '/assets/popper/popper.min.js' })

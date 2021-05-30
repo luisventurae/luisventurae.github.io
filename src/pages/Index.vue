@@ -11,6 +11,9 @@ import Page_Es from '@/assets/content/home/es.json'
 export default {
   metaInfo: {
     title: "Portafolio",
+    htmlAttrs: {
+      lang: 'es',
+    },
     meta: [
       {
         name: "robots",

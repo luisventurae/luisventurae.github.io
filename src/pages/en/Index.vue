@@ -10,7 +10,10 @@ import Page_En from '@/assets/content/home/en.json'
 
 export default {
   metaInfo: {
-    title: "Portafolio",
+    title: "Briefcase",
+    htmlAttrs: {
+      lang: 'en',
+    },
     meta: [
       {
         name: "robots",

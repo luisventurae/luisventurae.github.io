@@ -1,0 +1,163 @@
+{
+    "menu": {
+        "navs": [
+            {
+                "key": "1",
+                "text": "QUI SUIS-JE?",
+                "href":"#testimonials1-4"
+            },
+            {
+                "key": "2",
+                "text": "CAPACITÉS",
+                "href":"#features1-1"
+            },
+            {
+                "key": "3",
+                "text": "RÉALISATIONS",
+                "href":"#content2-d"
+            }
+        ],
+        "contact": {
+            "text": "CONTACTEZ MOI",
+            "href": "https://www.linkedin.com/in/luisventurae"
+        }
+    },
+    "banner": {
+        "chief": "Développeur Web"
+    },
+    "whois": {
+        "title": "QUI SUIS-JE?",
+        "slider": [
+            {
+                "key": "1",
+                "image": "/assets/images/img-20190809-wa0092-400x711.jpg",
+                "image_alt": "Luis Miguel Ventura",
+                "text": "J'aime beaucoup la nature, j'aime voyager, sortir pour explorer et voir de nouveaux endroits. J'apprends à jouer du piano à mes heures perdues, je considère que la musique est une partie essentielle de quelqu'un qui passe beaucoup de temps devant un ordinateur, alors pourquoi ne pas la connaître un peu plus."
+            },
+            {
+                "key": "2",
+                "image": "/assets/images/img-20190403-140947-400x533.jpeg",
+                "image_alt": "Luis Miguel Ventura",
+                "text": "Je suis un amoureux de la technologie et curieux des nouvelles tendances disponibles et bien qu'il y en ait beaucoup que je ne connais pas encore, j'aime être surpris de ce qu'elles peuvent m'offrir et voir toutes les possibilités dans lesquelles je peux l'appliquer."
+            }
+        ]
+    },
+    "skills": {
+        "frontend": {
+            "title": "MIS CAPACITÉS: FRONT-END",
+            "subtitle": "Côté client",
+            "techs": [
+                {
+                    "key": "1",
+                    "icon": "mobi-mbri-code",
+                    "tech": "VUEJS",
+                    "description": "Connaissance avancée du framework, utilisation des composants, accessoires, routeur, mixins, vuex, préprocesseurs, pwa et intégration avec les frameworks de conception."
+                },
+                {
+                    "key": "2",
+                    "icon": "mobi-mbri-drag-n-drop-2",
+                    "tech": "SASS, STYLUS",
+                    "description": "Connaissance intermédiaire avancée des préprocesseurs pour la disposition des composants en utilisant les bonnes pratiques de maintenance."
+                },
+                {
+                    "key": "3",
+                    "icon": "mobi-mbri-credit-card",
+                    "tech": "MISE EN PAGE HTML",
+                    "description": "Connaissance avancée de HTML5, CSS3 et JS pour une mise en page fidèle au design, structurée et préparation SEO."
+                },
+                {
+                    "key": "4",
+                    "icon": "mobi-mbri-code",
+                    "tech": "JAVASCRIPT",
+                    "description": "Connaissance avancée du langage de programmation dans VanillaJs et ECMAScript 6."
+                }
+            ]
+        },
+        "backend": {
+            "title": "MIS CAPACITÉS: BACK-END",
+            "subtitle": "Côté serveur",
+            "techs": [
+                {
+                    "key": "1",
+                    "icon": "mbr-card-title",
+                    "tech": "NODEJS",
+                    "level": "Avancée"
+                },
+                {
+                    "key": "2",
+                    "icon": "mobi-mbri-database",
+                    "tech": "MONGODB",
+                    "level": "Intermédiaire"
+                },
+                {
+                    "key": "3",
+                    "icon": "mobi-mbri-code",
+                    "tech": "PHP",
+                    "level": "Basique"
+                },
+                {
+                    "key": "4",
+                    "icon": "mobi-mbri-database",
+                    "tech": "SQL",
+                    "level": "Intermédiaire"
+                }
+            ]
+        },
+        "more": {
+            "title": {
+                "primary": "AUTRES",
+                "secondary": "COMPÉTENCES"
+            },
+            "subtitle": "Il ne ferait pas de mal de mentionner les CAPACITÉS suivantes qui peuvent compléter les précédentes:",
+            "techs": [
+                {
+                    "key": "1",
+                    "name": "FLOWCHRAMS",
+                    "percent": 86
+                },
+                {
+                    "key": "2",
+                    "name": "LINUX",
+                    "percent": 45
+                },
+                {
+                    "key": "3",
+                    "name": "NGINX",
+                    "percent": 41
+                },
+                {
+                    "key": "4",
+                    "name": "AUTHY",
+                    "percent": 74
+                },
+                {
+                    "key": "5",
+                    "name": "SCRUM",
+                    "percent": 54
+                }
+            ]
+        }
+    },
+    "achievement": {
+        "title": "RÉALISATIONS",
+        "description": "Tout au long de ma carrière, j'ai participé à de nombreux concours technologiques, avec le désir de rechercher de nouveaux défis, de m'améliorer, de rencontrer de nouvelles personnes et de soutenir des causes.",
+        "images": [
+            {
+                "key": "1",
+                "title": "ESCUELA FULLSTACK - 2018",
+                "image": "/assets/images/34087893-2119702541391833-873730600094138368-o-1-964x723.jpeg",
+                "image_alt": "Luis Miguel Ventura - Hackathon Escuela Full Stack 2018"
+            },
+            {
+                "key": "2",
+                "title": "INDECOPI - 2018",
+                "image": "/assets/images/img-20180320-162429-437x583.jpeg",
+                "image_alt": "Luis Miguel Ventura - Hackathon Indecopi 2018"
+            }
+        ]
+    },
+    "footer": {
+        "copyright": "Copyright 2021 Tous droits réservés",
+        "restart_text": "RETOUR AU DÉBUT"
+    }
+}

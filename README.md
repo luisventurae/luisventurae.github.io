@@ -3,8 +3,9 @@
 Use the links below to read the full content
 
 #### Different languages
-- Spanish https://luisventurae.github.io/
-- English https://luisventurae.github.io/en/
+- Spanish   https://luisventurae.github.io/
+- English   https://luisventurae.github.io/en/
+- French    https://luisventurae.github.io/fr/
 
 #### Technologies used for this projects
 - Gridsome

@@ -10,14 +10,14 @@ import Page_Fr from '@/assets/content/home/fr.json'
 
 export default {
   metaInfo: {
-    title: "Briefcase",
+    title: "Portfolio",
     htmlAttrs: {
       lang: 'fr',
     },
     meta: [
       {
         name: "description",
-        content: "Backend Engineer, Full Javascript Stack. Tech lover, autodidact for continuous improvement in web systems. Use of advanced Javascript on server side and client side.",
+        content: "Ingénieur backend, pile Javascript complète. Amoureux de la technologie, autodidacte pour l'amélioration continue des systèmes Web. Utilisation de Javascript avancé côté serveur et côté client.",
       },
       {
         name: "robots",
@@ -29,15 +29,15 @@ export default {
       },
       {
         key:
-          "fullstack, js, javascript, node, nodejs, ingeniero, sistemas, web, aplicacion, engineer, luisventurae, luis, miguel, ventura, universidad, autonoma, peru, leader, lima",
+          "fullstack, js, javascript, node, nodejs, ingénieur, systèmes, web, aplicacion, engineer, luisventurae, luis, miguel, ventura, universidad, autonoma, peru, leader, lima",
       },
       {
         property: "og:title",
-        content: "Luis Miguel Ventura | Briefcase",
+        content: "Luis Miguel Ventura | Portfolio",
       },
       {
         property: "og:description",
-        content: "Backend Engineer, Full Javascript Stack. Tech lover, autodidact for continuous improvement in web systems. Use of advanced Javascript on server side and client side.",
+        content: "Ingénieur backend, pile Javascript complète. Amoureux de la technologie, autodidacte pour l'amélioration continue des systèmes Web. Utilisation de Javascript avancé côté serveur et côté client.",
       },
       {
         property: "og:url",

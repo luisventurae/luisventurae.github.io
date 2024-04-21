@@ -47,6 +47,7 @@ $size_img: 700px;
       width: $size_img;
       background-repeat: no-repeat;
       background-size: cover;
+      background-position: center;
     }
   }
   &__title {
@@ -61,8 +62,27 @@ $size_img: 700px;
   .button_container {
     width: 100%;
     text-align: center;
-    padding: 12px;
+    padding: 12px 0;
     font-size: 24px;
+    background-color: #050a0d69;
+  }
+}
+
+@media (width < 1000px) {
+  .banner_container {
+    &__bg {
+      &__cover,
+      &__img {
+        height: 100vh;
+        width: 100vw;
+      }
+    }
+    &__title {
+      position: absolute;
+      margin: 0 auto;
+      margin-top: 7rem;
+      text-align: center;
+    }
   }
 }
 </style>

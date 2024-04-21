@@ -1,17 +1,11 @@
-<script lang="ts">
-import { defineComponent } from "vue"
-
-export default defineComponent({
-  name: "LandingTemplate",
-  // props: {},
-  setup(props) {
-    console.log("props", props)
-  },
-})
+<script setup lang="ts">
+import Nav from "../organisms/Nav.vue"
+import Banner from "../organisms/Banner.vue"
 </script>
 
 <template>
-  <div>Hola</div>
+  <Nav />
+  <Banner />
 </template>
 
 <style lang="scss" scoped></style>

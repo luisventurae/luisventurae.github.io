@@ -3,5 +3,34 @@ html,
 body {
   background-color: $MAIN_DARK;
   color: $WHITE;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Aldrich, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+nav,
+section,
+header,
+footer {
+  max-width: 1440px;
+  margin: 0 auto;
+  font-family: Aldrich;
+}
+
+h1 {
+  font-size: 100px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bebas Neue";
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("/cloud/fonts/BebasNeue-Regular.ttf");
 }

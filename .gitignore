@@ -26,6 +26,6 @@ dist-ssr
 .cache
 src/.temp
 .env
-.env.*
 yarn.lock
 package-lock.json
+public/backend

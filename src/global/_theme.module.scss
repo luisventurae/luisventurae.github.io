@@ -1,0 +1,15 @@
+// Modo Oscuro
+@media (prefers-color-scheme: dark) {
+  // El resto del scss por default
+}
+
+// Modo Claro
+@media (prefers-color-scheme: light) {
+  :root,
+  html,
+  body {
+    background-color: $WHITE;
+    color: $MAIN_DARK;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  }
+}

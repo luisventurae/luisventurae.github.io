@@ -24,7 +24,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@import "@/global/_variables.module.scss";
+@import "~/global/_variables.module.scss";
 
 .button_container {
   cursor: pointer;

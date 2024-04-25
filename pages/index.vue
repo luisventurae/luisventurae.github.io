@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import LandingTemplate from "./landing/components/templates/LandingTemplate.vue"
+import "~/global/_module.scss"
+import LandingTemplate from "../components/landing/templates/LandingTemplate.vue"
 </script>
 
 <template>

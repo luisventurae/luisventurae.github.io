@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <NuxtWelcome /> -->
-    <NuxtLoadingIndicator />
+    <!-- <NuxtLoadingIndicator /> -->
     <NuxtPage />
   </div>
 </template>

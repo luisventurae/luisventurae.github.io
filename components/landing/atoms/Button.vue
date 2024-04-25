@@ -12,7 +12,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    console.log("ButtonAtom:props", props)
+    if (process.client) {
+      console.log("ButtonAtom:props", props)
+    }
   },
 })
 </script>
@@ -32,6 +34,7 @@ export default defineComponent({
   border-radius: 8px;
   transition: 0.3s;
   width: fit-content;
+  cursor: pointer;
 
   &.dark-linear {
     background: transparent;

@@ -4,7 +4,9 @@ import { defineComponent } from "vue"
 export default defineComponent({
   name: "NavOrganism",
   setup(props) {
-    console.log("props", props)
+    if (process.client) {
+      console.log("NavOrganism:props", props)
+    }
   },
 })
 </script>

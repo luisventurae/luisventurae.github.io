@@ -1,13 +1,19 @@
 {
   "name": "nuxt-app",
+  "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": "20.9.0"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy:gh": "nuxt build && nuxt generate && gh-pages -d dist"
   },
   "dependencies": {
     "nuxt": "^3.11.2",
@@ -15,6 +21,7 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "sass": "^1.75.0"
   }
 }

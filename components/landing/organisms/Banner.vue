@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue"
-import Button from "../atoms/Button.vue"
+import Button from "~/components/landing/atoms/Button.vue"
 
 export default defineComponent({
   name: "BannerOrganism",

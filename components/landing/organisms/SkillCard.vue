@@ -9,6 +9,7 @@ export default defineComponent({
     skill_cards: <SkillCard[]>[
       {
         className: "pcard1",
+        icon: "backend-servers.svg",
         deskPosition: "left",
         title: "Backend",
         description:
@@ -39,6 +40,7 @@ export default defineComponent({
       },
       {
         className: "pcard2",
+        icon: "frontend.svg",
         deskPosition: "right",
         title: "Frontend",
         description:
@@ -46,7 +48,7 @@ export default defineComponent({
         skills: [
           {
             subtitle: "Frameworks de desarrollo",
-            subdescription: "VueJs, ViteJs, Web Components",
+            subdescription: "VueJs, NuxtJs, Vite, Web Components",
           },
           {
             subtitle: "Preprocesadores",
@@ -64,6 +66,7 @@ export default defineComponent({
       },
       {
         className: "pcard3",
+        icon: "tools.svg",
         deskPosition: "fill",
         title: "Otras Habilidades",
         description: "",
@@ -93,6 +96,7 @@ export default defineComponent({
     <PlainVerticalCard
       v-for="s_card in skill_cards"
       :class="s_card.className"
+      :icon="s_card.icon"
       :desk_position="s_card.deskPosition"
       :title="s_card.title"
       :description="s_card.description"

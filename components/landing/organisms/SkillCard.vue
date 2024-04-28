@@ -104,21 +104,21 @@ onMounted(async () => {
 
 <template>
   <section class="skill-card__container">
-    <!-- <ssr> -->
-      <PlainVerticalCard
-        v-for="s_card in skill_cards"
-        :class="s_card.className"
-        :svg="s_card.svg"
-        :desk_position="s_card.deskPosition"
-        :title="s_card.title"
-        :description="s_card.description"
-        :skills="s_card.skills"
-      />
-    <!-- </ssr> -->
+    <PlainVerticalCard
+      v-for="s_card in skill_cards"
+      :class="s_card.className"
+      :svg="s_card.svg"
+      :desk_position="s_card.deskPosition"
+      :title="s_card.title"
+      :description="s_card.description"
+      :skills="s_card.skills"
+    />
   </section>
 </template>
 
 <style lang="scss" scoped>
+@import "~/global/_breakpoints.module.scss";
+
 .skill-card {
   &__container {
     display: grid;
@@ -143,5 +143,23 @@ onMounted(async () => {
 .pcard3 {
   grid-area: pcard3;
   height: fit-content;
+}
+
+@media (max-width: $BK_DESKTOP) {
+  .skill-card {
+    &__container {
+      grid-auto-columns: auto;
+      grid-template-columns: 1fr;
+      grid-template-rows: 3fr;
+      grid-template-areas: inherit;
+      width: 80%;
+    }
+  }
+  .pcard1,
+  .pcard2,
+  .pcard3 {
+    grid-area: inherit;
+    border-radius: 24px !important;
+  }
 }
 </style>

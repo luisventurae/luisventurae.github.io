@@ -25,11 +25,11 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@import "~/global/_breakpoints.module.scss";
 $img_banner: "/cloud/images/luis-ventura-e-min.webp";
 $size_img: 700px;
 
 .banner_container {
-  // background-color: red;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -68,7 +68,7 @@ $size_img: 700px;
   }
 }
 
-@media (width < 1000px) {
+@media (max-width: $BK_DESKTOP) {
   .banner_container {
     &__bg {
       &__cover,

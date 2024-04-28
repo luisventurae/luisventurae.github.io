@@ -32,7 +32,7 @@ export default defineComponent({
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 8px;
-  transition: 0.3s;
+  transition: 0.2s;
   width: fit-content;
   cursor: pointer;
 

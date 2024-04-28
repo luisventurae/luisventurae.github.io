@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import TinyTag from "~/components/landing/atoms/TinyTag.vue"
+
 interface Prop {
   order: number
   image_url: string
@@ -31,6 +33,9 @@ const tags: string[] = props.tags
         <h3 class="expcard__body__title">{{ title }}</h3>
         <p class="expcard__body__subtitle">{{ company }}</p>
         <p class="expcard__body__text">{{ description }}</p>
+        <div class="expcard__body__tags">
+          <TinyTag v-for="tag in tags" :text="tag" />
+        </div>
       </div>
     </div>
   </div>
@@ -49,7 +54,7 @@ $size_card: 300px;
     cursor: pointer;
     transition: 0.2s;
     &:hover {
-      box-shadow: 0px 0px 4px 0px $MAIN_COLOR;
+      box-shadow: 0px 0px 4px 1px $MAIN_COLOR;
     }
   }
   &__content {
@@ -75,6 +80,9 @@ $size_card: 300px;
         &__subtitle {
           margin: 0;
           font-size: 16px;
+        }
+        &__tags {
+          text-align: left;
         }
       }
     }

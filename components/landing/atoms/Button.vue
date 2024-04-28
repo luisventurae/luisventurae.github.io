@@ -1,6 +1,4 @@
 <script setup lang="ts">
-type layoutValues = "dark-linear" | "solid"
-
 interface Prop {
   label: string
   layout?: layoutValues

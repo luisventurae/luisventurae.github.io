@@ -8,5 +8,3 @@ import LandingTemplate from "~/components/landing/templates/LandingTemplate.vue"
     <LandingTemplate />
   </div>
 </template>
-
-<style lang="scss" scoped></style>

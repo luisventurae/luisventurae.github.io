@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import TinyTag from "~/components/landing/atoms/TinyTag.vue"
+import FSButton from "~/components/landing/atoms/FSButton.vue"
+
+const emit = defineEmits(["open"])
 
 interface Prop {
   order: number
@@ -38,6 +41,9 @@ const tags: string[] = props.tags
         </div>
       </div>
     </div>
+    <div class="image-card__foot">
+      <FSButton @open="emit('open', props)" />
+    </div>
   </div>
 </template>
 
@@ -47,11 +53,11 @@ $size_card: 300px;
 
 .image-card {
   &__container {
+    position: relative;
     background-color: $SECONDARY_DARK;
     border-radius: $RADIUS_CARD;
-    padding: 24px;
+    padding: 24px 24px 36px 24px;
     width: $size_card;
-    cursor: pointer;
     transition: 0.2s;
     &:hover {
       box-shadow: 0px 0px 4px 1px $MAIN_COLOR;
@@ -86,6 +92,10 @@ $size_card: 300px;
         }
       }
     }
+  }
+  &__foot {
+    position: absolute;
+    bottom: -20px;
   }
 }
 </style>

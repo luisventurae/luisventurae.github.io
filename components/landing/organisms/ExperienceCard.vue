@@ -66,6 +66,11 @@ export default defineComponent({
       },
     ],
   }),
+  methods: {
+    clickFSButton(cardSelected: ExperiencePropMolecule): void {
+      console.log("a ver open full screen", cardSelected)
+    },
+  },
 })
 </script>
 
@@ -81,6 +86,7 @@ export default defineComponent({
         :company="card_image.company"
         :description="card_image.description"
         :tags="card_image.tags"
+        @open="clickFSButton"
       />
     </div>
   </section>

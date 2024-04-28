@@ -1,22 +1,16 @@
-<script lang="ts">
-import { defineComponent } from "vue"
+<script setup lang="ts">
+type layoutValues = "dark-linear" | "solid"
 
-export default defineComponent({
-  name: "ButtonAtom",
-  props: {
-    label: { type: String, require: true },
-    layout: {
-      type: String,
-      enum: ["dark-linear", "solid"],
-      default: "dark-linear",
-    },
-  },
-  setup(props) {
-    if (process.client) {
-      console.log("ButtonAtom:props", props)
-    }
-  },
+interface Prop {
+  label: string
+  layout?: layoutValues
+}
+
+const props = withDefaults(defineProps<Prop>(), {
+  layout: "dark-linear",
 })
+const label: string = props.label
+const layout: layoutValues = props.layout
 </script>
 
 <template>

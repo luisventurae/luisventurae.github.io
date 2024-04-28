@@ -5,4 +5,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
   },
+  app: {
+    pageTransition: { name: "index", mode: "out-in" },
+  },
 })

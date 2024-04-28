@@ -2,7 +2,9 @@
 import TinyTag from "~/components/landing/atoms/TinyTag.vue"
 import FSButton from "~/components/landing/atoms/FSButton.vue"
 
-const emit = defineEmits(["open"])
+const emit = defineEmits<{
+  (e: "open", cardSelected: ExperiencePropMolecule): void
+}>()
 
 interface Prop {
   order: number

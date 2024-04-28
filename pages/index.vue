@@ -4,7 +4,9 @@ import LandingTemplate from "~/components/landing/templates/LandingTemplate.vue"
 </script>
 
 <template>
-  <LandingTemplate />
+  <div>
+    <LandingTemplate />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

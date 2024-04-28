@@ -93,7 +93,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-$max_size_card: 300px + 24px + 24px; /* width + 2 paddings */
+$max_size_card: 300px + 24px + 24px; /* 1 width + 2 paddings de .image-card__container */
 
 .experience-card {
   &__container {

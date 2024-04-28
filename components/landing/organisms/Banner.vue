@@ -28,6 +28,7 @@ export default defineComponent({
 @import "~/global/_breakpoints.module.scss";
 $img_banner: "/cloud/images/luis-ventura-e-min.webp";
 $size_img: 700px;
+$cover_color: #050a0d69;
 
 .banner_container {
   height: 100vh;
@@ -35,12 +36,12 @@ $size_img: 700px;
   justify-content: center;
   align-items: center;
   &__bg {
-    &__cover {
-      background-color: #050a0d69;
-      height: $size_img;
-      width: $size_img;
-      position: absolute;
-    }
+    // &__cover {
+    //   background-color: $cover_color;
+    //   height: $size_img;
+    //   width: $size_img;
+    //   position: absolute;
+    // }
     &__img {
       background-image: url($img_banner);
       height: $size_img;
@@ -48,6 +49,19 @@ $size_img: 700px;
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
+      position: relative;
+      overflow: hidden;
+      filter: opacity(0.5);
+    }
+    &__img::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%; /* Ajusta la altura del degradado */
+      background-image: linear-gradient(to top, #050a0d, rgba(0, 0, 0, 0));
+      z-index: 1;
     }
   }
   &__title {
@@ -64,14 +78,14 @@ $size_img: 700px;
     text-align: center;
     padding: 12px 0;
     font-size: 24px;
-    background-color: #050a0d69;
+    background-color: $cover_color;
   }
 }
 
 @media (max-width: $BK_DESKTOP) {
   .banner_container {
     &__bg {
-      &__cover,
+      // &__cover,
       &__img {
         height: 100vh;
         width: 100vw;

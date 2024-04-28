@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import ShortText from "./ShortText.vue"
-// const p = useAttrs()
-const LogoSkill = defineAsyncComponent(
-  () => import(`~/assets/icons/backend-servers.svg`)
-)
-// const LogoSkill = defineAsyncComponent(() => import(`~/assets/icons/${p.icon}`))
-const props = defineProps({
-  desk_position: {
-    type: String,
-    required: true,
-    enum: ["left", "right", "fill"],
-  },
-  icon: { type: String, required: true },
-  title: { type: String, required: true },
-  description: { type: String, required: false },
-  skills: Array as PropType<Array<SkillPropMolecule>>,
-})
+
+function getIcon(path: string): Component {
+  const assets = import.meta.glob("~/assets/icons/*.svg", {
+    eager: true,
+    import: "default",
+  })
+  // @ts-expect-error: wrong type info
+  return assets["/assets/icons/" + path]
+}
+
+interface Props {
+  desk_position: deskPositionEnum
+  svg: string
+  title: string
+  description: string
+  skills: SkillPropMolecule[]
+}
+const props = defineProps<Props>()
 const desk_position: string = props.desk_position
-const icon: string = props.icon
-// const LogoSkill = defineAsyncComponent(() => import(`~/assets/icons/${icon}.svg`))
-// const LogoSkill = defineAsyncComponent(() => import("~/assets/icons/" + icon))
+const svg: string = props.svg
 const title: string = props.title
 const description = props.description
 const skills = props.skills
@@ -31,11 +31,9 @@ const skills = props.skills
     :class="`card-radius-${desk_position}`"
   >
     <div class="plain-vertical-card__content">
-      <!-- <LogoSkill /> -->
-      <component :is="LogoSkill" />
+      <component :is="getIcon(svg)" />
       <h3>{{ title }}</h3>
       <p v-show="description" class="plain-description">{{ description }}</p>
-
       <ShortText
         v-for="skill in skills"
         :subtitle="skill.subtitle"

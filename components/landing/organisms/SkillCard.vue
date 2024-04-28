@@ -9,7 +9,7 @@ export default defineComponent({
     skill_cards: <SkillCard[]>[
       {
         className: "pcard1",
-        icon: "backend-servers.svg",
+        svg: "backend-servers.svg",
         deskPosition: "left",
         title: "Backend",
         description:
@@ -40,7 +40,7 @@ export default defineComponent({
       },
       {
         className: "pcard2",
-        icon: "frontend.svg",
+        svg: "frontend.svg",
         deskPosition: "right",
         title: "Frontend",
         description:
@@ -66,7 +66,7 @@ export default defineComponent({
       },
       {
         className: "pcard3",
-        icon: "tools.svg",
+        svg: "tools.svg",
         deskPosition: "fill",
         title: "Otras Habilidades",
         description: "",
@@ -89,19 +89,32 @@ export default defineComponent({
     ],
   }),
 })
+const delay = (n: number) => {
+  n = n || 2000
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, n)
+  })
+}
+onMounted(async () => {
+  await delay(100)
+})
 </script>
 
 <template>
   <section class="skill-card__container">
-    <PlainVerticalCard
-      v-for="s_card in skill_cards"
-      :class="s_card.className"
-      :icon="s_card.icon"
-      :desk_position="s_card.deskPosition"
-      :title="s_card.title"
-      :description="s_card.description"
-      :skills="s_card.skills"
-    />
+    <!-- <ssr> -->
+      <PlainVerticalCard
+        v-for="s_card in skill_cards"
+        :class="s_card.className"
+        :svg="s_card.svg"
+        :desk_position="s_card.deskPosition"
+        :title="s_card.title"
+        :description="s_card.description"
+        :skills="s_card.skills"
+      />
+    <!-- </ssr> -->
   </section>
 </template>
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const emit = defineEmits(["click"])
 interface Prop {
   label: string
   layout?: layoutValues
@@ -9,11 +10,19 @@ const props = withDefaults(defineProps<Prop>(), {
 })
 const label: string = props.label
 const layout: layoutValues = props.layout
+
+const foreColorAvailable = {
+  "dark-linear": "#ffffff",
+  solid: "#262626",
+}
+const getForeColor = (): string => foreColorAvailable[layout] || "initial"
 </script>
 
 <template>
-  <div class="button_container" :class="layout">
+  <div class="button_container" :class="layout" @click="emit('click')">
     {{ label }}
+    <slot name="right" :forecolor="getForeColor()" />
+    <div><slot name="box" :forecolor="getForeColor()" /></div>
   </div>
 </template>
 

@@ -55,7 +55,7 @@ const openLink = (action: actionButtonValues, url: string): void => {
 </template>
 
 <style lang="scss" scoped>
-@import "~/global/_variables.module";
+@import "~/global/_variables.module", "~/global/_breakpoints.module";
 
 $width_box_buttons: 230px;
 
@@ -110,6 +110,29 @@ $width_box_buttons: 230px;
         &.solid > * {
           stroke: $SECONDARY_DARK;
         }
+      }
+    }
+  }
+}
+
+@media (max-width: $BK_DESKTOP) {
+  .band-card {
+    &__container {
+      width: 77%;
+    }
+    &__content {
+      grid-template-columns: auto;
+      text-align: center;
+      &.reverse {
+        direction: ltr !important;
+      }
+      &__description {
+        text-align: center;
+      }
+      &__picture,
+      &__buttons {
+        justify-content: center;
+        align-items: center !important;
       }
     }
   }

@@ -82,6 +82,9 @@ $width_box_buttons: 230px;
       .band-card__content__buttons {
         @include flex-position(flex-end);
       }
+      .band-card__content__description {
+        text-align: right;
+      }
     }
     &__picture {
       display: flex;
@@ -127,7 +130,7 @@ $width_box_buttons: 230px;
         direction: ltr !important;
       }
       &__description {
-        text-align: center;
+        text-align: center !important;
       }
       &__picture,
       &__buttons {

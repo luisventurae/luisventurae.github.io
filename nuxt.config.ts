@@ -7,5 +7,12 @@ export default defineNuxtConfig({
   },
   app: {
     pageTransition: { name: "index", mode: "out-in" },
+    head: {
+      script: [
+        {
+          src: "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback",
+        },
+      ],
+    },
   },
 })

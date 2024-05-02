@@ -28,11 +28,18 @@ export default defineComponent({
     },
   }),
   setup() {
-    const visibles = reactive({ form: true })
+    const visibles = reactive({ form: false })
     const toggleVForm = (): void => {
       visibles.form = !visibles.form
     }
-    return { visibles, toggleVForm }
+    interface paramEmitForm {
+      input_values: string[]
+      captcha_resolved: string
+    }
+    const submitData = (values: paramEmitForm) => {
+      console.log("submitData, submitData", values)
+    }
+    return { visibles, toggleVForm, submitData }
   },
 })
 </script>
@@ -48,6 +55,7 @@ export default defineComponent({
           :title="content.form.title"
           :text-button="content.form.textButton"
           :placeholders="content.form.placeholders"
+          @eDataform="submitData"
         />
       </div>
       <div class="dinamic-component__content__background">. . . . . . .</div>
@@ -61,9 +69,15 @@ export default defineComponent({
     transition: 0.5s;
     &__screen {
       transition: 0.5s;
+      margin: 170px auto;
+      .button_container {
+        margin: 0 auto;
+        padding: 12px 64px;
+      }
     }
     &__form {
       transition: 0.5s;
+      margin: 64px auto;
     }
   }
 }

@@ -18,4 +18,5 @@ interface DinamicDownload {
     textButton: string
     placeholders: [PlaceholderForm, PlaceholderForm]
   }
+  trees: DataTree[]
 }

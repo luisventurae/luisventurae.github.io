@@ -28,12 +28,6 @@ const formValues = reactive({
 
 const captchaToken = ref("")
 const submitForm = () => {
-  console.log("submitForm", formValues)
-  console.log("submitForm", formValues.fields)
-  console.log(
-    "submitForm",
-    formValues.fields.map((el) => el.value)
-  )
   const cpatchatValue: string = <string>captchaToken._value.childNodes[1].value
   emits("eDataform", {
     input_values: formValues.fields.map((el) => el.value),

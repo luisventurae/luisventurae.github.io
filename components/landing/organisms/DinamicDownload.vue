@@ -2,10 +2,11 @@
 import { defineComponent } from "vue"
 import Button from "~/components/landing/atoms/Button.vue"
 import FormContact from "~/components/landing/molecules/FormContact.vue"
+import DinamicBg from "~/components/landing/molecules/DinamicBg.vue"
 
 export default defineComponent({
   name: "DinamicComponent",
-  components: { Button, FormContact },
+  components: { Button, FormContact, DinamicBg },
   data: () => ({
     content: <DinamicDownload>{
       button: { label: "Obtener CV" },
@@ -25,6 +26,42 @@ export default defineComponent({
           },
         ],
       },
+      trees: [
+        {
+          key: "abc",
+          date: new Date(),
+          company: "Instituto Cepeban",
+          order: 1,
+          self: false,
+        },
+        {
+          key: "abcd",
+          date: new Date(),
+          company: "Pool Work",
+          order: 2,
+          self: true,
+        },
+        {
+          key: "abcf",
+          date: new Date(),
+          company: "Securitec",
+          order: 3,
+          self: false,
+        },
+        {
+          key: "abcg",
+          date: new Date(),
+          company: "Beex",
+          order: 4,
+        },
+        {
+          key: "abch",
+          date: new Date(),
+          company: "Busconsulting",
+          order: 5,
+          self: false,
+        },
+      ],
     },
   }),
   setup() {
@@ -45,12 +82,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <section class="dinamic-component__container">
-    <div class="dinamic-component__content">
-      <div class="dinamic-component__content__screen" v-show="!visibles.form">
+  <section class="dinamic-download__container">
+    <div class="dinamic-download__content">
+      <div class="dinamic-download__content__screen" v-show="!visibles.form">
         <Button :label="content.button.label" @click="toggleVForm" />
       </div>
-      <div class="dinamic-component__content__form" v-show="visibles.form">
+      <div class="dinamic-download__content__form" v-show="visibles.form">
         <FormContact
           :title="content.form.title"
           :text-button="content.form.textButton"
@@ -58,13 +95,15 @@ export default defineComponent({
           @eDataform="submitData"
         />
       </div>
-      <div class="dinamic-component__content__background">. . . . . . .</div>
+      <div class="dinamic-download__content__background">
+        <DinamicBg :trees="content.trees" />
+      </div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-.dinamic-component {
+.dinamic-download {
   &__content {
     transition: 0.5s;
     &__screen {
@@ -78,6 +117,9 @@ export default defineComponent({
     &__form {
       transition: 0.5s;
       margin: 64px auto;
+    }
+    &__background {
+      height: 200px;
     }
   }
 }

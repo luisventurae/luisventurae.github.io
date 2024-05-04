@@ -66,10 +66,11 @@ export default defineComponent({
       },
     ],
   }),
-  methods: {
-    clickFSButton(cardSelected: ExperiencePropMolecule): void {
+  setup() {
+    const clickFSButton = (cardSelected: ExperiencePropMolecule): void => {
       console.log("a ver open full screen", cardSelected)
-    },
+    }
+    return { clickFSButton }
   },
 })
 </script>

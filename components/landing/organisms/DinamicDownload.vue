@@ -82,7 +82,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <section class="dinamic-download__container">
+  <section id="dinamic-download" class="dinamic-download__container">
     <div class="dinamic-download__content">
       <div class="dinamic-download__content__screen" v-show="!visibles.form">
         <Button :label="content.button.label" @click="toggleVForm" />

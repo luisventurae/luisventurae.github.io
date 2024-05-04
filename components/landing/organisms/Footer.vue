@@ -75,6 +75,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "~/global/_variables.module";
+@import "~/global/_breakpoints.module";
 
 .footer {
   &__container {
@@ -113,6 +114,26 @@ export default defineComponent({
     }
     &__foot {
       font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: $BK_DESKTOP) {
+  .footer {
+    &__content {
+      &__body {
+        ul {
+          li {
+            a {
+              padding: 16px 15px;
+              svg {
+                width: 22px;
+                height: auto;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

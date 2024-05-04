@@ -50,7 +50,7 @@ $size_h3: 48px;
 .plain-vertical-card {
   &__container {
     background-color: $SECONDARY_DARK;
-    padding: 20px;
+    padding: 32px;
     border-radius: $RADIUS_CARD;
     &.card-radius-left {
       border-radius: $RADIUS_CARD 0 0 $RADIUS_CARD;

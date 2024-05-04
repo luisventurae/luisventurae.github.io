@@ -5,6 +5,13 @@ import Button from "~/components/landing/atoms/Button.vue"
 export default defineComponent({
   name: "BannerOrganism",
   components: { Button },
+  setup() {
+    const goForm = () => {
+      // window.scrollBy(0, 4500)
+      navigateTo("#dinamic-download")
+    }
+    return { goForm }
+  },
 })
 </script>
 
@@ -17,7 +24,7 @@ export default defineComponent({
       <h1>Luis</h1>
       <h1>Ventura</h1>
       <p>Web Developer</p>
-      <Button label="Obtener CV" />
+      <Button label="Obtener CV" @click="goForm" />
     </div>
   </section>
 </template>

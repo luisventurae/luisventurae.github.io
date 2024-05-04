@@ -13,11 +13,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <Nav />
+  <!-- <Nav /> -->
   <Banner />
   <SkillCard />
   <ExperienceCard />
-  <DemoAppCard />
+  <!-- <DemoAppCard /> -->
   <DinamicDownload />
   <Footeri />
 </template>

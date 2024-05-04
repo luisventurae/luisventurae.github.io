@@ -89,17 +89,6 @@ export default defineComponent({
     ],
   }),
 })
-const delay = (n: number) => {
-  n = n || 2000
-  return new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve()
-    }, n)
-  })
-}
-onMounted(async () => {
-  await delay(100)
-})
 </script>
 
 <template>
@@ -123,7 +112,7 @@ onMounted(async () => {
   &__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr auto;
     grid-template-areas:
       "pcard1 pcard2"
       "pcard3 pcard3";

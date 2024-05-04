@@ -21,6 +21,7 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "dayjs-nuxt": "^2.1.9",
     "gh-pages": "^6.1.1",
     "nuxt-svgo": "^4.0.0",
     "sass": "^1.75.0"

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import TreeBgIcon from "~/assets/icons/tree-bg.svg"
 import Tooltip from "~/components/landing/atoms/Tooltip.vue"
+import { useDayjs } from "#dayjs"
+const dayjs = useDayjs()
+dayjs.locale("es")
 
 interface Prop {
   trees: DataTree[]
@@ -8,12 +11,12 @@ interface Prop {
 const props = defineProps<Prop>()
 
 const formatText = (date: Date): string => {
-  return "Descarga: xxx"
+  const dj = dayjs(date).format("DD/MM/YYYY")
+  return `Descarga: ${dj}`
 }
 const tooltip = reactive({ visible: false })
 const selected = reactive({ tree: -1 })
 const showTooltip = (order?: number): void => {
-  console.log("order", order)
   selected.tree = order || -1
   tooltip.visible = true
 }
@@ -51,11 +54,11 @@ const showTooltip = (order?: number): void => {
   &__icon {
     display: inline-block;
     color: $SECONDARY_DARK;
-    cursor: pointer;
     svg {
       width: 100px;
       height: 100px;
       margin-bottom: 0;
+      cursor: pointer;
     }
     &.standout {
       color: $MAIN_COLOR;

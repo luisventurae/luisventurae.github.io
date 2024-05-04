@@ -75,9 +75,9 @@ $size_card: 300px;
       &__image {
         img {
           width: -webkit-fill-available;
-          height: 200px;
+          height: 180px;
           object-fit: cover;
-          object-position: center;
+          object-position: top;
         }
       }
       &__body {

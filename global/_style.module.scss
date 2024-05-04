@@ -1,0 +1,48 @@
+:root,
+html,
+body {
+  background-color: $MAIN_DARK;
+  color: $WHITE;
+  font-family: Aldrich, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+nav,
+section,
+header {
+  max-width: 1440px;
+  margin: 0 auto;
+  font-family: Aldrich;
+}
+
+h1 {
+  font-size: 100px;
+}
+h2 {
+  font-size: 60px;
+}
+h3 {
+  font-size: 48px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bebas Neue";
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Aldrich";
+  src: url("/cloud/fonts/Aldrich-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("/cloud/fonts/BebasNeue-Regular.ttf");
+}

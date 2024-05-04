@@ -119,7 +119,7 @@ export default defineComponent({
       margin: 64px auto;
     }
     &__background {
-      height: 200px;
+      height: 190px;
     }
   }
 }

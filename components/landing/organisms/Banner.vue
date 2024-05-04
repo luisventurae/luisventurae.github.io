@@ -52,16 +52,17 @@ $cover_color: #050a0d69;
       position: relative;
       overflow: hidden;
       filter: opacity(0.5);
-    }
-    &__img::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 50%; /* Ajusta la altura del degradado */
-      background-image: linear-gradient(to top, #050a0d, rgba(0, 0, 0, 0));
-      z-index: 1;
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        max-width: 100%;
+        height: 50%; /* Ajusta la altura del degradado */
+        background-image: linear-gradient(to top, #050a0d, rgba(0, 0, 0, 0));
+        z-index: 1;
+      }
     }
   }
   &__title {
@@ -88,7 +89,7 @@ $cover_color: #050a0d69;
       // &__cover,
       &__img {
         height: 100vh;
-        width: 100vw;
+        width: 97vw;
       }
     }
     &__title {

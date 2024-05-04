@@ -6,6 +6,8 @@ export default defineNuxtConfig({
     "/": { prerender: true },
   },
   app: {
+    baseURL: "/",
+    buildAssetsDir: "cloud",
     pageTransition: { name: "index", mode: "out-in" },
     head: {
       script: [

@@ -10,7 +10,7 @@ export default defineComponent({
   data: () => ({
     // TODO
     content: <DinamicDownload>{
-      button: { label: "Obtener CV" },
+      button: { label: "Descargar CV" },
       form: {
         title: "Mi CV se enviará a su email",
         textButton: "Enviar CV",

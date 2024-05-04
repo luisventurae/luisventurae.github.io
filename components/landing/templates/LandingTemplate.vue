@@ -21,11 +21,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <!-- TODO -->
-  <!-- <Nav /> -->
+  <Nav />
   <Banner />
   <SkillCard />
   <ExperienceCard />
+  <!-- TODO -->
   <!-- <DemoAppCard /> -->
   <DinamicDownload />
   <Footeri />

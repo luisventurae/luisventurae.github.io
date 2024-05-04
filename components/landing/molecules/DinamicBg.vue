@@ -29,13 +29,11 @@ const showTooltip = (order?: number): void => {
       v-for="tree in props.trees"
       :class="{ standout: tree.self }"
     >
-      <!-- TODO -->
-      <!-- <Tooltip
+      <Tooltip
         :visible="tree.order === selected.tree && tooltip.visible"
         :text-title="tree.company"
         :text-foot="formatText(tree.date)"
-      > -->
-      <Tooltip :visible="false" text-title="" text-foot="">
+      >
         <TreeBgIcon @click="showTooltip(tree.order)" />
       </Tooltip>
     </div>
@@ -60,8 +58,7 @@ const showTooltip = (order?: number): void => {
       width: 100px;
       height: 100px;
       margin-bottom: 0;
-      /** TODO */
-      // cursor: pointer;
+      cursor: pointer;
     }
     &.standout {
       color: $MAIN_COLOR;

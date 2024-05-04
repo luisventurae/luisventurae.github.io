@@ -44,8 +44,7 @@ const tags: string[] = props.tags
       </div>
     </div>
     <div class="image-card__foot">
-      <!-- TODO -->
-      <!-- <FSButton @open="emit('open', props)" /> -->
+      <FSButton @open="emit('open', props)" />
     </div>
   </div>
 </template>

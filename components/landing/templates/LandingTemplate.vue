@@ -14,7 +14,7 @@ useSeoMeta({
   ogTitle: "Luis Ventura E | Portafolio",
   ogDescription:
     "Ingeniero Full Stack y desarrollador web apasionado por las tecnologías emergentes. Experiencia en la implementación de Javascript avanzado tanto en el lado del cliente como del servidor para crear soluciones web robustas y eficientes",
-  ogImage: "https://luisventurae.github.io/luis-83x83.png",
+  ogImage: "https://luisventurae.github.io/luis-83x83.jpg",
   twitterCard: "summary_large_image",
   author: "Luis Miguel Ventura E",
 })

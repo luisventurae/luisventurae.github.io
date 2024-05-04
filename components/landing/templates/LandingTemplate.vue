@@ -13,6 +13,7 @@ useSeoMeta({
 </script>
 
 <template>
+  <!-- TODO -->
   <!-- <Nav /> -->
   <Banner />
   <SkillCard />

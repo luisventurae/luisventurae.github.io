@@ -33,7 +33,7 @@ const getForeColor = (): string => foreColorAvailable[layout] || "initial"
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 8px;
-  transition: 0.2s;
+  transition: 0.1s;
   width: fit-content;
   cursor: pointer;
 

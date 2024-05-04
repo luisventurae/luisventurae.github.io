@@ -8,6 +8,7 @@ export default defineComponent({
   name: "DinamicComponent",
   components: { Button, FormContact, DinamicBg },
   data: () => ({
+    // TODO
     content: <DinamicDownload>{
       button: { label: "Obtener CV" },
       form: {
@@ -39,7 +40,7 @@ export default defineComponent({
           date: new Date(),
           company: "Pool Work",
           order: 2,
-          self: true,
+          self: false,
         },
         {
           key: "abcf",
@@ -48,26 +49,36 @@ export default defineComponent({
           order: 3,
           self: false,
         },
-        {
-          key: "abcg",
-          date: new Date(),
-          company: "Beex",
-          order: 4,
-        },
-        {
-          key: "abch",
-          date: new Date(),
-          company: "Busconsulting",
-          order: 5,
-          self: false,
-        },
+        // {
+        //   key: "abcg",
+        //   date: new Date(),
+        //   company: "Beex",
+        //   order: 4,
+        // },
+        // {
+        //   key: "abch",
+        //   date: new Date(),
+        //   company: "Busconsulting",
+        //   order: 5,
+        //   self: false,
+        // },
       ],
     },
   }),
   setup() {
     const visibles = reactive({ form: false })
+    function downloadURI(uri: string, name: string) {
+      var link = document.createElement("a")
+      link.setAttribute("download", name)
+      link.href = uri
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+    }
     const toggleVForm = (): void => {
-      visibles.form = !visibles.form
+      //  TODO
+      // visibles.form = !visibles.form
+      downloadURI("/resources/CV_Luis_Ventura_es.pdf", "CV_Luis_Ventura_spanish")
     }
     interface paramEmitForm {
       input_values: string[]

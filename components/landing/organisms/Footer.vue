@@ -67,7 +67,7 @@ export default defineComponent({
         </ul>
       </div>
       <div class="footer__content__foot">
-        <p>© Copyright 2024 Todos los derechos reservados</p>
+        <p>© Copyright 2024 - Todos los derechos reservados</p>
       </div>
     </div>
   </footer>
@@ -99,6 +99,7 @@ export default defineComponent({
         li {
           list-style: none;
           margin: 4px;
+          transition: 0.1s;
           a {
             border: 2px solid #fff;
             border-radius: 50%;
@@ -108,6 +109,9 @@ export default defineComponent({
               width: 32px;
               height: auto;
             }
+          }
+          &:hover {
+            scale: 1.1;
           }
         }
       }

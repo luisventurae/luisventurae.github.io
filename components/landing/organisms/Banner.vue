@@ -4,7 +4,6 @@ import Button from "~/components/landing/atoms/Button.vue"
 
 export default defineComponent({
   name: "BannerOrganism",
-  setup() {},
   components: { Button },
 })
 </script>
@@ -12,7 +11,6 @@ export default defineComponent({
 <template>
   <section class="banner_container">
     <div class="banner_container__bg">
-      <div class="banner_container__bg__cover"></div>
       <div class="banner_container__bg__img"></div>
     </div>
     <div class="banner_container__title">
@@ -36,12 +34,6 @@ $cover_color: #050a0d69;
   justify-content: center;
   align-items: center;
   &__bg {
-    // &__cover {
-    //   background-color: $cover_color;
-    //   height: $size_img;
-    //   width: $size_img;
-    //   position: absolute;
-    // }
     &__img {
       background-image: url($img_banner);
       height: $size_img;
@@ -62,6 +54,9 @@ $cover_color: #050a0d69;
         height: 50%; /* Ajusta la altura del degradado */
         background-image: linear-gradient(to top, #050a0d, rgba(0, 0, 0, 0));
         z-index: 1;
+      }
+      @media (max-width: 1100px) {
+        width: 500px;
       }
     }
   }

@@ -128,7 +128,7 @@ onMounted(async () => {
       "pcard1 pcard2"
       "pcard3 pcard3";
     gap: 8px 1px;
-    width: 51em;
+    max-width: 51em;
     padding: 24px;
   }
 }

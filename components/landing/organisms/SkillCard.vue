@@ -17,24 +17,52 @@ export default defineComponent({
         skills: [
           {
             subtitle: "Lenguajes de Programación",
-            subdescription: "JavaScript, TypesScript, PHP, Java, Solidity",
+            subdescriptions: [
+              { name: "JavaScript", stars: 10 },
+              { name: "TypesScript", stars: 8 },
+              { name: "PHP", stars: 3 },
+              { name: "Java", stars: 4 },
+              { name: "Solidity", stars: 1 },
+            ],
           },
           {
             subtitle: "Frameworks y librerías",
-            subdescription:
-              "NodeJs, NestJs, ExpressJs, AdonisJs, Mongoose, Spring Boot",
+            subdescriptions: [
+              { name: "NodeJs", stars: 4 },
+              { name: "NestJs", stars: 4 },
+              { name: "ExpressJs", stars: 4 },
+              { name: "AdonisJs", stars: 4 },
+              { name: "Mongoose", stars: 4 },
+              { name: "Spring Boot", stars: 4 },
+            ],
           },
           {
             subtitle: "Bases de Datos",
-            subdescription: "MongoDB, MySQL, PostgreSQL, SQL Server",
+            subdescriptions: [
+              { name: "MongoDB", stars: 4 },
+              { name: "MySQL", stars: 4 },
+              { name: "PostgreSQL", stars: 4 },
+              { name: "SQL Server", stars: 4 },
+            ],
           },
           {
             subtitle: "Servidores y Clouding",
-            subdescription: "Linux, CPanel, AWS, Heroku, Vercel, Cloudflare",
+            subdescriptions: [
+              { name: "Linux", stars: 4 },
+              { name: "CPanel", stars: 4 },
+              { name: "AWS", stars: 4 },
+              { name: "Heroku", stars: 4 },
+              { name: "Vercel", stars: 4 },
+              { name: "Cloudflare", stars: 4 },
+            ],
           },
           {
             subtitle: "Tecnologías de comunicación",
-            subdescription: "Sockets, Redis, Kafka",
+            subdescriptions: [
+              { name: "Sockets", stars: 4 },
+              { name: "Redis", stars: 4 },
+              { name: "Kafka", stars: 4 },
+            ],
           },
         ],
       },
@@ -48,19 +76,32 @@ export default defineComponent({
         skills: [
           {
             subtitle: "Frameworks de desarrollo",
-            subdescription: "VueJs, NuxtJs, Vite, Web Components",
+            subdescriptions: [
+              { name: "VueJs", stars: 4 },
+              { name: "NuxtJs", stars: 4 },
+              { name: "Vite", stars: 4 },
+              { name: "Web Components", stars: 4 },
+            ],
           },
           {
             subtitle: "Preprocesadores",
-            subdescription: "Sass, Scss, Stylus",
+            subdescriptions: [
+              { name: "Sass", stars: 4 },
+              { name: "Scss", stars: 4 },
+              { name: "Stylus", stars: 4 },
+            ],
           },
           {
             subtitle: "Frameworks de diseño",
-            subdescription: "Antdv",
+            subdescriptions: [{ name: "Antdv", stars: 4 }],
           },
           {
             subtitle: "Extras",
-            subdescription: "SEO, Diseño Responsivo, PWA",
+            subdescriptions: [
+              { name: "SEO", stars: 4 },
+              { name: "Diseño Responsivo", stars: 4 },
+              { name: "PWA", stars: 4 },
+            ],
           },
         ],
       },
@@ -73,16 +114,22 @@ export default defineComponent({
         skills: [
           {
             subtitle: "Herramientas de desarrollo",
-            subdescription: "Git, Docker",
+            subdescriptions: ["Git", "Docker"],
           },
           {
             subtitle: "Servicios para integración",
-            subdescription:
-              "WABA, Zoho CRM,  Airtable API, Twilio, Authy, ReCaptcha",
+            subdescriptions: [
+              { name: "WABA" },
+              { name: "Zoho CRM" },
+              { name: " Airtable API" },
+              { name: "Twilio" },
+              { name: "Authy" },
+              { name: "ReCaptcha" },
+            ],
           },
           {
             subtitle: "Metodología de desarrollo",
-            subdescription: "SCRUM",
+            subdescriptions: [{ name: "SCRUM" }],
           },
         ],
       },

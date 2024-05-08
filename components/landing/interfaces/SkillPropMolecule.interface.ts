@@ -1,4 +1,8 @@
+interface ItemShortReview {
+  name: string
+  stars: number
+}
 interface SkillPropMolecule {
   subtitle: string
-  subdescription: string
+  subdescriptions: ItemShortReview[]
 }

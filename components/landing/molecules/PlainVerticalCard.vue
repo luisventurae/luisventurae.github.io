@@ -37,7 +37,7 @@ const skills = props.skills
       <ShortText
         v-for="skill in skills"
         :subtitle="skill.subtitle"
-        :content="skill.subdescription"
+        :unit_content="skill.subdescriptions"
       />
     </div>
   </div>

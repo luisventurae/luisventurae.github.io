@@ -33,6 +33,7 @@ const showTooltip = (order?: number): void => {
         :visible="tree.order === selected.tree && tooltip.visible"
         :text-title="tree.company"
         :text-foot="formatText(tree.date)"
+        top="24px"
       >
         <TreeBgIcon @click="showTooltip(tree.order)" />
       </Tooltip>

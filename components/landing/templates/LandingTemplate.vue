@@ -7,6 +7,11 @@ import DemoAppCard from "~/components/landing/organisms/DemoAppCard.vue"
 import DinamicDownload from "~/components/landing/organisms/DinamicDownload.vue"
 import Footeri from "~/components/landing/organisms/Footer.vue"
 
+useHead({
+  htmlAttrs: {
+    lang: "es",
+  },
+})
 useSeoMeta({
   title: "Luis Ventura E | Portafolio",
   description:

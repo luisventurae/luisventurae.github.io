@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { onClickOutside } from "@vueuse/core"
 import Tooltip from "~/components/landing/atoms/Tooltip.vue"
+import ProgressBar from "~/components/landing/atoms/ProgressBar.vue"
 
 const props = defineProps({
   subtitle: { type: String, required: true },
@@ -14,8 +16,13 @@ const isLastItem = (index: number): boolean => {
   return (props.unit_content || []).length - 1 === index
 }
 const showTooltip = (index?: number): void => {
-  selected.index_item = index || -1
+  selected.index_item = index ?? -1
 }
+const target_tooltip_txt = ref(null)
+onClickOutside(target_tooltip_txt, (evt) => {
+  if (selected.index_item === -1) return
+  selected.index_item = -1
+})
 </script>
 
 <template>
@@ -28,16 +35,18 @@ const showTooltip = (index?: number): void => {
       >
         <Tooltip
           :visible="selected.index_item === i"
-          :text-foot="`Experencia: ${unit_item.stars}/10`"
+          :text-foot="`Nivel de experencia en ${unit_item.name}:`"
           @click="showTooltip(i)"
+          top="-60px"
+          ref="target_tooltip_txt"
         >
           {{ unit_item.name
           }}<span v-if="!isLastItem(i)" class="short-unit_content__symbol"
             >,
-            <!-- <p>
-              {{ unit_item.stars }}
-            </p> -->
           </span>
+          <template #box>
+            <ProgressBar :total="10" :loaded="unit_item.stars" />
+          </template>
         </Tooltip>
       </span>
     </p>

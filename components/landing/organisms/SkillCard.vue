@@ -28,12 +28,12 @@ export default defineComponent({
           {
             subtitle: "Frameworks y librerías",
             subdescriptions: [
-              { name: "NodeJs", stars: 4 },
-              { name: "NestJs", stars: 4 },
-              { name: "ExpressJs", stars: 4 },
-              { name: "AdonisJs", stars: 4 },
-              { name: "Mongoose", stars: 4 },
-              { name: "Spring Boot", stars: 4 },
+              { name: "NodeJs", stars: 9 },
+              { name: "NestJs", stars: 7 },
+              { name: "ExpressJs", stars: 7 },
+              { name: "AdonisJs", stars: 8 },
+              { name: "Mongoose", stars: 9 },
+              { name: "Spring Boot", stars: 1 },
             ],
           },
           {
@@ -49,17 +49,17 @@ export default defineComponent({
             subtitle: "Servidores y Clouding",
             subdescriptions: [
               { name: "Linux", stars: 4 },
-              { name: "CPanel", stars: 4 },
-              { name: "AWS", stars: 4 },
+              { name: "CPanel", stars: 5 },
+              { name: "AWS", stars: 3 },
               { name: "Heroku", stars: 4 },
-              { name: "Vercel", stars: 4 },
+              { name: "Vercel", stars: 6 },
               { name: "Cloudflare", stars: 4 },
             ],
           },
           {
             subtitle: "Tecnologías de comunicación",
             subdescriptions: [
-              { name: "Sockets", stars: 4 },
+              { name: "Sockets", stars: 8 },
               { name: "Redis", stars: 4 },
               { name: "Kafka", stars: 4 },
             ],
@@ -86,21 +86,21 @@ export default defineComponent({
           {
             subtitle: "Preprocesadores",
             subdescriptions: [
-              { name: "Sass", stars: 4 },
-              { name: "Scss", stars: 4 },
-              { name: "Stylus", stars: 4 },
+              { name: "Sass", stars: 9 },
+              { name: "Scss", stars: 9 },
+              { name: "Stylus", stars: 8 },
             ],
           },
           {
             subtitle: "Frameworks de diseño",
-            subdescriptions: [{ name: "Antdv", stars: 4 }],
+            subdescriptions: [{ name: "Antdv", stars: 5 }],
           },
           {
             subtitle: "Extras",
             subdescriptions: [
-              { name: "SEO", stars: 4 },
-              { name: "Diseño Responsivo", stars: 4 },
-              { name: "PWA", stars: 4 },
+              { name: "SEO", stars: 7 },
+              { name: "Diseño Responsivo", stars: 8 },
+              { name: "PWA", stars: 8 },
             ],
           },
         ],
@@ -114,17 +114,20 @@ export default defineComponent({
         skills: [
           {
             subtitle: "Herramientas de desarrollo",
-            subdescriptions: ["Git", "Docker"],
+            subdescriptions: [
+              { name: "Git", stars: 9 },
+              { name: "Docker", stars: 4 },
+            ],
           },
           {
             subtitle: "Servicios para integración",
             subdescriptions: [
-              { name: "WABA" },
-              { name: "Zoho CRM" },
-              { name: " Airtable API" },
-              { name: "Twilio" },
-              { name: "Authy" },
-              { name: "ReCaptcha" },
+              { name: "WABA", stars: 8 },
+              { name: "Zoho CRM", stars: 5 },
+              { name: "Airtable API", stars: 6 },
+              { name: "Twilio", stars: 5 },
+              { name: "Authy", stars: 4 },
+              { name: "ReCaptcha", stars: 6 },
             ],
           },
           {

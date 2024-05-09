@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TreeBgIcon from "~/assets/icons/tree-bg.svg"
 import Tooltip from "~/components/landing/atoms/Tooltip.vue"
+import { onClickOutside } from "@vueuse/core"
 import { useDayjs } from "#dayjs"
 const dayjs = useDayjs()
 dayjs.locale("es")
@@ -20,6 +21,12 @@ const showTooltip = (order?: number): void => {
   selected.tree = order || -1
   tooltip.visible = true
 }
+
+const target_tooltip = ref(null)
+onClickOutside(target_tooltip, (evt) => {
+  if (selected.tree === -1) return
+  selected.tree = -1
+})
 </script>
 
 <template>
@@ -34,6 +41,7 @@ const showTooltip = (order?: number): void => {
         :text-title="tree.company"
         :text-foot="formatText(tree.date)"
         top="24px"
+        ref="target_tooltip"
       >
         <TreeBgIcon @click="showTooltip(tree.order)" />
       </Tooltip>

@@ -18,6 +18,7 @@ const props = defineProps<Prop>()
     >
       <p v-if="props.textTitle" class="title">{{ props.textTitle }}</p>
       <p class="foot">{{ props.textFoot }}</p>
+      <slot name="box"></slot>
     </div>
     <slot></slot>
   </div>
@@ -38,8 +39,7 @@ const props = defineProps<Prop>()
     background-color: #262626f0;
     padding: 8px 12px;
     border-radius: 8px 8px 0 8px;
-    // margin: 24px 0;
-    // top: -8px;
+    z-index: 10;
     .foot {
       font-size: 12px;
     }

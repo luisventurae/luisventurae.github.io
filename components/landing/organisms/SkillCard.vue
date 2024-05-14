@@ -19,7 +19,7 @@ export default defineComponent({
             subtitle: "Lenguajes de Programación",
             subdescriptions: [
               { name: "JavaScript", stars: 10 },
-              { name: "TypesScript", stars: 8 },
+              { name: "TypesScript", stars: 8.5 },
               { name: "PHP", stars: 3 },
               { name: "Java", stars: 4 },
               { name: "Solidity", stars: 1 },
@@ -77,10 +77,10 @@ export default defineComponent({
           {
             subtitle: "Frameworks de desarrollo",
             subdescriptions: [
-              { name: "VueJs", stars: 4 },
+              { name: "VueJs", stars: 6 },
               { name: "NuxtJs", stars: 4 },
               { name: "Vite", stars: 4 },
-              { name: "Web Components", stars: 4 },
+              { name: "Web Components", stars: 7 },
             ],
           },
           {

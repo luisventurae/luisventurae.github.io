@@ -99,7 +99,7 @@ export default defineComponent({
         li {
           list-style: none;
           margin: 4px;
-          transition: 0.1s;
+          transition: scale 0.1s;
           a {
             border: 2px solid #fff;
             border-radius: 50%;

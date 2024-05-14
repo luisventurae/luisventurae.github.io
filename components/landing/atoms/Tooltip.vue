@@ -40,6 +40,7 @@ const props = defineProps<Prop>()
     padding: 8px 12px;
     border-radius: 8px 8px 0 8px;
     z-index: 10;
+    box-shadow: 0px 0px 4px #000;
     .foot {
       font-size: 12px;
     }

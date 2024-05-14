@@ -18,10 +18,13 @@ const isLastItem = (index: number): boolean => {
 const showTooltip = (index?: number): void => {
   selected.index_item = index ?? -1
 }
+const hideTooltip = () => {
+  selected.index_item = -1
+}
 const target_tooltip_txt = ref(null)
 onClickOutside(target_tooltip_txt, (evt) => {
   if (selected.index_item === -1) return
-  selected.index_item = -1
+  hideTooltip()
 })
 </script>
 
@@ -36,7 +39,8 @@ onClickOutside(target_tooltip_txt, (evt) => {
         <Tooltip
           :visible="selected.index_item === i"
           :text-foot="`Nivel de experencia en ${unit_item.name}:`"
-          @click="showTooltip(i)"
+          @mouseover="showTooltip(i)"
+          @mouseleave="hideTooltip()"
           top="-60px"
           ref="target_tooltip_txt"
         >

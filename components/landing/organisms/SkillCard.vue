@@ -61,7 +61,7 @@ export default defineComponent({
             subdescriptions: [
               { name: "Sockets", stars: 8 },
               { name: "Redis", stars: 4 },
-              { name: "Kafka", stars: 4 },
+              { name: "Kafka", stars: 3 },
             ],
           },
         ],
@@ -132,7 +132,7 @@ export default defineComponent({
           },
           {
             subtitle: "Metodología de desarrollo",
-            subdescriptions: [{ name: "SCRUM" }],
+            subdescriptions: [{ name: "SCRUM", stars: 6 }],
           },
         ],
       },

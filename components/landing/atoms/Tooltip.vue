@@ -3,6 +3,7 @@ interface Prop {
   visible: boolean
   textTitle?: string
   textFoot: string
+  top?: string
 }
 
 const props = defineProps<Prop>()
@@ -10,9 +11,14 @@ const props = defineProps<Prop>()
 
 <template>
   <div class="tooltip__container">
-    <div v-if="props.visible" class="tooltip__content">
+    <div
+      v-if="props.visible"
+      class="tooltip__content"
+      :style="`top: ${props.top || ''}`"
+    >
       <p v-if="props.textTitle" class="title">{{ props.textTitle }}</p>
       <p class="foot">{{ props.textFoot }}</p>
+      <slot name="box"></slot>
     </div>
     <slot></slot>
   </div>
@@ -33,7 +39,8 @@ const props = defineProps<Prop>()
     background-color: #262626f0;
     padding: 8px 12px;
     border-radius: 8px 8px 0 8px;
-    margin: 24px 0;
+    z-index: 10;
+    box-shadow: 0px 0px 4px #000;
     .foot {
       font-size: 12px;
     }

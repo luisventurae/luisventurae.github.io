@@ -17,6 +17,7 @@
     "deploy:gh": "nuxt build && nuxt generate && gh-pages -d dist"
   },
   "dependencies": {
+    "@vueuse/core": "^10.9.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

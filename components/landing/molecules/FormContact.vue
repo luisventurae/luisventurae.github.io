@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import Button from "~/components/landing/atoms/Button.vue"
+import Button from '~/components/landing/atoms/Button.vue'
 
-interface paramEmitForm {
-  input_values: string[]
+interface EmitDataform {
+  input_values: [string, string]
   captcha_resolved: string
 }
+
 const emits = defineEmits<{
-  (e: "eDataform", dataform: paramEmitForm): void
+  (e: 'eDataform', dataform: EmitDataform): void
 }>()
 
 interface Prop {
@@ -14,30 +15,39 @@ interface Prop {
   textButton: string
   placeholders: [PlaceholderForm, PlaceholderForm]
 }
-const props = defineProps<Prop>()
-const KEY_TURNSTILE: string = <string>process.env.KEY_TURNSTILE
 
-const emitSubmit = () => {
-  console.log("emitSubmit")
-}
-const formValues = reactive({
-  fields: props.placeholders.map(() => ({
-    value: <string>"",
-  })),
+const props = defineProps<Prop>()
+const config = useRuntimeConfig()
+const turnstileSiteKey = computed<string>(() => config.public.turnstileSiteKey as string)
+
+const fieldValues = reactive<[{ value: string }, { value: string }]>([
+  { value: '' },
+  { value: '' },
+])
+
+const captchaToken = ref<string>('')
+
+onMounted(() => {
+  // Register the global callback that Cloudflare Turnstile calls when resolved
+  window.javascriptCallback = (token: string): void => {
+    captchaToken.value = token
+  }
+  // Reset token when captcha expires
+  window.onTurnstileExpired = (): void => {
+    captchaToken.value = ''
+  }
 })
 
-const captchaToken = ref("")
-const submitForm = () => {
-  const cpatchatValue: string = <string>captchaToken._value.childNodes[1].value
-  emits("eDataform", {
-    input_values: formValues.fields.map((el) => el.value),
-    captcha_resolved: cpatchatValue,
+const submitForm = (): void => {
+  emits('eDataform', {
+    input_values: [fieldValues[0].value, fieldValues[1].value],
+    captcha_resolved: captchaToken.value,
   })
 }
 </script>
 
 <template>
-  <form @submit.prevent="emitSubmit" class="form-contact__container">
+  <form @submit.prevent="submitForm" class="form-contact__container">
     <div class="form-contact__content">
       <p class="title">{{ props.title }}</p>
       <div class="textsfields">
@@ -45,21 +55,23 @@ const submitForm = () => {
           :type="props.placeholders[0].type_text"
           :id="props.placeholders[0].id"
           :placeholder="props.placeholders[0].text"
-          v-model="formValues.fields[0].value"
+          v-model="fieldValues[0].value"
+          autocomplete="email"
         />
         <input
           :type="props.placeholders[1].type_text"
           :id="props.placeholders[1].id"
           :placeholder="props.placeholders[1].text"
-          v-model="formValues.fields[1].value"
+          v-model="fieldValues[1].value"
+          autocomplete="organization"
         />
       </div>
       <div
-        ref="captchaToken"
         class="cf-turnstile"
-        :data-sitekey="KEY_TURNSTILE"
+        :data-sitekey="turnstileSiteKey"
         data-callback="javascriptCallback"
-      ></div>
+        data-expired-callback="onTurnstileExpired"
+      />
       <Button :label="props.textButton" @click="submitForm" />
     </div>
   </form>
@@ -69,35 +81,38 @@ const submitForm = () => {
 $placeholder_color: #cdcdcd;
 
 .form-contact {
-  &__container {
-  }
   &__content {
     margin: 0 auto;
     text-align: center;
+
     > *,
     .textsfields > * {
       display: block;
     }
+
     input {
       padding: 8px 24px;
       border-radius: 8px;
-      font-family: Aldrich;
+      font-family: Aldrich, sans-serif;
       text-align: center;
       outline: none;
       margin: 12px auto;
       font-size: 16px;
       width: 300px;
+      background-color: var(--color-card-bg);
+      color: var(--color-fg);
+      border: 1px solid var(--color-border);
+
       &::placeholder {
         color: $placeholder_color;
       }
-      // &:last-child {
-      //   margin-bottom: 30px;
-      // }
     }
+
     .cf-turnstile {
       margin-top: 30px;
       margin-bottom: 12px;
     }
+
     .button_container {
       margin: 0 auto;
       width: 300px;

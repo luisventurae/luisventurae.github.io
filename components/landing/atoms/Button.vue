@@ -1,50 +1,46 @@
 <script setup lang="ts">
-const emit = defineEmits(["click"])
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
+
 interface Prop {
   label: string
   layout?: layoutValues
 }
 
 const props = withDefaults(defineProps<Prop>(), {
-  layout: "dark-linear",
+  layout: 'dark-linear',
 })
 const label: string = props.label
 const layout: layoutValues = props.layout
-
-const foreColorAvailable = {
-  "dark-linear": "#ffffff",
-  solid: "#262626",
-}
-const getForeColor = (): string => foreColorAvailable[layout] || "initial"
 </script>
 
 <template>
   <div class="button_container" :class="layout" @click="emit('click')">
     {{ label }}
-    <slot name="right" :forecolor="getForeColor()" />
-    <div><slot name="box" :forecolor="getForeColor()" /></div>
+    <slot name="right" />
+    <div><slot name="box" /></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "~/global/_variables.module.scss";
-
 .button_container {
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 8px;
-  transition: 0.1s;
+  transition: scale 0.1s ease;
   width: fit-content;
-  cursor: pointer;
 
   &.dark-linear {
     background: transparent;
-    border: 3px solid #fff;
+    border: 3px solid var(--color-border);
+    color: var(--color-fg);
   }
+
   &.solid {
-    background: $MAIN_COLOR;
-    border: 3px solid $MAIN_COLOR;
-    color: $MAIN_DARK;
+    background: var(--color-accent);
+    border: 3px solid var(--color-accent);
+    color: #050a0d; // always dark text on accent yellow
   }
 
   &:hover {

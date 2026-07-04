@@ -1,8 +1,8 @@
-// Colores
-$MAIN_DARK: #050a0d;
-$WHITE: #ffffff;
-$MAIN_COLOR: #ffc800;
-$SECONDARY_DARK: #262626;
+// SCSS vars reference CSS custom properties — runtime theming without touching components
+$MAIN_DARK: var(--color-bg);
+$WHITE: var(--color-fg);
+$MAIN_COLOR: var(--color-accent);
+$SECONDARY_DARK: var(--color-card-bg);
 
-// Medidas
+// Non-color values — compile-time only, no theme change needed
 $RADIUS_CARD: 24px;

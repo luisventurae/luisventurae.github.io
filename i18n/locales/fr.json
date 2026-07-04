@@ -20,30 +20,30 @@
         "title": "Backend",
         "description": "Développement robuste pour applications web et systèmes d'entreprise",
         "items": [
-          { "subtitle": "Langages de Programmation", "subdescription": "JavaScript, TypeScript, PHP, Java, Solidity" },
-          { "subtitle": "Frameworks et Librairies", "subdescription": "NodeJs, NestJs, ExpressJs, AdonisJs, Mongoose, Spring Boot" },
-          { "subtitle": "Bases de Données", "subdescription": "MongoDB, MySQL, PostgreSQL, SQL Server" },
-          { "subtitle": "Serveurs et Cloud", "subdescription": "Linux, CPanel, AWS, Heroku, Vercel, Cloudflare" },
-          { "subtitle": "Technologies de Communication", "subdescription": "Sockets, Redis, Kafka" }
+          { "subtitle": "Langages de Programmation" },
+          { "subtitle": "Frameworks et Librairies" },
+          { "subtitle": "Bases de Données" },
+          { "subtitle": "Serveurs et Cloud" },
+          { "subtitle": "Technologies de Communication" }
         ]
       },
       {
         "title": "Frontend",
         "description": "Maîtrise des technologies d'interface utilisateur et intégration fidèle",
         "items": [
-          { "subtitle": "Frameworks de Développement", "subdescription": "VueJs, NuxtJs, Vite, Web Components" },
-          { "subtitle": "Préprocesseurs", "subdescription": "Sass, Scss, Stylus" },
-          { "subtitle": "Frameworks de Design", "subdescription": "Antdv" },
-          { "subtitle": "Extras", "subdescription": "SEO, Design Responsive, PWA" }
+          { "subtitle": "Frameworks de Développement" },
+          { "subtitle": "Préprocesseurs" },
+          { "subtitle": "Frameworks de Design" },
+          { "subtitle": "Extras" }
         ]
       },
       {
         "title": "Autres Compétences",
         "description": "",
         "items": [
-          { "subtitle": "Outils de Développement", "subdescription": "Git, Docker" },
-          { "subtitle": "Services d'Intégration", "subdescription": "WABA, Zoho CRM, Airtable API, Twilio, Authy, Cloudflare" },
-          { "subtitle": "Méthodologie de Développement", "subdescription": "SCRUM" }
+          { "subtitle": "Outils de Développement" },
+          { "subtitle": "Services d'Intégration" },
+          { "subtitle": "Méthodologie de Développement" }
         ]
       }
     ]

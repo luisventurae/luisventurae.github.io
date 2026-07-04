@@ -20,30 +20,30 @@
         "title": "Backend",
         "description": "Robust development for web applications and enterprise systems",
         "items": [
-          { "subtitle": "Programming Languages", "subdescription": "JavaScript, TypeScript, PHP, Java, Solidity" },
-          { "subtitle": "Frameworks & Libraries", "subdescription": "NodeJs, NestJs, ExpressJs, AdonisJs, Mongoose, Spring Boot" },
-          { "subtitle": "Databases", "subdescription": "MongoDB, MySQL, PostgreSQL, SQL Server" },
-          { "subtitle": "Servers & Cloud", "subdescription": "Linux, CPanel, AWS, Heroku, Vercel, Cloudflare" },
-          { "subtitle": "Communication Technologies", "subdescription": "Sockets, Redis, Kafka" }
+          { "subtitle": "Programming Languages" },
+          { "subtitle": "Frameworks & Libraries" },
+          { "subtitle": "Databases" },
+          { "subtitle": "Servers & Cloud" },
+          { "subtitle": "Communication Technologies" }
         ]
       },
       {
         "title": "Frontend",
         "description": "Proficiency in UI technologies and pixel-perfect layouts",
         "items": [
-          { "subtitle": "Development Frameworks", "subdescription": "VueJs, NuxtJs, Vite, Web Components" },
-          { "subtitle": "Preprocessors", "subdescription": "Sass, Scss, Stylus" },
-          { "subtitle": "Design Frameworks", "subdescription": "Antdv" },
-          { "subtitle": "Extras", "subdescription": "SEO, Responsive Design, PWA" }
+          { "subtitle": "Development Frameworks" },
+          { "subtitle": "Preprocessors" },
+          { "subtitle": "Design Frameworks" },
+          { "subtitle": "Extras" }
         ]
       },
       {
         "title": "Other Skills",
         "description": "",
         "items": [
-          { "subtitle": "Development Tools", "subdescription": "Git, Docker" },
-          { "subtitle": "Integration Services", "subdescription": "WABA, Zoho CRM, Airtable API, Twilio, Authy, Cloudflare" },
-          { "subtitle": "Development Methodology", "subdescription": "SCRUM" }
+          { "subtitle": "Development Tools" },
+          { "subtitle": "Integration Services" },
+          { "subtitle": "Development Methodology" }
         ]
       }
     ]

@@ -3,7 +3,6 @@ import PlainVerticalCard from '~/components/landing/molecules/PlainVerticalCard.
 
 interface LocaleSkillItem {
   subtitle: string
-  subdescription: string
 }
 
 interface LocaleSkillCard {
@@ -13,6 +12,57 @@ interface LocaleSkillCard {
 }
 
 const { tm } = useI18n()
+
+const staticSkills: ItemShortReview[][][] = [
+  [
+    [
+      { name: 'JavaScript', stars: 10 }, { name: 'TypeScript', stars: 8.5 },
+      { name: 'PHP', stars: 3 }, { name: 'Java', stars: 4 }, { name: 'Solidity', stars: 1 },
+    ],
+    [
+      { name: 'NodeJs', stars: 9 }, { name: 'NestJs', stars: 7 }, { name: 'ExpressJs', stars: 7 },
+      { name: 'AdonisJs', stars: 8 }, { name: 'Mongoose', stars: 9 }, { name: 'Spring Boot', stars: 1 },
+    ],
+    [
+      { name: 'MongoDB', stars: 4 }, { name: 'MySQL', stars: 4 },
+      { name: 'PostgreSQL', stars: 4 }, { name: 'SQL Server', stars: 4 },
+    ],
+    [
+      { name: 'Linux', stars: 4 }, { name: 'CPanel', stars: 5 }, { name: 'AWS', stars: 3 },
+      { name: 'Heroku', stars: 4 }, { name: 'Vercel', stars: 6 }, { name: 'Cloudflare', stars: 4 },
+    ],
+    [
+      { name: 'Sockets', stars: 8 }, { name: 'Redis', stars: 4 }, { name: 'Kafka', stars: 3 },
+    ],
+  ],
+  [
+    [
+      { name: 'VueJs', stars: 6 }, { name: 'NuxtJs', stars: 4 },
+      { name: 'Vite', stars: 4 }, { name: 'Web Components', stars: 7 },
+    ],
+    [
+      { name: 'Sass', stars: 9 }, { name: 'Scss', stars: 9 }, { name: 'Stylus', stars: 8 },
+    ],
+    [
+      { name: 'Antdv', stars: 5 },
+    ],
+    [
+      { name: 'SEO', stars: 7 }, { name: 'Responsive Design', stars: 8 }, { name: 'PWA', stars: 8 },
+    ],
+  ],
+  [
+    [
+      { name: 'Git', stars: 9 }, { name: 'Docker', stars: 4 },
+    ],
+    [
+      { name: 'WABA', stars: 8 }, { name: 'Zoho CRM', stars: 5 }, { name: 'Airtable API', stars: 6 },
+      { name: 'Twilio', stars: 5 }, { name: 'Authy', stars: 4 }, { name: 'Cloudflare', stars: 4 },
+    ],
+    [
+      { name: 'SCRUM', stars: 6 },
+    ],
+  ],
+]
 
 const staticMeta: Pick<SkillCard, 'className' | 'svg' | 'deskPosition'>[] = [
   { className: 'pcard1', svg: 'backend-servers.svg', deskPosition: 'left'  },
@@ -25,7 +75,10 @@ const skillCards = computed<SkillCard[]>(() =>
     ...staticMeta[i],
     title: card.title,
     description: card.description,
-    skills: card.items.map((item) => ({ subtitle: item.subtitle, subdescription: item.subdescription })),
+    skills: card.items.map((item, j) => ({
+      subtitle: item.subtitle,
+      subdescriptions: staticSkills[i][j] ?? [],
+    })),
   }))
 )
 </script>

@@ -20,30 +20,30 @@
         "title": "Backend",
         "description": "Desarrollo robusto para aplicaciones web y sistemas empresariales",
         "items": [
-          { "subtitle": "Lenguajes de Programación", "subdescription": "JavaScript, TypeScript, PHP, Java, Solidity" },
-          { "subtitle": "Frameworks y librerías", "subdescription": "NodeJs, NestJs, ExpressJs, AdonisJs, Mongoose, Spring Boot" },
-          { "subtitle": "Bases de Datos", "subdescription": "MongoDB, MySQL, PostgreSQL, SQL Server" },
-          { "subtitle": "Servidores y Clouding", "subdescription": "Linux, CPanel, AWS, Heroku, Vercel, Cloudflare" },
-          { "subtitle": "Tecnologías de comunicación", "subdescription": "Sockets, Redis, Kafka" }
+          { "subtitle": "Lenguajes de Programación" },
+          { "subtitle": "Frameworks y librerías" },
+          { "subtitle": "Bases de Datos" },
+          { "subtitle": "Servidores y Clouding" },
+          { "subtitle": "Tecnologías de comunicación" }
         ]
       },
       {
         "title": "Frontend",
         "description": "Manejo de tecnologías de interfaz de usuario y maquetación fiel",
         "items": [
-          { "subtitle": "Frameworks de desarrollo", "subdescription": "VueJs, NuxtJs, Vite, Web Components" },
-          { "subtitle": "Preprocesadores", "subdescription": "Sass, Scss, Stylus" },
-          { "subtitle": "Frameworks de diseño", "subdescription": "Antdv" },
-          { "subtitle": "Extras", "subdescription": "SEO, Diseño Responsivo, PWA" }
+          { "subtitle": "Frameworks de desarrollo" },
+          { "subtitle": "Preprocesadores" },
+          { "subtitle": "Frameworks de diseño" },
+          { "subtitle": "Extras" }
         ]
       },
       {
         "title": "Otras Habilidades",
         "description": "",
         "items": [
-          { "subtitle": "Herramientas de desarrollo", "subdescription": "Git, Docker" },
-          { "subtitle": "Servicios para integración", "subdescription": "WABA, Zoho CRM, Airtable API, Twilio, Authy, Cloudflare" },
-          { "subtitle": "Metodología de desarrollo", "subdescription": "SCRUM" }
+          { "subtitle": "Herramientas de desarrollo" },
+          { "subtitle": "Servicios para integración" },
+          { "subtitle": "Metodología de desarrollo" }
         ]
       }
     ]

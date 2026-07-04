@@ -41,7 +41,7 @@ const props = defineProps<Props>()
         v-for="skill in props.skills"
         :key="skill.subtitle"
         :subtitle="skill.subtitle"
-        :content="skill.subdescription"
+        :unit_content="skill.subdescriptions"
       />
     </div>
   </div>

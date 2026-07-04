@@ -13,7 +13,7 @@ useSeoMeta({
   description: () => t('meta.description'),
   ogTitle: () => t('meta.title'),
   ogDescription: () => t('meta.description'),
-  ogImage: 'https://luisventurae.github.io/luis-83x83.png',
+  ogImage: 'https://luisventurae.github.io/luis-83x83.jpg',
   twitterCard: 'summary_large_image',
   author: 'Luis Miguel Ventura E',
 })
@@ -24,6 +24,8 @@ useSeoMeta({
   <Banner />
   <SkillCard />
   <ExperienceCard />
+  <!-- TODO -->
+  <!-- <DemoAppCard /> -->
   <DinamicDownload />
   <Footeri />
 </template>

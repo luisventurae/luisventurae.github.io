@@ -44,8 +44,7 @@ const tags: string[] = props.tags
       </div>
     </div>
     <div class="image-card__foot">
-      <!-- TODO -->
-      <!-- <FSButton @open="emit('open', props)" /> -->
+      <FSButton @open="emit('open', props)" />
     </div>
   </div>
 </template>
@@ -76,9 +75,9 @@ $size_card: 300px;
       &__image {
         img {
           width: -webkit-fill-available;
-          height: 200px;
+          height: 180px;
           object-fit: cover;
-          object-position: center;
+          object-position: top;
         }
       }
       &__body {

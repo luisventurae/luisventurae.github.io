@@ -1,0 +1,4 @@
+# Copy this file to .dev.vars and fill in your values (never commit .dev.vars)
+TURNSTILE_SECRET_KEY=your_cloudflare_turnstile_secret_key
+NOTIFY_EMAIL=your@email.com
+ALLOWED_ORIGIN=http://localhost:3000

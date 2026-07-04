@@ -1,95 +1,71 @@
-# Hello! This is my briefcase
+# Luis Ventura E — Portfolio
 
-###### By: Luis Miguel Ventura
+Full Stack Web Engineer. Personal portfolio showcasing projects and skills, with multilingual support (ES / EN / FR).
 
-Use the links below to read the full content
+Live: [luisventurae.github.io](https://luisventurae.github.io)
 
-#### Different languages
+---
 
-- Spanish https://luisventurae.github.io/
-- English https://luisventurae.github.io/en/
-- French https://luisventurae.github.io/fr/
+## Stack
 
-#### Technologies used for this projects
+| Layer | Technology |
+|---|---|
+| Framework | Nuxt 3 + Vue 3 |
+| Language | TypeScript (strict) |
+| Styles | SCSS / SASS |
+| i18n | @nuxtjs/i18n (ES / EN / FR) |
+| Icons | nuxt-svgo |
+| Dates | dayjs-nuxt |
+| Captcha | Cloudflare Turnstile |
+| Contact form backend | Cloudflare Worker (`worker/`) |
+| Deploy | GitHub Pages (CI/CD via GitHub Actions) |
 
-- Gridsome
-- Vuejs
-- Javascript
-- HTML5
-- CSS 3
+---
 
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install the dependencies:
+## Development
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+cp .env.example .env   # fill in your keys
+npm run dev            # http://localhost:3000
 ```
 
-## Development Server
+### Environment variables
 
-Start the development server on `http://localhost:3000`:
+| Variable | Description |
+|---|---|
+| `NUXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile **site key** (public) |
+| `NUXT_PUBLIC_WORKER_URL` | URL of the deployed Cloudflare Worker |
+
+---
+
+## Deploy
+
+Pushing to `master` triggers GitHub Actions, which runs `nuxt generate` and publishes `.output/public` to the `gh-pages` branch automatically.
+
+Manual fallback:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+npm run deploy:gh
 ```
 
-## Production
+---
 
-Build the application for production:
+## Cloudflare Worker
+
+The contact form submits to a Worker that verifies Turnstile server-side and sends email. Code lives in `worker/`.
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+cd worker && npm install
+cp .dev.vars.example .dev.vars  # fill secrets for local dev
+npm run dev                      # localhost:8787
+npm run deploy                   # deploy to Cloudflare
 ```
 
-Locally preview production build:
+Worker secrets (set via `wrangler secret put <NAME>`): `TURNSTILE_SECRET_KEY`, `NOTIFY_EMAIL`, `ALLOWED_ORIGIN`.
+
+Create the KV namespace for rate limiting:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+wrangler kv:namespace create "RATE_LIMIT_KV"
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

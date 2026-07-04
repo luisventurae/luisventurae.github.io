@@ -6,13 +6,13 @@ import ExperienceCard from '~/components/landing/organisms/ExperienceCard.vue'
 import DinamicDownload from '~/components/landing/organisms/DinamicDownload.vue'
 import Footeri from '~/components/landing/organisms/Footer.vue'
 
+const { t } = useI18n()
+
 useSeoMeta({
-  title: 'Luis Ventura E | Portafolio',
-  description:
-    'Ingeniero Full Stack y desarrollador web apasionado por las tecnologías emergentes. Experiencia en la implementación de Javascript avanzado tanto en el lado del cliente como del servidor para crear soluciones web robustas y eficientes',
-  ogTitle: 'Luis Ventura E | Portafolio',
-  ogDescription:
-    'Ingeniero Full Stack y desarrollador web apasionado por las tecnologías emergentes. Experiencia en la implementación de Javascript avanzado tanto en el lado del cliente como del servidor para crear soluciones web robustas y eficientes',
+  title: () => t('meta.title'),
+  description: () => t('meta.description'),
+  ogTitle: () => t('meta.title'),
+  ogDescription: () => t('meta.description'),
   ogImage: 'https://luisventurae.github.io/luis-83x83.png',
   twitterCard: 'summary_large_image',
   author: 'Luis Miguel Ventura E',

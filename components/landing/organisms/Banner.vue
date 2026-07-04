@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from '~/components/landing/atoms/Button.vue'
 
+const { t } = useI18n()
 const bgRef = ref<HTMLElement | null>(null)
 
 const goForm = (): void => {
@@ -38,8 +39,8 @@ onMounted(() => {
     <div v-reveal class="banner_container__title">
       <h1>Luis</h1>
       <h1>Ventura</h1>
-      <p>Web Developer</p>
-      <Button label="Obtener CV" @click="goForm" />
+      <p>{{ t('banner.role') }}</p>
+      <Button :label="t('banner.cta')" @click="goForm" />
     </div>
   </section>
 </template>

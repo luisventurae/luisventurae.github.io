@@ -1,47 +1,33 @@
 <script setup lang="ts">
 import PlainVerticalCard from '~/components/landing/molecules/PlainVerticalCard.vue'
 
-const skillCards: SkillCard[] = [
-  {
-    className: 'pcard1',
-    svg: 'backend-servers.svg',
-    deskPosition: 'left',
-    title: 'Backend',
-    description: 'Desarrollo robusto para aplicaciones web y sistemas empresariales',
-    skills: [
-      { subtitle: 'Lenguajes de Programación', subdescription: 'JavaScript, TypeScript, PHP, Java, Solidity' },
-      { subtitle: 'Frameworks y librerías', subdescription: 'NodeJs, NestJs, ExpressJs, AdonisJs, Mongoose, Spring Boot' },
-      { subtitle: 'Bases de Datos', subdescription: 'MongoDB, MySQL, PostgreSQL, SQL Server' },
-      { subtitle: 'Servidores y Clouding', subdescription: 'Linux, CPanel, AWS, Heroku, Vercel, Cloudflare' },
-      { subtitle: 'Tecnologías de comunicación', subdescription: 'Sockets, Redis, Kafka' },
-    ],
-  },
-  {
-    className: 'pcard2',
-    svg: 'frontend.svg',
-    deskPosition: 'right',
-    title: 'Frontend',
-    description: 'Manejo de tecnologías de interfaz de usuario y maquetación fiel',
-    skills: [
-      { subtitle: 'Frameworks de desarrollo', subdescription: 'VueJs, NuxtJs, Vite, Web Components' },
-      { subtitle: 'Preprocesadores', subdescription: 'Sass, Scss, Stylus' },
-      { subtitle: 'Frameworks de diseño', subdescription: 'Antdv' },
-      { subtitle: 'Extras', subdescription: 'SEO, Diseño Responsivo, PWA' },
-    ],
-  },
-  {
-    className: 'pcard3',
-    svg: 'tools.svg',
-    deskPosition: 'fill',
-    title: 'Otras Habilidades',
-    description: '',
-    skills: [
-      { subtitle: 'Herramientas de desarrollo', subdescription: 'Git, Docker' },
-      { subtitle: 'Servicios para integración', subdescription: 'WABA, Zoho CRM, Airtable API, Twilio, Authy, Cloudflare' },
-      { subtitle: 'Metodología de desarrollo', subdescription: 'SCRUM' },
-    ],
-  },
+interface LocaleSkillItem {
+  subtitle: string
+  subdescription: string
+}
+
+interface LocaleSkillCard {
+  title: string
+  description: string
+  items: LocaleSkillItem[]
+}
+
+const { tm } = useI18n()
+
+const staticMeta: Pick<SkillCard, 'className' | 'svg' | 'deskPosition'>[] = [
+  { className: 'pcard1', svg: 'backend-servers.svg', deskPosition: 'left'  },
+  { className: 'pcard2', svg: 'frontend.svg',        deskPosition: 'right' },
+  { className: 'pcard3', svg: 'tools.svg',           deskPosition: 'fill'  },
 ]
+
+const skillCards = computed<SkillCard[]>(() =>
+  (tm('skills.cards') as LocaleSkillCard[]).map((card, i) => ({
+    ...staticMeta[i],
+    title: card.title,
+    description: card.description,
+    skills: card.items.map((item) => ({ subtitle: item.subtitle, subdescription: item.subdescription })),
+  }))
+)
 </script>
 
 <template>

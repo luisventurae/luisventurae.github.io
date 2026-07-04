@@ -3,6 +3,7 @@ interface SvgModule {
   default: Component
 }
 
+const { t } = useI18n()
 const title = 'LUISVENTURAE'
 const socials: Social[] = [
   { key: 'linkedin', svg: 'linkedin.svg', url: 'http://www.linkedin.com/in/luisventurae' },
@@ -46,7 +47,7 @@ const getIcon = (path: string): Component => {
         </ul>
       </div>
       <div class="footer__content__foot">
-        <p>© Copyright 2024 - Todos los derechos reservados</p>
+        <p>{{ t('footer.copyright') }}</p>
       </div>
     </div>
   </footer>

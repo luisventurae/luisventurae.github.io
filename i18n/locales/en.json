@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "title": "Luis Ventura E | Portfolio",
+    "description": "Full Stack Engineer and web developer passionate about emerging technologies. Experienced in advanced JavaScript implementation on both client and server side to build robust and efficient web solutions"
+  },
+  "nav": {
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "mainNav": "Main navigation",
+    "openMenu": "Open menu"
+  },
+  "banner": {
+    "role": "Web Developer",
+    "cta": "Get CV"
+  },
+  "skills": {
+    "cards": [
+      {
+        "title": "Backend",
+        "description": "Robust development for web applications and enterprise systems",
+        "items": [
+          { "subtitle": "Programming Languages", "subdescription": "JavaScript, TypeScript, PHP, Java, Solidity" },
+          { "subtitle": "Frameworks & Libraries", "subdescription": "NodeJs, NestJs, ExpressJs, AdonisJs, Mongoose, Spring Boot" },
+          { "subtitle": "Databases", "subdescription": "MongoDB, MySQL, PostgreSQL, SQL Server" },
+          { "subtitle": "Servers & Cloud", "subdescription": "Linux, CPanel, AWS, Heroku, Vercel, Cloudflare" },
+          { "subtitle": "Communication Technologies", "subdescription": "Sockets, Redis, Kafka" }
+        ]
+      },
+      {
+        "title": "Frontend",
+        "description": "Proficiency in UI technologies and pixel-perfect layouts",
+        "items": [
+          { "subtitle": "Development Frameworks", "subdescription": "VueJs, NuxtJs, Vite, Web Components" },
+          { "subtitle": "Preprocessors", "subdescription": "Sass, Scss, Stylus" },
+          { "subtitle": "Design Frameworks", "subdescription": "Antdv" },
+          { "subtitle": "Extras", "subdescription": "SEO, Responsive Design, PWA" }
+        ]
+      },
+      {
+        "title": "Other Skills",
+        "description": "",
+        "items": [
+          { "subtitle": "Development Tools", "subdescription": "Git, Docker" },
+          { "subtitle": "Integration Services", "subdescription": "WABA, Zoho CRM, Airtable API, Twilio, Authy, Cloudflare" },
+          { "subtitle": "Development Methodology", "subdescription": "SCRUM" }
+        ]
+      }
+    ]
+  },
+  "experience": {
+    "sectionTitle": "Relevant Experience",
+    "cards": [
+      { "title": "Web App",       "description": "Omnichannel platform for customer service" },
+      { "title": "Web Page",      "description": "Company informational website" },
+      { "title": "Web Page",      "description": "Company informational website and virtual store" },
+      { "title": "Email Software","description": "Automated email sending software" },
+      { "title": "API",           "description": "Internal CRM integration and customer service application" },
+      { "title": "Web App",       "description": "E-commerce system and financial management" },
+      { "title": "Desktop App",   "description": "Website administration system with user management" }
+    ]
+  },
+  "download": {
+    "buttonLabel": "Send CV to my email",
+    "formTitle": "My CV will be sent to your email",
+    "formButton": "Send CV",
+    "emailPlaceholder": "E-mail*",
+    "companyPlaceholder": "Company*",
+    "success": "Thank you! Your CV is downloading.",
+    "loading": "Sending...",
+    "back": "← Back",
+    "directDownloadAlt": "or",
+    "directDownloadText": "download directly",
+    "backButton": "Back"
+  },
+  "footer": {
+    "copyright": "© Copyright 2024 - All rights reserved"
+  }
+}

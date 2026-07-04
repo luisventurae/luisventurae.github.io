@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "title": "Luis Ventura E | Portafolio",
+    "description": "Ingeniero Full Stack y desarrollador web apasionado por las tecnologías emergentes. Experiencia en la implementación de Javascript avanzado tanto en el lado del cliente como del servidor para crear soluciones web robustas y eficientes"
+  },
+  "nav": {
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "mainNav": "Navegación principal",
+    "openMenu": "Abrir menú"
+  },
+  "banner": {
+    "role": "Web Developer",
+    "cta": "Obtener CV"
+  },
+  "skills": {
+    "cards": [
+      {
+        "title": "Backend",
+        "description": "Desarrollo robusto para aplicaciones web y sistemas empresariales",
+        "items": [
+          { "subtitle": "Lenguajes de Programación", "subdescription": "JavaScript, TypeScript, PHP, Java, Solidity" },
+          { "subtitle": "Frameworks y librerías", "subdescription": "NodeJs, NestJs, ExpressJs, AdonisJs, Mongoose, Spring Boot" },
+          { "subtitle": "Bases de Datos", "subdescription": "MongoDB, MySQL, PostgreSQL, SQL Server" },
+          { "subtitle": "Servidores y Clouding", "subdescription": "Linux, CPanel, AWS, Heroku, Vercel, Cloudflare" },
+          { "subtitle": "Tecnologías de comunicación", "subdescription": "Sockets, Redis, Kafka" }
+        ]
+      },
+      {
+        "title": "Frontend",
+        "description": "Manejo de tecnologías de interfaz de usuario y maquetación fiel",
+        "items": [
+          { "subtitle": "Frameworks de desarrollo", "subdescription": "VueJs, NuxtJs, Vite, Web Components" },
+          { "subtitle": "Preprocesadores", "subdescription": "Sass, Scss, Stylus" },
+          { "subtitle": "Frameworks de diseño", "subdescription": "Antdv" },
+          { "subtitle": "Extras", "subdescription": "SEO, Diseño Responsivo, PWA" }
+        ]
+      },
+      {
+        "title": "Otras Habilidades",
+        "description": "",
+        "items": [
+          { "subtitle": "Herramientas de desarrollo", "subdescription": "Git, Docker" },
+          { "subtitle": "Servicios para integración", "subdescription": "WABA, Zoho CRM, Airtable API, Twilio, Authy, Cloudflare" },
+          { "subtitle": "Metodología de desarrollo", "subdescription": "SCRUM" }
+        ]
+      }
+    ]
+  },
+  "experience": {
+    "sectionTitle": "Experiencias Relevantes",
+    "cards": [
+      { "title": "Web App",       "description": "Plataforma omnicanal para atención al cliente" },
+      { "title": "Web Page",      "description": "Página web informativa de la empresa" },
+      { "title": "Web Page",      "description": "Página web informativa y tienda virtual de la empresa" },
+      { "title": "Software Email","description": "Software de envío automatizado de correos electrónicos" },
+      { "title": "API",           "description": "Integración de CRM interno y aplicación de atención de clientes" },
+      { "title": "Web App",       "description": "Sistema e-commerce y control de finanzas" },
+      { "title": "Desktop App",   "description": "Sistema administrador de la página web con control de usuarios" }
+    ]
+  },
+  "download": {
+    "buttonLabel": "Enviar CV a mi email",
+    "formTitle": "Mi CV se enviará a tu email",
+    "formButton": "Enviar CV",
+    "emailPlaceholder": "E-mail*",
+    "companyPlaceholder": "Empresa*",
+    "success": "¡Gracias! Tu CV se está descargando.",
+    "loading": "Enviando...",
+    "back": "← Volver",
+    "directDownloadAlt": "o",
+    "directDownloadText": "descarga directamente",
+    "backButton": "Volver"
+  },
+  "footer": {
+    "copyright": "© Copyright 2024 - Todos los derechos reservados"
+  }
+}

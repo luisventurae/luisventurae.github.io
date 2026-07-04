@@ -8,22 +8,18 @@ interface FormEmitData {
   captcha_resolved: string
 }
 
-const content: DinamicDownload = {
-  button: { label: 'Enviar CV a mi email' },
-  form: {
-    title: 'Mi CV se enviará a tu email',
-    textButton: 'Enviar CV',
-    placeholders: [
-      { id: 'email', text: 'E-mail*', type_text: 'email' },
-      { id: 'company', text: 'Empresa*', type_text: 'text' },
-    ],
-  },
-  trees: [
-    { key: 'abc',  date: new Date(), company: 'Instituto Cepeban', order: 1, self: false },
-    { key: 'abcd', date: new Date(), company: 'Pool Work',         order: 2, self: false },
-    { key: 'abcf', date: new Date(), company: 'Securitec',         order: 3, self: true  },
-  ],
-}
+const { t } = useI18n()
+
+const trees: DataTree[] = [
+  { key: 'abc',  date: new Date(), company: 'Instituto Cepeban', order: 1, self: false },
+  { key: 'abcd', date: new Date(), company: 'Pool Work',         order: 2, self: false },
+  { key: 'abcf', date: new Date(), company: 'Securitec',         order: 3, self: true  },
+]
+
+const placeholders = computed<[PlaceholderForm, PlaceholderForm]>(() => [
+  { id: 'email',   text: t('download.emailPlaceholder'),   type_text: 'email' },
+  { id: 'company', text: t('download.companyPlaceholder'), type_text: 'text'  },
+])
 
 const visibles = reactive({ form: false })
 const { status, errorMessage, submit, reset } = useContactForm()
@@ -60,39 +56,42 @@ const submitData = async (values: FormEmitData): Promise<void> => {
     <div class="dinamic-download__content">
 
       <div v-if="status === 'success'" class="dinamic-download__content__success">
-        <p>¡Gracias! Tu CV se está descargando.</p>
-        <Button label="Volver" @click="toggleForm" />
+        <p>{{ t('download.success') }}</p>
+        <Button :label="t('download.backButton')" @click="toggleForm" />
       </div>
 
       <template v-else>
-        <div class="dinamic-download__content__screen" v-show="!visibles.form">
-          <Button :label="content.button.label" @click="toggleForm" />
+        <div v-show="!visibles.form" class="dinamic-download__content__screen">
+          <Button :label="t('download.buttonLabel')" @click="toggleForm" />
           <p class="dinamic-download__content__screen__alt">
-            o <a href="/resources/CV_Luis_Ventura_es.pdf" download="CV_Luis_Ventura_spanish">descarga directamente</a>
+            {{ t('download.directDownloadAlt') }}
+            <a href="/resources/CV_Luis_Ventura_es.pdf" download="CV_Luis_Ventura_spanish">
+              {{ t('download.directDownloadText') }}
+            </a>
           </p>
         </div>
 
-        <div class="dinamic-download__content__form" v-show="visibles.form">
+        <div v-show="visibles.form" class="dinamic-download__content__form">
           <FormContact
-            :title="content.form.title"
-            :text-button="content.form.textButton"
-            :placeholders="content.form.placeholders"
+            :title="t('download.formTitle')"
+            :text-button="t('download.formButton')"
+            :placeholders="placeholders"
             @eDataform="submitData"
           />
           <p v-if="status === 'error'" class="dinamic-download__content__error">
             {{ errorMessage }}
           </p>
           <p v-if="status === 'loading'" class="dinamic-download__content__loading">
-            Enviando...
+            {{ t('download.loading') }}
           </p>
           <button class="dinamic-download__content__back" @click="toggleForm">
-            &larr; Volver
+            {{ t('download.back') }}
           </button>
         </div>
       </template>
 
       <div class="dinamic-download__content__background">
-        <DinamicBg :trees="content.trees" />
+        <DinamicBg :trees="trees" />
       </div>
     </div>
   </section>

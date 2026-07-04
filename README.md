@@ -1,6 +1,6 @@
 # Luis Ventura E — Portfolio
 
-Personal portfolio of Luis Miguel Ventura, Full Stack Web Engineer. Built with Nuxt 3, TypeScript, and SCSS.
+Full Stack Web Engineer. Personal portfolio showcasing projects and skills, with multilingual support (ES / EN / FR).
 
 Live: [luisventurae.github.io](https://luisventurae.github.io)
 
@@ -13,11 +13,12 @@ Live: [luisventurae.github.io](https://luisventurae.github.io)
 | Framework | Nuxt 3 + Vue 3 |
 | Language | TypeScript (strict) |
 | Styles | SCSS / SASS |
+| i18n | @nuxtjs/i18n (ES / EN / FR) |
 | Icons | nuxt-svgo |
 | Dates | dayjs-nuxt |
 | Captcha | Cloudflare Turnstile |
-| Contact form backend | Cloudflare Worker (see `worker/`) |
-| Deploy | GitHub Pages via `gh-pages` |
+| Contact form backend | Cloudflare Worker (`worker/`) |
+| Deploy | GitHub Pages (CI/CD via GitHub Actions) |
 
 ---
 
@@ -33,44 +34,38 @@ npm run dev            # http://localhost:3000
 
 | Variable | Description |
 |---|---|
-| `NUXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile **site key** (public, safe to expose) |
-| `NUXT_PUBLIC_WORKER_URL` | URL of the deployed Cloudflare Worker for the contact form |
+| `NUXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile **site key** (public) |
+| `NUXT_PUBLIC_WORKER_URL` | URL of the deployed Cloudflare Worker |
 
 ---
 
 ## Deploy
 
+Pushing to `master` triggers GitHub Actions, which runs `nuxt generate` and publishes `.output/public` to the `gh-pages` branch automatically.
+
+Manual fallback:
+
 ```bash
-npm run deploy:gh   # builds, generates static files and pushes to gh-pages branch
+npm run deploy:gh
 ```
 
 ---
 
-## Contact form Worker
+## Cloudflare Worker
 
-The contact form submits to a Cloudflare Worker that verifies the Turnstile token server-side and sends an email notification. The Worker code lives in `worker/`.
+The contact form submits to a Worker that verifies Turnstile server-side and sends email. Code lives in `worker/`.
 
 ```bash
-cd worker
-npm install
-cp .dev.vars.example .dev.vars   # fill in secrets for local dev
-npm run dev                       # wrangler dev on localhost:8787
-
-# deploy
-npm run deploy
+cd worker && npm install
+cp .dev.vars.example .dev.vars  # fill secrets for local dev
+npm run dev                      # localhost:8787
+npm run deploy                   # deploy to Cloudflare
 ```
 
-Worker secrets (set via `wrangler secret put <NAME>`):
+Worker secrets (set via `wrangler secret put <NAME>`): `TURNSTILE_SECRET_KEY`, `NOTIFY_EMAIL`, `ALLOWED_ORIGIN`.
 
-| Secret | Description |
-|---|---|
-| `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile **secret key** (never expose client-side) |
-| `NOTIFY_EMAIL` | Email address that receives contact notifications |
-| `ALLOWED_ORIGIN` | Production origin allowed by CORS (`https://luisventurae.github.io`) |
-
-Create the KV namespace for rate limiting and replace the placeholder IDs in `worker/wrangler.toml`:
+Create the KV namespace for rate limiting:
 
 ```bash
 wrangler kv:namespace create "RATE_LIMIT_KV"
-wrangler kv:namespace create "RATE_LIMIT_KV" --preview
 ```

@@ -14,9 +14,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy:gh": "nuxt build && nuxt generate && gh-pages -d dist"
+    "deploy:gh": "nuxt generate && gh-pages -d .output/public"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "^9.5.6",
     "@vueuse/core": "^10.9.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",

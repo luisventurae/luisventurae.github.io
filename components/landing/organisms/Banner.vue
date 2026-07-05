@@ -101,9 +101,9 @@ $cover_color: rgba(5, 10, 13, 0.42);
   }
 
   .button_container {
-    width: 100%;
+    width: fit-content;
     text-align: center;
-    padding: 12px 64px;
+    padding: 12px 48px;
     font-size: 24px;
     background-color: $cover_color;
   }
@@ -124,6 +124,12 @@ $cover_color: rgba(5, 10, 13, 0.42);
       margin-top: 7rem;
       text-align: center;
     }
+  }
+
+  .button_container {
+    margin: 0 auto;
+    padding: 10px 32px;
+    font-size: 18px;
   }
 }
 </style>

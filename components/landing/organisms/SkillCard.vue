@@ -11,7 +11,7 @@ interface LocaleSkillCard {
   items: LocaleSkillItem[]
 }
 
-const { tm } = useI18n()
+const { tm, rt } = useI18n()
 
 const staticSkills: ItemShortReview[][][] = [
   [
@@ -71,12 +71,12 @@ const staticMeta: Pick<SkillCard, 'className' | 'svg' | 'deskPosition'>[] = [
 ]
 
 const skillCards = computed<SkillCard[]>(() =>
-  (tm('skills.cards') as LocaleSkillCard[]).map((card, i) => ({
+  (tm('skills.cards') as any[]).map((card, i) => ({
     ...staticMeta[i],
-    title: card.title,
-    description: card.description,
-    skills: card.items.map((item, j) => ({
-      subtitle: item.subtitle,
+    title: rt(card.title),
+    description: rt(card.description),
+    skills: (card.items as any[]).map((item, j) => ({
+      subtitle: rt(item.subtitle),
       subdescriptions: staticSkills[i][j] ?? [],
     })),
   }))

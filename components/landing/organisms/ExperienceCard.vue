@@ -6,7 +6,7 @@ interface LocaleExperienceCard {
   description: string
 }
 
-const { t, tm } = useI18n()
+const { t, tm, rt } = useI18n()
 
 const staticMeta: Pick<ExperiencePropMolecule, 'order' | 'image_url' | 'company' | 'tags'>[] = [
   { order: 1, image_url: 'https://pub-e3c720e29148489586f932c5cacf32a4.r2.dev/cloud/images/experiences/ss-ticker-1.webp',   company: 'En Securitec',         tags: ['Backend', 'Frontend'] },
@@ -19,10 +19,10 @@ const staticMeta: Pick<ExperiencePropMolecule, 'order' | 'image_url' | 'company'
 ]
 
 const cardImages = computed<ExperiencePropMolecule[]>(() =>
-  (tm('experience.cards') as LocaleExperienceCard[]).map((card, i) => ({
+  (tm('experience.cards') as any[]).map((card, i) => ({
     ...staticMeta[i],
-    title: card.title,
-    description: card.description,
+    title: rt(card.title),
+    description: rt(card.description),
   }))
 )
 </script>

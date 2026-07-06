@@ -61,7 +61,7 @@ const submitData = async (values: FormEmitData): Promise<void> => {
       </div>
 
       <template v-else>
-        <div v-show="!visibles.form" class="dinamic-download__content__screen">
+        <div v-if="!visibles.form" class="dinamic-download__content__screen">
           <Button :label="t('download.buttonLabel')" @click="toggleForm" />
           <p class="dinamic-download__content__screen__alt">
             {{ t('download.directDownloadAlt') }}
@@ -71,7 +71,7 @@ const submitData = async (values: FormEmitData): Promise<void> => {
           </p>
         </div>
 
-        <div v-show="visibles.form" class="dinamic-download__content__form">
+        <div v-else class="dinamic-download__content__form">
           <FormContact
             :title="t('download.formTitle')"
             :text-button="t('download.formButton')"

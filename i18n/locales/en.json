@@ -73,6 +73,16 @@
     "directDownloadText": "download directly",
     "backButton": "Back"
   },
+  "modal": {
+    "label": "Project detail",
+    "close": "Close",
+    "previous": "Previous project",
+    "next": "Next project",
+    "period": "Period",
+    "description": "Description",
+    "technologies": "Technologies",
+    "visitSite": "Visit site"
+  },
   "footer": {
     "copyright": "© Copyright 2024 - All rights reserved"
   }

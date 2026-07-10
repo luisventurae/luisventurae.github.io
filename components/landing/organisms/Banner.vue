@@ -3,38 +3,55 @@ import Button from '~/components/landing/atoms/Button.vue'
 
 const { t } = useI18n()
 const bgRef = ref<HTMLElement | null>(null)
+const imageReady    = ref(false)
+const shouldAnimate = ref(false)
 
 const goForm = (): void => {
   navigateTo('#dinamic-download')
 }
 
 onMounted(() => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-  let rafId: number | null = null
+  if (!reducedMotion) {
+    shouldAnimate.value = true
+    const img = new Image()
+    img.onload  = () => { imageReady.value = true }
+    img.onerror = () => { imageReady.value = true }
+    img.src = '/cloud/images/luis-ventura-e-min.webp'
 
-  const onScroll = (): void => {
-    if (rafId !== null) cancelAnimationFrame(rafId)
-    rafId = requestAnimationFrame(() => {
-      if (bgRef.value) {
-        bgRef.value.style.transform = `translateY(${window.scrollY * 0.18}px)`
-      }
+    let rafId: number | null = null
+
+    const onScroll = (): void => {
+      if (rafId !== null) cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(() => {
+        if (bgRef.value) {
+          bgRef.value.style.transform = `translateY(${window.scrollY * 0.18}px)`
+        }
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('scroll', onScroll)
+      if (rafId !== null) cancelAnimationFrame(rafId)
     })
   }
-
-  window.addEventListener('scroll', onScroll, { passive: true })
-
-  onBeforeUnmount(() => {
-    window.removeEventListener('scroll', onScroll)
-    if (rafId !== null) cancelAnimationFrame(rafId)
-  })
 })
 </script>
 
 <template>
   <section id="home" class="banner_container">
     <div class="banner_container__bg">
-      <div ref="bgRef" class="banner_container__bg__img" />
+      <div
+          ref="bgRef"
+          class="banner_container__bg__img"
+          :class="{
+            'photo--loading': shouldAnimate,
+            'photo--ready':   shouldAnimate && imageReady,
+          }"
+        />
     </div>
     <div v-reveal class="banner_container__title">
       <h1>Luis</h1>
@@ -69,8 +86,19 @@ $cover_color: rgba(5, 10, 13, 0.42);
       background-size: cover;
       background-position: center;
       position: relative;
-      filter: opacity(0.5);
+      filter: opacity(0.5);    // fallback: SSR, sin JS, reduced-motion
       will-change: transform;
+
+      &.photo--loading {
+        opacity: 0;
+        filter: blur(16px);
+        transition: opacity 1.2s ease-out, filter 1.2s ease-out;
+      }
+
+      &.photo--loading.photo--ready {
+        opacity: 0.5;
+        filter: blur(0px);
+      }
 
       &::before {
         content: '';

@@ -57,7 +57,7 @@ onMounted(() => {
       <h1>Luis</h1>
       <h1>Ventura</h1>
       <p>{{ t('banner.role') }}</p>
-      <Button :label="t('banner.cta')" @click="goForm" />
+      <Button :label="t('banner.cta')" layout="solid" @click="goForm" />
     </div>
   </section>
 </template>
@@ -67,7 +67,6 @@ onMounted(() => {
 
 $img_banner: '/cloud/images/luis-ventura-e-min.webp';
 $size_img: 700px;
-$cover_color: rgba(5, 10, 13, 0.42);
 
 .banner_container {
   height: 100vh;
@@ -133,7 +132,6 @@ $cover_color: rgba(5, 10, 13, 0.42);
     text-align: center;
     padding: 12px 48px;
     font-size: 24px;
-    background-color: $cover_color;
   }
 }
 

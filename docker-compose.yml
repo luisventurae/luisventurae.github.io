@@ -102,10 +102,13 @@ services:
     depends_on:
       api:
         condition: service_started
+      web:
+        condition: service_started
       ollama-pull:
         condition: service_completed_successfully
     environment:
       <<: *node-env
+      WEB_URL: http://web:4321
       API_URL: http://api:8787
       OLLAMA_HOST: http://ollama:11434
       RAG_EMBED_MODEL: ${RAG_EMBED_MODEL:-bge-m3}

@@ -26,7 +26,8 @@ const DEFAULT_OVERLAP_WORDS = 50
 export function chunkMarkdown(input: ChunkInput): DocumentChunk[] {
   const max_words = input.max_words ?? DEFAULT_MAX_WORDS
   const overlap_words = input.overlap_words ?? DEFAULT_OVERLAP_WORDS
-  const texts = splitSections(input.markdown).flatMap((section) => {
+  const markdown = input.markdown.replace(/<!--[\s\S]*?-->/g, '')
+  const texts = splitSections(markdown).flatMap((section) => {
     const body = stripMarkdown(section.body)
     if (body.length === 0) return []
     const prefix = section.heading ? `${input.title} — ${section.heading}` : input.title

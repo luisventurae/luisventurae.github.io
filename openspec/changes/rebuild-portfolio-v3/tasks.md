@@ -54,9 +54,9 @@
 
 ## 12. RAG local
 
-- [ ] 12.1 Casos de uso `indexDocuments` y `askQuestion` (coseno, preferencia de idioma, umbral de relevancia, streaming) con fakes — verificar: tests unitarios
-- [ ] 12.2 Adaptadores Ollama y KV vector index; rutas `/rag/*` solo con `RAG_ENABLED` — verificar: test de 404 con RAG deshabilitado
-- [ ] 12.3 `packages/rag-ingest`: lectura de contenido, chunking y carga — verificar: tests de chunking
+- [x] 12.1 Casos de uso `indexDocuments` y `askQuestion` (coseno, preferencia de idioma, umbral de relevancia, streaming) con fakes — verificar: tests unitarios
+- [x] 12.2 Adaptadores Ollama y KV vector index; rutas `/rag/*` solo con `RAG_ENABLED` — verificar: test de 404 con RAG deshabilitado
+- [x] 12.3 `packages/rag-ingest`: lectura de contenido, chunking y carga — verificar: tests de chunking
 
 ## 13. Terminal
 

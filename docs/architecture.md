@@ -31,14 +31,15 @@ Monorepo con **npm workspaces**. El frontend es un sitio estático publicado en 
 | `apps/web`            | Sitio Astro con islas React: hero, stack, proyectos, terminal, formulario. Contenido en `src/content/`.                              |
 | `apps/api`            | Worker con Hono, arquitectura hexagonal ligera: `core/` (puertos + casos de uso) y `adapters/` (HTTP, Turnstile, KV, email, Ollama). |
 | `packages/shared`     | Schemas zod, tipos de los contratos HTTP y chunking de markdown compartido.                                                          |
-| `packages/rag-ingest` | CLI que trocea el contenido, genera embeddings y carga el índice en la API local.                                                    |
+| `packages/rag-ingest` | CLI que lee `search-index.json` de la web, genera embeddings y carga el índice en la API local.                                      |
 | `packages/config`     | Configuración compartida de TypeScript, ESLint y Prettier.                                                                           |
 
 ## 3. Flujo de datos
 
 - **Contenido**: los markdown de `apps/web/src/content/` alimentan el sitio (colecciones de Astro) y el corpus del RAG.
 - **Contacto**: formulario → `POST /contact` → verifica Turnstile → rate limit (KV) → notificación por email.
-- **RAG (local)**: `rag-ingest` → `POST /rag/index` → KV. La terminal envía `ask` → `POST /rag/ask` → embedding de la pregunta → top-k por coseno → respuesta en streaming del modelo.
+- **Fragmentos**: la web prerenderiza `search-index.json` (perfil, proyectos y stack troceados con `chunkMarkdown` de `packages/shared`). Es la fuente única para la búsqueda de producción y para el RAG.
+- **RAG (local)**: `rag-ingest` lee `search-index.json` → embeddings con Ollama → `POST /rag/index` → KV. La terminal envía `ask` → `POST /rag/ask` → embedding de la pregunta → top-k por coseno → respuesta en streaming del modelo.
 - **Producción sin RAG**: `/rag/*` no existe; la terminal usa búsqueda de texto (MiniSearch) sobre `search-index.json`, generado en el build.
 
 ## 4. Decisiones clave

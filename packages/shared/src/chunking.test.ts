@@ -43,6 +43,11 @@ describe('chunkMarkdown', () => {
     expect(chunks[0]?.text).toBe('Ticker — Enlace\nVer sitio ya.')
   })
 
+  it('drops HTML comments such as TODO notes', () => {
+    const chunks = chunkMarkdown({ ...base, markdown: 'Visible.\n\n<!-- TODO(media): secreto -->' })
+    expect(chunks.map((chunk) => chunk.text)).toEqual(['Ticker\nVisible.'])
+  })
+
   it('carries locale, source and title in every chunk', () => {
     const [chunk] = chunkMarkdown({ ...base, markdown: 'Texto.' })
     expect(chunk).toMatchObject({ locale: 'es', source: 'projects/ticker', title: 'Ticker' })

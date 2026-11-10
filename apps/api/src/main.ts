@@ -9,7 +9,10 @@ import {
 } from './adapters/email'
 import { createHmacTokenSigner } from './adapters/hmac-token-signer'
 import { createApp } from './adapters/http/app'
+import { createRagRoutes } from './adapters/http/rag-routes'
 import { createKvRateLimiter } from './adapters/kv-rate-limiter'
+import { createKvVectorIndex } from './adapters/kv-vector-index'
+import { createOllamaChat, createOllamaEmbeddings } from './adapters/ollama'
 import { createR2CvStorage } from './adapters/r2-cv-storage'
 import { createTurnstileVerifier } from './adapters/turnstile'
 import { parseConfig, type Config } from './config'
@@ -41,7 +44,23 @@ function buildApp(env: Bindings): Hono {
     logger,
     clock: { now: () => Date.now() },
   }
-  return createApp(() => ({ allowed_origin: config.ALLOWED_ORIGIN, contact, logger }))
+  const rag_routes = createRagRoutesIfEnabled(config, env, logger)
+  return createApp(() => ({ allowed_origin: config.ALLOWED_ORIGIN, contact, logger, rag_routes }))
+}
+
+function createRagRoutesIfEnabled(config: Config, env: Bindings, logger: Logger): Hono | undefined {
+  if (!config.rag_enabled || !env.RAG_INDEX_KV) return undefined
+  return createRagRoutes(
+    {
+      embeddings: createOllamaEmbeddings({
+        host: config.OLLAMA_HOST,
+        model: config.RAG_EMBED_MODEL,
+      }),
+      chat: createOllamaChat({ host: config.OLLAMA_HOST, model: config.RAG_CHAT_MODEL }),
+      index_repository: createKvVectorIndex(env.RAG_INDEX_KV),
+    },
+    logger,
+  )
 }
 
 function createEmailSender(config: Config, env: Bindings, logger: Logger): EmailSender {

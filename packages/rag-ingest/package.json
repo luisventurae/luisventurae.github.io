@@ -1,0 +1,17 @@
+{
+  "name": "@portfolio/rag-ingest",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "ingest": "tsx src/cli.ts",
+    "typecheck": "tsc7 -p tsconfig.json"
+  },
+  "dependencies": {
+    "@portfolio/shared": "*",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

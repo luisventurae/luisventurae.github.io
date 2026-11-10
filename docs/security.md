@@ -50,7 +50,7 @@ Este repositorio es **público**: se publica para mostrar cómo se construyó el
 
 ## 5. CI/CD
 
-- **gitleaks** se ejecuta en cada PR y push para detectar secretos.
+- **gitleaks** se ejecuta en cada PR y push para detectar secretos. Los falsos positivos revisados se registran por huella en `.gitleaksignore`, con un comentario que explique por qué; un secreto real nunca se ignora, se rota.
 - Workflows con `permissions` mínimos por job; acciones de terceros fijadas por SHA.
 - Los PR usan `pull_request` (nunca `pull_request_target`), así los forks no acceden a secretos.
 - Los secretos solo existen en jobs de despliegue sobre `master` con `environment: production`.

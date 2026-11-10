@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest'
 
 import { createHmacTokenSigner } from './hmac-token-signer'
 
-const SECRET = 'a-very-long-test-secret-of-at-least-32-chars'
+// Obviously fake key material: long enough for HMAC, low entropy so scanners don't flag it.
+const SECRET = 'x'.repeat(48)
 const payload = { locale: 'en' as const, exp: 1_800_000_000_000 }
 
 describe('createHmacTokenSigner', () => {

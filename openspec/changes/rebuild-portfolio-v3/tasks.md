@@ -70,8 +70,8 @@
 
 ## 15. CI/CD y README
 
-- [ ] 15.1 `ci.yml` (incluye gitleaks y `npm audit`), `release-pr.yml`, `deploy.yml`, Dependabot — verificar: `actionlint`
-- [ ] 15.2 `docs/deployment.md` y README raíz corto — verificar: enlaces del índice
+- [x] 15.1 `ci.yml` (incluye gitleaks y `npm audit`), `release-pr.yml`, `deploy.yml`, Dependabot — verificar: YAML válido y primera ejecución en GitHub
+- [x] 15.2 `docs/deployment.md` y README raíz corto — verificar: enlaces del índice
 
 ## Workflow follow-up
 

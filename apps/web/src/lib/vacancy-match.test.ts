@@ -32,6 +32,12 @@ describe('vacancy requirements data', () => {
     )
   })
 
+  it('offers the AI and leadership requirements as fully met', () => {
+    const strengths = new Map(VACANCY_REQUIREMENTS.map((item) => [item.id, item.strength]))
+    expect(strengths.get('ai-llm')).toBe(1)
+    expect(strengths.get('leadership')).toBe(1)
+  })
+
   it('has a label and evidence for every requirement in every locale', () => {
     for (const ui of [es, en, fr]) {
       for (const id of VACANCY_REQUIREMENT_IDS) {

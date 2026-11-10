@@ -137,6 +137,16 @@ export const es = {
         label: 'Integraciones y chatbots',
         proof: 'WhatsApp Business API, Zoho CRM, Twilio y chatbots en producción.',
       },
+      'ai-llm': {
+        label: 'IA y LLMs',
+        proof:
+          'Claude Code y Codex a diario, y Amazon Bedrock en chatbots en producción, siempre con specs, TDD y revisión.',
+      },
+      leadership: {
+        label: 'Liderazgo técnico',
+        proof:
+          'Lideré equipos de desarrollo desde 2020, incluido Ticker: arquitectura, requisitos y coordinación con Negocio y Producto.',
+      },
       scrum: { label: 'Scrum', proof: 'Equipos ágiles con Scrum, specs primero y CI/CD.' },
       english: { label: 'Inglés', proof: 'Trabajo en inglés; además hablo francés.' },
       'remote-hybrid': { label: 'Remoto o híbrido', proof: 'Es justo lo que busco, desde Perú.' },

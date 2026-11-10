@@ -143,6 +143,16 @@ export const fr: UiStrings = {
         label: 'Intégrations et chatbots',
         proof: 'WhatsApp Business API, Zoho CRM, Twilio et chatbots en production.',
       },
+      'ai-llm': {
+        label: 'IA et LLM',
+        proof:
+          'Claude Code et Codex au quotidien, et Amazon Bedrock dans des chatbots en production, toujours avec specs, TDD et revue.',
+      },
+      leadership: {
+        label: 'Leadership technique',
+        proof:
+          'J’ai dirigé des équipes de développement depuis 2020, dont Ticker : architecture, besoins et coordination avec le Business et le Produit.',
+      },
       scrum: {
         label: 'Scrum',
         proof: 'Équipes agiles avec Scrum, spécifications d’abord et CI/CD.',

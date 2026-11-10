@@ -12,6 +12,8 @@ export const VACANCY_REQUIREMENT_IDS = [
   'mongodb',
   'clean-architecture',
   'integrations',
+  'ai-llm',
+  'leadership',
   'remote-hybrid',
   'scrum',
   'english',

@@ -139,6 +139,16 @@ export const en: UiStrings = {
         label: 'Integrations and chatbots',
         proof: 'WhatsApp Business API, Zoho CRM, Twilio and chatbots in production.',
       },
+      'ai-llm': {
+        label: 'AI and LLMs',
+        proof:
+          'Claude Code and Codex daily, and Amazon Bedrock in production chatbots, always with specs, TDD and review.',
+      },
+      leadership: {
+        label: 'Technical leadership',
+        proof:
+          'Led development teams since 2020, including Ticker: architecture, requirements and coordination with Business and Product.',
+      },
       scrum: { label: 'Scrum', proof: 'Agile teams with Scrum, specs first and CI/CD.' },
       english: { label: 'English', proof: 'I work in English, and I also speak French.' },
       'remote-hybrid': {

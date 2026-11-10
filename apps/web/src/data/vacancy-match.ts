@@ -17,6 +17,8 @@ export const VACANCY_REQUIREMENTS: VacancyRequirement[] = [
   { id: 'mongodb', strength: 1 },
   { id: 'clean-architecture', strength: 1 },
   { id: 'integrations', strength: 1 },
+  { id: 'ai-llm', strength: 1 },
+  { id: 'leadership', strength: 1 },
   { id: 'scrum', strength: 1 },
   { id: 'english', strength: 1 },
   { id: 'remote-hybrid', strength: 1 },

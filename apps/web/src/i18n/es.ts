@@ -1,9 +1,9 @@
 export const es = {
   meta: {
-    title: 'Luis Ventura E — Full Stack Web Engineer',
+    title: 'Luis Ventura E — Backend Engineer · Node.js',
     description:
-      'Construyo software web que se siente bien: interfaces cuidadas al detalle y backends que aguantan tráfico real. JavaScript y TypeScript de punta a punta.',
-    og_image_alt: 'Luis Ventura E — Full Stack Web Engineer',
+      'Backend Engineer con {years} años de experiencia en Node.js, TypeScript y AWS: microservicios, arquitectura hexagonal y chatbots. Disponible para trabajo remoto o híbrido en Perú.',
+    og_image_alt: 'Luis Ventura E — Backend Engineer · Node.js',
   },
   a11y: {
     skip_to_content: 'Saltar al contenido',
@@ -20,14 +20,16 @@ export const es = {
   },
   hero: {
     greeting: 'Hola, soy',
+    availability: 'Disponible · remoto o híbrido · Perú',
+    facts: '{years} años de experiencia · Node.js · TypeScript · AWS',
     roles: [
-      'Full Stack Web Engineer',
-      'Diseño en movimiento',
-      'Backends que escalan',
-      'TypeScript de punta a punta',
+      'Microservicios en AWS',
+      'Arquitectura hexagonal',
+      'APIs y chatbots en producción',
+      'Y también cuido la UI',
     ],
     tagline:
-      'Construyo software web que se siente bien: cada detalle medido, cada interacción con intención.',
+      'Diseño backends en Node.js que aguantan tráfico real, y los acompaño de interfaces que se sienten bien.',
     drag_hint: 'Arrastra las letras',
     cta_projects: 'Ver proyectos',
     cta_terminal: 'Abrir la terminal',

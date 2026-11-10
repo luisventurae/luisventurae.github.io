@@ -8,6 +8,7 @@ import { alternateLinks, localePath } from '../lib/i18n'
 import { buildStructuredData, type StructuredProject } from '../lib/seo'
 import { LOCALES } from '@portfolio/shared'
 import { SITE_URL, SOCIAL_LINKS } from '../data/site'
+import { careerYears, interpolateYears } from '../lib/experience'
 
 interface Props {
   locale: Locale
@@ -17,6 +18,7 @@ interface Props {
 
 const { locale, projects, knows_about } = Astro.props
 const ui = getUi(locale)
+const description = interpolateYears(ui.meta.description, careerYears())
 const page_url = new URL(localePath(locale), SITE_URL).href
 const og_image = new URL(`/og/${locale}.png`, SITE_URL).href
 const structured_data = buildStructuredData({
@@ -24,7 +26,7 @@ const structured_data = buildStructuredData({
   site_url: SITE_URL,
   page_url,
   title: ui.meta.title,
-  description: ui.meta.description,
+  description,
   same_as: SOCIAL_LINKS.map((link) => link.url),
   knows_about,
   projects,
@@ -40,7 +42,7 @@ const alternate_og_locales = LOCALES.filter((item) => item !== locale).map(
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{ui.meta.title}</title>
-    <meta name="description" content={ui.meta.description} />
+    <meta name="description" content={description} />
     <meta name="author" content="Luis Ventura E" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -57,7 +59,7 @@ const alternate_og_locales = LOCALES.filter((item) => item !== locale).map(
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Luis Ventura E" />
     <meta property="og:title" content={ui.meta.title} />
-    <meta property="og:description" content={ui.meta.description} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={page_url} />
     <meta property="og:locale" content={OG_LOCALES[locale]} />
     {alternate_og_locales.map((item) => (
@@ -72,7 +74,7 @@ const alternate_og_locales = LOCALES.filter((item) => item !== locale).map(
     <meta property="profile:last_name" content="Ventura" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ui.meta.title} />
-    <meta name="twitter:description" content={ui.meta.description} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={og_image} />
     <meta name="twitter:image:alt" content={ui.meta.og_image_alt} />
 

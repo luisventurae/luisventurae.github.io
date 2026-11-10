@@ -11,9 +11,15 @@ const require = createRequire(import.meta.url)
 const OUTPUT_DIR = join(import.meta.dirname, '../public/og')
 
 const COPY = {
-  es: { role: 'Full Stack Web Engineer', tagline: 'Software web que se siente bien.' },
-  en: { role: 'Full Stack Web Engineer', tagline: 'Web software that feels right.' },
-  fr: { role: 'Full Stack Web Engineer', tagline: 'Du logiciel web agréable à utiliser.' },
+  es: {
+    role: 'Backend Engineer · Node.js',
+    tagline: 'Backends en Node.js que aguantan tráfico real.',
+  },
+  en: { role: 'Backend Engineer · Node.js', tagline: 'Node.js backends that handle real traffic.' },
+  fr: {
+    role: 'Backend Engineer · Node.js',
+    tagline: 'Des backends Node.js qui tiennent un vrai trafic.',
+  },
 }
 
 function fontDataUrl(package_name, file) {
@@ -54,7 +60,7 @@ function template({ role, tagline }) {
   </div>
   <div class="footer">
     <div class="mono">${role}</div>
-    <div class="row"><span class="chip sky">TypeScript</span><span class="chip lime">Node.js</span><span class="chip violet">Vue · React</span></div>
+    <div class="row"><span class="chip lime">Node.js</span><span class="chip sky">AWS</span><span class="chip violet">TypeScript</span></div>
   </div>
 </body></html>`
 }

@@ -1,6 +1,21 @@
 import AxeBuilder from '@axe-core/playwright'
 
+import { careerYears } from '../src/lib/experience'
 import { expect, test } from './fixtures'
+
+test.describe('hero without JavaScript', () => {
+  test.use({ javaScriptEnabled: false })
+
+  test('shows role, years, main stack and availability', async ({ page }) => {
+    await page.goto('/')
+    const hero = page.locator('#top')
+    await expect(hero.getByText('Backend Engineer · Node.js', { exact: true })).toBeVisible()
+    await expect(
+      hero.getByText(`${careerYears()} años de experiencia · Node.js · TypeScript · AWS`),
+    ).toBeVisible()
+    await expect(hero.getByText('Disponible · remoto o híbrido · Perú')).toBeVisible()
+  })
+})
 
 test.describe('site shell', () => {
   test('switching language keeps the current section', async ({ page }) => {
@@ -48,8 +63,8 @@ test.describe('site shell', () => {
   test('reduced motion keeps a single role in the hero', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.goto('/')
-    await expect(page.getByText('Full Stack Web Engineer', { exact: true }).first()).toBeVisible()
+    await expect(page.getByText('Microservicios en AWS', { exact: true }).first()).toBeVisible()
     await page.waitForTimeout(3000)
-    await expect(page.getByText('Diseño en movimiento')).toHaveCount(0)
+    await expect(page.getByText('Arquitectura hexagonal')).toHaveCount(0)
   })
 })

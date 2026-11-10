@@ -5,7 +5,7 @@ context: |
   All artifacts must be written in es.
   Keep OpenSpec structural headings and SHALL/MUST keywords in English.
 
-  Proyecto: portafolio personal de Luis Ventura E (Full Stack Web Engineer).
+  Proyecto: portafolio personal de Luis Ventura E (Backend Engineer · Node.js).
   Monorepo npm workspaces: apps/web (Astro + islas React 19, TypeScript 7, Tailwind v4, Motion, Vaul),
   apps/api (Cloudflare Worker con Hono, arquitectura hexagonal ligera: core/ + adapters/), packages/shared (contratos zod),
   packages/config (TS/ESLint/Prettier).

@@ -7,7 +7,10 @@ import { Hero, type HeroProps } from './Hero'
 const props: HeroProps = {
   name: 'Luis Ventura E',
   greeting: 'Hola, soy',
-  roles: ['Full Stack Web Engineer', 'Diseño en movimiento'],
+  role: 'Backend Engineer · Node.js',
+  facts: '7 años de experiencia · Node.js · TypeScript · AWS',
+  availability: 'Disponible · remoto o híbrido · Perú',
+  roles: ['Microservicios en AWS', 'Arquitectura hexagonal'],
   tagline: 'Construyo software web que se siente bien.',
   drag_hint: 'Arrastra las letras',
   cta_projects: 'Ver proyectos',
@@ -38,17 +41,25 @@ describe('Hero', () => {
 
   it('rotates the role over time', () => {
     render(<Hero {...props} />)
-    expect(screen.getByText('Full Stack Web Engineer')).toBeInTheDocument()
+    expect(screen.getByText('Microservicios en AWS')).toBeInTheDocument()
     act(() => vi.advanceTimersByTime(2700))
-    expect(screen.getByText('Diseño en movimiento')).toBeInTheDocument()
+    expect(screen.getByText('Arquitectura hexagonal')).toBeInTheDocument()
+  })
+
+  it('keeps the key facts outside the rotation', () => {
+    render(<Hero {...props} />)
+    const fixed = [props.role, props.facts, props.availability]
+    for (const text of fixed) expect(screen.getByText(text)).toBeInTheDocument()
+    act(() => vi.advanceTimersByTime(2700))
+    for (const text of fixed) expect(screen.getByText(text)).toBeInTheDocument()
   })
 
   it('keeps a single role when reduced motion is requested', () => {
     mockMatchMedia(['(prefers-reduced-motion: reduce)'])
     render(<Hero {...props} />)
     act(() => vi.advanceTimersByTime(6000))
-    expect(screen.getByText('Full Stack Web Engineer')).toBeInTheDocument()
-    expect(screen.queryByText('Diseño en movimiento')).not.toBeInTheDocument()
+    expect(screen.getByText('Microservicios en AWS')).toBeInTheDocument()
+    expect(screen.queryByText('Arquitectura hexagonal')).not.toBeInTheDocument()
   })
 
   it('asks the terminal to take focus', () => {

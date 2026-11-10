@@ -7,6 +7,12 @@ import { useRotatingIndex } from './useRotatingIndex'
 export interface HeroProps {
   name: string
   greeting: string
+  /** Main role; static so recruiters never wait for it. */
+  role: string
+  /** Key facts line (years, main stack), already interpolated. */
+  facts: string
+  availability: string
+  /** Complementary descriptions that rotate under the main role. */
   roles: string[]
   tagline: string
   drag_hint: string
@@ -16,10 +22,10 @@ export interface HeroProps {
 
 const PLAY_COLORS = ['var(--accent)', 'var(--violet)', 'var(--lime)', 'var(--sky)']
 const STICKERS = [
-  { label: 'TypeScript', className: 'right-[30%] bottom-[34%] -rotate-6 bg-sky', depth: 0 },
-  { label: 'Node.js', className: 'right-[6%] bottom-[40%] rotate-6 bg-lime', depth: 1 },
+  { label: 'Node.js', className: 'right-[30%] bottom-[34%] -rotate-6 bg-lime', depth: 0 },
+  { label: 'AWS', className: 'right-[6%] bottom-[40%] rotate-6 bg-sky', depth: 1 },
   {
-    label: 'Vue · React',
+    label: 'TypeScript',
     className: 'right-[14%] bottom-[8%] -rotate-3 bg-violet text-paper',
     depth: 2,
   },
@@ -50,6 +56,11 @@ export function Hero(props: HeroProps): ReactElement {
           {sticker.label}
         </motion.span>
       ))}
+
+      <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-paper-raised px-3 py-1 text-small font-semibold">
+        <span aria-hidden="true" className="size-2 rounded-full bg-lime" />
+        {props.availability}
+      </p>
 
       <p className="font-mono text-small text-ink-muted">{props.greeting}</p>
 
@@ -84,10 +95,10 @@ export function Hero(props: HeroProps): ReactElement {
         ↖ {props.drag_hint}
       </p>
 
-      <p
-        className="mt-8 h-[1.4em] overflow-hidden text-title leading-[1.3] font-semibold"
-        aria-live="off"
-      >
+      <p className="mt-8 text-title leading-[1.3] font-semibold">{props.role}</p>
+      <p className="mt-2 font-mono text-small text-ink-muted">{props.facts}</p>
+
+      <p className="mt-4 h-[1.4em] overflow-hidden leading-[1.3] font-semibold" aria-live="off">
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
             key={role_index}

@@ -15,7 +15,9 @@ Identidad del portafolio de Luis Ventura E. Los valores concretos (hex, tamaños
 
 ## 1. Esencia
 
-**Un ingeniero que se divierte construyendo cosas que se sienten bien.** El sitio es _playful_ y expresivo, pero cada detalle está medido: el juego demuestra oficio, no lo reemplaza.
+**Un ingeniero backend que se divierte construyendo cosas que se sienten bien.** El sitio es _playful_ y expresivo, pero cada detalle está medido: el juego demuestra oficio, no lo reemplaza.
+
+El público principal son reclutadores que buscan un perfil backend Node.js (remoto o híbrido, Perú). Rol, años de experiencia, stack principal y disponibilidad se leen en el hero sin esperar ni interactuar: la información clave nunca rota ni depende de una animación.
 
 Tres ideas guía:
 
@@ -39,7 +41,7 @@ Tres ideas guía:
 ## 3. Nombre y firma
 
 - Nombre público: **Luis Ventura E**. Nombre completo en datos estructurados: Luis Miguel Ventura E.
-- Rol: **Full Stack Web Engineer**.
+- Rol: **Backend Engineer · Node.js**. El frontend y el motion son el plus que lo diferencia, no el titular.
 - Monograma provisional: `lv.` en tipografía display con el punto en color de acento. `TODO(media)`: reemplazar por el logo definitivo si existe.
 
 ## 4. Paleta

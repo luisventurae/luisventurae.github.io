@@ -3,9 +3,11 @@ import type { Locale } from '@portfolio/shared'
 
 import { getImage } from 'astro:assets'
 
+import { PERSON } from '../data/site'
 import { SKILLS } from '../data/skills'
 import { getUi } from '../i18n'
 import { loadProfile, loadProjects } from '../lib/content'
+import { careerYears, interpolateYears } from '../lib/experience'
 import type { TerminalContext } from '../lib/terminal/commands'
 import { skillUsage } from '../lib/projects'
 import { parsePublicEnv } from '../lib/public-env'
@@ -26,6 +28,7 @@ interface Props {
 
 const { locale } = Astro.props
 const ui = getUi(locale)
+const years = careerYears()
 const projects = await loadProjects(locale)
 const structured_projects = projects.map((project) => ({
   name: project.title,
@@ -136,6 +139,9 @@ const project_labels = {
       client:load
       name="Luis Ventura E"
       greeting={ui.hero.greeting}
+      role={PERSON.job_title}
+      facts={interpolateYears(ui.hero.facts, years)}
+      availability={ui.hero.availability}
       roles={ui.hero.roles}
       tagline={ui.hero.tagline}
       drag_hint={ui.hero.drag_hint}

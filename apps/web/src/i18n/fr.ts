@@ -2,10 +2,10 @@ import type { UiStrings } from './es'
 
 export const fr: UiStrings = {
   meta: {
-    title: 'Luis Ventura E — Full Stack Web Engineer',
+    title: 'Luis Ventura E — Backend Engineer · Node.js',
     description:
-      'Je construis des logiciels web agréables à utiliser : des interfaces soignées dans le détail et des backends qui tiennent un vrai trafic. JavaScript et TypeScript de bout en bout.',
-    og_image_alt: 'Luis Ventura E — Full Stack Web Engineer',
+      'Backend Engineer avec {years} ans d’expérience en Node.js, TypeScript et AWS : microservices, architecture hexagonale et chatbots. Disponible en télétravail ou en hybride au Pérou.',
+    og_image_alt: 'Luis Ventura E — Backend Engineer · Node.js',
   },
   a11y: {
     skip_to_content: 'Aller au contenu',
@@ -22,14 +22,16 @@ export const fr: UiStrings = {
   },
   hero: {
     greeting: 'Salut, je suis',
+    availability: 'Disponible · télétravail ou hybride · Pérou',
+    facts: '{years} ans d’expérience · Node.js · TypeScript · AWS',
     roles: [
-      'Full Stack Web Engineer',
-      'Design en mouvement',
-      'Des backends qui tiennent',
-      'TypeScript de bout en bout',
+      'Microservices sur AWS',
+      'Architecture hexagonale',
+      'APIs et chatbots en production',
+      'Et je soigne aussi l’UI',
     ],
     tagline:
-      'Je construis des logiciels web agréables : chaque détail mesuré, chaque interaction voulue.',
+      'Je conçois des backends Node.js qui tiennent un vrai trafic, accompagnés d’interfaces agréables à utiliser.',
     drag_hint: 'Fais glisser les lettres',
     cta_projects: 'Voir les projets',
     cta_terminal: 'Ouvrir le terminal',

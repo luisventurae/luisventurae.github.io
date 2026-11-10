@@ -7,7 +7,7 @@ const context: TerminalContext = {
   locale: 'es',
   messages: es.terminal.messages,
   category_labels: es.stack.categories,
-  whoami: 'Soy Luis, Full Stack Web Engineer.',
+  whoami: 'Soy Luis, Backend Engineer · Node.js.',
   projects: [
     {
       slug: 'ticker',
@@ -33,7 +33,7 @@ describe('runCommand', () => {
   })
 
   it('answers whoami', () => {
-    expect(texts('whoami')).toEqual(['Soy Luis, Full Stack Web Engineer.'])
+    expect(texts('whoami')).toEqual(['Soy Luis, Backend Engineer · Node.js.'])
   })
 
   it('lists projects and shows one with cat', () => {

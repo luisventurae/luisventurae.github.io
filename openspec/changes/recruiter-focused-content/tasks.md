@@ -14,10 +14,10 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 3. Hero y metadatos (`feat(web): position hero and metadata as backend engineer`)
 
-- [ ] 3.1 Hero: línea fija de datos clave con `{years}` y badge de disponibilidad, roles complementarios en es/en/fr y stickers Node.js/AWS/TypeScript; test en `Hero.test.tsx` que confirme que los datos fijos no cambian al avanzar la rotación; verificar con `npm test`
-- [ ] 3.2 `PERSON.job_title = 'Backend Engineer · Node.js'`, `meta.title` y `meta.description` en es/en/fr, `jobTitle` del JSON-LD (`seo.test.ts`), y regenerar las imágenes OG con `apps/web/scripts/generate-og.mjs`; verificar con `npm test` y comprobando visualmente `public/og/*.png`
-- [ ] 3.3 E2E: el hero muestra "7 años", Node.js y la disponibilidad con JavaScript desactivado (`shell.spec.ts`); verificar con `npm run test:e2e`
-- [ ] 3.4 Actualizar el rol y la esencia en `docs/branding.md`; verificar que `rg "Full Stack Web Engineer" apps docs` solo devuelve menciones históricas
+- [x] 3.1 Hero: línea fija de datos clave con `{years}` y badge de disponibilidad, roles complementarios en es/en/fr y stickers Node.js/AWS/TypeScript; test en `Hero.test.tsx` que confirme que los datos fijos no cambian al avanzar la rotación; verificar con `npm test`
+- [x] 3.2 `PERSON.job_title = 'Backend Engineer · Node.js'`, `meta.title` y `meta.description` en es/en/fr, `jobTitle` del JSON-LD (`seo.test.ts`), y regenerar las imágenes OG con `apps/web/scripts/generate-og.mjs`; verificar con `npm test` y comprobando visualmente `public/og/*.png`
+- [x] 3.3 E2E: el hero muestra "7 años", Node.js y la disponibilidad con JavaScript desactivado (`shell.spec.ts`); verificar con `npm run test:e2e`
+- [x] 3.4 Actualizar el rol y la esencia en `docs/branding.md`; verificar que `rg "Full Stack Web Engineer" apps docs` solo devuelve menciones históricas
 
 ## 4. Sobre mí y Experiencia (`feat(web): add about and experience sections`)
 

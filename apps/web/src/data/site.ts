@@ -4,7 +4,7 @@ export const SOURCE_URL = 'https://github.com/luisventurae/luisventurae.github.i
 export const PERSON = {
   name: 'Luis Ventura E',
   full_name: 'Luis Miguel Ventura E',
-  job_title: 'Full Stack Web Engineer',
+  job_title: 'Backend Engineer · Node.js',
   image_path: '/luis-83x83.jpg',
 } as const
 

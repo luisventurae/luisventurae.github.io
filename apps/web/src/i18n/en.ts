@@ -2,10 +2,10 @@ import type { UiStrings } from './es'
 
 export const en: UiStrings = {
   meta: {
-    title: 'Luis Ventura E — Full Stack Web Engineer',
+    title: 'Luis Ventura E — Backend Engineer · Node.js',
     description:
-      'I build web software that feels right: interfaces crafted to the detail and backends that handle real traffic. JavaScript and TypeScript end to end.',
-    og_image_alt: 'Luis Ventura E — Full Stack Web Engineer',
+      'Backend Engineer with {years} years of experience in Node.js, TypeScript and AWS: microservices, hexagonal architecture and chatbots. Open to remote or hybrid roles in Peru.',
+    og_image_alt: 'Luis Ventura E — Backend Engineer · Node.js',
   },
   a11y: {
     skip_to_content: 'Skip to content',
@@ -22,14 +22,16 @@ export const en: UiStrings = {
   },
   hero: {
     greeting: "Hi, I'm",
+    availability: 'Available · remote or hybrid · Peru',
+    facts: '{years} years of experience · Node.js · TypeScript · AWS',
     roles: [
-      'Full Stack Web Engineer',
-      'Design in motion',
-      'Backends that scale',
-      'TypeScript end to end',
+      'Microservices on AWS',
+      'Hexagonal architecture',
+      'APIs and chatbots in production',
+      'And I care about the UI too',
     ],
     tagline:
-      'I build web software that feels right: every detail measured, every interaction intentional.',
+      'I build Node.js backends that handle real traffic, and pair them with interfaces that feel right.',
     drag_hint: 'Drag the letters',
     cta_projects: 'See projects',
     cta_terminal: 'Open the terminal',

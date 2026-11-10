@@ -23,7 +23,6 @@ export interface RankOptions {
 }
 
 const DEFAULT_RANK: RankOptions = { top_k: 5, min_score: 0.35 }
-const SAME_LOCALE_BONUS = 0.05
 const LANGUAGE_NAMES: Record<Locale, string> = { es: 'español', en: 'English', fr: 'français' }
 const UNKNOWN_ANSWER: Record<Locale, string> = {
   es: 'No tengo esa información en el portafolio. Prueba a preguntar por proyectos, tecnologías o experiencia.',
@@ -46,20 +45,21 @@ export function cosineSimilarity(a: number[], b: number[]): number {
   return dot / (Math.sqrt(norm_a) * Math.sqrt(norm_b))
 }
 
-/** Top chunks by cosine similarity, nudging those written in the question's language. */
+/**
+ * Top chunks by cosine similarity. Content exists in three languages, so when the
+ * question's language has relevant chunks only those are used (no duplicated context).
+ */
 export function rankChunks(
   chunks: IndexedChunk[],
   query: number[],
   locale: Locale,
   options: RankOptions = DEFAULT_RANK,
 ): IndexedChunk[] {
-  return chunks
+  const relevant = chunks
     .map((chunk) => ({ chunk, score: cosineSimilarity(chunk.embedding, query) }))
     .filter((item) => item.score >= options.min_score)
-    .map((item) => ({
-      ...item,
-      score: item.score + (item.chunk.locale === locale ? SAME_LOCALE_BONUS : 0),
-    }))
+  const same_locale = relevant.filter((item) => item.chunk.locale === locale)
+  return (same_locale.length > 0 ? same_locale : relevant)
     .sort((a, b) => b.score - a.score)
     .slice(0, options.top_k)
     .map((item) => item.chunk)

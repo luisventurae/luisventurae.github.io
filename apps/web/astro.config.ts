@@ -50,5 +50,7 @@ export default defineConfig({
   markdown: { syntaxHighlight: false },
   vite: {
     plugins: [tailwindcss()],
+    // The rag-ingest container reaches the dev server as http://web:4321.
+    server: { allowedHosts: ['web'] },
   },
 })

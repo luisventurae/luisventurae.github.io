@@ -12,7 +12,7 @@
 ## 1. Requisitos
 
 - Docker con Compose v2.
-- ~8 GB libres para los modelos de Ollama (`bge-m3` ≈ 1.2 GB, `qwen3:4b` ≈ 2.5 GB).
+- ~8 GB libres para los modelos de Ollama (`bge-m3` ≈ 1.2 GB, `qwen3:4b-instruct` ≈ 2.5 GB).
 - Opcional: Node 24.22.2 (`.nvmrc`) para trabajar sin Docker.
 
 ## 2. Arranque con Docker Compose
@@ -48,7 +48,7 @@ Repite el paso 2 cada vez que cambie el contenido de `apps/web/src/content/`.
 
 ```bash
 npm install
-ollama pull bge-m3 && ollama pull qwen3:4b
+ollama pull bge-m3 && ollama pull qwen3:4b-instruct
 cp apps/api/.dev.vars.example apps/api/.dev.vars
 npm run dev                  # api en :8787 y web en :4321
 npm run ingest -w packages/rag-ingest
@@ -60,4 +60,4 @@ npm run ingest -w packages/rag-ingest
 | ---------------------------------------- | -------------------------------------------------------------------------------- |
 | `EACCES` en `node_modules`               | `docker compose down -v` para recrear los volúmenes con el propietario correcto. |
 | `ask` responde que el RAG no está activo | Ejecuta el ingest (paso 2) y comprueba `RAG_ENABLED=true` en el servicio `api`.  |
-| Respuestas lentas                        | Usa un modelo más pequeño en `.env` (`RAG_CHAT_MODEL=qwen3:1.7b`).               |
+| Respuestas lentas                        | Usa un modelo más pequeño en `.env` (`RAG_CHAT_MODEL=llama3.2:1b`).              |

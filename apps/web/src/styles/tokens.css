@@ -19,6 +19,12 @@
   --violet: #7a5cff;
   --sky: #4cc3ff;
 
+  /* Terminal: always dark, in both themes */
+  --terminal-bg: #16130f;
+  --terminal-fg: #f4efe6;
+  --terminal-muted: #a39b8f;
+  --terminal-error: #ff8c70;
+
   /* Typography */
   --font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
   --font-sans: 'Instrument Sans Variable', system-ui, sans-serif;

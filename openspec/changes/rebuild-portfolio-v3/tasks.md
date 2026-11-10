@@ -60,9 +60,9 @@
 
 ## 13. Terminal
 
-- [ ] 13.1 Parser y comandos en `src/lib/terminal` con historial y autocompletado — verificar: tests unitarios
-- [ ] 13.2 `search-index.json` prerenderizado, búsqueda MiniSearch y `ask` con fallback — verificar: tests de lógica
-- [ ] 13.3 Componente Terminal con atajo de teclado — verificar: test de componente
+- [x] 13.1 Parser y comandos en `src/lib/terminal` con historial y autocompletado — verificar: tests unitarios
+- [x] 13.2 `search-index.json` prerenderizado, búsqueda MiniSearch y `ask` con fallback — verificar: tests de lógica
+- [x] 13.3 Componente Terminal con atajo de teclado — verificar: test de componente
 
 ## 14. E2E
 

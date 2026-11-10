@@ -46,7 +46,7 @@ services:
       RAG_ENABLED: 'true'
       OLLAMA_HOST: http://ollama:11434
       RAG_EMBED_MODEL: ${RAG_EMBED_MODEL:-bge-m3}
-      RAG_CHAT_MODEL: ${RAG_CHAT_MODEL:-qwen3:4b}
+      RAG_CHAT_MODEL: ${RAG_CHAT_MODEL:-qwen3:4b-instruct}
       EMAIL_TRANSPORT: mailpit
       MAILPIT_URL: http://mailpit:8025
       # Public test secret from Cloudflare docs: always passes. Not a credential.
@@ -87,7 +87,7 @@ services:
       OLLAMA_HOST: ollama:11434
     entrypoint: ['/bin/sh', '-c']
     command:
-      - ollama pull ${RAG_EMBED_MODEL:-bge-m3} && ollama pull ${RAG_CHAT_MODEL:-qwen3:4b}
+      - ollama pull ${RAG_EMBED_MODEL:-bge-m3} && ollama pull ${RAG_CHAT_MODEL:-qwen3:4b-instruct}
     restart: 'no'
 
   mailpit:

@@ -90,13 +90,13 @@ Stagger: 40 ms entre elementos. Reglas completas en [`development-rules.md` › 
 
 ## 6. Componentes base
 
-| Componente | Notas                                                                                                                 |
-| ---------- | --------------------------------------------------------------------------------------------------------------------- |
-| `Button`   | Variantes `primary` (fondo acento), `ghost`; `:active scale(0.97)`; foco con anillo `--color-accent`.                 |
-| `Chip`     | Píldora con borde `--color-line`; estado activo con color de juego de su categoría.                                   |
-| `Card`     | `--color-paper-raised`, `--radius-lg`, `--shadow-card`; tilt solo con puntero fino.                                   |
-| `Drawer`   | Vaul; `--ease-drawer`; handle visible; swipe para cerrar y para cambiar de proyecto.                                  |
-| `Terminal` | Fondo `--color-ink` y texto `--color-paper` en ambos temas; mono; cursor parpadeante (se detiene con reduced motion). |
+| Componente | Notas                                                                                                                                                 |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Button`   | Variantes `primary` (fondo acento), `ghost`; `:active scale(0.97)`; foco con anillo `--color-accent`.                                                 |
+| `Chip`     | Píldora con borde `--color-line`; estado activo con color de juego de su categoría.                                                                   |
+| `Card`     | `--color-paper-raised`, `--radius-lg`, `--shadow-card`; tilt solo con puntero fino.                                                                   |
+| `Drawer`   | Vaul; `--ease-drawer`; handle visible; swipe para cerrar y para cambiar de proyecto.                                                                  |
+| `Terminal` | Siempre oscura (`--terminal-bg`, `--terminal-fg`, `--terminal-muted`, `--terminal-error`) en ambos temas; mono; sin animaciones (se usa con teclado). |
 
 ## 7. Tema claro / oscuro
 

@@ -5,12 +5,14 @@ import { getImage } from 'astro:assets'
 
 import { SKILLS } from '../data/skills'
 import { getUi } from '../i18n'
-import { loadProjects } from '../lib/content'
+import { loadProfile, loadProjects } from '../lib/content'
+import type { TerminalContext } from '../lib/terminal/commands'
 import { skillUsage } from '../lib/projects'
 import type { ProjectCard } from './projects/types'
 import { ContactForm } from './contact/ContactForm'
 import { ProjectGrid } from './projects/ProjectGrid'
 import { StackMap, type StackSkill } from './stack/StackMap'
+import { Terminal } from './terminal/Terminal'
 import Base from '../layouts/Base.astro'
 import Footer from './Footer.astro'
 import { Hero } from './hero/Hero'
@@ -89,6 +91,26 @@ const contact_labels = {
   download_again: ui.contact.download_again,
   errors: ui.contact.errors,
 }
+const profile = await loadProfile(locale)
+const terminal_context: TerminalContext = {
+  locale,
+  messages: ui.terminal.messages,
+  category_labels: ui.stack.categories,
+  whoami: profile.body.split('\n\n')[0]?.trim() ?? '',
+  projects: projects.map((project) => ({
+    slug: project.slug,
+    title: project.title,
+    summary: project.summary,
+    company: project.company,
+    period: project.period,
+    techs: project.techs.map((id) => skill_by_id.get(id)?.label ?? id),
+  })),
+  skills: SKILLS.map((skill) => ({
+    label: skill.label,
+    category: skill.category,
+    level: skill.level,
+  })),
+}
 const project_labels = {
   open: ui.projects.open,
   period: ui.projects.period,
@@ -140,6 +162,16 @@ const project_labels = {
     class="container-page py-(--space-section)"
   >
     <SectionHeading id="terminal" index="03" title={ui.terminal.title} intro={ui.terminal.intro} />
+    <Terminal
+      client:idle
+      api_url={api_url}
+      input_label={ui.terminal.input_label}
+      context={terminal_context}
+    />
+    <p class="mt-3 text-small text-ink-muted">
+      {ui.terminal.shortcut_hint}
+      <kbd class="ml-1 rounded border border-line bg-paper-raised px-1.5 font-mono">`</kbd>
+    </p>
   </section>
 
   <section id="contact" aria-labelledby="contact-title" class="container-page py-(--space-section)">

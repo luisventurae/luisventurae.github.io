@@ -55,9 +55,14 @@ describe('cosineSimilarity', () => {
 describe('rankChunks', () => {
   const chunks = [chunk('a', 'en', [1, 0]), chunk('b', 'es', [0.9, 0.1]), chunk('c', 'es', [0, 1])]
 
-  it('orders by similarity, prefers the question locale and drops irrelevant chunks', () => {
+  it('keeps only relevant chunks in the question locale when there are any', () => {
     const ranked = rankChunks(chunks, [1, 0], 'es', { top_k: 5, min_score: 0.35 })
-    expect(ranked.map((item) => item.id)).toEqual(['b', 'a'])
+    expect(ranked.map((item) => item.id)).toEqual(['b'])
+  })
+
+  it('falls back to other locales when the question locale has nothing relevant', () => {
+    const ranked = rankChunks(chunks, [1, 0], 'fr', { top_k: 5, min_score: 0.35 })
+    expect(ranked.map((item) => item.id)).toEqual(['a', 'b'])
   })
 
   it('limits to top_k', () => {

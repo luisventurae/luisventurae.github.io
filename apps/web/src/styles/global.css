@@ -99,6 +99,17 @@
     transform: scale(0.97);
   }
 
+  .terminal {
+    background: var(--terminal-bg);
+    color: var(--terminal-fg);
+  }
+  .terminal-muted {
+    color: var(--terminal-muted);
+  }
+  .terminal-error {
+    color: var(--terminal-error);
+  }
+
   .project-body h3 {
     margin-top: 1.5rem;
     font-size: var(--text-title);

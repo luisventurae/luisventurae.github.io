@@ -14,7 +14,7 @@ const EnvSchema = z.object({
   RAG_ENABLED: z.enum(['true', 'false']).default('false'),
   OLLAMA_HOST: z.url().default('http://localhost:11434'),
   RAG_EMBED_MODEL: z.string().min(1).default('bge-m3'),
-  RAG_CHAT_MODEL: z.string().min(1).default('qwen3:4b'),
+  RAG_CHAT_MODEL: z.string().min(1).default('qwen3:4b-instruct'),
 })
 
 export type Config = z.infer<typeof EnvSchema> & { rag_enabled: boolean }

@@ -1,4 +1,6 @@
 ---
+import InlineCode from './InlineCode.astro'
+
 interface Props {
   id: string
   title: string
@@ -16,5 +18,7 @@ const { id, title, intro, index } = Astro.props
     </span>
     {title}
   </h2>
-  <p class="max-w-[48ch] text-ink-muted md:justify-self-end md:text-right">{intro}</p>
+  <p class="max-w-[48ch] text-ink-muted md:justify-self-end md:text-right">
+    <InlineCode text={intro} />
+  </p>
 </header>

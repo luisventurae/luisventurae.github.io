@@ -45,6 +45,8 @@ export interface ProjectsLabels {
   next: string
   close: string
   swipe_hint: string
+  /** Drawer position, `{n}` and `{count}` tokens. */
+  counter: string
   /** Templates: `{title}`, `{n}` and `{count}` tokens. */
   gallery: string
   /** `aria-roledescription` of the gallery and of each slide. */

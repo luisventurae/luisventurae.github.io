@@ -74,6 +74,7 @@ export const es = {
     next: 'Proyecto siguiente',
     close: 'Cerrar',
     swipe_hint: 'Desliza para cambiar de proyecto',
+    counter: 'Proyecto {n} de {count}',
     gallery: 'Capturas de {title}',
     carousel: 'carrusel',
     slide: 'captura',

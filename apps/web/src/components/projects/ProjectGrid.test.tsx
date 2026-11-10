@@ -17,6 +17,7 @@ const labels: ProjectsLabels = {
   next: 'Proyecto siguiente',
   close: 'Cerrar',
   swipe_hint: 'Desliza',
+  counter: 'Proyecto {n} de {count}',
   at_company: 'En {company}',
   personal: 'Proyecto personal',
   gallery: 'Capturas de {title}',

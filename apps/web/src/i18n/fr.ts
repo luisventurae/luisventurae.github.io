@@ -77,6 +77,7 @@ export const fr: UiStrings = {
     next: 'Projet suivant',
     close: 'Fermer',
     swipe_hint: 'Fais glisser pour changer de projet',
+    counter: 'Projet {n} sur {count}',
     gallery: 'Captures de {title}',
     carousel: 'carrousel',
     slide: 'capture',

@@ -192,7 +192,10 @@ interface GalleryArrowProps {
   onClick: () => void
 }
 
-/** Only for fine pointers: touch swipes the track, keyboard uses ← / →. */
+/**
+ * Chevrons on the image, dark and borderless, so they read as part of the gallery and not as the
+ * project arrows in the drawer header. Only for fine pointers: touch swipes, keyboard uses ← / →.
+ */
 function GalleryArrow({ side, label, disabled, onClick }: GalleryArrowProps): ReactElement {
   return (
     <button
@@ -200,11 +203,19 @@ function GalleryArrow({ side, label, disabled, onClick }: GalleryArrowProps): Re
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className={`gallery-arrow pressable absolute top-1/2 hidden size-10 -translate-y-1/2 place-items-center rounded-full border border-line bg-paper-raised/90 shadow-card disabled:opacity-0 pointer-fine:grid pointer-fine:enabled:hover:border-ink ${
+      className={`gallery-arrow pressable absolute top-1/2 hidden size-9 -translate-y-1/2 place-items-center rounded-full bg-ink/75 text-paper shadow-card transition-[background-color,opacity,scale] duration-(--duration-fast) ease-out-strong disabled:opacity-0 pointer-fine:grid pointer-fine:enabled:hover:bg-ink ${
         side === 'left' ? 'left-3' : 'right-3'
       }`}
     >
-      <span aria-hidden="true">{side === 'left' ? '←' : '→'}</span>
+      <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4" fill="none">
+        <path
+          d={side === 'left' ? 'M10 3 5 8l5 5' : 'm6 3 5 5-5 5'}
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
     </button>
   )
 }

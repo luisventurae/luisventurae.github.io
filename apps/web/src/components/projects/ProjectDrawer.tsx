@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useIsPresent, useReducedMotion, type PanInfo }
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactElement } from 'react'
 import { Drawer } from 'vaul'
 
+import { fillTemplate } from '../../lib/gallery'
 import { projectOrigin } from '../../lib/projects'
 import { resolveSwipe } from '../../lib/swipe'
 import { ExternalProjectLink } from './ExternalProjectLink'
@@ -102,24 +103,25 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
             <>
               <div className="flex items-center justify-between gap-4 px-6 pt-2 pb-3">
                 <p className="font-mono text-small text-ink-muted" aria-live="polite">
-                  {(index ?? 0) + 1} / {projects.length}
-                  <span className="ml-3 hidden sm:inline">· {labels.swipe_hint}</span>
+                  {fillTemplate(labels.counter, { n: (index ?? 0) + 1, count: projects.length })}
+                  <span className="ml-3 hidden pointer-coarse:sm:inline">
+                    · {labels.swipe_hint}
+                  </span>
                 </p>
                 <div className="flex gap-2">
                   <NavButton
                     label={labels.previous}
                     disabled={is_first}
                     onClick={() => goTo((index ?? 0) - 1, 'gesture')}
-                  >
-                    ←
-                  </NavButton>
+                    arrow="←"
+                  />
                   <NavButton
                     label={labels.next}
                     disabled={is_last}
                     onClick={() => goTo((index ?? 0) + 1, 'gesture')}
-                  >
-                    →
-                  </NavButton>
+                    arrow="→"
+                    arrow_last
+                  />
                   <Drawer.Close
                     aria-label={labels.close}
                     className="pressable grid size-10 place-items-center rounded-full border border-line pointer-fine:hover:border-ink"
@@ -285,19 +287,28 @@ interface NavButtonProps {
   label: string
   disabled: boolean
   onClick: () => void
-  children: string
+  arrow: string
+  /** Puts the arrow after the text ("Proyecto siguiente →"). */
+  arrow_last?: boolean
 }
 
-function NavButton({ label, disabled, onClick, children }: NavButtonProps): ReactElement {
+/**
+ * Project navigation. From `md` it spells out "Proyecto anterior / siguiente" so it never reads
+ * like the screenshot arrows, which are chevrons on the image itself.
+ */
+function NavButton({ label, disabled, onClick, arrow, arrow_last }: NavButtonProps): ReactElement {
+  const text = <span className="hidden text-small font-semibold md:inline">{label}</span>
   return (
     <button
       type="button"
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className="pressable grid size-10 place-items-center rounded-full border border-line disabled:opacity-35 pointer-fine:enabled:hover:border-ink"
+      className="pressable inline-flex h-10 min-w-10 items-center justify-center gap-2 rounded-full border border-line disabled:opacity-35 md:px-4 pointer-fine:enabled:hover:border-ink"
     >
-      <span aria-hidden="true">{children}</span>
+      {arrow_last && text}
+      <span aria-hidden="true">{arrow}</span>
+      {!arrow_last && text}
     </button>
   )
 }

@@ -23,14 +23,14 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 
 ## 1. Nombres
 
-| Elemento | Convención | Ejemplo |
-| --- | --- | --- |
-| Variables, parámetros, propiedades locales | `snake_case` | `project_list`, `user_email` |
-| Funciones y métodos | `camelCase` | `getProjects()`, `sendEmail()` |
-| Clases, interfaces, tipos, enums, componentes | `PascalCase` | `ProjectDrawer`, `EmailSender` |
-| Constantes de módulo inmutables | `UPPER_SNAKE_CASE` | `RAG_TOP_K`, `MAX_ATTEMPTS` |
-| Archivos de componentes (`.tsx`, `.astro`) | `PascalCase` | `ProjectDrawer.tsx`, `Base.astro` |
-| Resto de archivos | `kebab-case` | `chunk-text.ts`, `rate-limiter.ts` |
+| Elemento                                      | Convención         | Ejemplo                            |
+| --------------------------------------------- | ------------------ | ---------------------------------- |
+| Variables, parámetros, propiedades locales    | `snake_case`       | `project_list`, `user_email`       |
+| Funciones y métodos                           | `camelCase`        | `getProjects()`, `sendEmail()`     |
+| Clases, interfaces, tipos, enums, componentes | `PascalCase`       | `ProjectDrawer`, `EmailSender`     |
+| Constantes de módulo inmutables               | `UPPER_SNAKE_CASE` | `RAG_TOP_K`, `MAX_ATTEMPTS`        |
+| Archivos de componentes (`.tsx`, `.astro`)    | `PascalCase`       | `ProjectDrawer.tsx`, `Base.astro`  |
+| Resto de archivos                             | `kebab-case`       | `chunk-text.ts`, `rate-limiter.ts` |
 
 - Los tipos e interfaces no llevan prefijos (`Project`, no `IProject` ni `TProject`).
 - Una variable que contiene una función (callbacks, handlers de React) se nombra como función: `const handleClick = () => …`.
@@ -57,13 +57,13 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 
 SOLID aplica a todo el código y es **obligatorio en `apps/api`**.
 
-| Principio | Cómo se aplica |
-| --- | --- |
-| **S**ingle responsibility | Un caso de uso por función; las rutas HTTP solo traducen request ⇄ caso de uso. |
-| **O**pen/closed | Proveedores nuevos (otro email, otro LLM) se añaden con un adaptador nuevo, sin tocar los casos de uso. |
-| **L**iskov substitution | Todo adaptador cumple el contrato completo de su puerto; los fakes de test también. |
+| Principio                 | Cómo se aplica                                                                                                                               |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **S**ingle responsibility | Un caso de uso por función; las rutas HTTP solo traducen request ⇄ caso de uso.                                                              |
+| **O**pen/closed           | Proveedores nuevos (otro email, otro LLM) se añaden con un adaptador nuevo, sin tocar los casos de uso.                                      |
+| **L**iskov substitution   | Todo adaptador cumple el contrato completo de su puerto; los fakes de test también.                                                          |
 | **I**nterface segregation | Puertos pequeños y específicos (`CaptchaVerifier`, `RateLimiter`, `EmailSender`, `EmbeddingProvider`, `ChatModel`, `VectorIndexRepository`). |
-| **D**ependency inversion | Los casos de uso dependen de puertos (interfaces); las implementaciones se inyectan en el composition root. |
+| **D**ependency inversion  | Los casos de uso dependen de puertos (interfaces); las implementaciones se inyectan en el composition root.                                  |
 
 ### Hexagonal ligera
 
@@ -82,6 +82,7 @@ apps/api/src/
 ```
 
 Reglas:
+
 - `core/` no importa nada de `adapters/` ni de Hono/Cloudflare; solo de `packages/shared` y de sí mismo.
 - Un caso de uso = una función exportada con un objeto `deps` tipado con los puertos que necesita (y nada más).
 - Las rutas HTTP son delgadas: sin lógica de negocio.
@@ -156,7 +157,7 @@ Checklist obligatorio en cada cambio de UI:
 
 ## 13. Especificaciones con OpenSpec
 
-- Todo cambio funcional empieza como un *change* en `openspec/changes/<id>/` (proposal, design, tasks y specs delta).
+- Todo cambio funcional empieza como un _change_ en `openspec/changes/<id>/` (proposal, design, tasks y specs delta).
 - `openspec validate <id> --strict` antes de implementar.
 - Las tareas de `tasks.md` se marcan al cerrar cada chunk; al terminar se archiva con `openspec archive <id>`.
 

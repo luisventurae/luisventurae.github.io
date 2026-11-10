@@ -15,7 +15,7 @@ Identidad del portafolio de Luis Ventura E. Los valores concretos (hex, tamaños
 
 ## 1. Esencia
 
-**Un ingeniero que se divierte construyendo cosas que se sienten bien.** El sitio es *playful* y expresivo, pero cada detalle está medido: el juego demuestra oficio, no lo reemplaza.
+**Un ingeniero que se divierte construyendo cosas que se sienten bien.** El sitio es _playful_ y expresivo, pero cada detalle está medido: el juego demuestra oficio, no lo reemplaza.
 
 Tres ideas guía:
 
@@ -30,11 +30,11 @@ Tres ideas guía:
 - Humor ligero en microcopys (terminal, estados vacíos, 404), nunca en información clave.
 - Técnico cuando aporta, sin siglas gratuitas.
 
-| En lugar de | Escribe |
-| --- | --- |
-| "Apasionado por las tecnologías emergentes" | "Me gusta que el software se sienta bien" |
-| "Soluciones robustas y escalables" | "Sistemas que aguantan tráfico real" |
-| "Error: comando no encontrado" | "`foo`? No conozco ese comando. Prueba `help`." |
+| En lugar de                                 | Escribe                                         |
+| ------------------------------------------- | ----------------------------------------------- |
+| "Apasionado por las tecnologías emergentes" | "Me gusta que el software se sienta bien"       |
+| "Soluciones robustas y escalables"          | "Sistemas que aguantan tráfico real"            |
+| "Error: comando no encontrado"              | "`foo`? No conozco ese comando. Prueba `help`." |
 
 ## 3. Nombre y firma
 
@@ -46,22 +46,22 @@ Tres ideas guía:
 
 Base de **papel y tinta** con un acento **tomate** y tres colores de juego.
 
-| Rol | Intención |
-| --- | --- |
-| Papel (`paper`) | Fondo cálido, no blanco puro: reduce fatiga y da carácter editorial. |
-| Tinta (`ink`) | Texto principal, casi negro con temperatura cálida. |
-| Tomate (`accent`) | Llamadas a la acción, foco, el punto del monograma. Uno por vista. |
+| Rol                  | Intención                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------ |
+| Papel (`paper`)      | Fondo cálido, no blanco puro: reduce fatiga y da carácter editorial.                 |
+| Tinta (`ink`)        | Texto principal, casi negro con temperatura cálida.                                  |
+| Tomate (`accent`)    | Llamadas a la acción, foco, el punto del monograma. Uno por vista.                   |
 | Lima, violeta, cielo | Colores de juego: categorías del stack, stickers, etiquetas. Nunca para texto largo. |
 
 El modo oscuro invierte papel y tinta manteniendo la temperatura cálida.
 
 ## 5. Tipografía
 
-| Uso | Familia | Por qué |
-| --- | --- | --- |
+| Uso                       | Familia                            | Por qué                                                      |
+| ------------------------- | ---------------------------------- | ------------------------------------------------------------ |
 | Display (titulares, hero) | **Bricolage Grotesque** (variable) | Grotesca con personalidad, ejes de peso y ancho para animar. |
-| Texto | **Instrument Sans** (variable) | Neutra y muy legible, acompaña sin competir. |
-| Código / terminal | **JetBrains Mono** (variable) | Ligaduras claras, buena en tamaños pequeños. |
+| Texto                     | **Instrument Sans** (variable)     | Neutra y muy legible, acompaña sin competir.                 |
+| Código / terminal         | **JetBrains Mono** (variable)      | Ligaduras claras, buena en tamaños pequeños.                 |
 
 Fuentes autoalojadas (Fontsource) para rendimiento y privacidad.
 

@@ -18,6 +18,7 @@ El portafolio actual (Nuxt 3 + SCSS) cumple, pero no demuestra el nivel actual d
 ## Capabilities
 
 ### New Capabilities
+
 - `site-shell`: estructura del sitio, rutas por idioma, tema claro/oscuro, navegación, SEO y accesibilidad base.
 - `hero`: presentación principal con tipografía interactiva.
 - `stack-map`: mapa de tecnologías explorable y enlazado con los proyectos.

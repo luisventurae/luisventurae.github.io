@@ -8,17 +8,17 @@ Live: [luisventurae.github.io](https://luisventurae.github.io)
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Nuxt 3 + Vue 3 |
-| Language | TypeScript (strict) |
-| Styles | SCSS / SASS |
-| i18n | @nuxtjs/i18n (ES / EN / FR) |
-| Icons | nuxt-svgo |
-| Dates | dayjs-nuxt |
-| Captcha | Cloudflare Turnstile |
-| Contact form backend | Cloudflare Worker (`worker/`) |
-| Deploy | GitHub Pages (CI/CD via GitHub Actions) |
+| Layer                | Technology                              |
+| -------------------- | --------------------------------------- |
+| Framework            | Nuxt 3 + Vue 3                          |
+| Language             | TypeScript (strict)                     |
+| Styles               | SCSS / SASS                             |
+| i18n                 | @nuxtjs/i18n (ES / EN / FR)             |
+| Icons                | nuxt-svgo                               |
+| Dates                | dayjs-nuxt                              |
+| Captcha              | Cloudflare Turnstile                    |
+| Contact form backend | Cloudflare Worker (`worker/`)           |
+| Deploy               | GitHub Pages (CI/CD via GitHub Actions) |
 
 ---
 
@@ -32,10 +32,10 @@ npm run dev            # http://localhost:3000
 
 ### Environment variables
 
-| Variable | Description |
-|---|---|
+| Variable                         | Description                                |
+| -------------------------------- | ------------------------------------------ |
 | `NUXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile **site key** (public) |
-| `NUXT_PUBLIC_WORKER_URL` | URL of the deployed Cloudflare Worker |
+| `NUXT_PUBLIC_WORKER_URL`         | URL of the deployed Cloudflare Worker      |
 
 ---
 

@@ -1,13 +1,14 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
-
-# Node dependencies
+# Dependencies
 node_modules
+
+# Build outputs
+dist
+.astro
+.wrangler
+coverage
+playwright-report
+test-results
+*.tsbuildinfo
 
 # Logs
 logs
@@ -17,16 +18,11 @@ logs
 .DS_Store
 .fleet
 .idea
+.cache
 
 # Local env files
 .env
 .env.*
 !.env.example
 **/.dev.vars
-
-.cache
-src/.temp
-.env
-yarn.lock
-package-lock.json
-public/backend
+!**/.dev.vars.example

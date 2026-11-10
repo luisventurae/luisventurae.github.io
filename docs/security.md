@@ -22,23 +22,23 @@ Este repositorio es **público**: se publica para mostrar cómo se construyó el
 
 ## 2. Inventario de valores
 
-| Valor | ¿Secreto? | Notas |
-| --- | --- | --- |
-| `PUBLIC_TURNSTILE_SITE_KEY` | No | Clave pública de Turnstile, va en el HTML. |
-| `PUBLIC_API_URL` | No | URL pública del Worker. |
-| `TURNSTILE_SECRET_KEY` | **Sí** | Cloudflare secret del Worker. |
-| `DOWNLOAD_TOKEN_SECRET` | **Sí** | Firma HMAC de las URLs del CV. Mínimo 32 bytes aleatorios. |
-| `NOTIFY_EMAIL` | **Sí** (dato personal) | Destino de las notificaciones. Cloudflare secret; nunca en `wrangler.toml`. |
-| `ALLOWED_ORIGIN` | No | Origen permitido por CORS. Variable normal. |
-| `CLOUDFLARE_API_TOKEN` | **Sí** | Solo en GitHub Actions (environment `production`), con permiso *Workers Scripts: Edit* y *Workers KV / R2* sobre la cuenta. |
-| `CLOUDFLARE_ACCOUNT_ID` | Sensible | GitHub Actions secret. |
-| IDs de KV / nombre del bucket R2 | Sensible (no credencial) | GitHub Actions *variables*; se inyectan en el despliegue, el `wrangler.toml` del repo solo tiene marcadores. |
-| Claves de prueba de Turnstile (`1x0000…AA`) | No | Públicas y documentadas por Cloudflare; solo para local y CI. |
+| Valor                                       | ¿Secreto?                | Notas                                                                                                                       |
+| ------------------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `PUBLIC_TURNSTILE_SITE_KEY`                 | No                       | Clave pública de Turnstile, va en el HTML.                                                                                  |
+| `PUBLIC_API_URL`                            | No                       | URL pública del Worker.                                                                                                     |
+| `TURNSTILE_SECRET_KEY`                      | **Sí**                   | Cloudflare secret del Worker.                                                                                               |
+| `DOWNLOAD_TOKEN_SECRET`                     | **Sí**                   | Firma HMAC de las URLs del CV. Mínimo 32 bytes aleatorios.                                                                  |
+| `NOTIFY_EMAIL`                              | **Sí** (dato personal)   | Destino de las notificaciones. Cloudflare secret; nunca en `wrangler.toml`.                                                 |
+| `ALLOWED_ORIGIN`                            | No                       | Origen permitido por CORS. Variable normal.                                                                                 |
+| `CLOUDFLARE_API_TOKEN`                      | **Sí**                   | Solo en GitHub Actions (environment `production`), con permiso _Workers Scripts: Edit_ y _Workers KV / R2_ sobre la cuenta. |
+| `CLOUDFLARE_ACCOUNT_ID`                     | Sensible                 | GitHub Actions secret.                                                                                                      |
+| IDs de KV / nombre del bucket R2            | Sensible (no credencial) | GitHub Actions _variables_; se inyectan en el despliegue, el `wrangler.toml` del repo solo tiene marcadores.                |
+| Claves de prueba de Turnstile (`1x0000…AA`) | No                       | Públicas y documentadas por Cloudflare; solo para local y CI.                                                               |
 
 ## 3. Dónde vive cada secreto
 
 - **Producción (Worker)**: `wrangler secret put <NOMBRE> --env production`. Nunca en `[vars]`.
-- **GitHub Actions**: *Settings › Environments › production › Secrets*. Los workflows que los usan declaran `environment: production`.
+- **GitHub Actions**: _Settings › Environments › production › Secrets_. Los workflows que los usan declaran `environment: production`.
 - **Local**: `.env` (raíz, para Docker Compose) y `apps/api/.dev.vars`, ambos ignorados por git.
 
 ## 4. Desarrollo local
@@ -53,7 +53,7 @@ Este repositorio es **público**: se publica para mostrar cómo se construyó el
 - Workflows con `permissions` mínimos por job; acciones de terceros fijadas por SHA.
 - Los PR usan `pull_request` (nunca `pull_request_target`), así los forks no acceden a secretos.
 - Los secretos solo existen en jobs de despliegue sobre `master` con `environment: production`.
-- Se recomienda activar en GitHub: *Secret scanning* y *Push protection*.
+- Se recomienda activar en GitHub: _Secret scanning_ y _Push protection_.
 
 ## 6. Código
 

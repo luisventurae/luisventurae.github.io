@@ -7,9 +7,9 @@
 
 ## 2. Monorepo y herramientas
 
-- [ ] 2.1 Eliminar la app Nuxt y `worker/`; crear `package.json` raíz con workspaces y scripts — verificar: `npm install` sin errores
-- [ ] 2.2 `packages/config` con tsconfig base (TS 7 strict), ESLint flat (naming-convention, jsx-a11y) y Prettier — verificar: `npm run lint`, `npm run format:check`, `npm run typecheck`
-- [ ] 2.3 Vitest configurado por workspace con umbrales de cobertura — verificar: `npm test`
+- [x] 2.1 Eliminar la app Nuxt y `worker/`; crear `package.json` raíz con workspaces y scripts — verificar: `npm install` sin errores
+- [x] 2.2 `packages/config` con tsconfig base (TS 7 strict), ESLint flat (naming-convention, jsx-a11y) y Prettier — verificar: `npm run lint`, `npm run format:check`, `npm run typecheck`
+- [x] 2.3 Vitest configurado por workspace con umbrales de cobertura — verificar: `npm test`
 
 ## 3. Entorno local
 

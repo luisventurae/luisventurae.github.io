@@ -35,7 +35,7 @@ export const es: UiStrings = {
       'Y también cuido la UI',
     ],
     tagline:
-      'Diseño backends en Node.js que aguantan tráfico real, y los acompaño de interfaces que se sienten bien.',
+      'Construyo productos que la gente usa todos los días, sobre todo la parte que no se ve.',
     drag_hint: 'Arrastra las letras',
     cta_projects: 'Ver casos de estudio',
     cta_terminal: 'Abrir la terminal',

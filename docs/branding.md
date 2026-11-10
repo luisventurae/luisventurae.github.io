@@ -17,7 +17,7 @@ Identidad del portafolio de Luis Ventura E. Los valores concretos (hex, tamaños
 
 **Un ingeniero backend que se divierte construyendo cosas que se sienten bien.** El sitio es _playful_ y expresivo, pero cada detalle está medido: el juego demuestra oficio, no lo reemplaza.
 
-El público principal son reclutadores que buscan un perfil backend Node.js (remoto o híbrido, Perú). Rol, años de experiencia, stack principal y disponibilidad se leen en el hero sin esperar ni interactuar: la información clave nunca rota ni depende de una animación.
+El público principal son reclutadores que buscan un perfil backend Node.js (remoto o híbrido, Perú). Rol, años de experiencia y stack principal se leen en el hero sin esperar ni interactuar; sobre el nombre van las redes sociales, y la preferencia remoto o híbrido se explica en "Sobre mí": la información clave nunca rota ni depende de una animación.
 
 Tres ideas guía:
 

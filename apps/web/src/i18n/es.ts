@@ -22,7 +22,7 @@ export const es = {
   },
   hero: {
     greeting: 'Hola, soy',
-    availability: 'Disponible · remoto o híbrido · Perú',
+    social: 'Redes sociales',
     facts: '{years} años de experiencia · Node.js · TypeScript · AWS',
     roles: [
       'Microservicios en AWS',

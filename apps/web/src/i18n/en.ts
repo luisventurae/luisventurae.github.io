@@ -24,7 +24,7 @@ export const en: UiStrings = {
   },
   hero: {
     greeting: "Hi, I'm",
-    availability: 'Available · remote or hybrid · Peru',
+    social: 'Social profiles',
     facts: '{years} years of experience · Node.js · TypeScript · AWS',
     roles: [
       'Microservices on AWS',

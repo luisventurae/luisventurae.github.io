@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useRef, useState, type ReactElement } from 'react'
 
 import { SPRING_PLAYFUL } from '../../lib/motion'
+import { SocialLinks, type SocialLinksProps } from './SocialLinks'
 import { useRotatingIndex } from './useRotatingIndex'
 
 export interface HeroProps {
@@ -11,7 +12,8 @@ export interface HeroProps {
   role: string
   /** Key facts line (years, main stack), already interpolated. */
   facts: string
-  availability: string
+  /** Social profiles shown above the name. */
+  social: SocialLinksProps
   /** Complementary descriptions that rotate under the main role. */
   roles: string[]
   tagline: string
@@ -74,10 +76,7 @@ export function Hero(props: HeroProps): ReactElement {
         </motion.span>
       ))}
 
-      <p className="hero-fade mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-paper-raised px-3 py-1 text-small font-semibold">
-        <span aria-hidden="true" className="size-2 rounded-full bg-lime" />
-        {props.availability}
-      </p>
+      <SocialLinks {...props.social} />
 
       <p className="font-mono text-small text-ink-muted">{props.greeting}</p>
 

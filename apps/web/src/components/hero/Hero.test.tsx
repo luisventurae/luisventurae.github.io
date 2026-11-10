@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react'
+import { act, render, screen, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mockMatchMedia } from '../../../vitest.setup'
@@ -9,7 +9,14 @@ const props: HeroProps = {
   greeting: 'Hola, soy',
   role: 'Backend Engineer · Node.js',
   facts: '7 años de experiencia · Node.js · TypeScript · AWS',
-  availability: 'Disponible · remoto o híbrido · Perú',
+  social: {
+    label: 'Redes sociales',
+    new_tab: 'se abre en una pestaña nueva',
+    links: [
+      { key: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/luisventurae' },
+      { key: 'github', label: 'GitHub', url: 'https://github.com/luisventurae' },
+    ],
+  },
   roles: ['Microservicios en AWS', 'Arquitectura hexagonal'],
   tagline: 'Construyo software web que se siente bien.',
   drag_hint: 'Arrastra las letras',
@@ -47,6 +54,18 @@ describe('Hero', () => {
     for (const sticker of stickers) expect(sticker).toHaveAttribute('aria-hidden', 'true')
   })
 
+  it('links to the social profiles instead of an availability badge', () => {
+    render(<Hero {...props} />)
+    const nav = screen.getByRole('navigation', { name: 'Redes sociales' })
+    const linkedin = within(nav).getByRole('link', { name: /LinkedIn/ })
+    expect(linkedin).toHaveAttribute('href', 'https://www.linkedin.com/in/luisventurae')
+    expect(linkedin).toHaveAttribute('target', '_blank')
+    expect(linkedin).toHaveAttribute('rel', 'me noopener noreferrer')
+    expect(linkedin).toHaveAccessibleName(/se abre en una pestaña nueva/)
+    expect(within(nav).getAllByRole('link')).toHaveLength(2)
+    expect(screen.queryByText(/Disponible/)).not.toBeInTheDocument()
+  })
+
   it('shows the tagline and calls to action', () => {
     render(<Hero {...props} />)
     expect(screen.getByText(props.tagline)).toBeInTheDocument()
@@ -66,7 +85,7 @@ describe('Hero', () => {
 
   it('keeps the key facts outside the rotation', () => {
     render(<Hero {...props} />)
-    const fixed = [props.role, props.facts, props.availability]
+    const fixed = [props.role, props.facts]
     for (const text of fixed) expect(screen.getByText(text)).toBeInTheDocument()
     act(() => vi.advanceTimersByTime(2700))
     for (const text of fixed) expect(screen.getByText(text)).toBeInTheDocument()

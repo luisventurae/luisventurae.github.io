@@ -3,7 +3,7 @@ import type { Locale } from '@portfolio/shared'
 
 import { getImage } from 'astro:assets'
 
-import { PERSON } from '../data/site'
+import { PERSON, SOCIAL_LINKS } from '../data/site'
 import { SKILLS, sortByTier } from '../data/skills'
 import { getUi } from '../i18n'
 import { loadExperience, loadProfile, loadProjects } from '../lib/content'
@@ -186,7 +186,7 @@ const project_labels = {
       greeting={ui.hero.greeting}
       role={PERSON.job_title}
       facts={interpolateYears(ui.hero.facts, years)}
-      availability={ui.hero.availability}
+      social={{ label: ui.hero.social, new_tab: ui.projects.new_tab, links: SOCIAL_LINKS }}
       roles={ui.hero.roles}
       tagline={ui.hero.tagline}
       drag_hint={ui.hero.drag_hint}

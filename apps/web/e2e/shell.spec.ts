@@ -6,14 +6,16 @@ import { expect, test } from './fixtures'
 test.describe('hero without JavaScript', () => {
   test.use({ javaScriptEnabled: false })
 
-  test('shows role, years, main stack and availability', async ({ page }) => {
+  test('shows role, years, main stack and social links', async ({ page }) => {
     await page.goto('/')
     const hero = page.locator('#top')
     await expect(hero.getByText('Backend Engineer · Node.js', { exact: true })).toBeVisible()
     await expect(
       hero.getByText(`${careerYears()} años de experiencia · Node.js · TypeScript · AWS`),
     ).toBeVisible()
-    await expect(hero.getByText('Disponible · remoto o híbrido · Perú')).toBeVisible()
+    const social = hero.getByRole('navigation', { name: 'Redes sociales' })
+    await expect(social.getByRole('link', { name: /LinkedIn/ })).toBeVisible()
+    await expect(social.getByRole('link', { name: /GitHub/ })).toBeVisible()
   })
 
   test('shows every revealed section without waiting for animations', async ({ page }) => {

@@ -31,7 +31,7 @@ Each letter of the name SHALL be draggable with a pointer or finger and SHALL re
 
 ### Requirement: Rotating role
 
-The hero SHALL cycle through a short list of localized complementary role descriptions, pausing when reduced motion is requested. Key facts (role, years of experience, main stack, availability) SHALL NOT be part of the rotation.
+The hero SHALL cycle through a short list of localized complementary role descriptions, pausing when reduced motion is requested. Key facts (role, years of experience, main stack) SHALL NOT be part of the rotation.
 
 #### Scenario: Reduced motion pauses rotation
 
@@ -41,13 +41,22 @@ The hero SHALL cycle through a short list of localized complementary role descri
 #### Scenario: Key facts never rotate
 
 - **WHEN** the rotation advances to the next description
-- **THEN** the role, years of experience, main stack and availability remain visible and unchanged
+- **THEN** the role, years of experience and main stack remain visible and unchanged
 
 ### Requirement: Key facts line
 
-The hero SHALL show a static, localized line with the years of experience and main stack (Node.js, TypeScript, AWS), and an availability badge stating remote or hybrid work in Peru, both readable without JavaScript.
+The hero SHALL show a static, localized line with the years of experience and main stack (Node.js, TypeScript, AWS), readable without JavaScript.
 
 #### Scenario: Recruiter scan
 
 - **WHEN** a visitor opens `/` on 2026-11-10 with JavaScript disabled
-- **THEN** the hero shows "7 años" with Node.js, TypeScript and AWS, and a badge saying the author is available for remote or hybrid roles in Peru
+- **THEN** the hero shows "7 años" with Node.js, TypeScript and AWS
+
+### Requirement: Social profiles
+
+The hero SHALL show the author's social profiles (LinkedIn, GitHub, GitLab and X) as icon links above the name, each with an accessible name that includes the network and that it opens in a new tab, and SHALL work without JavaScript. The remote or hybrid preference SHALL remain stated in the About section.
+
+#### Scenario: Links without JavaScript
+
+- **WHEN** a visitor opens `/` with JavaScript disabled
+- **THEN** the hero lists links to LinkedIn and GitHub that open the profiles in a new tab

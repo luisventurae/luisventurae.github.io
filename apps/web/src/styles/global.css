@@ -533,6 +533,59 @@
   }
 }
 
+/* Hero social links: they pop in one after another, then lift, tilt and fill with a play colour on
+   hover (see SocialLinks.tsx). The label shows above the logo on hover or keyboard focus. */
+.social-item {
+  animation: hero-pop var(--duration-slow) var(--ease-out-strong) both;
+  animation-delay: calc(80ms + var(--social-index) * 40ms);
+}
+.social-link {
+  transition:
+    translate var(--duration-fast) var(--ease-out-strong),
+    rotate var(--duration-fast) var(--ease-out-strong),
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    scale var(--duration-press) var(--ease-out-strong);
+}
+.social-tip {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  translate: -50% 4px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.125rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  transition:
+    opacity var(--duration-fast) var(--ease-out-strong),
+    translate var(--duration-fast) var(--ease-out-strong);
+}
+.social-link:focus-visible .social-tip {
+  opacity: 1;
+  translate: -50% 0;
+  transition: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .social-link:hover {
+    translate: 0 -3px;
+    rotate: -8deg;
+    border-color: var(--social-fill);
+    background-color: var(--social-fill);
+    color: var(--social-ink);
+  }
+  .social-link:hover .social-tip {
+    opacity: 1;
+    translate: -50% 0;
+    rotate: 8deg;
+  }
+}
+
 /* Theme switch: circular reveal from the toggle (see ThemeToggle.tsx). */
 ::view-transition-old(root),
 ::view-transition-new(root) {

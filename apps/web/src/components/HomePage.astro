@@ -233,7 +233,11 @@ const project_labels = {
     class="container-page py-(--space-section)"
   >
     <SectionHeading id="terminal" index="06" title={ui.terminal.title} intro={ui.terminal.intro} />
-    <Terminal client:idle input_label={ui.terminal.input_label} context={terminal_context} />
+    <Terminal
+      client:idle={{ timeout: 1500 }}
+      input_label={ui.terminal.input_label}
+      context={terminal_context}
+    />
     <p class="mt-3 text-small text-ink-muted">
       {ui.terminal.shortcut_hint}
       <kbd class="ml-1 rounded border border-line bg-paper-raised px-1.5 font-mono">`</kbd>

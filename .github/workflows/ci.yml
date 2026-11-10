@@ -45,11 +45,14 @@ jobs:
       - run: npm run lint:unused
       - run: npm run typecheck
       - run: npm run test:coverage
+      # Sanity build with the same test values as the e2e suite: this job has no
+      # environment, so production variables are not available here (see deploy.yml).
       - name: Build web
         run: npm run build -w apps/web
         env:
-          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
-          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
+          PUBLIC_API_URL: http://api.test
+          # Public test site key from Cloudflare docs: always passes.
+          PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
       - name: Bundle API (dry run)
         run: npm run build -w apps/api
 

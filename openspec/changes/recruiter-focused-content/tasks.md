@@ -100,7 +100,7 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 9. Rebuild anual (`ci: rebuild yearly to refresh years of experience`)
 
-- [ ] 9.1 Añadir `schedule: cron '0 12 2 1 *'` a `.github/workflows/deploy.yml`, comprobando que los jobs (incluido el filtro de cambios de la API) se comportan bien con el evento `schedule`; documentarlo en `docs/deployment.md`; verificar con `actionlint` o revisando el YAML y lanzando `workflow_dispatch` después del merge
+- [x] 9.1 Añadir `schedule: cron '0 12 2 1 *'` a `.github/workflows/deploy.yml`, comprobando que los jobs (incluido el filtro de cambios de la API) se comportan bien con el evento `schedule`; documentarlo en `docs/deployment.md`; verificar con `actionlint` o revisando el YAML y lanzando `workflow_dispatch` después del merge
 
 ## 10. Verificación integral
 

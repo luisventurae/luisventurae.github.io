@@ -20,12 +20,12 @@ feat/* ──PR──▶ develop ──(CI verde)──▶ PR automático develo
 
 ## 2. Workflows
 
-| Archivo          | Cuándo                                                                    | Qué hace                                                                                                                          |
-| ---------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `ci.yml`         | PR a `develop`/`master`, push a `develop`, y reutilizado por `deploy.yml` | gitleaks, `npm audit` (alto), Prettier, ESLint, TS 7, Vitest con cobertura, build de la web, bundle del Worker y Playwright.      |
-| `release-pr.yml` | CI verde tras un push a `develop`                                         | Crea o actualiza el PR `develop → master` con la lista de commits.                                                                |
-| `deploy.yml`     | Push a `master` o manual                                                  | Repite CI; publica `apps/web/dist` en `gh-pages`; despliega el Worker solo si cambió `apps/api`, `packages/shared` o el lockfile. |
-| `dependabot.yml` | Semanal                                                                   | Actualizaciones de npm y de acciones contra `develop`.                                                                            |
+| Archivo          | Cuándo                                                                    | Qué hace                                                                                                                                                                                                                                                             |
+| ---------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ci.yml`         | PR a `develop`/`master`, push a `develop`, y reutilizado por `deploy.yml` | gitleaks, `npm audit` (alto), Prettier, ESLint, TS 7, Vitest con cobertura, build de la web, bundle del Worker y Playwright.                                                                                                                                         |
+| `release-pr.yml` | CI verde tras un push a `develop`                                         | Crea o actualiza el PR `develop → master` con la lista de commits.                                                                                                                                                                                                   |
+| `deploy.yml`     | Push a `master`, manual, o cada 2 de enero (cron)                         | Repite CI; publica `apps/web/dist` en `gh-pages`; despliega el Worker solo si cambió `apps/api`, `packages/shared` o el lockfile. El cron anual solo reconstruye la web para que los años de experiencia (calculados en el build desde 2019-01) se actualicen solos. |
+| `dependabot.yml` | Semanal                                                                   | Actualizaciones de npm y de acciones contra `develop`.                                                                                                                                                                                                               |
 
 Todas las acciones de terceros están fijadas por SHA y cada job declara `permissions` mínimos.
 

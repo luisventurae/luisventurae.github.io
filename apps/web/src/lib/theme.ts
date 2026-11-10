@@ -20,8 +20,8 @@ export function applyTheme(theme: Theme): void {
 }
 
 /** Notifies when `data-theme` changes on <html>, from this or any other island. */
-export function subscribeTheme(on_change: () => void): () => void {
-  const observer = new MutationObserver(on_change)
+export function subscribeTheme(onChange: () => void): () => void {
+  const observer = new MutationObserver(onChange)
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
   return () => observer.disconnect()
 }

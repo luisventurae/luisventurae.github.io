@@ -22,9 +22,9 @@
 
 ## 5. API (hexagonal ligera)
 
-- [ ] 5.1 Puertos y caso de uso `submitContactRequest` con fakes (captcha, rate limit, firma, notificación tolerante a fallos) — verificar: tests unitarios
-- [ ] 5.2 Adaptadores Turnstile, KV rate limiter, firma HMAC, R2 CV storage, email (`send_email` y Mailpit) — verificar: tests de adaptadores
-- [ ] 5.3 App Hono: `POST /contact`, `GET /cv/:token`, CORS y cabeceras de seguridad; composition root en `main.ts` — verificar: tests HTTP con bindings simulados y `wrangler deploy --dry-run`
+- [x] 5.1 Puertos y caso de uso `submitContactRequest` con fakes (captcha, rate limit, firma, notificación tolerante a fallos) — verificar: tests unitarios
+- [x] 5.2 Adaptadores Turnstile, KV rate limiter, firma HMAC, R2 CV storage, email (`send_email` y Mailpit) — verificar: tests de adaptadores
+- [x] 5.3 App Hono: `POST /contact`, `GET /cv/:token`, CORS y cabeceras de seguridad; composition root en `main.ts` — verificar: tests HTTP con bindings simulados y `wrangler deploy --dry-run`
 
 ## 6. Web: base
 

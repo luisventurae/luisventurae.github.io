@@ -33,11 +33,10 @@ const naming_rules = [
 ]
 
 /** Variables holding functions (handlers, components) are named as functions. Needs type info. */
-const function_variable_rule = {
-  selector: 'variable',
-  types: ['function'],
-  format: ['camelCase', 'PascalCase'],
-}
+const function_variable_rules = [
+  { selector: 'variable', types: ['function'], format: ['camelCase', 'PascalCase'] },
+  { selector: 'parameter', types: ['function'], format: ['camelCase'] },
+]
 
 export const eslint_config = tseslint.config(
   {
@@ -79,7 +78,7 @@ export const eslint_config = tseslint.config(
       '@typescript-eslint/naming-convention': [
         'error',
         ...naming_rules.slice(0, 4),
-        function_variable_rule,
+        ...function_variable_rules,
         ...naming_rules.slice(4),
       ],
       '@typescript-eslint/explicit-module-boundary-types': 'error',
@@ -107,7 +106,7 @@ export const eslint_config = tseslint.config(
     rules: { 'no-restricted-syntax': 'off' },
   },
   {
-    files: ['**/*.test.{ts,tsx}', '**/e2e/**'],
+    files: ['**/*.test.{ts,tsx}', '**/e2e/**', '**/testing/**'],
     rules: { '@typescript-eslint/explicit-module-boundary-types': 'off' },
   },
   prettier,

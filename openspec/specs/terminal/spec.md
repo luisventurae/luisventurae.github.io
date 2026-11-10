@@ -8,11 +8,16 @@ Terminal interactiva que permite recorrer el portafolio con comandos y hacer pre
 
 ### Requirement: Command set
 
-The terminal SHALL support the commands `help`, `whoami`, `ls projects`, `cat <slug>`, `skills [category]`, `lang <es|en|fr>`, `theme [light|dark]`, `contact`, `clear`, `search <text>` and `ask <question>`, with output localized to the current page language.
+The terminal SHALL support the commands `help`, `whoami`, `ls projects`, `cat <slug>`, `skills [category]`, `lang <es|en|fr>`, `theme [light|dark]`, `contact`, `clear` and `search <text>`, with output localized to the current page language.
 
 #### Scenario: Unknown command
 
 - **WHEN** the visitor runs `foo`
+- **THEN** the terminal answers that the command is unknown and suggests `help`
+
+#### Scenario: Former ask command
+
+- **WHEN** the visitor runs `ask <question>`
 - **THEN** the terminal answers that the command is unknown and suggests `help`
 
 #### Scenario: Open a project
@@ -28,20 +33,6 @@ The terminal SHALL offer command history with Up/Down, autocompletion of command
 
 - **WHEN** the visitor presses Up after running two commands
 - **THEN** the last command is restored in the prompt
-
-### Requirement: Questions with graceful fallback
-
-`ask` SHALL send the question to the question-answering service and stream the answer with its sources; when the service is unavailable it SHALL explain that answers are only available in local development and run `search` with the same text instead.
-
-#### Scenario: Production fallback
-
-- **WHEN** the visitor runs `ask what databases do you know?` on the published site
-- **THEN** the terminal prints the local-only notice followed by text-search results
-
-#### Scenario: Local answer
-
-- **WHEN** the visitor runs `ask` in the local environment with the index loaded
-- **THEN** the answer appears progressively and ends with the list of cited sources
 
 ### Requirement: Text search
 

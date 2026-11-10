@@ -8,7 +8,7 @@ Levantar todo el sistema (web, API, modelos y bandeja de correo) en una máquina
 
 ### Requirement: One-command startup
 
-Running `docker compose up` from the repository root SHALL start the web app, the API with RAG enabled, the model server and a local mail inbox, with no external accounts or secrets required.
+Running `docker compose up` from the repository root SHALL start the web app, the API and a local mail inbox, with no external accounts, secrets or model downloads required.
 
 #### Scenario: Fresh clone
 
@@ -23,12 +23,3 @@ In local mode the captcha SHALL use the provider's always-pass test keys, emails
 
 - **WHEN** the contact form is submitted locally
 - **THEN** the notification appears in the local inbox and the CV downloads
-
-### Requirement: Index loading on demand
-
-The environment SHALL provide a command that ingests the content into the local API.
-
-#### Scenario: Ingest command
-
-- **WHEN** the developer runs the documented ingest command
-- **THEN** `ask` in the terminal answers using the new index

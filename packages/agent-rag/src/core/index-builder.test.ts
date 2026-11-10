@@ -111,6 +111,23 @@ describe('buildIndex', () => {
     expect(store.saved?.model).toBeNull()
   })
 
+  it('keeps existing vectors when a later run has no embedder, and fills the new chunks later', async () => {
+    const { source, store } = setup()
+    await buildIndex({ source, store, embedder: conceptEmbedder(), clock }, {})
+    source.files = source.files.map((file) =>
+      file.path === 'docs/README.md' ? { ...file, content: '# Docs\n\nNuevo texto.\n' } : file,
+    )
+    await buildIndex({ source, store, embedder: null, clock }, {})
+    expect(store.saved?.model).toBe('fake-concepts')
+    const without = store.saved?.entries.filter((entry) => entry.vector === null) ?? []
+    expect(without.map((entry) => entry.path)).toEqual(['docs/README.md'])
+
+    const counter = countingEmbedder(conceptEmbedder())
+    const { stats } = await buildIndex({ source, store, embedder: counter, clock }, {})
+    expect(stats.chunks_embedded).toBe(1)
+    expect(store.saved?.entries.every((entry) => entry.vector !== null)).toBe(true)
+  })
+
   it('limits commits and replaces ones that disappeared', async () => {
     const { run, source, store } = setup()
     await run({ commit_limit: 1 })

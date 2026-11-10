@@ -40,7 +40,9 @@ export async function buildIndex(
   options: BuildOptions,
 ): Promise<{ index: RagIndex; stats: BuildStats }> {
   const previous = options.rebuild ? null : await deps.store.load()
-  const keep_vectors = previous !== null && previous.model === (deps.embedder?.model ?? null)
+  // Without an embedder, existing vectors are kept; a different model invalidates them.
+  const keep_vectors =
+    previous !== null && (deps.embedder === null || previous.model === deps.embedder.model)
   const known = groupByPath(previous?.entries ?? [])
 
   const files = (await deps.source.listFiles()).filter(isIndexable)

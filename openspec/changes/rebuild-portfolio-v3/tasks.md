@@ -38,7 +38,7 @@
 
 ## 8. Web: hero y navegación
 
-- [ ] 8.1 Hero con letras arrastrables, rol rotativo y respeto de reduced motion; nav y footer — verificar: tests de componente
+- [x] 8.1 Hero con letras arrastrables, rol rotativo y respeto de reduced motion; nav y footer — verificar: tests de componente
 
 ## 9. Web: stack interactivo
 

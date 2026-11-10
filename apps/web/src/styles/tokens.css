@@ -23,7 +23,7 @@
   --font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
   --font-sans: 'Instrument Sans Variable', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
-  --text-hero: clamp(4.5rem, 1.4rem + 13.8vw, 13rem);
+  --text-hero: clamp(3.5rem, 0.6rem + 10.4vw, 10.5rem);
   --text-display: clamp(2.5rem, 1.67rem + 3.7vw, 5rem);
   --text-title: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
   --text-body: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);

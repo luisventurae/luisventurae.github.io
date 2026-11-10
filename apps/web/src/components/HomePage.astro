@@ -6,6 +6,7 @@ import { getUi } from '../i18n'
 import { loadProjects } from '../lib/content'
 import Base from '../layouts/Base.astro'
 import Footer from './Footer.astro'
+import { Hero } from './hero/Hero'
 import Nav from './Nav.astro'
 import SectionHeading from './SectionHeading.astro'
 
@@ -31,11 +32,16 @@ const knows_about = SKILLS.filter((skill) => skill.level >= 6).map((skill) => sk
     id="top"
     class="container-page flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16"
   >
-    <p class="font-mono text-small text-ink-muted">{ui.hero.greeting}</p>
-    <h1 class="text-hero font-extrabold">
-      Luis Ventura E<span class="text-accent">.</span>
-    </h1>
-    <p class="mt-6 max-w-[40ch] text-title leading-tight text-ink-muted">{ui.hero.tagline}</p>
+    <Hero
+      client:load
+      name="Luis Ventura E"
+      greeting={ui.hero.greeting}
+      roles={ui.hero.roles}
+      tagline={ui.hero.tagline}
+      drag_hint={ui.hero.drag_hint}
+      cta_projects={ui.hero.cta_projects}
+      cta_terminal={ui.hero.cta_terminal}
+    />
   </section>
 
   <section id="stack" aria-labelledby="stack-title" class="container-page py-(--space-section)">

@@ -42,7 +42,7 @@ Escala fluida (`clamp`, de 360 px a 1440 px de viewport):
 
 | Token            | Rango            | Uso                       |
 | ---------------- | ---------------- | ------------------------- |
-| `--text-hero`    | 4.5rem → 13rem   | Nombre en el hero         |
+| `--text-hero`    | 3.5rem → 10.5rem | Nombre en el hero         |
 | `--text-display` | 2.5rem → 5rem    | Títulos de sección        |
 | `--text-title`   | 1.5rem → 2.25rem | Títulos de cards y drawer |
 | `--text-body`    | 1rem → 1.125rem  | Texto                     |

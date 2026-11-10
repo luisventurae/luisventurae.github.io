@@ -1,7 +1,9 @@
 ---
-role: Full Stack Developer
+role: Lead Developer
 ---
 
-Built Ticker, a real-time omnichannel customer service platform (NestJS, WebSockets, Redis, MongoDB), and the corporate site content API deployed on AWS.
+I joined as a Full Stack Engineer in 2019 and, from March 2020, led the Ticker development team: I proposed, designed and built the product and defined its architecture so it could grow without rewrites.
 
-<!-- TODO(content): confirmar el cargo y añadir un logro con cifras. -->
+- Built Ticker from scratch: a real-time omnichannel customer service platform that has been in production for 5 years with large B2B customers.
+- Integrated WhatsApp, Messenger, Instagram, SMS and a payment gateway.
+- Stack: NestJS, WebSockets, Redis and MongoDB, plus the corporate site content API on AWS.

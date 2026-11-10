@@ -27,6 +27,7 @@ export const SKILLS: Skill[] = [
   // Backend — architecture and cloud
   { id: 'aws', label: 'AWS', category: 'backend', tier: 'daily' },
   { id: 'aws-cdk', label: 'AWS CDK', category: 'backend', tier: 'daily' },
+  { id: 'bedrock', label: 'Amazon Bedrock', category: 'backend', tier: 'production' },
   { id: 'microservices', label: 'Microservices', category: 'backend', tier: 'daily' },
   {
     id: 'hexagonal-architecture',
@@ -69,6 +70,7 @@ export const SKILLS: Skill[] = [
   // Other — tools, integrations and practices
   { id: 'git', label: 'Git', category: 'other', tier: 'daily' },
   { id: 'claude-code', label: 'Claude Code', category: 'other', tier: 'daily' },
+  { id: 'codex', label: 'Codex', category: 'other', tier: 'daily' },
   { id: 'scrum', label: 'Scrum', category: 'other', tier: 'daily' },
   { id: 'chatbots', label: 'Chatbots', category: 'other', tier: 'production' },
   { id: 'waba', label: 'WhatsApp Business API', category: 'other', tier: 'production' },

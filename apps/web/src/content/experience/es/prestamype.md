@@ -2,6 +2,9 @@
 role: Backend Engineer
 ---
 
-Desarrollo backend con Node.js y TypeScript sobre AWS: microservicios con arquitectura hexagonal, infraestructura como código con AWS CDK y chatbots para la atención de clientes.
+Backend con Node.js y TypeScript sobre AWS. Estoy a cargo de un módulo de la plataforma y coordino con Negocio y Producto.
 
-<!-- TODO(content): siguiente fase — detalle, logros y cifras en Prestamype. Confirmar el cargo. -->
+- La carga automática de facturas pasó de 2 minutos a 12 segundos en promedio por factura, lo que aumentó el volumen de oportunidades de financiamiento.
+- Construí desde cero un monorepo de chatbots transversal a varios productos: conversaciones por flujos en WhatsApp, con Amazon Bedrock para analizar las respuestas y decidir cómo sigue el flujo. Ya está en producción.
+- Microservicios con arquitectura hexagonal e infraestructura como código con AWS CDK.
+- Desarrollo con Claude Code y Codex bajo especificaciones, TDD y validación de seguridad.

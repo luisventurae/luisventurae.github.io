@@ -23,12 +23,13 @@ Monorepo con **npm workspaces**. El frontend es un sitio estático publicado en 
 
 ## 2. Workspaces
 
-| Workspace         | Responsabilidad                                                                                                              |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `apps/web`        | Sitio Astro con islas React: hero, stack, proyectos, terminal, formulario. Contenido en `src/content/`.                      |
-| `apps/api`        | Worker con Hono, arquitectura hexagonal ligera: `core/` (puertos + casos de uso) y `adapters/` (HTTP, Turnstile, KV, email). |
-| `packages/shared` | Schemas zod, tipos de los contratos HTTP y chunking de markdown compartido.                                                  |
-| `packages/config` | Configuración compartida de TypeScript, ESLint y Prettier.                                                                   |
+| Workspace            | Responsabilidad                                                                                                                                              |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `apps/web`           | Sitio Astro con islas React: hero, stack, proyectos, terminal, formulario. Contenido en `src/content/`.                                                      |
+| `apps/api`           | Worker con Hono, arquitectura hexagonal ligera: `core/` (puertos + casos de uso) y `adapters/` (HTTP, Turnstile, KV, email).                                 |
+| `packages/shared`    | Schemas zod, tipos de los contratos HTTP y chunking de markdown compartido.                                                                                  |
+| `packages/agent-rag` | CLI de desarrollo para agentes: búsqueda híbrida (BM25 + embeddings locales) sobre código, docs, specs, tests y commits. Ver [`agent-rag.md`](agent-rag.md). |
+| `packages/config`    | Configuración compartida de TypeScript, ESLint y Prettier.                                                                                                   |
 
 ## 3. Flujo de datos
 

@@ -12,12 +12,13 @@
 | ¿Qué apps y paquetes hay y cómo fluyen los datos?               | [Arquitectura](architecture.md)              |
 | ¿Qué es secreto, dónde vive, cómo se protege la API?            | [Seguridad y secretos](security.md)          |
 | ¿Cómo levanto el proyecto en local (Docker Compose, Mailpit)?   | [Entorno local](local-environment.md)        |
+| ¿Cómo encuentro código o decisiones sin leer archivos enteros?  | [RAG para agentes](agent-rag.md)             |
 | ¿Cómo se despliega? ¿CI/CD, GitHub Pages, Workers, rollback?    | [Despliegue](deployment.md)                  |
 | ¿Qué cambio está en curso y qué comportamiento debe cumplir?    | [`../openspec/`](../openspec/)               |
 
-## Buscar con `rg`
+## Buscar
 
-El corpus es pequeño: busca directamente en `docs/` y `openspec/` en lugar de leer archivos enteros.
+Para preguntas conceptuales sobre código, docs, specs o commits usa el [RAG para agentes](agent-rag.md): `npm run -s rag -- search "<pregunta>"`. Para cadenas exactas, busca con `rg` en `docs/` y `openspec/` en lugar de leer archivos enteros.
 
 ```bash
 rg -i "<término>" docs/ openspec/      # líneas que coinciden, con contexto de archivo

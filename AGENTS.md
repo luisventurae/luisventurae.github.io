@@ -4,13 +4,12 @@ Instructions for coding agents (Claude Code, Codex, etc.) working in this repo.
 
 ## Finding information fast
 
-The project has no RAG service, embeddings server or Ollama. To find information in the docs, search them directly with ripgrep:
+The project has no RAG service, embeddings server or Ollama. Instead, a local CLI searches code, tests, docs, specs and commits (details in [docs/agent-rag.md](docs/agent-rag.md)):
 
-1. Start at [docs/README.md](docs/README.md): the index that says which document answers what.
-2. Then search with ripgrep over the two documentation trees, instead of reading whole files:
-   - `rg -i "<term>" docs/ openspec/`
-   - `rg -il "<term>" docs/ openspec/` to list matching files only.
-3. Open only the matching sections of the files you find.
+1. For conceptual questions («where is X validated?», «what did we decide about Y?») run `npm run -s rag -- search "<question>"` (add `--kind code|test|doc|spec|commit` or `--k <n>`). Each result is `path:start-end`: read only that range. The first run takes ~1.5 min to build the index; later runs refresh it incrementally.
+2. For exact strings, identifiers or imports use ripgrep: `rg -i "<term>" docs/ openspec/` (or any path).
+3. [docs/README.md](docs/README.md) is the index that says which document answers what.
+4. Open only the matching sections of the files you find; do not read whole files.
 
 Sources of truth:
 

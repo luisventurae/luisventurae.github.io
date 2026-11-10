@@ -14,7 +14,7 @@ const context: TerminalContext = {
       slug: 'ticker',
       title: 'Ticker',
       summary: 'Plataforma omnicanal',
-      company: 'Securitec',
+      origin: 'En Securitec',
       period: 'jun 2023',
       techs: ['Vue.js', 'Redis'],
     },
@@ -40,7 +40,7 @@ describe('runCommand', () => {
 
   it('lists projects and shows one with cat', () => {
     expect(texts('ls projects').join('\n')).toContain('ticker')
-    expect(texts('cat ticker').join('\n')).toContain('Securitec · jun 2023')
+    expect(texts('cat ticker').join('\n')).toContain('En Securitec · jun 2023')
     expect(texts('cat nope')[0]).toContain('nope')
   })
 

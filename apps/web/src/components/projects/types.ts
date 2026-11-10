@@ -1,4 +1,5 @@
 import type { SkillCategory } from '../../data/skills'
+import type { ProjectEmployer } from '../../lib/projects'
 
 export interface ProjectMedia {
   src: string
@@ -19,7 +20,8 @@ export interface ProjectCard {
   slug: string
   title: string
   summary: string
-  company: string
+  /** Job the project was built in; `null` for a personal project. */
+  employer: ProjectEmployer | null
   period: string
   techs: ProjectTech[]
   media: ProjectMedia[]
@@ -40,4 +42,7 @@ export interface ProjectsLabels {
   next: string
   close: string
   swipe_hint: string
+  /** Template with a `{company}` token, e.g. "En {company}". */
+  at_company: string
+  personal: string
 }

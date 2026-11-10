@@ -18,7 +18,7 @@ export const en: UiStrings = {
     about: 'About',
     experience: 'Experience',
     stack: 'Stack',
-    projects: 'Projects',
+    projects: 'Case studies',
     terminal: 'Terminal',
     contact: 'Contact',
   },
@@ -35,7 +35,7 @@ export const en: UiStrings = {
     tagline:
       'I build Node.js backends that handle real traffic, and pair them with interfaces that feel right.',
     drag_hint: 'Drag the letters',
-    cta_projects: 'See projects',
+    cta_projects: 'See case studies',
     cta_terminal: 'Open the terminal',
   },
   about: {
@@ -47,7 +47,7 @@ export const en: UiStrings = {
     intro: 'Where I have worked since 2019, most recent first.',
     present: 'present',
     kinds: { 'full-time': 'Full-time', 'part-time': 'Part-time', freelance: 'Freelance' },
-    projects: 'Projects',
+    projects: 'Case studies',
   },
   stack: {
     title: 'Stack',
@@ -62,8 +62,11 @@ export const en: UiStrings = {
     clear: 'Clear selection',
   },
   projects: {
-    title: 'Projects',
-    intro: "A selection of what I've built. Open them and swipe through.",
+    title: 'Case studies',
+    intro:
+      'Projects I built at my jobs, plus a personal one: this portfolio. Open them and swipe through.',
+    at_company: 'At {company}',
+    personal: 'Personal project',
     open: 'View details',
     role: 'My role',
     period: 'Period',

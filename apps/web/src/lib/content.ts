@@ -6,7 +6,13 @@ import { EXPERIENCE, type EngagementKind } from '../data/experience'
 import { PROJECTS } from '../data/projects'
 import { careerYears, interpolateYears, sortExperience } from './experience'
 import { stripInlineMarks } from './plain-text'
-import { formatPeriod, projectSlugFromEntryId, sortProjects } from './projects'
+import {
+  formatPeriod,
+  projectEmployer,
+  projectSlugFromEntryId,
+  sortProjects,
+  type ProjectEmployer,
+} from './projects'
 
 type ProjectEntry = CollectionEntry<'projects'>
 type ExperienceEntry = CollectionEntry<'experience'>
@@ -34,7 +40,8 @@ export interface ProjectView {
   slug: string
   title: string
   summary: string
-  company: string
+  /** Job the project was built in; `null` for a personal project. */
+  employer: ProjectEmployer | null
   period: string
   techs: string[]
   media: ImageMetadata[]
@@ -64,7 +71,7 @@ export async function loadProjects(locale: Locale): Promise<ProjectView[]> {
       slug: meta.slug,
       title: entry.data.title,
       summary: entry.data.summary,
-      company: meta.company,
+      employer: projectEmployer(meta.slug, EXPERIENCE),
       period: formatPeriod(meta, locale),
       techs: meta.techs,
       media: meta.media,

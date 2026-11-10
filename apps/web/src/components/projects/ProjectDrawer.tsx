@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useIsPresent, useReducedMotion, type PanInfo }
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactElement } from 'react'
 import { Drawer } from 'vaul'
 
+import { projectOrigin } from '../../lib/projects'
 import { resolveSwipe } from '../../lib/swipe'
 import { ProjectMediaView } from './ProjectMediaView'
 import type { ProjectCard, ProjectsLabels } from './types'
@@ -26,6 +27,8 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
   const scroll_ref = useRef<HTMLDivElement>(null)
   const content_ref = useRef<HTMLDivElement>(null)
   const trigger_ref = useRef<HTMLElement | null>(null)
+  /** Anchor to visit once the drawer has closed (the link back to the job). */
+  const pending_hash_ref = useRef<string | null>(null)
   const project = index === null ? undefined : projects[index]
 
   useEffect(() => {
@@ -83,7 +86,11 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
           }}
           onCloseAutoFocus={(event) => {
             event.preventDefault()
-            trigger_ref.current?.focus()
+            const pending_hash = pending_hash_ref.current
+            pending_hash_ref.current = null
+            // Navigate only after the scroll lock is gone; focusing the trigger would undo it.
+            if (pending_hash) window.location.hash = pending_hash
+            else trigger_ref.current?.focus()
           }}
           className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[92dvh] max-w-4xl flex-col rounded-t-lg bg-paper-raised outline-none"
         >
@@ -135,7 +142,14 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
                     onDragEnd={handleDragEnd}
                     className="touch-pan-y"
                   >
-                    <ProjectDetail project={project} labels={labels} />
+                    <ProjectDetail
+                      project={project}
+                      labels={labels}
+                      onEmployerClick={(hash) => {
+                        pending_hash_ref.current = hash
+                        onClose()
+                      }}
+                    />
                   </motion.article>
                 </AnimatePresence>
               </div>
@@ -180,9 +194,11 @@ const SLIDE_VARIANTS = {
 function ProjectDetail({
   project,
   labels,
+  onEmployerClick,
 }: {
   project: ProjectCard
   labels: ProjectsLabels
+  onEmployerClick: (hash: string) => void
 }): ReactElement {
   const is_present = useIsPresent()
   const title_class = 'mt-2 text-display font-extrabold'
@@ -194,7 +210,8 @@ function ProjectDetail({
       </div>
       <header className="mt-6">
         <p className="font-mono text-small text-ink-muted">
-          {project.company} · <span className="sr-only">{labels.period}: </span>
+          <EmployerLink project={project} labels={labels} onClick={onEmployerClick} /> ·{' '}
+          <span className="sr-only">{labels.period}: </span>
           {project.period}
         </p>
         <p className="mt-1 font-mono text-small text-accent-ink">
@@ -238,6 +255,34 @@ function ProjectDetail({
         </a>
       )}
     </div>
+  )
+}
+
+/** Links a case study back to its job in the experience timeline; personal projects get a label. */
+function EmployerLink({
+  project,
+  labels,
+  onClick,
+}: {
+  project: ProjectCard
+  labels: ProjectsLabels
+  onClick: (hash: string) => void
+}): ReactElement {
+  const origin = projectOrigin(project.employer, labels)
+  if (!project.employer) return <>{origin}</>
+  const hash = `#experience-${project.employer.experience_id}`
+  return (
+    <a
+      href={hash}
+      onClick={(event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+        event.preventDefault()
+        onClick(hash)
+      }}
+      className="text-ink underline decoration-line underline-offset-4 transition-[text-decoration-color] duration-(--duration-fast) ease-[ease] pointer-fine:hover:decoration-ink"
+    >
+      {origin}
+    </a>
   )
 }
 

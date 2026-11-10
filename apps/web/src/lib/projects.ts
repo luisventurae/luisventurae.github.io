@@ -11,6 +11,35 @@ export function projectSlugFromEntryId(entry_id: string): string {
   return slug
 }
 
+export interface ProjectEmployer {
+  experience_id: string
+  company: string
+}
+
+/** The job a project was built in, from the experience data; `null` for a personal project. */
+export function projectEmployer(
+  slug: string,
+  experience: { id: string; company: string; project_slugs: string[] }[],
+): ProjectEmployer | null {
+  const owner = experience.find((item) => item.project_slugs.includes(slug))
+  return owner ? { experience_id: owner.id, company: owner.company } : null
+}
+
+/** Where a project was built, e.g. "En Securitec" or "Proyecto personal". */
+export function projectOrigin(
+  employer: ProjectEmployer | null,
+  labels: { at_company: string; personal: string },
+): string {
+  return employer ? labels.at_company.replace('{company}', employer.company) : labels.personal
+}
+
+const PROJECT_HASH = /^#project-(.+)$/
+
+/** Slug of a `#project-<slug>` anchor, the deep link to a case study. */
+export function projectSlugFromHash(hash: string): string | null {
+  return PROJECT_HASH.exec(hash)?.[1] ?? null
+}
+
 export function projectsUsingSkill(
   projects: { slug: string; techs: string[] }[],
   skill_id: string,

@@ -1,5 +1,55 @@
 import { expect, test } from './fixtures'
 
+test.describe('case studies and experience', () => {
+  test('a job opens its case study and the case study leads back to the job', async ({ page }) => {
+    await page.goto('/')
+    const securitec = page.locator('#experience-securitec')
+    await securitec.scrollIntoViewIfNeeded()
+    const link = securitec.getByRole('link', { name: /Ticker/ })
+    await link.click()
+    const dialog = page.getByRole('dialog')
+    await expect(dialog.getByRole('heading', { level: 2 })).toHaveText('Ticker')
+    // The page stays on the job behind the drawer.
+    await expect(securitec).toBeInViewport()
+
+    await dialog.getByRole('link', { name: 'En Securitec' }).click()
+    await expect(dialog).toBeHidden()
+    await expect(page).toHaveURL(/#experience-securitec$/)
+    await expect(securitec).toBeInViewport()
+  })
+
+  test('closing a case study opened from a job returns focus to its link', async ({ page }) => {
+    await page.goto('/')
+    const link = page.locator('#experience-securitec').getByRole('link', { name: /Ticker/ })
+    await link.scrollIntoViewIfNeeded()
+    await link.click()
+    await expect(page.getByRole('dialog')).toBeVisible()
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('dialog')).toBeHidden()
+    await expect(link).toBeFocused()
+    await link.click()
+    await expect(page.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText('Ticker')
+  })
+
+  test('a case study URL opens its drawer', async ({ page }) => {
+    await page.goto('/#project-pwc-store')
+    await expect(page.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText(
+      'Tienda en línea',
+    )
+  })
+
+  test('cards say where each project was built', async ({ page }) => {
+    await page.goto('/')
+    await page.locator('#projects').scrollIntoViewIfNeeded()
+    await expect(page.getByRole('button', { name: /Ver detalle: Ticker/ })).toContainText(
+      'En Securitec',
+    )
+    await expect(page.getByRole('button', { name: /Ver detalle: Este portafolio/ })).toContainText(
+      'Proyecto personal',
+    )
+  })
+})
+
 test.describe('stack and projects', () => {
   test('selecting a technology highlights the projects that use it', async ({ page }) => {
     await page.goto('/')

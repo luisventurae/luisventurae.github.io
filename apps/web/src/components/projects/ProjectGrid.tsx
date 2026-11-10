@@ -7,6 +7,7 @@ import {
   type MotionValue,
 } from 'motion/react'
 import {
+  useEffect,
   useState,
   useSyncExternalStore,
   type CSSProperties,
@@ -16,6 +17,7 @@ import {
 } from 'react'
 
 import { SPRING_SNAPPY, SPRING_TILT } from '../../lib/motion'
+import { projectOrigin, projectSlugFromHash } from '../../lib/projects'
 import { selection_store } from '../../lib/selection-store'
 import { useScrollReveal } from '../../lib/use-scroll-reveal'
 import { ProjectDrawer } from './ProjectDrawer'
@@ -39,6 +41,8 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
     selection_store.getServerSnapshot,
   )
 
+  useCaseStudyLinks(projects, setOpenIndex)
+
   const columns = gridColumns(projects)
 
   return (
@@ -61,6 +65,7 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
                   is_match={is_match}
                   is_dimmed={is_dimmed}
                   open_label={labels.open}
+                  origin={projectOrigin(project.employer, labels)}
                   onOpen={() => setOpenIndex(index)}
                 />
               </RevealOnScroll>
@@ -78,6 +83,42 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
       />
     </>
   )
+}
+
+/**
+ * Opens a case study from `#project-<slug>`: on load, on hash changes, and on clicks on any
+ * such link on the page (the experience timeline), without scrolling the page behind the
+ * drawer. Without JavaScript the same links just scroll to the card.
+ */
+function useCaseStudyLinks(projects: ProjectCard[], open: (index: number) => void): void {
+  useEffect(() => {
+    const indexOf = (hash: string): number => {
+      const slug = projectSlugFromHash(hash)
+      return slug === null ? -1 : projects.findIndex((project) => project.slug === slug)
+    }
+    const openFromLocation = (): void => {
+      const index = indexOf(window.location.hash)
+      if (index >= 0) open(index)
+    }
+    const handleClick = (event: MouseEvent): void => {
+      if (event.defaultPrevented || event.button !== 0) return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      const link =
+        event.target instanceof Element ? event.target.closest('a[href^="#project-"]') : null
+      if (!link) return
+      const index = indexOf(link.getAttribute('href') ?? '')
+      if (index < 0) return
+      event.preventDefault()
+      open(index)
+    }
+    openFromLocation()
+    window.addEventListener('hashchange', openFromLocation)
+    document.addEventListener('click', handleClick)
+    return () => {
+      window.removeEventListener('hashchange', openFromLocation)
+      document.removeEventListener('click', handleClick)
+    }
+  }, [projects, open])
 }
 
 /** Column of each card in the two-column grid; featured cards take a full row. */
@@ -120,6 +161,8 @@ interface TiltCardProps {
   is_match: boolean
   is_dimmed: boolean
   open_label: string
+  /** "En Securitec" or "Proyecto personal". */
+  origin: string
   onOpen: () => void
 }
 
@@ -128,6 +171,7 @@ function TiltCard({
   is_match,
   is_dimmed,
   open_label,
+  origin,
   onOpen,
 }: TiltCardProps): ReactElement {
   const reduce_motion = useReducedMotion() ?? false
@@ -176,7 +220,7 @@ function TiltCard({
         </div>
         <div className="p-6">
           <p className="font-mono text-small text-ink-muted">
-            {project.company} · {project.period}
+            {origin} · {project.period}
           </p>
           <h3 className="mt-2 text-title font-bold">{project.title}</h3>
           <p className="mt-1 text-ink-muted">{project.summary}</p>

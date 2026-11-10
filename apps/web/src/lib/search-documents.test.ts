@@ -10,7 +10,7 @@ const documents = buildSearchDocuments({
       slug: 'ticker',
       title: 'Ticker',
       summary: 'Plataforma omnicanal',
-      company: 'Securitec',
+      origin: 'En Securitec',
       period: 'jun 2023',
       tech_labels: ['Vue.js', 'Redis'],
       body: '### Qué hice\n\nWebSockets con Redis.',
@@ -48,7 +48,7 @@ describe('buildSearchDocuments', () => {
 
   it('puts project metadata in the first chunk', () => {
     const first = documents.find((doc) => doc.source === 'projects/ticker')
-    expect(first?.text).toContain('Securitec, jun 2023. Stack: Vue.js, Redis.')
+    expect(first?.text).toContain('En Securitec, jun 2023. Stack: Vue.js, Redis.')
   })
 
   it('describes each experience entry with role, type and period', () => {

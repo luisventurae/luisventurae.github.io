@@ -14,7 +14,7 @@ interface ExperienceLabels {
 interface Props {
   locale: Locale
   items: ExperienceView[]
-  /** Project titles by slug, to name the related projects. */
+  /** Case study titles by slug, to name the related projects. */
   project_titles: Record<string, string>
   /** Technology labels by skill id. */
   tech_labels: Record<string, string>
@@ -26,7 +26,11 @@ const { locale, items, project_titles, tech_labels, labels } = Astro.props
 
 <ol class="timeline relative grid gap-12 pl-6 md:pl-10">
   {items.map((item) => (
-    <li data-reveal class="experience-item relative grid gap-3 md:grid-cols-[13rem_1fr] md:gap-10">
+    <li
+      id={`experience-${item.id}`}
+      data-reveal
+      class="experience-item relative grid scroll-mt-24 gap-3 md:grid-cols-[13rem_1fr] md:gap-10"
+    >
       <span
         aria-hidden="true"
         class:list={[
@@ -47,20 +51,25 @@ const { locale, items, project_titles, tech_labels, labels } = Astro.props
         <p class="mt-1 font-semibold text-accent-ink">{item.role}</p>
         <div class="project-body mt-3 max-w-[65ch]" set:html={item.body_html} />
         {item.project_slugs.length > 0 && (
-          <p class="mt-4 text-small">
-            <span class="font-mono text-ink-muted">{labels.projects}:</span>{' '}
-            {item.project_slugs.map((slug, index) => (
-              <>
-                {index > 0 && ', '}
-                <a
-                  href={`#project-${slug}`}
-                  class="font-semibold underline decoration-line underline-offset-4 transition-[text-decoration-color] duration-(--duration-fast) ease-[ease] pointer-fine:hover:decoration-ink"
-                >
-                  {project_titles[slug] ?? slug}
-                </a>
-              </>
-            ))}
-          </p>
+          <div class="mt-4">
+            <p class="font-mono text-small text-ink-muted">{labels.projects}</p>
+            {/* Opens the case study in the projects drawer; without JS it scrolls to the card. */}
+            <ul class="mt-2 flex flex-wrap gap-2">
+              {item.project_slugs.map((slug) => (
+                <li>
+                  <a
+                    href={`#project-${slug}`}
+                    class="case-link pressable inline-flex items-center gap-1.5 rounded-sm border border-line bg-paper-raised px-3 py-1.5 text-small font-semibold pointer-fine:hover:border-ink"
+                  >
+                    {project_titles[slug] ?? slug}
+                    <span aria-hidden="true" class="case-link-arrow">
+                      →
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
         <ul class="mt-3 flex flex-wrap gap-2">
           {item.techs.map((tech, index) => (

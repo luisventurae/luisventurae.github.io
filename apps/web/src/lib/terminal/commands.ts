@@ -40,7 +40,8 @@ interface TerminalProject {
   slug: string
   title: string
   summary: string
-  company: string
+  /** Where it was built, e.g. "En Securitec" or "Proyecto personal". */
+  origin: string
   period: string
   techs: string[]
 }
@@ -94,7 +95,7 @@ const HANDLERS: Record<CommandName, Handler> = {
     return {
       lines: [
         accent(project.title),
-        muted(`${project.company} · ${project.period}`),
+        muted(`${project.origin} · ${project.period}`),
         text(project.summary),
         muted(project.techs.join(' · ')),
       ],

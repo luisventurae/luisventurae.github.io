@@ -6,7 +6,8 @@ interface ProjectDocument {
   slug: string
   title: string
   summary: string
-  company: string
+  /** Where it was built, e.g. "En Securitec" or "Proyecto personal". */
+  origin: string
   period: string
   tech_labels: string[]
   body: string
@@ -79,7 +80,7 @@ function experienceMarkdown(item: ExperienceDocument): string {
 
 function projectMarkdown(project: ProjectDocument): string {
   return [
-    `${project.summary}. ${project.company}, ${project.period}. Stack: ${project.tech_labels.join(', ')}.`,
+    `${project.summary}. ${project.origin}, ${project.period}. Stack: ${project.tech_labels.join(', ')}.`,
     project.body,
   ].join('\n\n')
 }

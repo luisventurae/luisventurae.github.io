@@ -16,7 +16,7 @@ export const es = {
     about: 'Sobre mí',
     experience: 'Experiencia',
     stack: 'Stack',
-    projects: 'Proyectos',
+    projects: 'Casos de estudio',
     terminal: 'Terminal',
     contact: 'Contacto',
   },
@@ -33,7 +33,7 @@ export const es = {
     tagline:
       'Diseño backends en Node.js que aguantan tráfico real, y los acompaño de interfaces que se sienten bien.',
     drag_hint: 'Arrastra las letras',
-    cta_projects: 'Ver proyectos',
+    cta_projects: 'Ver casos de estudio',
     cta_terminal: 'Abrir la terminal',
   },
   about: {
@@ -45,7 +45,7 @@ export const es = {
     intro: 'Dónde he trabajado desde 2019, de lo más reciente a lo más antiguo.',
     present: 'actualidad',
     kinds: { 'full-time': 'Tiempo completo', 'part-time': 'Medio tiempo', freelance: 'Freelance' },
-    projects: 'Proyectos',
+    projects: 'Casos de estudio',
   },
   stack: {
     title: 'Stack',
@@ -60,8 +60,11 @@ export const es = {
     clear: 'Quitar selección',
   },
   projects: {
-    title: 'Proyectos',
-    intro: 'Una selección de lo que he construido. Ábrelos y desliza para recorrerlos.',
+    title: 'Casos de estudio',
+    intro:
+      'Proyectos que construí en mis empleos, más uno personal: este portafolio. Ábrelos y desliza para recorrerlos.',
+    at_company: 'En {company}',
+    personal: 'Proyecto personal',
     open: 'Ver detalle',
     role: 'Mi rol',
     period: 'Período',

@@ -13,12 +13,12 @@ import ticker_cover from '../assets/projects/ss-ticker-1.webp'
 
 /**
  * Locale-independent project metadata. Localized text lives in
- * src/content/projects/<locale>/<slug>.md. `TODO(media)`: more screenshots, videos and links.
+ * src/content/projects/<locale>/<slug>.md. The employer comes from src/data/experience.ts
+ * (`project_slugs`); a project no job lists is personal. `TODO(media)`: more screenshots, videos and links.
  */
 export interface ProjectMeta {
   slug: string
   order: number
-  company: string
   kind: 'web-app' | 'website' | 'api' | 'desktop-app' | 'software'
   start: string
   end?: string
@@ -33,7 +33,6 @@ export const PROJECTS: ProjectMeta[] = [
   {
     slug: 'ticker',
     order: 1,
-    company: 'Securitec',
     kind: 'web-app',
     start: '2023-06',
     end: '2023-10',
@@ -44,7 +43,6 @@ export const PROJECTS: ProjectMeta[] = [
   {
     slug: 'portfolio',
     order: 2,
-    company: 'Open source',
     kind: 'web-app',
     start: '2026-11',
     featured: true,
@@ -66,7 +64,6 @@ export const PROJECTS: ProjectMeta[] = [
   {
     slug: 'securitec-web',
     order: 3,
-    company: 'Securitec',
     kind: 'website',
     start: '2022-08',
     techs: ['nestjs', 'nodejs', 'mongodb', 'aws'],
@@ -75,7 +72,6 @@ export const PROJECTS: ProjectMeta[] = [
   {
     slug: 'pwc-store',
     order: 4,
-    company: 'Pool Work Confort',
     kind: 'website',
     start: '2022-03',
     techs: ['vue', 'nuxt', 'adonisjs', 'nodejs', 'mongodb'],
@@ -84,7 +80,6 @@ export const PROJECTS: ProjectMeta[] = [
   {
     slug: 'pwc-mailer',
     order: 5,
-    company: 'Pool Work Confort',
     kind: 'software',
     start: '2021-10',
     techs: ['nodejs', 'adonisjs', 'mysql'],
@@ -93,7 +88,6 @@ export const PROJECTS: ProjectMeta[] = [
   {
     slug: 'cepeban-crm',
     order: 6,
-    company: 'Instituto Cepeban',
     kind: 'api',
     start: '2021-03',
     techs: ['nodejs', 'express', 'mysql', 'zoho-crm'],
@@ -102,7 +96,6 @@ export const PROJECTS: ProjectMeta[] = [
   {
     slug: 'asu-cuenta',
     order: 7,
-    company: 'Asu Cuenta',
     kind: 'web-app',
     start: '2019-01',
     end: '2019-08',
@@ -112,7 +105,6 @@ export const PROJECTS: ProjectMeta[] = [
   {
     slug: 'busconsulting-admin',
     order: 8,
-    company: 'Busconsulting',
     kind: 'desktop-app',
     start: '2020-09',
     techs: ['electron', 'vue', 'nodejs', 'mysql'],

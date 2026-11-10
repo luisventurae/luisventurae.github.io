@@ -9,7 +9,7 @@ import { getUi } from '../i18n'
 import { loadExperience, loadProfile, loadProjects } from '../lib/content'
 import { careerYears, interpolateYears } from '../lib/experience'
 import type { TerminalContext } from '../lib/terminal/commands'
-import { skillUsage } from '../lib/projects'
+import { projectOrigin, skillUsage } from '../lib/projects'
 import { parsePublicEnv } from '../lib/public-env'
 import type { ProjectCard } from './projects/types'
 import { CvSection } from './cv/CvSection'
@@ -55,7 +55,7 @@ const project_cards: ProjectCard[] = await Promise.all(
     slug: project.slug,
     title: project.title,
     summary: project.summary,
-    company: project.company,
+    employer: project.employer,
     period: project.period,
     url: project.url,
     role: project.role,
@@ -128,7 +128,7 @@ const terminal_context: TerminalContext = {
     slug: project.slug,
     title: project.title,
     summary: project.summary,
-    company: project.company,
+    origin: projectOrigin(project.employer, ui.projects),
     period: project.period,
     techs: project.techs.map((id) => skill_by_id.get(id)?.label ?? id),
   })),
@@ -148,6 +148,8 @@ const project_labels = {
   next: ui.projects.next,
   close: ui.projects.close,
   swipe_hint: ui.projects.swipe_hint,
+  at_company: ui.projects.at_company,
+  personal: ui.projects.personal,
 }
 ---
 

@@ -5,6 +5,7 @@ import { SKILLS } from '../data/skills'
 import { getUi } from '../i18n'
 import { loadExperience, loadProfile, loadProjects } from '../lib/content'
 import { formatExperiencePeriod } from '../lib/experience'
+import { projectOrigin } from '../lib/projects'
 import { buildSearchDocuments } from '../lib/search-documents'
 
 /** Prerendered chunks for the terminal's text search and the local RAG ingest. */
@@ -22,7 +23,7 @@ export const GET: APIRoute = async () => {
           slug: project.slug,
           title: project.title,
           summary: project.summary,
-          company: project.company,
+          origin: projectOrigin(project.employer, ui.projects),
           period: project.period,
           tech_labels: project.techs.map((id) => skill_labels.get(id) ?? id),
           body: project.body_text,

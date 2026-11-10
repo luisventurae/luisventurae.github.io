@@ -5,10 +5,14 @@ import { join } from 'node:path'
 import { LOCALES } from '@portfolio/shared'
 import { describe, expect, it } from 'vitest'
 
+import { EXPERIENCE } from '../data/experience'
 import { PROJECTS } from '../data/projects'
 import { SKILLS } from '../data/skills'
 import {
   formatPeriod,
+  projectEmployer,
+  projectOrigin,
+  projectSlugFromHash,
   projectSlugFromEntryId,
   projectsUsingSkill,
   skillUsage,
@@ -30,6 +34,13 @@ describe('project data integrity', () => {
     for (const locale of LOCALES) {
       const slugs = readdirSync(join(content_dir, locale)).map((file) => file.replace(/\.md$/, ''))
       expect(slugs.sort()).toEqual(PROJECTS.map((project) => project.slug).sort())
+    }
+  })
+
+  it('ties every project but the portfolio to exactly one job', () => {
+    for (const project of PROJECTS) {
+      const owners = EXPERIENCE.filter((item) => item.project_slugs.includes(project.slug))
+      expect(owners.length, project.slug).toBe(project.slug === 'portfolio' ? 0 : 1)
     }
   })
 
@@ -86,5 +97,50 @@ describe('projectSlugFromEntryId', () => {
     expect(() => projectSlugFromEntryId('terminal-portfolio')).toThrow('Invalid project entry id')
     expect(() => projectSlugFromEntryId('es/')).toThrow('Invalid project entry id')
     expect(() => projectSlugFromEntryId('es/a/b')).toThrow('Invalid project entry id')
+  })
+})
+
+describe('projectEmployer', () => {
+  const experience = [
+    { id: 'securitec', company: 'Securitec', project_slugs: ['ticker', 'securitec-web'] },
+    { id: 'prestamype', company: 'Prestamype', project_slugs: [] },
+  ]
+
+  it('returns the job a project was built in', () => {
+    expect(projectEmployer('ticker', experience)).toEqual({
+      experience_id: 'securitec',
+      company: 'Securitec',
+    })
+  })
+
+  it('returns null for a personal project', () => {
+    expect(projectEmployer('portfolio', experience)).toBeNull()
+  })
+})
+
+describe('projectOrigin', () => {
+  const labels = { at_company: 'En {company}', personal: 'Proyecto personal' }
+
+  it('names the employer', () => {
+    expect(projectOrigin({ experience_id: 'securitec', company: 'Securitec' }, labels)).toBe(
+      'En Securitec',
+    )
+  })
+
+  it('labels a personal project', () => {
+    expect(projectOrigin(null, labels)).toBe('Proyecto personal')
+  })
+})
+
+describe('projectSlugFromHash', () => {
+  it('reads the slug of a project anchor', () => {
+    expect(projectSlugFromHash('#project-ticker')).toBe('ticker')
+    expect(projectSlugFromHash('#project-pwc-store')).toBe('pwc-store')
+  })
+
+  it('ignores other anchors', () => {
+    expect(projectSlugFromHash('#projects')).toBeNull()
+    expect(projectSlugFromHash('#project-')).toBeNull()
+    expect(projectSlugFromHash('')).toBeNull()
   })
 })

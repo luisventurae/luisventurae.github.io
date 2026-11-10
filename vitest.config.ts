@@ -12,6 +12,8 @@ export default defineConfig({
         '**/*.d.ts',
         '**/index.ts',
         'apps/api/src/main.ts',
+        'packages/agent-rag/src/cli.ts',
+        'packages/agent-rag/src/testing/**',
         'apps/api/src/testing/**',
         'apps/web/src/lib/content.ts',
         'apps/web/src/lib/download.ts',

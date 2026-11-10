@@ -44,7 +44,7 @@ export function Hero(props: HeroProps): ReactElement {
           whileDrag={{ scale: 1.08 }}
           transition={SPRING_PLAYFUL}
           aria-hidden="true"
-          className={`hero-sticker absolute z-10 hidden cursor-grab touch-none rounded-full px-4 py-2 font-mono text-small font-semibold text-ink shadow-card select-none active:cursor-grabbing lg:block ${sticker.className}`}
+          className={`hero-sticker absolute z-10 hidden cursor-grab touch-none rounded-full px-4 py-2 font-mono text-small font-semibold text-on-accent shadow-card select-none active:cursor-grabbing lg:block ${sticker.className}`}
           style={{ animationDelay: `${600 + sticker.depth * 80}ms` }}
         >
           {sticker.label}

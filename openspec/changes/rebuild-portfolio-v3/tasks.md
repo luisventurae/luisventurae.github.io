@@ -66,7 +66,7 @@
 
 ## 14. E2E
 
-- [ ] 14.1 Playwright: idioma, tema, stack → proyectos, drawer, terminal y formulario (API simulada) — verificar: `npm run test:e2e`
+- [x] 14.1 Playwright: idioma, tema, stack → proyectos, drawer, terminal y formulario (API simulada) — verificar: `npm run test:e2e`
 
 ## 15. CI/CD y README
 

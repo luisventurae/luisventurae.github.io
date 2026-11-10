@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion, type PanInfo } from 'motion/react'
+import { AnimatePresence, motion, useIsPresent, useReducedMotion, type PanInfo } from 'motion/react'
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactElement } from 'react'
 import { Drawer } from 'vaul'
 
@@ -173,6 +173,10 @@ const SLIDE_VARIANTS = {
       : { opacity: 0, x: `${direction * -24}%`, filter: 'blur(4px)', transition: SLIDE_TRANSITION },
 }
 
+/**
+ * While the previous project slides out, its copy stays in the DOM: it is hidden from
+ * assistive tech and keyboard, and only the entering one owns the dialog title.
+ */
 function ProjectDetail({
   project,
   labels,
@@ -180,8 +184,11 @@ function ProjectDetail({
   project: ProjectCard
   labels: ProjectsLabels
 }): ReactElement {
+  const is_present = useIsPresent()
+  const title_class = 'mt-2 text-display font-extrabold'
+  const summary_class = 'mt-2 text-title leading-snug text-ink-muted'
   return (
-    <>
+    <div aria-hidden={!is_present} inert={!is_present}>
       <div className="aspect-[16/9] overflow-hidden rounded-lg border border-line">
         <ProjectMediaView media={project.media[0]} title={project.title} eager />
       </div>
@@ -190,10 +197,16 @@ function ProjectDetail({
           {project.company} · <span className="sr-only">{labels.period}: </span>
           {project.period}
         </p>
-        <Drawer.Title className="mt-2 text-display font-extrabold">{project.title}</Drawer.Title>
-        <Drawer.Description className="mt-2 text-title leading-snug text-ink-muted">
-          {project.summary}
-        </Drawer.Description>
+        {is_present ? (
+          <Drawer.Title className={title_class}>{project.title}</Drawer.Title>
+        ) : (
+          <h2 className={title_class}>{project.title}</h2>
+        )}
+        {is_present ? (
+          <Drawer.Description className={summary_class}>{project.summary}</Drawer.Description>
+        ) : (
+          <p className={summary_class}>{project.summary}</p>
+        )}
       </header>
       <div
         className="project-body mt-6 max-w-[65ch] space-y-4"
@@ -221,7 +234,7 @@ function ProjectDetail({
           {labels.visit} ↗
         </a>
       )}
-    </>
+    </div>
   )
 }
 

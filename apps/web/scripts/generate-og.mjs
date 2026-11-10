@@ -44,7 +44,7 @@ function template({ role, tagline }) {
   .tagline { font-size: 44px; font-weight: 500; letter-spacing: -0.02em; color: #5e5850; margin-top: 18px; }
   .row { display: flex; gap: 14px; }
   .chip { font-family: Mono; font-size: 24px; font-weight: 600; padding: 10px 20px; border-radius: 999px; box-shadow: 0 8px 24px -12px rgb(22 19 15 / 0.35); }
-  .lime { background: #c8f04b; transform: rotate(-4deg); } .sky { background: #4cc3ff; transform: rotate(3deg); } .violet { background: #7a5cff; color: #f7f3ec; transform: rotate(-2deg); }
+  .lime { background: #c8f04b; transform: rotate(-4deg); } .sky { background: #4cc3ff; transform: rotate(3deg); } .violet { background: #6a4cf0; color: #f7f3ec; transform: rotate(-2deg); }
   .footer { display: flex; justify-content: space-between; align-items: flex-end; }
 </style></head><body>
   <div class="mono">luisventurae.github.io</div>

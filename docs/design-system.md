@@ -25,7 +25,7 @@ Fuente de verdad en código: `apps/web/src/styles/tokens.css`. Tailwind v4 lo co
 | `--color-accent-ink`   | `#b8321a` | `#ff8c70` | Acento usado como **texto** (AA)  |
 | `--color-on-accent`    | `#16130f` | `#16130f` | Texto sobre fondo de acento       |
 | `--color-lime`         | `#c8f04b` | `#b5dc3a` | Juego: Frontend                   |
-| `--color-violet`       | `#7a5cff` | `#9a83ff` | Juego: Backend                    |
+| `--color-violet`       | `#6a4cf0` | `#9a83ff` | Juego: Backend                    |
 | `--color-sky`          | `#4cc3ff` | `#5fcbff` | Juego: Otros                      |
 
 Reglas: un acento por vista; los colores de juego nunca para párrafos.

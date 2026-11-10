@@ -8,7 +8,7 @@
 
 ## 2. Búsqueda e índice
 
-- [ ] 2.1 Tests rojos y búsqueda híbrida: BM25 con tokenizador de identificadores, coseno con `Embedder` fake y fusión RRF; filtro por `kind` — verificar: `npx vitest run packages/agent-rag`
+- [x] 2.1 Tests rojos y búsqueda híbrida: BM25 con tokenizador de identificadores, coseno con `Embedder` fake y fusión RRF; filtro por `kind` — verificar: `npx vitest run packages/agent-rag`
 - [ ] 2.2 Tests rojos y constructor de índice incremental por hash de archivo, con puertos `FileSource`, `Embedder`, `IndexStore` y fakes — verificar: `npx vitest run packages/agent-rag`
 
 ## 3. Adaptadores y CLI

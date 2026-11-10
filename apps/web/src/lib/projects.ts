@@ -4,6 +4,13 @@ export function sortProjects<T extends { order: number }>(projects: T[]): T[] {
   return [...projects].sort((a, b) => a.order - b.order)
 }
 
+/** Extracts the slug from a localized content entry id (`<locale>/<slug>`). */
+export function projectSlugFromEntryId(entry_id: string): string {
+  const [locale, slug, ...rest] = entry_id.split('/')
+  if (!locale || !slug || rest.length > 0) throw new Error(`Invalid project entry id "${entry_id}"`)
+  return slug
+}
+
 export function projectsUsingSkill(
   projects: { slug: string; techs: string[] }[],
   skill_id: string,

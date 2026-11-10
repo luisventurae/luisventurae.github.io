@@ -7,7 +7,13 @@ import { describe, expect, it } from 'vitest'
 
 import { PROJECTS } from '../data/projects'
 import { SKILLS } from '../data/skills'
-import { formatPeriod, projectsUsingSkill, skillUsage, sortProjects } from './projects'
+import {
+  formatPeriod,
+  projectSlugFromEntryId,
+  projectsUsingSkill,
+  skillUsage,
+  sortProjects,
+} from './projects'
 
 const content_dir = join(import.meta.dirname, '../content/projects')
 
@@ -68,5 +74,17 @@ describe('formatPeriod', () => {
 
   it('includes the end month when present', () => {
     expect(formatPeriod({ start: '2021-03', end: '2022-01' }, 'en')).toBe('Mar 2021 – Jan 2022')
+  })
+})
+
+describe('projectSlugFromEntryId', () => {
+  it('returns the slug of a localized content entry id', () => {
+    expect(projectSlugFromEntryId('es/terminal-portfolio')).toBe('terminal-portfolio')
+  })
+
+  it('rejects ids that are not "<locale>/<slug>"', () => {
+    expect(() => projectSlugFromEntryId('terminal-portfolio')).toThrow('Invalid project entry id')
+    expect(() => projectSlugFromEntryId('es/')).toThrow('Invalid project entry id')
+    expect(() => projectSlugFromEntryId('es/a/b')).toThrow('Invalid project entry id')
   })
 })

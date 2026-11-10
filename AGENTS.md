@@ -4,7 +4,7 @@ Instructions for coding agents (Claude Code, Codex, etc.) working in this repo.
 
 ## Finding information fast
 
-There is no RAG service or embeddings server (the Ollama RAG is being removed, see `openspec/changes/remove-site-rag/`). Search the docs directly:
+RAG here is for local development, used by you (Claude Code, Codex): retrieval over the docs, with no Ollama, embeddings server or other service to run (see `openspec/changes/remove-site-rag/`). Search the docs directly:
 
 1. Start at [docs/README.md](docs/README.md): the index that says which document answers what.
 2. Then search with ripgrep over the two documentation trees, instead of reading whole files:

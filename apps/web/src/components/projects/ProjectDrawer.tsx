@@ -92,7 +92,9 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
             if (pending_hash) window.location.hash = pending_hash
             else trigger_ref.current?.focus()
           }}
-          className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[92dvh] max-w-4xl flex-col rounded-t-lg bg-paper-raised outline-none"
+          // Mobile: a sheet flush with the bottom edge. Desktop: a floating panel with all four
+          // corners, so its end is visible; vaul slides it past its 1.5 rem offset.
+          className="project-drawer fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[92dvh] max-w-4xl flex-col rounded-t-lg bg-paper-raised outline-none md:inset-x-6 md:bottom-6 md:max-h-[calc(100dvh-7rem)] md:rounded-lg md:shadow-lift md:[--initial-transform:calc(100%_+_1.5rem)]"
         >
           <Drawer.Handle className="mt-3 mb-1 !h-1.5 !w-12 !bg-line" />
           {project && (
@@ -126,7 +128,10 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
                 </div>
               </div>
 
-              <div ref={scroll_ref} className="overflow-y-auto overscroll-contain px-6 pb-10">
+              <div
+                ref={scroll_ref}
+                className="drawer-scroll overflow-y-auto overscroll-contain px-6 pt-3 pb-[calc(2.5rem+env(safe-area-inset-bottom))] md:pb-8"
+              >
                 <AnimatePresence mode="popLayout" initial={false} custom={slide}>
                   <motion.article
                     key={project.slug}

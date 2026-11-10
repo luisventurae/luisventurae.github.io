@@ -416,6 +416,32 @@
   background-color: var(--ink);
 }
 
+/*
+ * Drawer body: text fades out under the header and at the bottom edge instead of being cut
+ * mid-line. The fades only cover the padding while at rest, so nothing is hidden.
+ */
+.drawer-scroll {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 0.75rem,
+    #000 calc(100% - 1.5rem),
+    transparent
+  );
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+/*
+ * Vaul extends a bottom sheet below the screen (::after) so over-dragging never shows a gap.
+ * The floating desktop panel has a visible bottom edge, so that extension must go.
+ */
+@media (min-width: 48rem) {
+  [data-vaul-drawer][data-vaul-drawer-direction='bottom'].project-drawer::after {
+    display: none;
+  }
+}
+
 /* Case study links in the timeline: the arrow leans toward where the link goes. */
 .case-link-arrow {
   transition: translate var(--duration-fast) var(--ease-out-strong);

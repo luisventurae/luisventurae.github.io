@@ -37,7 +37,7 @@ export const es: UiStrings = {
     tagline:
       'Construyo productos que la gente usa todos los días, sobre todo la parte que no se ve.',
     drag_hint: 'Arrastra las letras',
-    cta_projects: 'Ver casos de estudio',
+    cta_projects: 'Ver proyectos',
     cta_terminal: 'Abrir la terminal',
   },
   about: {

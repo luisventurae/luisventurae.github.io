@@ -37,7 +37,7 @@ export const fr: UiStrings = {
     tagline:
       'Je construis des produits que les gens utilisent tous les jours, surtout la partie qu’on ne voit pas.',
     drag_hint: 'Fais glisser les lettres',
-    cta_projects: 'Voir les études de cas',
+    cta_projects: 'Voir les projets',
     cta_terminal: 'Ouvrir le terminal',
   },
   about: {

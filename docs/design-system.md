@@ -11,6 +11,7 @@ Fuente de verdad en código: `apps/web/src/styles/tokens.css`. Tailwind v4 lo co
 5. [Motion](#5-motion)
 6. [Componentes base](#6-componentes-base)
 7. [Tema claro / oscuro](#7-tema-claro--oscuro)
+8. [Consistencia entre agentes](#8-consistencia-entre-agentes)
 
 ## 1. Color
 
@@ -122,3 +123,34 @@ Entrada del hero: las letras del nombre usan `hero-rise` (700 ms, blur) porque s
 
 - Atributo `data-theme="light|dark"` en `<html>`, inicializado antes del primer pintado con un script inline (preferencia guardada → `prefers-color-scheme`).
 - El cambio de tema usa View Transitions con un reveal circular desde el botón; con reduced motion es un fundido simple.
+
+## 8. Consistencia entre agentes
+
+Varios agentes (Claude Code, Codex…) y skills de diseño trabajan en este repo. Para que el estilo no derive:
+
+**Orden de autoridad** (si dos fuentes chocan, gana la de arriba):
+
+1. `apps/web/src/styles/tokens.css` (valores).
+2. Este documento y [branding.md](branding.md) (reglas y criterio).
+3. Componentes existentes en `apps/web/src/components/` (patrones ya aprobados).
+4. Skills de `.claude/skills/` y `.agents/skills/` (`animate`, `apple-design`, `emil-design-eng`…): son guías generales de oficio. Nunca sustituyen los tokens ni la paleta del proyecto; si una skill sugiere un color, easing o duración propios, se traduce al token más cercano.
+
+**Antes de escribir UI:**
+
+- Carga y sigue la skill `emil-design-eng` (Emil Kowalski) para cualquier decisión de pulido, componentes y animación; es la skill de diseño por defecto del proyecto. Se aplica siempre dentro de los tokens y la paleta.
+- Lee este documento y `branding.md`, y busca un componente parecido que reutilizar o extender antes de crear uno nuevo.
+- Usa solo utilidades y variables que existan en `tokens.css` (`bg-paper`, `text-ink`, `ease-out-strong`…).
+
+**Prohibido sin un change de OpenSpec que lo apruebe:**
+
+- Hardcodear colores, `cubic-bezier(...)`, duraciones, radios o sombras fuera de `tokens.css`.
+- Añadir fuentes, un segundo color de acento, librerías de UI o de iconos nuevas.
+- Cambiar el valor de un token o añadir uno nuevo. Si hace falta, se cambia en `tokens.css` y en este documento en el mismo commit.
+- Rediseñar un componente existente «de paso» mientras se hace otra tarea.
+
+**Al terminar un cambio de UI:**
+
+- Busca valores sueltos: `rg -n "#[0-9a-fA-F]{3,8}\b|cubic-bezier" apps/web/src --glob '!**/tokens.css'`.
+- Comprueba el checklist de accesibilidad y motion de [development-rules.md](development-rules.md#11-accesibilidad-y-motion) y ambos temas (claro/oscuro).
+
+**Excepciones conocidas** (no copiar como patrón): los `<meta name="theme-color">` de `layouts/Base.astro` (el navegador no lee variables CSS) y las curvas puntuales de `ThemeToggle.tsx` y `dot-pop` en `global.css`.

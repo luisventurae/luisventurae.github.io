@@ -134,6 +134,7 @@ En el frontend se aplican los mismos principios a escala: la lógica pura vive e
 - Tokens, escalas, componentes base y motion: [`docs/design-system.md`](design-system.md).
 - En código, `apps/web/src/styles/tokens.css` es la **única fuente de valores** (color, tipografía, espaciado, radios, sombras, easings, duraciones). Tailwind los consume vía `@theme`.
 - Prohibido hardcodear colores, duraciones o easings fuera de los tokens.
+- Cómo evitar que cada agente o skill imponga su propio estilo: [Consistencia entre agentes](design-system.md#8-consistencia-entre-agentes).
 
 ## 11. Accesibilidad y motion
 

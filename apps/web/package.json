@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "tsc7 -p tsconfig.json && astro check",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.5",

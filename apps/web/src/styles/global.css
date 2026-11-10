@@ -411,6 +411,42 @@
   scale: 1.5;
 }
 
+/*
+ * Project cards (React island, see lib/use-scroll-reveal.ts). The card rises while its
+ * screenshot opens like a curtain from the top, slightly behind the card so the eye follows
+ * the frame first. Drawer curve: a slow start (ease-in-out) left an empty frame on screen.
+ */
+@keyframes curtain {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+.project-reveal[data-reveal-state='hidden'] {
+  opacity: 0;
+}
+
+.project-reveal[data-reveal-state='shown'] {
+  --reveal-distance: 40px;
+  animation: reveal-rise 700ms var(--ease-out-strong) backwards;
+  animation-delay: calc(var(--reveal-index, 0) * 90ms);
+}
+
+.project-reveal[data-reveal-state='shown'] .project-media {
+  animation: curtain 750ms var(--ease-drawer) backwards;
+  animation-delay: calc(var(--reveal-index, 0) * 90ms + 100ms);
+}
+
+/* Hover: the screenshot leans in slightly, like looking closer. Pointer only. */
+.project-media img {
+  transition: scale 600ms var(--ease-out-strong);
+}
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .project-media img {
+    scale: 1.04;
+  }
+}
+
 /* Theme switch: circular reveal from the toggle (see ThemeToggle.tsx). */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -425,9 +461,13 @@
   /* Reduced motion keeps comprehension aids: reveals become a plain fade, no movement. */
   [data-inview] .reveal-item,
   [data-inview] .reveal-children > *,
-  [data-reveal='self'][data-inview] {
+  [data-reveal='self'][data-inview],
+  .project-reveal[data-reveal-state='shown'] {
     animation-name: reveal-fade !important;
     animation-duration: 400ms !important;
+  }
+  .project-reveal[data-reveal-state='shown'] .project-media {
+    animation: none !important;
   }
   *,
   *::before,

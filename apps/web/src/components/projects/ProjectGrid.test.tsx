@@ -69,6 +69,16 @@ describe('ProjectGrid', () => {
   })
 })
 
+describe('scroll reveal', () => {
+  it('never hides cards when the browser cannot observe them', () => {
+    render(<ProjectGrid projects={projects} labels={labels} />)
+    const states = [...document.querySelectorAll('.project-reveal')].map((card) =>
+      card.getAttribute('data-reveal-state'),
+    )
+    expect(states).toEqual(['static', 'static'])
+  })
+})
+
 describe('featured projects', () => {
   it('gives featured cards a wider slot', () => {
     render(<ProjectGrid projects={projects} labels={labels} />)

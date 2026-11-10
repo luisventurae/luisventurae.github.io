@@ -204,7 +204,7 @@ const project_labels = {
     class="container-page py-(--space-section)"
   >
     <SectionHeading id="projects" index="03" title={ui.projects.title} intro={ui.projects.intro} />
-    <ProjectGrid client:visible projects={project_cards} labels={project_labels} />
+    <ProjectGrid client:load projects={project_cards} labels={project_labels} />
   </section>
 
   <section id="stack" aria-labelledby="stack-title" class="container-page py-(--space-section)">

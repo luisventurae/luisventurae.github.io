@@ -6,10 +6,18 @@ import {
   useTransform,
   type MotionValue,
 } from 'motion/react'
-import { useState, useSyncExternalStore, type PointerEvent, type ReactElement } from 'react'
+import {
+  useState,
+  useSyncExternalStore,
+  type CSSProperties,
+  type PointerEvent,
+  type ReactElement,
+  type ReactNode,
+} from 'react'
 
 import { SPRING_SNAPPY, SPRING_TILT } from '../../lib/motion'
 import { selection_store } from '../../lib/selection-store'
+import { useScrollReveal } from '../../lib/use-scroll-reveal'
 import { ProjectDrawer } from './ProjectDrawer'
 import { ProjectMediaView } from './ProjectMediaView'
 import type { ProjectCard, ProjectsLabels } from './types'
@@ -31,6 +39,8 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
     selection_store.getServerSnapshot,
   )
 
+  const columns = gridColumns(projects)
+
   return (
     <>
       <ul className="grid gap-6 md:grid-cols-2">
@@ -45,13 +55,15 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
               data-featured={project.featured || undefined}
               className={`scroll-mt-24 ${project.featured ? 'md:col-span-2' : ''}`}
             >
-              <TiltCard
-                project={project}
-                is_match={is_match}
-                is_dimmed={is_dimmed}
-                open_label={labels.open}
-                onOpen={() => setOpenIndex(index)}
-              />
+              <RevealOnScroll column={columns[index] ?? 0}>
+                <TiltCard
+                  project={project}
+                  is_match={is_match}
+                  is_dimmed={is_dimmed}
+                  open_label={labels.open}
+                  onOpen={() => setOpenIndex(index)}
+                />
+              </RevealOnScroll>
             </li>
           )
         })}
@@ -65,6 +77,41 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
         onClose={() => setOpenIndex(null)}
       />
     </>
+  )
+}
+
+/** Column of each card in the two-column grid; featured cards take a full row. */
+function gridColumns(projects: ProjectCard[]): number[] {
+  let column = 0
+  return projects.map((project) => {
+    if (project.featured) {
+      column = 0
+      return 0
+    }
+    const current = column
+    column = (column + 1) % 2
+    return current
+  })
+}
+
+/** Cards rise in as they are scrolled to; the right column trails the left by 90 ms. */
+function RevealOnScroll({
+  column,
+  children,
+}: {
+  column: number
+  children: ReactNode
+}): ReactElement {
+  const { ref, state } = useScrollReveal<HTMLDivElement>()
+  return (
+    <div
+      ref={ref}
+      className="project-reveal"
+      data-reveal-state={state}
+      style={{ '--reveal-index': column } as CSSProperties}
+    >
+      {children}
+    </div>
   )
 }
 
@@ -121,7 +168,7 @@ function TiltCard({
         } ${project.featured ? 'md:grid md:grid-cols-[3fr_2fr]' : ''}`}
       >
         <div
-          className={`aspect-[16/10] overflow-hidden border-b border-line ${
+          className={`project-media aspect-[16/10] overflow-hidden border-b border-line ${
             project.featured ? 'md:aspect-auto md:h-full md:border-r md:border-b-0' : ''
           }`}
         >

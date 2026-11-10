@@ -104,8 +104,9 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 10. Verificación integral
 
-- [ ] 10.1 Con `docker compose up`: completar el juego y el formulario, ver en Mailpit el correo al reclutador (enlace de 7 días, sin la empresa) y la notificación al dueño con intereses, y descargar el PDF desde R2 local
-- [ ] 10.2 Capturas en es, en y fr, en móvil y escritorio, con el skill `run`, para revisar el hero, la línea de tiempo y el juego
+- [x] 10.1 Con `docker compose up`: completar el juego y el formulario, ver en Mailpit el correo al reclutador (enlace de 7 días, sin la empresa) y la notificación al dueño con intereses, y descargar el PDF desde R2 local
+- [x] 10.2 Capturas en es, en y fr, en móvil y escritorio, con el skill `run`, para revisar el hero, la línea de tiempo y el juego
+- [x] 10.3 Hallazgos de la verificación: el firmador aceptaba variantes no canónicas del último carácter de la firma (corregido en `fix(api)`, con test); en móvil, la flecha del CTA quedaba sola en una línea y el `· AWS` del hero quedaba huérfano (corregidos); sin scroll horizontal en es/en/fr a 390 px y a 1280 px
 
 ## Workflow follow-up
 

@@ -54,7 +54,7 @@ export function VacancyMatch(props: VacancyMatchProps): ReactElement {
           onClick={props.onContinue}
           className="pressable text-small font-semibold text-ink-muted underline underline-offset-4 transition-[color,scale] duration-(--duration-fast) ease-[ease] pointer-fine:hover:text-ink"
         >
-          {labels.skip} ↓
+          {`${labels.skip}\u00a0↓`}
         </button>
       </header>
 
@@ -94,7 +94,7 @@ export function VacancyMatch(props: VacancyMatchProps): ReactElement {
             exit={{ opacity: 0, transition: EVIDENCE_EXIT }}
             className="pressable justify-self-start rounded-md bg-accent px-6 py-3 font-semibold text-on-accent shadow-card"
           >
-            {labels.cta} →
+            {`${labels.cta}\u00a0→`}
           </motion.button>
         )}
       </AnimatePresence>

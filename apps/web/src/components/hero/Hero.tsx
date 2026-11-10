@@ -102,7 +102,7 @@ export function Hero(props: HeroProps): ReactElement {
         {props.role}
       </p>
       <p
-        className="hero-fade mt-2 font-mono text-small text-ink-muted"
+        className="hero-fade mt-2 font-mono text-small text-balance text-ink-muted"
         style={{ animationDelay: '120ms' }}
       >
         {props.facts}

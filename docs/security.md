@@ -11,6 +11,7 @@ Este repositorio es **público**: se publica para mostrar cómo se construyó el
 5. [CI/CD](#5-cicd)
 6. [Código](#6-código)
 7. [Si se filtra un secreto](#7-si-se-filtra-un-secreto)
+8. [OWASP](#8-owasp)
 
 ## 1. Principios
 
@@ -68,3 +69,22 @@ Este repositorio es **público**: se publica para mostrar cómo se construyó el
 2. Actualizar el valor en el gestor de secretos y redesplegar.
 3. Revisar logs de uso del secreto comprometido.
 4. Documentar el incidente en el PR que lo corrige (sin incluir el valor).
+
+## 8. OWASP
+
+Referencias: [OWASP Top 10 (2021)](https://owasp.org/Top10/) y [ASVS](https://owasp.org/www-project-application-security-verification-standard/) nivel 1 como checklist. Cómo se cubre cada riesgo relevante:
+
+| Riesgo OWASP                       | Medida en este proyecto                                                                                                                                                                                                                                               |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A01 Broken Access Control          | CORS limitado a `ALLOWED_ORIGIN`; `/rag/*` no existe en producción; descarga del CV solo con token HMAC firmado y con expiración.                                                                                                                                     |
+| A02 Cryptographic Failures         | HMAC-SHA-256 vía WebCrypto, secreto ≥ 32 bytes, comparación en tiempo constante; todo el tráfico por HTTPS (GitHub Pages y Workers).                                                                                                                                  |
+| A03 Injection                      | Validación con zod de todo input (longitudes máximas, formatos); sin SQL; Markdown propio renderizado en build; salida de la terminal como texto, nunca `innerHTML`; prompt del RAG con el contexto delimitado y la pregunta tratada como dato.                       |
+| A04 Insecure Design                | Specs con escenarios de abuso (captcha, rate limit, tokens manipulados) antes de implementar; casos de uso testeados con fakes.                                                                                                                                       |
+| A05 Security Misconfiguration      | Cabeceras en la API (`X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, CSP `default-src 'none'`); en la web, CSP por `<meta>` (`default-src 'self'`, Turnstile y la API permitidos explícitamente) y `referrer` estricto; errores genéricos al cliente. |
+| A06 Vulnerable Components          | `npm audit --audit-level=high` en CI, Dependabot para npm y GitHub Actions, acciones fijadas por SHA, lockfile commiteado.                                                                                                                                            |
+| A07 Identification & Auth Failures | No hay cuentas de usuario; el abuso se controla con Turnstile verificado en servidor y rate limit por IP.                                                                                                                                                             |
+| A08 Software & Data Integrity      | Despliegue solo desde CI sobre `master`; sin scripts de terceros salvo Turnstile (dominio fijo); sin `pull_request_target`.                                                                                                                                           |
+| A09 Logging & Monitoring           | Logs estructurados de eventos de seguridad (captcha fallido, rate limit, token inválido) sin PII ni secretos.                                                                                                                                                         |
+| A10 SSRF                           | La API no hace peticiones a URLs provistas por el usuario; los destinos (Turnstile, Ollama, Mailpit) vienen de configuración.                                                                                                                                         |
+
+Límites adicionales: cuerpo de petición máximo 4 KB en `/contact` y 2 KB en `/rag/ask`; pregunta ≤ 500 caracteres.

@@ -64,3 +64,12 @@ The API SHALL only allow cross-origin requests from the configured site origin a
 
 - **WHEN** a preflight request comes from an origin other than the configured one
 - **THEN** no `Access-Control-Allow-Origin` header for that origin is returned
+
+### Requirement: Request size limits
+
+The API SHALL reject request bodies larger than 4 KB on `/contact` with status 413 and SHALL never echo request content or secrets in error responses.
+
+#### Scenario: Oversized body
+
+- **WHEN** a 5 KB body is posted to `/contact`
+- **THEN** the response is 413 with a generic error code

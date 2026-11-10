@@ -28,7 +28,8 @@
 
 ## 6. Web: base
 
-- [ ] 6.1 Astro + React + Tailwind v4, `tokens.css`, fuentes, layout con SEO/JSON-LD y tema sin flash — verificar: `npm run build -w apps/web`
+- [ ] 6.1 Astro + React + Tailwind v4, `tokens.css`, fuentes, layout con tema sin flash y CSP por meta — verificar: `npm run build -w apps/web`
+- [ ] 6.3 SEO: canonical, hreflang, sitemap, robots.txt, Open Graph/Twitter con imagen 1200×630 por idioma y JSON-LD (`ProfilePage`/`Person`/`WebSite`/`ItemList`) — verificar: tests de `src/lib/seo` que validan campos requeridos y E2E que parsea el JSON-LD
 - [ ] 6.2 Rutas `/`, `/en/`, `/fr/`, strings UI tipados, selector de idioma y toggle de tema con View Transitions — verificar: tests de `src/lib/i18n` y build
 
 ## 7. Web: contenido
@@ -69,7 +70,7 @@
 
 ## 15. CI/CD y README
 
-- [ ] 15.1 `ci.yml`, `release-pr.yml`, `deploy.yml` — verificar: `actionlint`
+- [ ] 15.1 `ci.yml` (incluye gitleaks y `npm audit`), `release-pr.yml`, `deploy.yml`, Dependabot — verificar: `actionlint`
 - [ ] 15.2 `docs/deployment.md` y README raíz corto — verificar: enlaces del índice
 
 ## Workflow follow-up

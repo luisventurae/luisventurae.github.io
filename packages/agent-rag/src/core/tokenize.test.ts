@@ -23,4 +23,9 @@ describe('tokenize', () => {
   it('handles accents and ignores punctuation', () => {
     expect(tokenize('¿Configuración?')).toEqual(['configuración'])
   })
+
+  it('drops Spanish and English stop words', () => {
+    expect(tokenize('dónde se valida el captcha')).toEqual(['valida', 'captcha'])
+    expect(tokenize('where is the captcha validated')).toEqual(['captcha', 'validated'])
+  })
 })

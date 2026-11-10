@@ -12,7 +12,8 @@ import type { TerminalContext } from '../lib/terminal/commands'
 import { skillUsage } from '../lib/projects'
 import { parsePublicEnv } from '../lib/public-env'
 import type { ProjectCard } from './projects/types'
-import { ContactForm } from './contact/ContactForm'
+import { CvSection } from './cv/CvSection'
+import type { VacancyMatchLabels } from './cv/VacancyMatch'
 import { ProjectGrid } from './projects/ProjectGrid'
 import { StackMap, type StackSkill } from './stack/StackMap'
 import { Terminal } from './terminal/Terminal'
@@ -99,6 +100,15 @@ const contact_labels = {
   success: ui.contact.success,
   check_inbox: ui.contact.check_inbox,
   errors: ui.contact.errors,
+}
+const match_labels: VacancyMatchLabels = {
+  ...ui.cv_match,
+  requirements: Object.fromEntries(
+    Object.entries(ui.cv_match.requirements).map(([id, copy]) => [
+      id,
+      { ...copy, proof: interpolateYears(copy.proof, years) },
+    ]),
+  ) as VacancyMatchLabels['requirements'],
 }
 const profile = await loadProfile(locale)
 const project_titles = Object.fromEntries(projects.map((project) => [project.slug, project.title]))
@@ -204,12 +214,13 @@ const project_labels = {
 
   <section id="contact" aria-labelledby="contact-title" class="container-page py-(--space-section)">
     <SectionHeading id="contact" index="05" title={ui.contact.title} intro={ui.contact.intro} />
-    <ContactForm
+    <CvSection
       client:visible
       locale={locale}
       api_url={api_url}
       turnstile_site_key={turnstile_site_key}
-      labels={contact_labels}
+      match_labels={match_labels}
+      form_labels={contact_labels}
     />
   </section>
 

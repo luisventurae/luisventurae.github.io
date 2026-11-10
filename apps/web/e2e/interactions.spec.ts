@@ -78,6 +78,8 @@ test.describe('CV request', () => {
     })
     await page.goto('/')
     await page.locator('#contact').scrollIntoViewIfNeeded()
+    await page.getByRole('button', { name: /Saltar al formulario/ }).click()
+    await expect(page.getByLabel('Email')).toBeFocused()
     await expect(page.getByText('captcha ok')).toBeVisible()
     await page.getByLabel('Email').fill('recruiter@company.com')
     await page.getByLabel('Empresa').fill('ACME')
@@ -93,12 +95,37 @@ test.describe('CV request', () => {
     })
   })
 
+  test('the vacancy match scores honestly and sends the interests', async ({ page }) => {
+    let request_body: unknown = null
+    await page.route('http://api.test/contact', async (route) => {
+      request_body = route.request().postDataJSON()
+      await route.fulfill({ json: { status: 'sent' } })
+    })
+    await page.goto('/')
+    const section = page.locator('#contact')
+    await section.scrollIntoViewIfNeeded()
+    await section.getByRole('button', { name: 'Node.js', exact: true }).click()
+    await section.getByRole('button', { name: 'Java', exact: true }).click()
+    await expect(section.getByText('75%')).toBeVisible()
+    await expect(section.getByText(/mi fuerte es Node\.js/)).toBeVisible()
+    await section.getByRole('button', { name: /Recibe el CV completo/ }).click()
+    await expect(page.getByLabel('Email')).toBeFocused()
+    await expect(page.getByText('captcha ok')).toBeVisible()
+    await page.getByLabel('Email').fill('recruiter@company.com')
+    await page.getByLabel('Empresa').fill('ACME')
+    await page.getByRole('button', { name: 'Enviarme el CV' }).click()
+    await expect(section.getByRole('status')).toContainText('recruiter@company.com')
+    expect(request_body).toMatchObject({ interests: ['nodejs', 'java'] })
+  })
+
   test('shows API errors', async ({ page }) => {
     await page.route('http://api.test/contact', (route) =>
       route.fulfill({ status: 429, json: { error: { code: 'rate_limited' } } }),
     )
     await page.goto('/')
     await page.locator('#contact').scrollIntoViewIfNeeded()
+    await page.getByRole('button', { name: /Saltar al formulario/ }).click()
+    await expect(page.getByLabel('Email')).toBeFocused()
     await expect(page.getByText('captcha ok')).toBeVisible()
     await page.getByLabel('Email').fill('recruiter@company.com')
     await page.getByLabel('Empresa').fill('ACME')

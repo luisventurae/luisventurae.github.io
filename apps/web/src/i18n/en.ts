@@ -105,9 +105,54 @@ export const en: UiStrings = {
       categories_hint: 'Categories: backend, frontend, other.',
     },
   },
+  cv_match: {
+    prompt: 'What does your role require?',
+    hint: 'Pick the requirements and see how well I fit. No tricks: I also tell you what I do not meet.',
+    empty: 'Pick at least one requirement to see the match.',
+    score: 'Match',
+    cta: 'Get the full resume in your inbox',
+    skip: 'Skip to the form',
+    levels: { met: 'Meets', partial: 'Partial', unmet: 'Does not meet' },
+    requirements: {
+      nodejs: { label: 'Node.js', proof: '{years} years building production APIs with Node.js.' },
+      typescript: {
+        label: 'TypeScript',
+        proof: 'Strict TypeScript end to end, this site included.',
+      },
+      aws: { label: 'AWS', proof: 'Infrastructure as code with AWS CDK at Prestamype.' },
+      microservices: {
+        label: 'Microservices',
+        proof: 'Microservices with hexagonal architecture at Prestamype.',
+      },
+      mongodb: {
+        label: 'MongoDB',
+        proof: 'MongoDB at Prestamype, on Ticker and several e-commerce apps.',
+      },
+      'clean-architecture': {
+        label: 'Clean architecture',
+        proof: 'Ports, adapters and pure use cases, test-driven.',
+      },
+      integrations: {
+        label: 'Integrations and chatbots',
+        proof: 'WhatsApp Business API, Zoho CRM, Twilio and chatbots in production.',
+      },
+      scrum: { label: 'Scrum', proof: 'Agile teams with Scrum, specs first and CI/CD.' },
+      english: { label: 'English', proof: 'I work in English, and I also speak French.' },
+      'remote-hybrid': {
+        label: 'Remote or hybrid',
+        proof: 'Exactly what I am looking for, from Peru.',
+      },
+      java: { label: 'Java', proof: 'I have used it, but my strength is Node.js.' },
+      kubernetes: {
+        label: 'Kubernetes',
+        proof: 'Not in production yet; I work with Docker and AWS.',
+      },
+      'on-site': { label: 'On-site', proof: 'I am looking for remote or hybrid roles.' },
+    },
+  },
   contact: {
     title: "Let's talk?",
-    intro: 'Leave your email and company and I will send my resume to your inbox.',
+    intro: 'Tell me what your role requires and I will email you my resume.',
     email: 'Email',
     company: 'Company',
     submit: 'Email me the resume',

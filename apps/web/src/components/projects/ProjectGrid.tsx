@@ -116,7 +116,7 @@ function TiltCard({
         onPointerLeave={resetTilt}
         aria-label={`${open_label}: ${project.title}`}
         style={{ rotateX: rotate_x, rotateY: rotate_y }}
-        className={`pressable group block w-full overflow-hidden rounded-lg border bg-paper-raised text-left shadow-card transition-[border-color,box-shadow] duration-200 pointer-fine:hover:shadow-lift ${
+        className={`pressable group block w-full overflow-hidden rounded-lg border bg-paper-raised text-left shadow-card transition-[border-color,box-shadow,scale] duration-200 pointer-fine:hover:shadow-lift ${
           is_match ? 'border-accent ring-2 ring-accent/40' : 'border-line'
         } ${project.featured ? 'md:grid md:grid-cols-[3fr_2fr]' : ''}`}
       >

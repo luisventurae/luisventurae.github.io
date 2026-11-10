@@ -106,9 +106,60 @@ export const fr: UiStrings = {
       categories_hint: 'Catégories : backend, frontend, other.',
     },
   },
+  cv_match: {
+    prompt: 'Que demande ton poste ?',
+    hint: 'Coche les exigences et vois à quel point je corresponds. Sans triche : je te dis aussi ce qui ne colle pas.',
+    empty: 'Choisis au moins une exigence pour voir le match.',
+    score: 'Match',
+    cta: 'Reçois le CV complet par e-mail',
+    skip: 'Passer au formulaire',
+    levels: { met: 'Correspond', partial: 'Partiel', unmet: 'Ne correspond pas' },
+    requirements: {
+      nodejs: {
+        label: 'Node.js',
+        proof: '{years} ans à construire des APIs en production avec Node.js.',
+      },
+      typescript: {
+        label: 'TypeScript',
+        proof: 'TypeScript strict de bout en bout, ce site compris.',
+      },
+      aws: { label: 'AWS', proof: 'Infrastructure as code avec AWS CDK chez Prestamype.' },
+      microservices: {
+        label: 'Microservices',
+        proof: 'Microservices en architecture hexagonale chez Prestamype.',
+      },
+      mongodb: {
+        label: 'MongoDB',
+        proof: 'MongoDB chez Prestamype, sur Ticker et plusieurs e-commerces.',
+      },
+      'clean-architecture': {
+        label: 'Architecture propre',
+        proof: 'Ports, adaptateurs et cas d’usage purs, en TDD.',
+      },
+      integrations: {
+        label: 'Intégrations et chatbots',
+        proof: 'WhatsApp Business API, Zoho CRM, Twilio et chatbots en production.',
+      },
+      scrum: {
+        label: 'Scrum',
+        proof: 'Équipes agiles avec Scrum, spécifications d’abord et CI/CD.',
+      },
+      english: { label: 'Anglais', proof: 'Je travaille en anglais et je parle aussi français.' },
+      'remote-hybrid': {
+        label: 'Télétravail ou hybride',
+        proof: 'C’est exactement ce que je cherche, depuis le Pérou.',
+      },
+      java: { label: 'Java', proof: 'Je l’ai utilisé, mais ma force est Node.js.' },
+      kubernetes: {
+        label: 'Kubernetes',
+        proof: 'Pas encore en production ; je travaille avec Docker et AWS.',
+      },
+      'on-site': { label: 'Sur site', proof: 'Je cherche des postes en télétravail ou hybrides.' },
+    },
+  },
   contact: {
     title: 'On en parle ?',
-    intro: 'Laisse ton email et ton entreprise et je t’envoie mon CV par e-mail.',
+    intro: 'Dis-moi ce que demande ton poste et je t’envoie mon CV par e-mail.',
     email: 'Email',
     company: 'Entreprise',
     submit: 'M’envoyer le CV',

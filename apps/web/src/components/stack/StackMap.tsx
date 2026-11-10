@@ -142,7 +142,7 @@ function SkillChip({ skill, is_selected, is_dimmed, reduce_motion }: SkillChipPr
         onFocus={() => selection_store.preview(skill.id)}
         onBlur={() => selection_store.preview(null)}
         style={{ '--chip-color': color } as CSSProperties}
-        className={`pressable flex items-center gap-2 rounded-full border font-display transition-[background-color,border-color,color] duration-150 ${chipSize(skill.tier)} ${
+        className={`pressable flex items-center gap-2 rounded-full border font-display transition-[background-color,border-color,color,scale] duration-150 ${chipSize(skill.tier)} ${
           is_selected
             ? 'border-transparent bg-(--chip-color) text-on-accent'
             : 'border-line bg-paper-raised pointer-fine:hover:border-(--chip-color)'

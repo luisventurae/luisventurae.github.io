@@ -83,8 +83,8 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 8. Match de vacante (`feat(web): add vacancy match game before the CV form`)
 
-- [ ] 8.1 TDD de `lib/vacancy-match.ts` (`matchScore`: 100 + 50 = 75, vacío → null) y `data/vacancy-match.ts` con textos y pruebas en es/en/fr; verificar con `npm test`
-- [ ] 8.2 `VacancyMatch.tsx`:
+- [x] 8.1 TDD de `lib/vacancy-match.ts` (`matchScore`: 100 + 50 = 75, vacío → null) y `data/vacancy-match.ts` con textos y pruebas en es/en/fr; verificar con `npm test`
+- [x] 8.2 `VacancyMatch.tsx`:
   - chips con `aria-pressed`;
   - pruebas reveladas;
   - medidor con `scaleX` y spring;
@@ -95,8 +95,8 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
   Tests en `VacancyMatch.test.tsx`; verificar con `npm test`.
 
-- [ ] 8.3 Integrar el juego en la sección CV de `HomePage.astro`, con E2E en `interactions.spec.ts` (seleccionar, ver 75%, saltar, enviar con `interests` en el body); verificar con `npm run test:e2e`
-- [ ] 8.4 Revisar el motion con el skill `review-animations` y aplicar lo que salga; documentar el medidor y los chips en `docs/design-system.md`; verificar con `npm run verify`
+- [x] 8.3 Integrar el juego en la sección CV de `HomePage.astro`, con E2E en `interactions.spec.ts` (seleccionar, ver 75%, saltar, enviar con `interests` en el body); verificar con `npm run test:e2e`
+- [x] 8.4 Revisar el motion con el enfoque Emil Kowalski (skill `emil-design-eng`) y aplicar lo que salga (CTA con entrada y salida, `.pressable` con la propiedad `scale`); documentar el medidor y los chips en `docs/design-system.md`; verificar con `npm run verify`
 
 ## 9. Rebuild anual (`ci: rebuild yearly to refresh years of experience`)
 

@@ -92,11 +92,16 @@
     padding-inline: var(--gutter);
   }
 
+  /*
+   * Press feedback uses the individual `scale` property so it composes with the `transform`
+   * Motion writes (tilt, drag, entrances). Elements that also set `transition-[...]` must
+   * list `scale` there, or the utility's transition-property drops it.
+   */
   .pressable {
-    transition: transform var(--duration-press) var(--ease-out-strong);
+    transition: scale var(--duration-press) var(--ease-out-strong);
   }
   .pressable:active {
-    transform: scale(0.97);
+    scale: 0.97;
   }
 
   .terminal {

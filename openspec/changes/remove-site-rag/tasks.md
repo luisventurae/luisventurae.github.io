@@ -13,8 +13,8 @@
 
 ## 3. `rag-ingest` y Docker
 
-- [ ] 3.1 Borrar `packages/rag-ingest` y sus referencias (workspaces, knip, vitest, tsconfig, lockfile) — verificar: `npm install`, `npm run lint:unused`
-- [ ] 3.2 Quitar `ollama`, `ollama-pull`, `rag-ingest`, `ollama_models` y variables `RAG_*` de `docker-compose.yml` y `.env.example` — verificar: `docker compose config`, `docker compose up` sin servicios de modelos
+- [x] 3.1 Borrar `packages/rag-ingest` y sus referencias (workspaces, knip, vitest, tsconfig, lockfile) — verificar: `npm install`, `npm run lint:unused`
+- [x] 3.2 Quitar `ollama`, `ollama-pull`, `rag-ingest`, `ollama_models` y variables `RAG_*` de `docker-compose.yml` y `.env.example` — verificar: `docker compose config`, `docker compose up` sin servicios de modelos
 
 ## 4. Documentación e índice para agentes
 

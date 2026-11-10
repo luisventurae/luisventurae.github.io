@@ -2,8 +2,8 @@
 
 ## 1. Web: terminal sin `ask`
 
-- [ ] 1.1 Tests rojos: `ask` responde "comando desconocido"; sin `ask` en `help` ni en autocompletado — verificar: `npx vitest run apps/web/src/lib/terminal apps/web/src/components/terminal`
-- [ ] 1.2 Borrar `ask-client.ts` (+ test), el comando `ask` y sus textos i18n (es/en/fr); retirar `PUBLIC_API_URL` de la terminal si queda sin uso — verificar: tests de terminal en verde, `npm run typecheck`
+- [x] 1.1 Tests rojos: `ask` responde "comando desconocido"; sin `ask` en `help` ni en autocompletado — verificar: `npx vitest run apps/web/src/lib/terminal apps/web/src/components/terminal`
+- [x] 1.2 Borrar `ask-client.ts` (+ test), el comando `ask` y sus textos i18n (es/en/fr); retirar `PUBLIC_API_URL` de la terminal si queda sin uso — verificar: tests de terminal en verde, `npm run typecheck`
 
 ## 2. API y shared sin RAG
 

@@ -12,8 +12,8 @@ describe('parseCommand', () => {
   })
 
   it('keeps the raw rest of the line for free-text commands', () => {
-    expect(parseCommand('ask ¿Qué   bases usas?')).toEqual({
-      name: 'ask',
+    expect(parseCommand('search ¿Qué   bases usas?')).toEqual({
+      name: 'search',
       args: ['¿Qué', 'bases', 'usas?'],
       rest: '¿Qué   bases usas?',
     })

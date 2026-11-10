@@ -58,14 +58,13 @@ test.describe('terminal', () => {
     await expect(page.getByRole('log')).toContainText('Securitec')
   })
 
-  test('ask falls back to text search in production', async ({ page }) => {
+  test('ask is an unknown command', async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('networkidle')
     const input = page.getByLabel('Comando de la terminal')
     await input.fill('ask ¿usas redis?')
     await input.press('Enter')
-    await expect(page.getByRole('log')).toContainText('solo corre en local')
-    await expect(page.getByRole('log')).toContainText('▸ Ticker')
+    await expect(page.getByRole('log')).toContainText('No conozco ese comando')
   })
 })
 

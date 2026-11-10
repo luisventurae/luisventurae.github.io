@@ -11,7 +11,7 @@ export interface SearchResult {
 const MAX_RESULTS = 3
 const EXCERPT_LENGTH = 160
 
-/** Offline full-text search over the prebuilt chunks (production fallback for `ask`). */
+/** Offline full-text search over the prebuilt chunks. */
 export function createSearch(
   chunks: DocumentChunk[],
 ): (query: string, locale: Locale) => SearchResult[] {

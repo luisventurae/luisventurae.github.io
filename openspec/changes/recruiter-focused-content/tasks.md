@@ -63,8 +63,8 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 7. CV por correo (`feat(api): email the CV link via Resend with per-recipient limit`)
 
-- [ ] 7.1 `packages/shared`: `VACANCY_REQUIREMENT_IDS`, `interests` opcional (máx. 12) en `ContactRequestSchema`, `ContactResponseSchema = { status: 'sent' }` y `email_failed` en `API_ERROR_CODES`; tests en `contact.test.ts`; verificar con `npm test`
-- [ ] 7.2 TDD de `core/contact.ts`:
+- [x] 7.1 `packages/shared`: `VACANCY_REQUIREMENT_IDS`, `interests` opcional (máx. 12) en `ContactRequestSchema`, `ContactResponseSchema = { status: 'sent' }` y `email_failed` en `API_ERROR_CODES`; tests en `contact.test.ts`; verificar con `npm test`
+- [x] 7.2 TDD de `core/contact.ts`:
   - límite por destinatario con hash;
   - TTL de 7 días;
   - `sendCvLink` con la URL;
@@ -75,10 +75,10 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
   Verificar con `npm test`.
 
-- [ ] 7.3 Adaptadores: `createResendEmailSender` (tests con fetch falso: payload, cabecera Bearer, error en no-2xx) y Mailpit para cualquier destinatario; eliminar el sender de Cloudflare; verificar con `npm test`
-- [ ] 7.4 `config.ts` (`resend` | `mailpit`, `RESEND_API_KEY` obligatorio con resend y en producción), `main.ts` (segunda política de rate limit), `wrangler.toml` sin `send_email`, `.dev.vars.example`; tests de config; verificar con `npm test` y `npm run typecheck`
-- [ ] 7.5 Web: `api-client.ts` y `ContactForm.tsx` con éxito "Revisa tu correo" y mensaje `email_failed` en es/en/fr; eliminar `startDownload` y `download_again` (`knip` limpio); verificar con `npm run verify`
-- [ ] 7.6 Actualizar `docs/deployment.md` (Resend, DNS SPF/DKIM, secret), `docs/security.md` (secretos, límite por destinatario) y `docs/architecture.md` (flujo de contacto); verificar que los pasos documentados coinciden con `wrangler.toml`
+- [x] 7.3 Adaptadores: `createResendEmailSender` (tests con fetch falso: payload, cabecera Bearer, error en no-2xx) y Mailpit para cualquier destinatario; eliminar el sender de Cloudflare; verificar con `npm test`
+- [x] 7.4 `config.ts` (`resend` | `mailpit`, `RESEND_API_KEY` obligatorio con resend y en producción), `main.ts` (segunda política de rate limit), `wrangler.toml` sin `send_email`, `.dev.vars.example`; tests de config; verificar con `npm test` y `npm run typecheck`
+- [x] 7.5 Web: `api-client.ts` y `ContactForm.tsx` con éxito "Revisa tu correo" y mensaje `email_failed` en es/en/fr; eliminar `startDownload` y `download_again` (`knip` limpio); verificar con `npm run verify`
+- [x] 7.6 Actualizar `docs/deployment.md` (Resend, DNS SPF/DKIM, secret), `docs/security.md` (secretos, límite por destinatario) y `docs/architecture.md` (flujo de contacto); verificar que los pasos documentados coinciden con `wrangler.toml`
 
 ## 8. Match de vacante (`feat(web): add vacancy match game before the CV form`)
 

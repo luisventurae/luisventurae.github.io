@@ -12,19 +12,19 @@ function fetcher(response: Response | Error): typeof fetch {
 }
 
 describe('requestCv', () => {
-  it('returns the download url on success', async () => {
-    const ok = Response.json({
-      download_url: 'https://api.example.com/cv/abc',
-      expires_at: '2026-11-10T10:00:00.000Z',
-    })
-    const result = await requestCv('https://api.example.com/', body, fetcher(ok))
-    expect(result).toEqual({
-      ok: true,
-      data: {
-        download_url: 'https://api.example.com/cv/abc',
-        expires_at: '2026-11-10T10:00:00.000Z',
-      },
-    })
+  it('confirms that the CV was emailed', async () => {
+    const result = await requestCv(
+      'https://api.example.com/',
+      body,
+      fetcher(Response.json({ status: 'sent' })),
+    )
+    expect(result).toEqual({ ok: true, data: { status: 'sent' } })
+  })
+
+  it('treats an unexpected success body as an internal error', async () => {
+    const legacy = Response.json({ download_url: 'https://api.example.com/cv/abc' })
+    const result = await requestCv('https://api.example.com', body, fetcher(legacy))
+    expect(result).toEqual({ ok: false, code: 'internal_error' })
   })
 
   it('posts JSON to /contact', async () => {

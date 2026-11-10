@@ -108,13 +108,14 @@ export const fr: UiStrings = {
   },
   contact: {
     title: 'On en parle ?',
-    intro: 'Laisse ton email et ton entreprise et télécharge mon CV tout de suite.',
+    intro: 'Laisse ton email et ton entreprise et je t’envoie mon CV par e-mail.',
     email: 'Email',
     company: 'Entreprise',
-    submit: 'Obtenir le CV',
-    sending: 'Vérification…',
-    success: 'C’est parti ! Ton téléchargement a commencé.',
-    download_again: 'Télécharger à nouveau',
+    submit: 'M’envoyer le CV',
+    sending: 'Envoi…',
+    success: 'Envoyé ! Regarde ta boîte mail.',
+    check_inbox:
+      'Je l’ai envoyé à {email}. Le lien expire dans 7 jours ; sinon, regarde dans les spams.',
     errors: {
       invalid_request: 'Vérifie l’email et l’entreprise.',
       captcha_failed: 'Impossible de vérifier le captcha. Réessaie.',
@@ -123,6 +124,7 @@ export const fr: UiStrings = {
       invalid_token: 'Le lien de téléchargement a expiré.',
       not_found: 'Ressource introuvable.',
       internal_error: 'Un problème est survenu de notre côté. Réessaie plus tard.',
+      email_failed: 'Impossible d’envoyer l’e-mail. Réessaie dans quelques minutes.',
       network: 'Impossible de joindre le serveur.',
       captcha_missing: 'Complète d’abord le captcha.',
     },

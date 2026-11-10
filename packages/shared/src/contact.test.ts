@@ -29,19 +29,28 @@ describe('ContactRequestSchema', () => {
     expect(ContactRequestSchema.safeParse({ ...valid_request, ...override }).success).toBe(false)
   })
 
+  it('accepts known vacancy requirements as interests', () => {
+    const parsed = ContactRequestSchema.parse({ ...valid_request, interests: ['nodejs', 'aws'] })
+    expect(parsed.interests).toEqual(['nodejs', 'aws'])
+  })
+
+  it.each([
+    ['unknown interest', ['cobol']],
+    ['duplicated interests', ['nodejs', 'nodejs']],
+    ['more than 12 interests', Array.from({ length: 13 }, () => 'nodejs')],
+  ])('rejects %s', (_label, interests) => {
+    expect(ContactRequestSchema.safeParse({ ...valid_request, interests }).success).toBe(false)
+  })
+
   it('rejects unknown fields', () => {
     expect(ContactRequestSchema.safeParse({ ...valid_request, admin: true }).success).toBe(false)
   })
 })
 
 describe('ContactResponseSchema', () => {
-  it('requires an absolute download url and an ISO expiry', () => {
-    const response = {
-      download_url: 'https://api.example.com/cv/abc',
-      expires_at: '2026-11-10T10:00:00.000Z',
-    }
-    expect(ContactResponseSchema.parse(response)).toEqual(response)
-    expect(ContactResponseSchema.safeParse({ ...response, download_url: '/cv/abc' }).success).toBe(
+  it('only confirms that the email was sent, never the download url', () => {
+    expect(ContactResponseSchema.parse({ status: 'sent' })).toEqual({ status: 'sent' })
+    expect(ContactResponseSchema.safeParse({ download_url: 'https://x/cv/abc' }).success).toBe(
       false,
     )
   })
@@ -50,6 +59,7 @@ describe('ContactResponseSchema', () => {
 describe('ApiErrorSchema', () => {
   it('only allows known error codes', () => {
     expect(ApiErrorSchema.safeParse({ error: { code: 'rate_limited' } }).success).toBe(true)
+    expect(ApiErrorSchema.safeParse({ error: { code: 'email_failed' } }).success).toBe(true)
     expect(ApiErrorSchema.safeParse({ error: { code: 'boom' } }).success).toBe(false)
   })
 })

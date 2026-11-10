@@ -28,7 +28,7 @@ workers_dev = true
 [env.production.vars]
 ENVIRONMENT = "production"
 ALLOWED_ORIGIN = "https://luisventurae.github.io"
-EMAIL_TRANSPORT = "cloudflare"
+EMAIL_TRANSPORT = "resend"
 EMAIL_FROM = "__EMAIL_FROM__"
 
 [[env.production.kv_namespaces]]
@@ -38,6 +38,3 @@ id = "__RATE_LIMIT_KV_ID__"
 [[env.production.r2_buckets]]
 binding = "CV_BUCKET"
 bucket_name = "__CV_BUCKET_NAME__"
-
-[[env.production.send_email]]
-name = "SEND_EMAIL"

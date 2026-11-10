@@ -1,5 +1,6 @@
 import { DEFAULT_LOCALE, type ContactRequest, type ContactResponse } from '@portfolio/shared'
 
+import { buildCvEmail } from './cv-email'
 import { DomainError } from './errors'
 import type {
   CaptchaVerifier,
@@ -12,11 +13,13 @@ import type {
   TokenSigner,
 } from './ports'
 
-export const DOWNLOAD_TTL_MS = 10 * 60 * 1000
+export const DOWNLOAD_TTL_MS = 7 * 24 * 60 * 60 * 1000
 
 export interface ContactDeps {
   captcha: CaptchaVerifier
   rate_limiter: RateLimiter
+  /** Caps CV emails per destination address, independently of the client IP. */
+  recipient_rate_limiter: RateLimiter
   signer: TokenSigner
   cv_storage: CvStorage
   email: EmailSender
@@ -27,35 +30,58 @@ export interface ContactDeps {
 export interface SubmitContactInput {
   request: ContactRequest
   client_ip: string
-  /** Public origin of the API, used to build the download URL. */
+  /** Public origin of the API, used to build the emailed download URL. */
   base_url: string
 }
 
-/** Verifies the visitor, notifies the owner and returns a short-lived CV download URL. */
+/** Verifies the visitor, emails them a signed CV link and notifies the owner. */
 export async function submitContactRequest(
   deps: Omit<ContactDeps, 'cv_storage'>,
   input: SubmitContactInput,
 ): Promise<ContactResponse> {
+  await assertAllowed(deps, input)
+
+  const { locale, email } = input.request
+  const exp = deps.clock.now() + DOWNLOAD_TTL_MS
+  const token = await deps.signer.sign({ locale, exp })
+  const download_url = `${input.base_url}/cv/${encodeURIComponent(token)}`
+  try {
+    await deps.email.sendCvLink(email, buildCvEmail(locale, download_url, new Date(exp)))
+  } catch (error) {
+    deps.logger.error('contact.cv_email_failed', { reason: errorName(error) })
+    throw new DomainError('email_failed')
+  }
+
+  await notifyOwner(deps, input.request)
+  return { status: 'sent' }
+}
+
+/** Captcha first (no side effects before it), then per-IP and per-recipient limits. */
+async function assertAllowed(
+  deps: Pick<ContactDeps, 'captcha' | 'rate_limiter' | 'recipient_rate_limiter' | 'logger'>,
+  input: SubmitContactInput,
+): Promise<void> {
   const is_human = await deps.captcha.verify(input.request.captcha_token, input.client_ip)
   if (!is_human) {
     deps.logger.warn('contact.captcha_failed')
     throw new DomainError('captcha_failed')
   }
-
-  const is_allowed = await deps.rate_limiter.consume(`contact:${input.client_ip}`)
-  if (!is_allowed) {
+  if (!(await deps.rate_limiter.consume(`contact:${input.client_ip}`))) {
     deps.logger.warn('contact.rate_limited')
     throw new DomainError('rate_limited')
   }
-
-  const exp = deps.clock.now() + DOWNLOAD_TTL_MS
-  const token = await deps.signer.sign({ locale: input.request.locale, exp })
-  await notifyOwner(deps, input.request)
-
-  return {
-    download_url: `${input.base_url}/cv/${encodeURIComponent(token)}`,
-    expires_at: new Date(exp).toISOString(),
+  if (!(await deps.recipient_rate_limiter.consume(await recipientKey(input.request.email)))) {
+    deps.logger.warn('contact.recipient_rate_limited')
+    throw new DomainError('rate_limited')
   }
+}
+
+/** Hashed so addresses never sit in clear text in the rate-limit store. */
+async function recipientKey(email: string): Promise<string> {
+  const data = new TextEncoder().encode(email.trim().toLowerCase())
+  const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', data))
+  const hex = Array.from(digest, (byte) => byte.toString(16).padStart(2, '0')).join('')
+  return `contact:to:${hex}`
 }
 
 async function notifyOwner(
@@ -65,7 +91,11 @@ async function notifyOwner(
   try {
     await deps.email.notifyOwner({
       subject: `CV solicitado por ${request.company}`,
-      text: `Alguien descargó tu CV.\n\nEmail: ${request.email}\nEmpresa: ${request.company}\nIdioma: ${request.locale}`,
+      text: [
+        'Alguien pidió tu CV y se lo enviamos por correo.',
+        `Email: ${request.email}\nEmpresa: ${request.company}\nIdioma: ${request.locale}`,
+        `Requisitos marcados: ${request.interests?.join(', ') || '—'}`,
+      ].join('\n\n'),
     })
   } catch (error) {
     // The visitor still gets the CV; the owner just misses this notification.

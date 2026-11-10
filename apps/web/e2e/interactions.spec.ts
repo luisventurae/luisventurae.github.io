@@ -70,41 +70,27 @@ test.describe('terminal', () => {
 })
 
 test.describe('CV request', () => {
-  test('submits the form and downloads the CV', async ({ page }) => {
+  test('submits the form and asks to check the inbox', async ({ page }) => {
     let request_body: unknown = null
     await page.route('http://api.test/contact', async (route) => {
       request_body = route.request().postDataJSON()
-      await route.fulfill({
-        json: {
-          download_url: 'http://api.test/cv/e2e',
-          expires_at: new Date(Date.now() + 600_000).toISOString(),
-        },
-      })
+      await route.fulfill({ json: { status: 'sent' } })
     })
-    await page.route('http://api.test/cv/e2e', (route) =>
-      route.fulfill({
-        body: '%PDF-1.4 e2e',
-        headers: {
-          'Content-Type': 'application/pdf',
-          'Content-Disposition': 'attachment; filename="CV.pdf"',
-        },
-      }),
-    )
     await page.goto('/')
     await page.locator('#contact').scrollIntoViewIfNeeded()
     await expect(page.getByText('captcha ok')).toBeVisible()
     await page.getByLabel('Email').fill('recruiter@company.com')
     await page.getByLabel('Empresa').fill('ACME')
-    const download = page.waitForEvent('download')
-    await page.getByRole('button', { name: 'Obtener CV' }).click()
-    expect((await download).suggestedFilename()).toBe('CV.pdf')
+    await page.getByRole('button', { name: 'Enviarme el CV' }).click()
+    await expect(page.locator('#contact').getByRole('status')).toContainText(
+      'Te lo envié a recruiter@company.com',
+    )
     expect(request_body).toEqual({
       email: 'recruiter@company.com',
       company: 'ACME',
       locale: 'es',
       captcha_token: 'e2e-token',
     })
-    await expect(page.getByRole('link', { name: 'Descargar de nuevo' })).toBeVisible()
   })
 
   test('shows API errors', async ({ page }) => {
@@ -116,7 +102,7 @@ test.describe('CV request', () => {
     await expect(page.getByText('captcha ok')).toBeVisible()
     await page.getByLabel('Email').fill('recruiter@company.com')
     await page.getByLabel('Empresa').fill('ACME')
-    await page.getByRole('button', { name: 'Obtener CV' }).click()
+    await page.getByRole('button', { name: 'Enviarme el CV' }).click()
     await expect(page.getByRole('alert').first()).toContainText('Demasiados intentos')
   })
 })

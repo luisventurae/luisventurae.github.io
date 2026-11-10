@@ -105,13 +105,14 @@ export const es = {
   },
   contact: {
     title: '¿Hablamos?',
-    intro: 'Déjame tu email y empresa y descarga mi CV al instante.',
+    intro: 'Déjame tu email y empresa y te envío mi CV al correo.',
     email: 'Email',
     company: 'Empresa',
-    submit: 'Obtener CV',
-    sending: 'Verificando…',
-    success: '¡Listo! Tu descarga comenzó.',
-    download_again: 'Descargar de nuevo',
+    submit: 'Enviarme el CV',
+    sending: 'Enviando…',
+    success: '¡Enviado! Revisa tu correo.',
+    check_inbox:
+      'Te lo envié a {email}. El enlace vence en 7 días; si no lo ves, revisa la carpeta de spam.',
     errors: {
       invalid_request: 'Revisa el email y la empresa.',
       captcha_failed: 'No pudimos verificar el captcha. Inténtalo de nuevo.',
@@ -120,6 +121,7 @@ export const es = {
       invalid_token: 'El enlace de descarga expiró.',
       not_found: 'No encontramos el recurso.',
       internal_error: 'Algo falló de nuestro lado. Inténtalo más tarde.',
+      email_failed: 'No pudimos enviar el correo. Inténtalo en unos minutos.',
       network: 'Sin conexión con el servidor.',
       captcha_missing: 'Completa el captcha primero.',
     },

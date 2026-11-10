@@ -40,6 +40,8 @@ export interface EmailMessageInput {
 export interface EmailSender {
   /** Sends to the owner's configured address. */
   notifyOwner(message: EmailMessageInput): Promise<void>
+  /** Sends the CV link to the requester. The message never carries requester free text. */
+  sendCvLink(to: string, message: EmailMessageInput): Promise<void>
 }
 
 export interface Logger {

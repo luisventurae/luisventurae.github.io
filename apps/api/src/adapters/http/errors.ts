@@ -10,6 +10,7 @@ const STATUS_BY_CODE: Record<ApiErrorCode, ContentfulStatusCode> = {
   payload_too_large: 413,
   rate_limited: 429,
   internal_error: 500,
+  email_failed: 502,
 }
 
 export function errorResponse(c: Context, code: ApiErrorCode): Response {

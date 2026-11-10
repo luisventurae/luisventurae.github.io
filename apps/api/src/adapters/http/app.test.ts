@@ -28,19 +28,29 @@ function setup(options: Parameters<typeof createFakes>[0] = {}) {
 }
 
 describe('POST /contact', () => {
-  it('returns a download url', async () => {
-    const { post } = setup()
-    const response = await post(valid_body, { 'cf-connecting-ip': '203.0.113.7' })
+  it('emails the CV link and only confirms the send', async () => {
+    const { post, fakes } = setup()
+    const response = await post(
+      { ...valid_body, interests: ['nodejs'] },
+      { 'cf-connecting-ip': '203.0.113.7' },
+    )
     expect(response.status).toBe(200)
-    const body = (await response.json()) as { download_url: string }
-    expect(body.download_url).toMatch(/^https:\/\/api\.example\.com\/cv\//)
+    expect(await response.json()).toEqual({ status: 'sent' })
+    expect(fakes.cv_emails[0]?.text).toMatch(/https:\/\/api\.example\.com\/cv\//)
     expect(response.headers.get('access-control-allow-origin')).toBe(ORIGIN)
+  })
+
+  it('maps a failed CV email to 502', async () => {
+    const response = await setup({ cv_email_fails: true }).post(valid_body)
+    expect(response.status).toBe(502)
+    expect(await response.json()).toEqual({ error: { code: 'email_failed' } })
   })
 
   it.each([
     ['invalid json', '{not json'],
     ['invalid email', { ...valid_body, email: 'nope' }],
     ['unknown fields', { ...valid_body, admin: true }],
+    ['unknown interests', { ...valid_body, interests: ['cobol'] }],
   ])('rejects %s with 400', async (_label, body) => {
     const response = await setup().post(body)
     expect(response.status).toBe(400)
@@ -50,6 +60,7 @@ describe('POST /contact', () => {
   it('maps captcha failures to 403 and rate limiting to 429', async () => {
     expect((await setup({ captcha_ok: false }).post(valid_body)).status).toBe(403)
     expect((await setup({ rate_limit_ok: false }).post(valid_body)).status).toBe(429)
+    expect((await setup({ recipient_limit_ok: false }).post(valid_body)).status).toBe(429)
   })
 
   it('rejects bodies over 4 KB with 413', async () => {

@@ -107,13 +107,14 @@ export const en: UiStrings = {
   },
   contact: {
     title: "Let's talk?",
-    intro: 'Leave your email and company and download my resume instantly.',
+    intro: 'Leave your email and company and I will send my resume to your inbox.',
     email: 'Email',
     company: 'Company',
-    submit: 'Get resume',
-    sending: 'Verifying…',
-    success: 'Done! Your download has started.',
-    download_again: 'Download again',
+    submit: 'Email me the resume',
+    sending: 'Sending…',
+    success: 'Sent! Check your inbox.',
+    check_inbox:
+      'I sent it to {email}. The link expires in 7 days; if you do not see it, check your spam folder.',
     errors: {
       invalid_request: 'Check the email and company.',
       captcha_failed: "We couldn't verify the captcha. Please try again.",
@@ -122,6 +123,7 @@ export const en: UiStrings = {
       invalid_token: 'The download link expired.',
       not_found: "We couldn't find that resource.",
       internal_error: 'Something failed on our side. Try again later.',
+      email_failed: 'We could not send the email. Please try again in a few minutes.',
       network: "Can't reach the server.",
       captcha_missing: 'Complete the captcha first.',
     },

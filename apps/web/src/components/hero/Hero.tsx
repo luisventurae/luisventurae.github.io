@@ -57,7 +57,7 @@ export function Hero(props: HeroProps): ReactElement {
         </motion.span>
       ))}
 
-      <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-paper-raised px-3 py-1 text-small font-semibold">
+      <p className="hero-fade mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-paper-raised px-3 py-1 text-small font-semibold">
         <span aria-hidden="true" className="size-2 rounded-full bg-lime" />
         {props.availability}
       </p>
@@ -89,33 +89,49 @@ export function Hero(props: HeroProps): ReactElement {
 
       <p
         aria-hidden={has_dragged}
-        className="hero-hint mt-3 font-mono text-small text-ink-muted transition-opacity duration-300"
+        className="hero-hint mt-3 font-mono text-small text-ink-muted transition-opacity duration-(--duration-base) ease-(--ease-out-strong)"
         style={{ opacity: has_dragged ? 0 : 1 }}
       >
         ↖ {props.drag_hint}
       </p>
 
-      <p className="mt-8 text-title leading-[1.3] font-semibold">{props.role}</p>
-      <p className="mt-2 font-mono text-small text-ink-muted">{props.facts}</p>
+      <p
+        className="hero-fade mt-8 text-title leading-[1.3] font-semibold"
+        style={{ animationDelay: '80ms' }}
+      >
+        {props.role}
+      </p>
+      <p
+        className="hero-fade mt-2 font-mono text-small text-ink-muted"
+        style={{ animationDelay: '120ms' }}
+      >
+        {props.facts}
+      </p>
 
-      <p className="mt-4 h-[1.4em] overflow-hidden leading-[1.3] font-semibold" aria-live="off">
+      <p
+        className="hero-fade mt-4 h-[1.4em] overflow-hidden leading-[1.3] font-semibold"
+        style={{ animationDelay: '160ms' }}
+        aria-live="off"
+      >
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
             key={role_index}
             className="block"
-            initial={{ opacity: 0, y: '60%', filter: 'blur(6px)' }}
+            initial={{ opacity: 0, y: '40%', filter: 'blur(4px)' }}
             animate={{ opacity: 1, y: '0%', filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: '-60%', filter: 'blur(6px)' }}
-            transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
+            exit={{ opacity: 0, y: '-40%', filter: 'blur(4px)' }}
+            transition={{ duration: 0.32, ease: [0.23, 1, 0.32, 1] }}
           >
             {props.roles[role_index]}
           </motion.span>
         </AnimatePresence>
       </p>
 
-      <p className="mt-4 max-w-[44ch] text-ink-muted">{props.tagline}</p>
+      <p className="hero-fade mt-4 max-w-[44ch] text-ink-muted" style={{ animationDelay: '200ms' }}>
+        {props.tagline}
+      </p>
 
-      <div className="mt-10 flex flex-wrap gap-3">
+      <div className="hero-fade mt-10 flex flex-wrap gap-3" style={{ animationDelay: '240ms' }}>
         <a
           href="#projects"
           className="pressable rounded-md bg-accent px-6 py-3 font-semibold text-on-accent shadow-card"

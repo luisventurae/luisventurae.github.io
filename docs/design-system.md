@@ -86,7 +86,9 @@ Springs (Motion, en `apps/web/src/lib/motion.ts`):
 | `SPRING_SNAPPY`  | `{ type: 'spring', duration: 0.35, bounce: 0.1 }` | Layout del stack, tabs             |
 | `SPRING_TILT`    | `{ stiffness: 150, damping: 15 }`                 | Tilt de cards siguiendo el puntero |
 
-Stagger: 40 ms entre elementos. Reglas completas en [`development-rules.md` › Accesibilidad y motion](development-rules.md#11-accesibilidad-y-motion).
+Stagger: 40 ms entre elementos.
+
+Entrada del hero: las letras del nombre usan `hero-rise` (700 ms, blur) porque son decoración. El texto de apoyo (badge, rol, datos clave, rol rotativo, tagline, CTAs) usa `hero-fade`: 360 ms, `translate` de 8 px sin blur y retrasos de 0 a 240 ms. Así los datos clave se leen antes de que termine el nombre. El rol rotativo hace un crossfade de 320 ms con blur de 4 px. Reglas completas en [`development-rules.md` › Accesibilidad y motion](development-rules.md#11-accesibilidad-y-motion).
 
 ## 6. Componentes base
 

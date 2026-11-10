@@ -18,6 +18,7 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 - [x] 3.2 `PERSON.job_title = 'Backend Engineer · Node.js'`, `meta.title` y `meta.description` en es/en/fr, `jobTitle` del JSON-LD (`seo.test.ts`), y regenerar las imágenes OG con `apps/web/scripts/generate-og.mjs`; verificar con `npm test` y comprobando visualmente `public/og/*.png`
 - [x] 3.3 E2E: el hero muestra "7 años", Node.js y la disponibilidad con JavaScript desactivado (`shell.spec.ts`); verificar con `npm run test:e2e`
 - [x] 3.4 Actualizar el rol y la esencia en `docs/branding.md`; verificar que `rg "Full Stack Web Engineer" apps docs` solo devuelve menciones históricas
+- [x] 3.5 Pasada de motion con el enfoque Emil Kowalski (pedida durante la implementación): coreografía `hero-fade` para el texto de apoyo del hero, crossfade del rol más corto y transición `ease` en los enlaces de la línea de tiempo; verificar con capturas a 150/400 ms y `npm run test:e2e`
 
 ## 4. Sobre mí y Experiencia (`feat(web): add about and experience sections`)
 

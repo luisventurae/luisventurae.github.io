@@ -35,6 +35,7 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 - Los tipos e interfaces no llevan prefijos (`Project`, no `IProject` ni `TProject`).
 - Una variable que contiene una función (callbacks, handlers de React) se nombra como función: `const handleClick = () => …`.
 - Los componentes de React son funciones pero se nombran en `PascalCase` (JSX lo exige).
+- Los schemas de zod describen tipos y se nombran como tipos con sufijo `Schema`: `ContactRequestSchema`.
 - **Excepciones permitidas**: claves impuestas por APIs externas (`'cf-turnstile-response'`), props de librerías (`className`, `onClick`), rutas y archivos que el framework exige (`[lang]/index.astro`, `content.config.ts`, `wrangler.toml`), variables de entorno (`PUBLIC_API_URL`).
 - La regla `@typescript-eslint/naming-convention` hace cumplir esta tabla.
 

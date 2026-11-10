@@ -16,6 +16,8 @@ const naming_rules = [
   { selector: 'import', format: null },
   { selector: 'variable', modifiers: ['destructured'], format: null },
   { selector: 'parameter', modifiers: ['destructured'], format: null },
+  // zod schemas describe types, so they read like types: `ContactRequestSchema`.
+  { selector: 'variable', filter: { regex: 'Schema$', match: true }, format: ['PascalCase'] },
   {
     selector: 'variable',
     format: ['snake_case', 'UPPER_CASE'],

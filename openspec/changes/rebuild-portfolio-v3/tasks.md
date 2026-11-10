@@ -18,7 +18,7 @@
 
 ## 4. Contratos compartidos
 
-- [ ] 4.1 Schemas zod de contact (request/response/errores) y rag (ask, index, eventos de stream) en `packages/shared` con tests — verificar: `npm test -w packages/shared`
+- [x] 4.1 Schemas zod de contact (request/response/errores) y rag (ask, index, eventos de stream) en `packages/shared` con tests — verificar: `npm test -w packages/shared`
 
 ## 5. API (hexagonal ligera)
 

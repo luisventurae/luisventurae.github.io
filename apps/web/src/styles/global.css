@@ -448,7 +448,7 @@
  * hand cursor signals the block reacts to the pointer.
  */
 [data-lens] {
-  cursor: pointer;
+  cursor: default;
 }
 [data-lens] .lens-word {
   white-space: nowrap;

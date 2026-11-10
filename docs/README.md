@@ -10,5 +10,6 @@
 | [Branding](branding.md) | Esencia, voz, paleta, tipografía y personalidad del movimiento. |
 | [Sistema de diseño](design-system.md) | Tokens de color, tipografía, espaciado, motion y componentes base. |
 | [Arquitectura](architecture.md) | Monorepo, apps, paquetes y flujo de datos. |
+| [Seguridad y secretos](security.md) | Repositorio público: qué es secreto, dónde vive y cómo se maneja. |
 
 Las especificaciones funcionales viven en [`../openspec/`](../openspec/).

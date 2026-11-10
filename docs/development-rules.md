@@ -17,6 +17,7 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 11. [Accesibilidad y motion](#11-accesibilidad-y-motion)
 12. [Git y commits](#12-git-y-commits)
 13. [Especificaciones con OpenSpec](#13-especificaciones-con-openspec)
+14. [Repositorio público: secretos](#14-repositorio-público-secretos)
 
 ---
 
@@ -158,3 +159,12 @@ Checklist obligatorio en cada cambio de UI:
 - Todo cambio funcional empieza como un *change* en `openspec/changes/<id>/` (proposal, design, tasks y specs delta).
 - `openspec validate <id> --strict` antes de implementar.
 - Las tareas de `tasks.md` se marcan al cerrar cada chunk; al terminar se archiva con `openspec archive <id>`.
+
+## 14. Repositorio público: secretos
+
+El repositorio es público. Política completa en [`security.md`](security.md). Lo mínimo:
+
+- Nunca commitear secretos, tokens, IDs de cuenta ni datos personales; solo plantillas `.example` con valores vacíos.
+- Los secretos se leen en tiempo de ejecución (Cloudflare secrets, GitHub Actions secrets) y se validan sin imprimir su valor.
+- El entorno local funciona sin secretos reales (claves de prueba, Mailpit, R2 emulado).
+- gitleaks en CI; ante una fuga, rotar primero.

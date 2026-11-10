@@ -56,6 +56,8 @@ test.describe('about magnifier', () => {
     const about = page.locator('.about-body[data-lens]')
     await about.scrollIntoViewIfNeeded()
     const paragraph = about.locator('p').nth(1)
+    // The block can be taller than the viewport: bring the paragraph itself into view.
+    await paragraph.scrollIntoViewIfNeeded()
     const box = await paragraph.boundingBox()
     if (!box) throw new Error('about paragraph not visible')
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 4 })

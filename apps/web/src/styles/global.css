@@ -319,6 +319,98 @@
   --reveal-index: 6;
 }
 
+/*
+ * Experience timeline. The line draws with scroll progress (scroll-driven, off the main
+ * thread; static where unsupported or with reduced motion). Dots pop in with a small
+ * overshoot once their entry is revealed; the current job pings once. Hover or focus on
+ * an entry lifts its dot, tying the text to its place in time.
+ */
+.timeline::before {
+  content: '';
+  position: absolute;
+  inset-block: 0.5rem 0;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(var(--lime), var(--line) 24%);
+  transform-origin: top;
+}
+
+@keyframes timeline-draw {
+  from {
+    scale: 1 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .js:not(.no-reveal) .timeline::before {
+      animation: timeline-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 15% cover 55%;
+    }
+  }
+}
+
+@keyframes dot-pop {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+@keyframes dot-ping {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 3.2;
+  }
+}
+
+.timeline-dot {
+  transition:
+    scale 200ms var(--ease-out-strong),
+    background-color 200ms ease;
+}
+
+.js:not(.no-reveal) [data-reveal]:not([data-inview]) > .timeline-dot {
+  opacity: 0;
+}
+
+[data-inview] > .timeline-dot {
+  animation: dot-pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 120ms backwards;
+}
+
+.timeline-dot.is-current::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--lime);
+  opacity: 0;
+}
+
+[data-inview] > .timeline-dot.is-current::after {
+  animation: dot-ping 1400ms var(--ease-out-strong) 600ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .experience-item:hover > .timeline-dot {
+    scale: 1.5;
+  }
+  .experience-item:hover > .timeline-dot:not(.is-current) {
+    background-color: var(--ink);
+  }
+}
+.experience-item:focus-within > .timeline-dot {
+  scale: 1.5;
+}
+
 /* Theme switch: circular reveal from the toggle (see ThemeToggle.tsx). */
 ::view-transition-old(root),
 ::view-transition-new(root) {

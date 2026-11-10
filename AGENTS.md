@@ -4,7 +4,7 @@ Instructions for coding agents (Claude Code, Codex, etc.) working in this repo.
 
 ## Finding information fast
 
-RAG here is for local development, used by you (Claude Code, Codex): retrieval over the docs, with no Ollama, embeddings server or other service to run (see `openspec/changes/remove-site-rag/`). Search the docs directly:
+The project has no RAG service, embeddings server or Ollama. To find information in the docs, search them directly with ripgrep:
 
 1. Start at [docs/README.md](docs/README.md): the index that says which document answers what.
 2. Then search with ripgrep over the two documentation trees, instead of reading whole files:
@@ -18,6 +18,15 @@ Sources of truth:
 - UI work: [docs/design-system.md](docs/design-system.md) and [docs/branding.md](docs/branding.md).
 - Architecture and local setup: [docs/architecture.md](docs/architecture.md), [docs/local-environment.md](docs/local-environment.md).
 - Work in progress and behavior specs: `openspec/changes/` and `openspec/specs/`; keep `tasks.md` up to date.
+
+## OpenSpec CLI
+
+Install once with `npm install -g @fission-ai/openspec`. Useful commands:
+
+- `openspec list` — active changes.
+- `openspec status --change <name>` — artifact progress.
+- `openspec validate <name> --strict` — check a change before archiving.
+- `openspec archive <name>` — move a finished change to `openspec/changes/archive/` and sync its specs.
 
 ## Rules that are easy to miss
 

@@ -38,8 +38,8 @@ export const es = {
     all: 'Todo',
     categories: { backend: 'Backend', frontend: 'Frontend', other: 'Otros' },
     no_projects: 'Ningún proyecto de esta lista la usa (todavía).',
-    used_in: (count: number): string =>
-      count === 1 ? 'Usada en 1 proyecto' : `Usada en ${count} proyectos`,
+    used_in: ['Usada en 1 proyecto', 'Usada en {count} proyectos'],
+    see_projects: 'Ver proyectos',
     clear: 'Quitar selección',
   },
   projects: {

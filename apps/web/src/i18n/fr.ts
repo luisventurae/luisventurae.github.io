@@ -40,8 +40,8 @@ export const fr: UiStrings = {
     all: 'Tout',
     categories: { backend: 'Backend', frontend: 'Frontend', other: 'Autres' },
     no_projects: 'Aucun projet de cette liste ne l’utilise (pour l’instant).',
-    used_in: (count: number): string =>
-      count === 1 ? 'Utilisée dans 1 projet' : `Utilisée dans ${count} projets`,
+    used_in: ['Utilisée dans 1 projet', 'Utilisée dans {count} projets'],
+    see_projects: 'Voir les projets',
     clear: 'Effacer la sélection',
   },
   projects: {

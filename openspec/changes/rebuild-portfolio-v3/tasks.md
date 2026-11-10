@@ -42,7 +42,7 @@
 
 ## 9. Web: stack interactivo
 
-- [ ] 9.1 Filtro por categoría, resaltado de proyectos por tecnología, teclado y táctil — verificar: tests de componente y de lógica en `src/lib`
+- [x] 9.1 Filtro por categoría, resaltado de proyectos por tecnología, teclado y táctil — verificar: tests de componente y de lógica en `src/lib`
 
 ## 10. Web: proyectos
 

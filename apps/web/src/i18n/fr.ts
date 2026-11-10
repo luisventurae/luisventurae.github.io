@@ -30,6 +30,7 @@ export const fr: UiStrings = {
       'Microservices sur AWS',
       'Architecture hexagonale',
       'APIs et chatbots en production',
+      'TypeScript au typage strict',
       'Et je soigne aussi l’UI',
     ],
     tagline:

@@ -30,6 +30,7 @@ export const en: UiStrings = {
       'Microservices on AWS',
       'Hexagonal architecture',
       'APIs and chatbots in production',
+      'Strictly typed TypeScript',
       'And I care about the UI too',
     ],
     tagline:

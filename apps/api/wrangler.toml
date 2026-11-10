@@ -11,15 +11,10 @@ compatibility_date = "2026-11-01"
 ENVIRONMENT = "development"
 ALLOWED_ORIGIN = "http://localhost:4321"
 EMAIL_TRANSPORT = "mailpit"
-RAG_ENABLED = "false"
 
 [[kv_namespaces]]
 binding = "RATE_LIMIT_KV"
 id = "local-rate-limit"
-
-[[kv_namespaces]]
-binding = "RAG_INDEX_KV"
-id = "local-rag-index"
 
 [[r2_buckets]]
 binding = "CV_BUCKET"
@@ -34,7 +29,6 @@ workers_dev = true
 ENVIRONMENT = "production"
 ALLOWED_ORIGIN = "https://luisventurae.github.io"
 EMAIL_TRANSPORT = "cloudflare"
-RAG_ENABLED = "false"
 EMAIL_FROM = "__EMAIL_FROM__"
 
 [[env.production.kv_namespaces]]

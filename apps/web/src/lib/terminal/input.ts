@@ -1,7 +1,7 @@
 export interface ParsedCommand {
   name: string
   args: string[]
-  /** Everything after the command name, untouched (for `ask` and `search`). */
+  /** Everything after the command name, untouched (for `search`). */
   rest: string
 }
 

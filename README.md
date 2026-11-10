@@ -13,28 +13,26 @@ Hola, soy Luis, Full Stack Web Engineer. Este repositorio es mi portafolio y tam
 
 ## Qué demuestra este repositorio
 
-| Habilidad                                                               | Dónde verla                                                                                          |
-| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Interfaces con motion cuidado (springs, gestos, reduced motion)         | [`apps/web/src/components`](apps/web/src/components), [design system](docs/design-system.md)         |
-| Arquitectura hexagonal ligera y SOLID en el backend                     | [`apps/api/src/core`](apps/api/src/core) (casos de uso) y [`adapters`](apps/api/src/adapters)        |
-| RAG local: ingesta, embeddings, ranking y respuestas en streaming       | [`apps/api/src/core/rag.ts`](apps/api/src/core/rag.ts), [`packages/rag-ingest`](packages/rag-ingest) |
-| TDD + E2E + auditoría de accesibilidad                                  | `*.test.ts(x)` junto al código, [`apps/web/e2e`](apps/web/e2e)                                       |
-| Seguridad en un repo público (OWASP, CSP, URLs firmadas, cero secretos) | [`docs/security.md`](docs/security.md)                                                               |
-| SEO técnico: hreflang, Open Graph, JSON-LD para rich results            | [`apps/web/src/layouts/Base.astro`](apps/web/src/layouts/Base.astro)                                 |
-| Desarrollo guiado por especificaciones                                  | [`openspec/`](openspec)                                                                              |
-| CI/CD `develop → master` con despliegue a GitHub Pages y Cloudflare     | [`.github/workflows`](.github/workflows)                                                             |
+| Habilidad                                                               | Dónde verla                                                                                   |
+| ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Interfaces con motion cuidado (springs, gestos, reduced motion)         | [`apps/web/src/components`](apps/web/src/components), [design system](docs/design-system.md)  |
+| Arquitectura hexagonal ligera y SOLID en el backend                     | [`apps/api/src/core`](apps/api/src/core) (casos de uso) y [`adapters`](apps/api/src/adapters) |
+| TDD + E2E + auditoría de accesibilidad                                  | `*.test.ts(x)` junto al código, [`apps/web/e2e`](apps/web/e2e)                                |
+| Seguridad en un repo público (OWASP, CSP, URLs firmadas, cero secretos) | [`docs/security.md`](docs/security.md)                                                        |
+| SEO técnico: hreflang, Open Graph, JSON-LD para rich results            | [`apps/web/src/layouts/Base.astro`](apps/web/src/layouts/Base.astro)                          |
+| Desarrollo guiado por especificaciones                                  | [`openspec/`](openspec)                                                                       |
+| CI/CD `develop → master` con despliegue a GitHub Pages y Cloudflare     | [`.github/workflows`](.github/workflows)                                                      |
 
 ## Stack
 
-Astro + islas de React 19 · TypeScript 7 · Tailwind CSS v4 · Motion · Vaul — Cloudflare Workers + Hono · KV · R2 — Ollama (`bge-m3`, `qwen3:4b-instruct`) — Vitest · Playwright · axe — npm workspaces · Docker Compose · OpenSpec.
+Astro + islas de React 19 · TypeScript 7 · Tailwind CSS v4 · Motion · Vaul — Cloudflare Workers + Hono · KV · R2 — Vitest · Playwright · axe — npm workspaces · Docker Compose · OpenSpec.
 
 ## Correrlo en local
 
 Necesitas Docker. No hace falta ningún secreto.
 
 ```bash
-docker compose up                                   # web :4321 · api :8787 · correo :8025
-docker compose --profile tools run --rm rag-ingest  # carga el índice del RAG (primera vez y al cambiar contenido)
+docker compose up   # web :4321 · api :8787 · correo :8025
 ```
 
 Sin Docker: `npm install && npm run dev` (detalles en [`docs/local-environment.md`](docs/local-environment.md)).

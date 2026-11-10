@@ -59,16 +59,17 @@ describe('runCommand', () => {
     expect(runCommand('theme', context).effect).toEqual({ type: 'theme', theme: undefined })
     expect(runCommand('contact', context).effect).toEqual({ type: 'scroll', target: 'contact' })
     expect(runCommand('search  redis ', context).effect).toEqual({ type: 'search', query: 'redis' })
-    expect(runCommand('ask ¿Qué usas?', context).effect).toEqual({
-      type: 'ask',
-      question: '¿Qué usas?',
-    })
   })
 
   it('validates arguments', () => {
     expect(texts('lang de')[0]).toContain('lang <es|en|fr>')
-    expect(texts('ask')[0]).toContain('ask')
-    expect(runCommand('ask', context).effect).toBeUndefined()
+  })
+
+  it('no longer knows the former ask command', () => {
+    expect(texts('ask ¿Qué usas?')[0]).toContain('No conozco ese comando')
+    expect(runCommand('ask ¿Qué usas?', context).effect).toBeUndefined()
+    expect(COMMAND_NAMES).not.toContain('ask')
+    expect(texts('help').join('\n')).not.toMatch(/\bask\b/)
   })
 
   it('handles unknown and empty commands', () => {

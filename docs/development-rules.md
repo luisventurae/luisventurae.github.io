@@ -28,7 +28,7 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 | Variables, parámetros, propiedades locales    | `snake_case`       | `project_list`, `user_email`       |
 | Funciones y métodos                           | `camelCase`        | `getProjects()`, `sendEmail()`     |
 | Clases, interfaces, tipos, enums, componentes | `PascalCase`       | `ProjectDrawer`, `EmailSender`     |
-| Constantes de módulo inmutables               | `UPPER_SNAKE_CASE` | `RAG_TOP_K`, `MAX_ATTEMPTS`        |
+| Constantes de módulo inmutables               | `UPPER_SNAKE_CASE` | `MAX_ATTEMPTS`, `DEFAULT_LOCALE`   |
 | Archivos de componentes (`.tsx`, `.astro`)    | `PascalCase`       | `ProjectDrawer.tsx`, `Base.astro`  |
 | Resto de archivos                             | `kebab-case`       | `chunk-text.ts`, `rate-limiter.ts` |
 
@@ -44,7 +44,7 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 - `strict: true` y `noUncheckedIndexedAccess: true` en todos los workspaces.
 - Prohibido `any`. Usar `unknown` y estrechar con guards o zod.
 - Las funciones exportadas declaran su tipo de retorno.
-- Todo dato que cruza una frontera (contenido markdown, request/response HTTP, variables de entorno, respuestas de Ollama) se valida con un schema de zod.
+- Todo dato que cruza una frontera (contenido markdown, request/response HTTP, variables de entorno) se valida con un schema de zod.
 - **TypeScript 7** (`tsc` nativo) es el verificador de tipos (`npm run typecheck`). Como TS 7 todavía no expone API de JavaScript, las herramientas que la necesitan (typescript-eslint, astro check) usan `@typescript/typescript6` instalado bajo el nombre `typescript`; TS 7 vive en el alias `typescript7`.
 - En `apps/web`, `typecheck` ejecuta `astro sync` antes de `tsc7`: los tipos de `astro:content` se generan en `.astro/` (ignorado por git) y sin ellos las colecciones se tipan como `any` en un checkout limpio (CI).
 
@@ -74,12 +74,11 @@ El backend es pequeño, así que se usa una **arquitectura hexagonal (puertos y 
 ```
 apps/api/src/
   core/         puertos (interfaces) + casos de uso como funciones puras que reciben sus dependencias
-    ports.ts    CaptchaVerifier, RateLimiter, EmailSender, EmbeddingProvider, ChatModel, VectorIndexRepository
+    ports.ts    CaptchaVerifier, RateLimiter, EmailSender, CvStorage
     contact.ts  submitContactRequest(deps, input)
-    rag.ts      indexDocuments(deps, input), askQuestion(deps, input)
   adapters/     implementaciones de los puertos y entrada HTTP
     http/       app Hono y rutas (adaptador de entrada): validan, llaman al caso de uso, mapean errores
-    turnstile.ts, kv-rate-limiter.ts, email-*.ts, ollama.ts, kv-vector-index.ts
+    turnstile.ts, kv-rate-limiter.ts, email-*.ts
   main.ts       composition root: construye los adaptadores a partir de `env` y exporta el Worker
 ```
 

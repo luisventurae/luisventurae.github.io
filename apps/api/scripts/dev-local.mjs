@@ -11,10 +11,6 @@ const FORWARDED_VARS = [
   'NOTIFY_EMAIL',
   'EMAIL_TRANSPORT',
   'MAILPIT_URL',
-  'RAG_ENABLED',
-  'OLLAMA_HOST',
-  'RAG_EMBED_MODEL',
-  'RAG_CHAT_MODEL',
 ]
 
 for (const locale of ['es', 'en', 'fr']) {

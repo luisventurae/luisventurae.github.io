@@ -12,7 +12,6 @@ export const COMMAND_NAMES = [
   'cat',
   'skills',
   'search',
-  'ask',
   'lang',
   'theme',
   'contact',
@@ -31,7 +30,6 @@ export type TerminalEffect =
   | { type: 'theme'; theme: Theme | undefined }
   | { type: 'scroll'; target: 'contact' }
   | { type: 'search'; query: string }
-  | { type: 'ask'; question: string }
 
 export interface CommandResult {
   lines: TerminalLine[]
@@ -126,10 +124,6 @@ const HANDLERS: Record<CommandName, Handler> = {
     rest.trim()
       ? { lines: [], effect: { type: 'search', query: rest.trim() } }
       : usage(context, 'search <query>'),
-  ask: (_args, rest, context) =>
-    rest.trim()
-      ? { lines: [], effect: { type: 'ask', question: rest.trim() } }
-      : usage(context, 'ask <question>'),
   lang: (args, _rest, context) => {
     const locale = args[0]?.toLowerCase()
     if (!isLocale(locale)) return usage(context, 'lang <es|en|fr>')
@@ -152,7 +146,7 @@ const HANDLERS: Record<CommandName, Handler> = {
   clear: () => ({ lines: [], effect: { type: 'clear' } }),
 }
 
-/** Runs a synchronous command. Async work (search, ask) is returned as an effect. */
+/** Runs a synchronous command. Async work (search) is returned as an effect. */
 export function runCommand(input: string, context: TerminalContext): CommandResult {
   const { name, args, rest } = parseCommand(input)
   if (!name) return { lines: [] }

@@ -36,7 +36,7 @@ const search_index = [
 ]
 
 function setup() {
-  render(<Terminal api_url="http://api" input_label="Comando" context={context} />)
+  render(<Terminal input_label="Comando" context={context} />)
   return screen.getByLabelText('Comando')
 }
 
@@ -77,36 +77,20 @@ describe('Terminal', () => {
     expect(input).toHaveValue('cat ticker')
   })
 
-  it('falls back to text search when RAG is unavailable', async () => {
+  it('searches the prebuilt index', async () => {
     vi.stubGlobal(
       'fetch',
-      vi.fn(async (url: string) =>
-        url.endsWith('/rag/ask') ? new Response('', { status: 404 }) : Response.json(search_index),
-      ),
+      vi.fn(async () => Response.json(search_index)),
     )
     const input = setup()
-    await userEvent.type(input, 'ask ¿usas redis?{Enter}')
-    expect(await screen.findByText(/solo corre en local/)).toBeInTheDocument()
+    await userEvent.type(input, 'search redis{Enter}')
     expect(await screen.findByText('▸ Ticker')).toBeInTheDocument()
   })
 
-  it('streams answers with their sources', async () => {
-    const body = [
-      { type: 'token', text: 'Uso ' },
-      { type: 'token', text: 'Redis.' },
-      { type: 'sources', sources: [{ source: 'projects/ticker', title: 'Ticker', locale: 'es' }] },
-      { type: 'done' },
-    ]
-      .map((event) => JSON.stringify(event))
-      .join('\n')
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(async () => new Response(body)),
-    )
+  it('answers that ask is an unknown command', async () => {
     const input = setup()
     await userEvent.type(input, 'ask ¿usas redis?{Enter}')
-    expect(await screen.findByText('Uso Redis.')).toBeInTheDocument()
-    expect(await screen.findByText('Fuentes: Ticker')).toBeInTheDocument()
+    expect(await screen.findByText(/No conozco ese comando/)).toBeInTheDocument()
   })
 
   it('focuses the prompt with the backtick shortcut', async () => {

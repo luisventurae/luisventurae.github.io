@@ -43,10 +43,6 @@ services:
     environment:
       <<: *node-env
       ALLOWED_ORIGIN: http://localhost:4321
-      RAG_ENABLED: 'true'
-      OLLAMA_HOST: http://ollama:11434
-      RAG_EMBED_MODEL: ${RAG_EMBED_MODEL:-bge-m3}
-      RAG_CHAT_MODEL: ${RAG_CHAT_MODEL:-qwen3:4b-instruct}
       EMAIL_TRANSPORT: mailpit
       MAILPIT_URL: http://mailpit:8025
       # Public test secret from Cloudflare docs: always passes. Not a credential.
@@ -68,52 +64,11 @@ services:
       # Public test site key from Cloudflare docs: always passes.
       PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
 
-  ollama:
-    image: ollama/ollama:0.40.16
-    volumes:
-      - ollama_models:/root/.ollama
-    healthcheck:
-      test: ['CMD', 'ollama', 'list']
-      interval: 10s
-      timeout: 5s
-      retries: 10
-
-  ollama-pull:
-    image: ollama/ollama:0.40.16
-    depends_on:
-      ollama:
-        condition: service_healthy
-    environment:
-      OLLAMA_HOST: ollama:11434
-    entrypoint: ['/bin/sh', '-c']
-    command:
-      - ollama pull ${RAG_EMBED_MODEL:-bge-m3} && ollama pull ${RAG_CHAT_MODEL:-qwen3:4b-instruct}
-    restart: 'no'
-
   mailpit:
     image: axllent/mailpit:v1.33.1
     ports:
       - '8025:8025'
 
-  rag-ingest:
-    <<: *node
-    profiles: ['tools']
-    command: npm run ingest -w packages/rag-ingest
-    depends_on:
-      api:
-        condition: service_started
-      web:
-        condition: service_started
-      ollama-pull:
-        condition: service_completed_successfully
-    environment:
-      <<: *node-env
-      WEB_URL: http://web:4321
-      API_URL: http://api:8787
-      OLLAMA_HOST: http://ollama:11434
-      RAG_EMBED_MODEL: ${RAG_EMBED_MODEL:-bge-m3}
-
 volumes:
   node_modules:
   wrangler_state:
-  ollama_models:

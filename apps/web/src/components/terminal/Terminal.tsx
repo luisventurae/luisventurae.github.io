@@ -9,7 +9,6 @@ import {
 } from 'react'
 
 import { localePath } from '../../lib/i18n'
-import { askStream, RagUnavailableError } from '../../lib/terminal/ask-client'
 import {
   COMMAND_NAMES,
   runCommand,
@@ -22,7 +21,6 @@ import { createSearch, type SearchResult } from '../../lib/terminal/search'
 import { applyTheme, nextTheme, readTheme } from '../../lib/theme'
 
 export interface TerminalProps {
-  api_url: string
   input_label: string
   context: TerminalContext
 }
@@ -43,7 +41,7 @@ function createEntry(kind: Entry['kind'], text: string): Entry {
   return { id: next_id++, kind, text }
 }
 
-export function Terminal({ api_url, input_label, context }: TerminalProps): ReactElement {
+export function Terminal({ input_label, context }: TerminalProps): ReactElement {
   const [entries, setEntries] = useState<Entry[]>(() => [
     createEntry('muted', context.messages.welcome),
   ])
@@ -64,8 +62,6 @@ export function Terminal({ api_url, input_label, context }: TerminalProps): Reac
   }, [entries])
 
   const append = (...lines: Entry[]): void => setEntries((current) => [...current, ...lines])
-  const replaceText = (id: number, text: string): void =>
-    setEntries((current) => current.map((item) => (item.id === id ? { ...item, text } : item)))
 
   const search = async (query: string): Promise<void> => {
     search_ref.current ??= createSearch(await (await fetch('/search-index.json')).json())
@@ -83,26 +79,6 @@ export function Terminal({ api_url, input_label, context }: TerminalProps): Reac
     )
   }
 
-  const ask = async (question: string): Promise<void> => {
-    const answer = createEntry('text', messages.thinking)
-    append(answer)
-    let text = ''
-    try {
-      for await (const event of askStream(api_url, { question, locale: context.locale })) {
-        if (event.type === 'token') replaceText(answer.id, (text += event.text))
-        if (event.type === 'error') replaceText(answer.id, messages.rag_error)
-        if (event.type === 'sources' && event.sources.length > 0) {
-          const titles = event.sources.map((source) => source.title).join(' · ')
-          append(createEntry('muted', `${messages.sources} ${titles}`))
-        }
-      }
-    } catch (error) {
-      if (!(error instanceof RagUnavailableError)) throw error
-      replaceText(answer.id, messages.rag_unavailable)
-      await search(question)
-    }
-  }
-
   const applyEffect = async (effect: TerminalEffect): Promise<void> => {
     if (effect.type === 'clear') setEntries([])
     if (effect.type === 'lang') window.location.assign(localePath(effect.locale, 'terminal'))
@@ -113,7 +89,6 @@ export function Terminal({ api_url, input_label, context }: TerminalProps): Reac
       append(createEntry('muted', messages.theme_switch.replace('{theme}', theme)))
     }
     if (effect.type === 'search') await search(effect.query)
-    if (effect.type === 'ask') await ask(effect.question)
   }
 
   const submit = async (): Promise<void> => {

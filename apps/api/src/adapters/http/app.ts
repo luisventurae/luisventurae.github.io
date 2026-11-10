@@ -13,8 +13,6 @@ export interface AppDeps {
   allowed_origin: string
   contact: ContactDeps
   logger: Logger
-  /** Mounted only when RAG is enabled (local development). */
-  rag_routes?: Hono | undefined
 }
 
 /** Driving adapter: thin HTTP layer that validates input and delegates to use cases. */
@@ -67,12 +65,6 @@ export function createApp(resolveDeps: (c: Context) => AppDeps): Hono {
         'Cache-Control': 'no-store',
       },
     })
-  })
-
-  app.all('/rag/*', async (c) => {
-    const rag_routes = resolveDeps(c).rag_routes
-    if (!rag_routes) return errorResponse(c, 'not_found')
-    return rag_routes.fetch(c.req.raw, c.env)
   })
 
   app.notFound((c) => errorResponse(c, 'not_found'))

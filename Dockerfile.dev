@@ -1,4 +1,4 @@
-# Development image shared by the web, api and rag-ingest services.
+# Development image shared by the web and api services.
 # Source code is bind-mounted; dependencies live in a named volume so native
 # binaries (workerd, rollup, tsc7) match the container platform.
 FROM node:24.22.2-trixie-slim

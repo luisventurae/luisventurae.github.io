@@ -1,5 +1,12 @@
 import type { Locale } from './locale'
-import type { DocumentChunk } from './rag'
+
+export interface DocumentChunk {
+  id: string
+  text: string
+  locale: Locale
+  source: string
+  title: string
+}
 
 export interface ChunkInput {
   markdown: string

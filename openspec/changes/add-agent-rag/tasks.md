@@ -14,7 +14,7 @@
 ## 3. Adaptadores y CLI
 
 - [x] 3.1 Adaptadores `git-file-source` y `json-index-store` con tests — verificar: `npx vitest run packages/agent-rag`
-- [ ] 3.2 Adaptador `transformers-embedder` (modelo en `.cache/agent-rag/models/`), `allowScripts` si hace falta — verificar: `npm install`, `npm run lint:unused`
+- [x] 3.2 Adaptador `transformers-embedder` (modelo en `.cache/agent-rag/models/`), `allowScripts` si hace falta — verificar: `npm install`, `npm run lint:unused`
 - [ ] 3.3 `cli.ts`: `search`, `index`, `status`, salida compacta y `--json`, refresco automático y degradación a solo BM25 con aviso — verificar: ejecutar los escenarios de la spec a mano
 
 ## 4. Documentación y cierre

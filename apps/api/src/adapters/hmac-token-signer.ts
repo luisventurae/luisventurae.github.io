@@ -71,5 +71,7 @@ function fromBase64Url(value: string): Uint8Array<ArrayBuffer> | null {
   }
   const bytes = new Uint8Array(binary.length)
   for (let index = 0; index < binary.length; index++) bytes[index] = binary.charCodeAt(index)
-  return bytes
+  // Reject non-canonical encodings (unused trailing bits set), so a token has exactly one
+  // valid spelling and changing any character invalidates it.
+  return toBase64Url(bytes) === value ? bytes : null
 }

@@ -9,7 +9,6 @@ const local_env = {
   NOTIFY_EMAIL: 'owner@example.test',
   EMAIL_TRANSPORT: 'mailpit',
   MAILPIT_URL: 'http://mailpit:8025',
-  RAG_ENABLED: 'true',
 }
 
 const production_env = {
@@ -23,20 +22,23 @@ const production_env = {
 
 describe('parseConfig', () => {
   it('accepts the local environment', () => {
-    const config = parseConfig(local_env)
-    expect(config.rag_enabled).toBe(true)
-    expect(config.EMAIL_TRANSPORT).toBe('mailpit')
+    expect(parseConfig(local_env).EMAIL_TRANSPORT).toBe('mailpit')
   })
 
-  it('accepts a safe production environment with RAG disabled by default', () => {
-    expect(parseConfig(production_env).rag_enabled).toBe(false)
+  it('accepts a safe production environment', () => {
+    expect(parseConfig(production_env).ENVIRONMENT).toBe('production')
   })
 
-  it('refuses local secrets, RAG or Mailpit in production', () => {
+  it('ignores the former RAG variables', () => {
+    const config = parseConfig({ ...local_env, RAG_ENABLED: 'true', OLLAMA_HOST: 'http://x' })
+    expect(Object.keys(config).filter((key) => /rag|ollama/i.test(key))).toEqual([])
+    expect(() => parseConfig({ ...production_env, RAG_ENABLED: 'true' })).not.toThrow()
+  })
+
+  it('refuses local secrets or Mailpit in production', () => {
     expect(() =>
       parseConfig({ ...production_env, DOWNLOAD_TOKEN_SECRET: `local-dev-only-${'0'.repeat(32)}` }),
     ).toThrow(ConfigError)
-    expect(() => parseConfig({ ...production_env, RAG_ENABLED: 'true' })).toThrow(/RAG_ENABLED/)
     expect(() =>
       parseConfig({ ...production_env, EMAIL_TRANSPORT: 'mailpit', MAILPIT_URL: 'http://m' }),
     ).toThrow(/EMAIL_TRANSPORT/)

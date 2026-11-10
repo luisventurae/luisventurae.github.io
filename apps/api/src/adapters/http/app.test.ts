@@ -89,7 +89,7 @@ describe('GET /cv/:token', () => {
 })
 
 describe('routing', () => {
-  it('responds 404 to /rag/* when RAG is disabled', async () => {
+  it('responds 404 to /rag/*, a route that no longer exists', async () => {
     const response = await setup().app.request('/rag/ask', { method: 'POST' })
     expect(response.status).toBe(404)
   })

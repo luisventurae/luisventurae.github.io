@@ -1,4 +1,4 @@
-import type { IndexedChunk, Locale } from '@portfolio/shared'
+import type { Locale } from '@portfolio/shared'
 
 /** Driven ports of the hexagon. Adapters live in src/adapters. */
 
@@ -50,29 +50,4 @@ export interface Logger {
 
 export interface Clock {
   now(): number
-}
-
-export interface EmbeddingProvider {
-  embed(texts: string[]): Promise<number[][]>
-}
-
-export interface ChatMessage {
-  role: 'system' | 'user'
-  content: string
-}
-
-export interface ChatModel {
-  /** Streams the answer as text fragments. */
-  stream(messages: ChatMessage[]): AsyncIterable<string>
-}
-
-export interface VectorIndex {
-  model: string
-  chunks: IndexedChunk[]
-}
-
-export interface VectorIndexRepository {
-  load(): Promise<VectorIndex | null>
-  /** Replaces the whole index atomically. */
-  save(index: VectorIndex): Promise<void>
 }

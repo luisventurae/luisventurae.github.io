@@ -7,9 +7,9 @@
 
 ## 2. API y shared sin RAG
 
-- [ ] 2.1 Borrar `rag-routes`, `core/rag`, `adapters/ollama`, `adapters/kv-vector-index` (con sus tests), puertos `EmbeddingProvider`/`ChatModel`/`VectorIndexRepository`, fakes y cableado en `main.ts` y `config.ts` — verificar: `npx vitest run apps/api`
-- [ ] 2.2 Test de que `/rag/ask` responde 404; quitar `RAG_ENABLED`, `RAG_INDEX_KV` y `OLLAMA_HOST`/`RAG_*` de `wrangler.toml`, `.dev.vars.example` y config — verificar: tests de config y de la app
-- [ ] 2.3 Borrar `packages/shared/src/rag.ts` y su export; conservar `chunking.ts` si lo usa `search-index.json` — verificar: `npm run lint:unused`
+- [x] 2.1 Borrar `rag-routes`, `core/rag`, `adapters/ollama`, `adapters/kv-vector-index` (con sus tests), puertos `EmbeddingProvider`/`ChatModel`/`VectorIndexRepository`, fakes y cableado en `main.ts` y `config.ts` — verificar: `npx vitest run apps/api`
+- [x] 2.2 Test de que `/rag/ask` responde 404; quitar `RAG_ENABLED`, `RAG_INDEX_KV` y `OLLAMA_HOST`/`RAG_*` de `wrangler.toml`, `.dev.vars.example` y config — verificar: tests de config y de la app
+- [x] 2.3 Borrar `packages/shared/src/rag.ts` y su export; conservar `chunking.ts` si lo usa `search-index.json` — verificar: `npm run lint:unused`
 
 ## 3. `rag-ingest` y Docker
 

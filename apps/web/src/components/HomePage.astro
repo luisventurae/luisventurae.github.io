@@ -8,6 +8,7 @@ import { getUi } from '../i18n'
 import { loadProfile, loadProjects } from '../lib/content'
 import type { TerminalContext } from '../lib/terminal/commands'
 import { skillUsage } from '../lib/projects'
+import { parsePublicEnv } from '../lib/public-env'
 import type { ProjectCard } from './projects/types'
 import { ContactForm } from './contact/ContactForm'
 import { ProjectGrid } from './projects/ProjectGrid'
@@ -80,8 +81,9 @@ const stack_labels = {
   clear: ui.stack.clear,
   see_projects: ui.stack.see_projects,
 }
-const api_url = import.meta.env.PUBLIC_API_URL ?? 'http://localhost:8787'
-const turnstile_site_key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA'
+const { PUBLIC_API_URL: api_url, PUBLIC_TURNSTILE_SITE_KEY: turnstile_site_key } = parsePublicEnv(
+  import.meta.env,
+)
 const contact_labels = {
   email: ui.contact.email,
   company: ui.contact.company,

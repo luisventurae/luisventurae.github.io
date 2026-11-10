@@ -3,9 +3,11 @@ import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 
+import { parsePublicEnv } from './src/lib/public-env'
+
 const SITE_URL = 'https://luisventurae.github.io'
 const TURNSTILE_ORIGIN = 'https://challenges.cloudflare.com'
-const api_origin = new URL(process.env.PUBLIC_API_URL ?? 'http://localhost:8787').origin
+const api_origin = new URL(parsePublicEnv(process.env).PUBLIC_API_URL).origin
 
 export default defineConfig({
   site: SITE_URL,

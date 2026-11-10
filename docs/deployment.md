@@ -48,6 +48,8 @@ En **Settings › Secrets and variables › Actions › Variables** (repositorio
 | `CV_BUCKET_NAME`            | `portfolio-cv`                                   | Bucket R2 del CV.                           |
 | `EMAIL_FROM`                | `portfolio@tu-dominio`                           | Remitente en un dominio con Email Routing.  |
 
+Las variables `PUBLIC_*` se validan con zod al compilar la web (`apps/web/src/lib/public-env.ts`): si una está definida pero vacía o no es válida, el build de despliegue falla con `Invalid public env: <NOMBRE>` en lugar de publicar una web que apunte a `localhost`. El build de comprobación de `ci.yml` no las usa: compila con los mismos valores de prueba que el e2e.
+
 Opcional: secret `RELEASE_PR_TOKEN` (token _fine-grained_ con permiso de PR) para que el PR de release dispare CI; con `GITHUB_TOKEN` el PR se crea pero GitHub no ejecuta workflows sobre él.
 
 Recomendado (no lo configura el repositorio):

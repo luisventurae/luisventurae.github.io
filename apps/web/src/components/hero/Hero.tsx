@@ -45,6 +45,7 @@ const STICKERS = [
     className: 'right-[16%] bottom-[52%] -rotate-6 bg-violet text-paper',
     depth: 6,
   },
+  { label: 'PostgreSQL', className: 'right-[18%] bottom-[24%] rotate-4 bg-sky', depth: 7 },
 ]
 const ROLE_INTERVAL_MS = 2600
 

@@ -41,6 +41,7 @@ describe('Hero', () => {
         'MongoDB',
         'Claude Code',
         'Bedrock',
+        'PostgreSQL',
       ]),
     )
     for (const sticker of stickers) expect(sticker).toHaveAttribute('aria-hidden', 'true')

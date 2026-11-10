@@ -6,7 +6,11 @@ I'm Luis Ventura E, a Backend Engineer with <mark>{years} years of experience</m
 
 ### What I do
 
-I design and build backends: microservices with hexagonal architecture, APIs with NestJS, Express and AdonisJS, infrastructure as code with AWS CDK, real time with WebSockets and Redis, and MongoDB, MySQL and PostgreSQL databases. I have integrated WhatsApp Business API, Messenger, Instagram, SMS, payment gateways, Zoho CRM and Twilio, and I ship chatbots with generative AI to production. Since 2020 I have led development teams: I coordinate with Business and Product, make the architecture decisions and make sure what ships can be maintained.
+Backend is my strength. I design microservices with hexagonal architecture, APIs with NestJS, Express and AdonisJS, and infrastructure on AWS with CDK. I work with MongoDB, MySQL and PostgreSQL, and with real time over WebSockets and Redis.
+
+But I don't stop there. I've built frontends with Vue, Nuxt and React, a desktop app with Electron and this very site. I've integrated WhatsApp, Messenger, Instagram, SMS, payment gateways and Zoho CRM, and today I ship AI chatbots to production.
+
+I've led teams since 2020. I coordinate with Business and Product, make architecture decisions and make sure what we deliver can be maintained.
 
 ### How I build with AI
 

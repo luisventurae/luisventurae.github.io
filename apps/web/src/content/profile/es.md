@@ -2,11 +2,15 @@
 title: Luis Ventura E
 ---
 
-Soy Luis Ventura E, Backend Engineer con <mark>{years} años de experiencia</mark> construyendo sistemas en <mark>Node.js y TypeScript</mark> que aguantan tráfico real. Hoy trabajo en <mark>Prestamype</mark>, una fintech peruana, a cargo de un módulo y de los chatbots de la plataforma sobre AWS.
+Soy Luis Miguel Ventura E, Backend Engineer con <mark>{years} años de experiencia</mark> construyendo sistemas en <mark>Node.js y TypeScript</mark> que aguantan tráfico real.
 
 ### Qué hago
 
-Diseño y desarrollo backends: microservicios con arquitectura hexagonal, APIs con NestJS, Express y AdonisJS, infraestructura como código con AWS CDK, tiempo real con WebSockets y Redis, y bases de datos MongoDB, MySQL y PostgreSQL. He integrado WhatsApp Business API, Messenger, Instagram, SMS, pasarelas de pago, Zoho CRM y Twilio, y llevo chatbots con IA generativa a producción. Desde 2020 lidero equipos de desarrollo: coordino con Negocio y Producto, tomo las decisiones de arquitectura y cuido que lo que se entrega se pueda mantener.
+Mi fuerte es el backend. Diseño microservicios con arquitectura hexagonal, APIs con NestJS, Express y AdonisJS, e infraestructura en AWS con CDK. Trabajo con MongoDB, MySQL y PostgreSQL, y con tiempo real sobre WebSockets y Redis.
+
+Pero no me quedo ahí. He hecho frontends con Vue, Nuxt y React, una app de escritorio con Electron y este mismo sitio. He integrado WhatsApp, Messenger, Instagram, SMS, pasarelas de pago y Zoho CRM, y hoy llevo chatbots con IA a producción.
+
+Desde 2020 lidero equipos. Coordino con Negocio y Producto, tomo decisiones de arquitectura y me aseguro de que lo que entregamos se pueda mantener.
 
 ### Cómo construyo con IA
 

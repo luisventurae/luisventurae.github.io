@@ -1,7 +1,9 @@
 ---
 import type { Locale } from '@portfolio/shared'
 
+import { SKILLS } from '../data/skills'
 import { getUi } from '../i18n'
+import { loadProjects } from '../lib/content'
 import Base from '../layouts/Base.astro'
 import Footer from './Footer.astro'
 import Nav from './Nav.astro'
@@ -13,9 +15,16 @@ interface Props {
 
 const { locale } = Astro.props
 const ui = getUi(locale)
+const projects = await loadProjects(locale)
+const structured_projects = projects.map((project) => ({
+  name: project.title,
+  description: project.summary,
+  url: project.url,
+}))
+const knows_about = SKILLS.filter((skill) => skill.level >= 6).map((skill) => skill.label)
 ---
 
-<Base locale={locale} projects={[]} knows_about={[]}>
+<Base locale={locale} projects={structured_projects} knows_about={knows_about}>
   <Nav slot="header" locale={locale} />
 
   <section
@@ -39,6 +48,17 @@ const ui = getUi(locale)
     class="container-page py-(--space-section)"
   >
     <SectionHeading id="projects" index="02" title={ui.projects.title} intro={ui.projects.intro} />
+    <ul class="grid gap-4 md:grid-cols-2">
+      {projects.map((project) => (
+        <li class="rounded-lg border border-line bg-paper-raised p-6">
+          <p class="font-mono text-small text-ink-muted">
+            {project.company} · {project.period}
+          </p>
+          <h3 class="mt-2 text-title font-bold">{project.title}</h3>
+          <p class="mt-1 text-ink-muted">{project.summary}</p>
+        </li>
+      ))}
+    </ul>
   </section>
 
   <section

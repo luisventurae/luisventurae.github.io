@@ -34,7 +34,7 @@
 
 ## 7. Web: contenido
 
-- [ ] 7.1 Colecciones `profile` y `projects` (ES/EN/FR) migradas del sitio actual y `skills.ts` — verificar: build valida schemas; test de enlaces tecnología → proyectos
+- [x] 7.1 Colecciones `profile` y `projects` (ES/EN/FR) migradas del sitio actual y `skills.ts` — verificar: build valida schemas; test de enlaces tecnología → proyectos
 
 ## 8. Web: hero y navegación
 

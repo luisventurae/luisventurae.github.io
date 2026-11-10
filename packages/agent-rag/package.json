@@ -1,0 +1,14 @@
+{
+  "name": "@portfolio/agent-rag",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cli": "node src/cli.ts",
+    "typecheck": "tsc7 -p tsconfig.json"
+  },
+  "dependencies": {
+    "minisearch": "^7.2.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
+  }
+}

@@ -2,8 +2,8 @@
 
 ## 1. Paquete y núcleo de troceado
 
-- [ ] 1.1 Crear el workspace `packages/agent-rag` (package.json, tsconfig, vitest) y el script `rag` raíz — verificar: `npm install`, `npm run typecheck`
-- [ ] 1.2 Tests rojos y troceador de TypeScript por declaración con rango de líneas y `kind` code/test — verificar: `npx vitest run packages/agent-rag`
+- [x] 1.1 Crear el workspace `packages/agent-rag` (package.json, tsconfig, vitest) y el script `rag` raíz — verificar: `npm install`, `npm run typecheck`
+- [x] 1.2 Tests rojos y troceador de TypeScript por declaración con rango de líneas y `kind` code/test — verificar: `npx vitest run packages/agent-rag`
 - [ ] 1.3 Tests rojos y troceador de Markdown por sección con rango de líneas (docs y specs) y de commits — verificar: `npx vitest run packages/agent-rag`
 
 ## 2. Búsqueda e índice

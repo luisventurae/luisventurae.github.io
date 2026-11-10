@@ -444,8 +444,12 @@
 
 /*
  * Magnifying lens over "Sobre mí" (lib/magnifier.ts, desktop only). Words never break inside;
- * each letter scales from slightly below its centre so it grows around the x-height.
+ * each letter scales from slightly below its centre so it grows around the x-height. The
+ * hand cursor signals the block reacts to the pointer.
  */
+[data-lens] {
+  cursor: pointer;
+}
 [data-lens] .lens-word {
   white-space: nowrap;
 }

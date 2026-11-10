@@ -1,6 +1,6 @@
 import type { Locale } from '@portfolio/shared'
 import { AnimatePresence, motion } from 'motion/react'
-import { useId, useState, type FormEvent, type ReactElement } from 'react'
+import { useId, useState, type ReactElement, type SubmitEvent } from 'react'
 import { toast, Toaster } from 'sonner'
 
 import { requestCv, type ClientErrorCode } from '../../lib/api-client'
@@ -44,7 +44,7 @@ export function ContactForm({
   const company_id = useId()
   const error_id = useId()
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (event: SubmitEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     if (status === 'sending') return
     if (!captcha_token) {

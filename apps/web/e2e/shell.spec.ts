@@ -125,8 +125,9 @@ test.describe('home sections', () => {
     await expect(entries.filter({ hasText: 'Instituto Cepeban' })).toContainText('Freelance')
   })
 
-  test('about shows the profile and the role sought without the terminal', async ({ page }) => {
+  test('about shows what the author brings without the terminal', async ({ page }) => {
     await page.goto('/en/')
-    await expect(page.locator('#about')).toContainText('A backend developer role with Node.js')
+    const about = page.locator('#about')
+    await expect(about).toContainText('What I bring')
   })
 })

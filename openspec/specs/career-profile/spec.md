@@ -22,12 +22,12 @@ The site SHALL compute the years of experience as the number of complete years e
 
 ### Requirement: About section
 
-The home page SHALL render a localized "About" section from the profile content, stating what the author does, the kind of role sought (backend Node.js, remote or hybrid, Peru) and spoken languages, readable without JavaScript.
+The home page SHALL render a localized "About" section from the profile content, stating what the author does, what they bring to a team and spoken languages, readable without JavaScript.
 
 #### Scenario: Profile visible without the terminal
 
 - **WHEN** a visitor opens `/en/` with JavaScript disabled
-- **THEN** the About section shows the English profile text, including the role sought
+- **THEN** the About section shows the English profile text, including what the author brings to a team
 
 ### Requirement: Experience timeline
 

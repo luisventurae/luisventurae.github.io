@@ -6,24 +6,24 @@ Soy Luis Miguel Ventura E, Backend Engineer con <mark>{years} años de experienc
 
 ### Qué hago
 
-Mi fuerte es el backend. Diseño microservicios con arquitectura hexagonal, APIs con NestJS, Express y AdonisJS, e infraestructura en AWS con CDK. Trabajo con MongoDB, MySQL y PostgreSQL, y con tiempo real sobre WebSockets y Redis.
+**En pocas palabras.** Construyo la parte de las aplicaciones que no se ve: la que guarda los datos, cobra los pagos, envía mensajes por WhatsApp y se conecta con otros sistemas. Es mi fuerte, pero también he hecho las pantallas, así que entiendo el producto completo. Desde 2020 lidero equipos y trabajo junto a negocio y producto.
 
-Pero no me quedo ahí. He hecho frontends con Vue, Nuxt y React, una app de escritorio con Electron y este mismo sitio. He integrado WhatsApp, Messenger, Instagram, SMS, pasarelas de pago y Zoho CRM, y hoy llevo chatbots con IA a producción.
-
-Desde 2020 lidero equipos. Coordino con Negocio y Producto, tomo decisiones de arquitectura y me aseguro de que lo que entregamos se pueda mantener.
+**Para el equipo técnico.** Diseño microservicios con arquitectura hexagonal y APIs con NestJS, Express y AdonisJS, sobre AWS con infraestructura como código (CDK). Uso MongoDB, MySQL y PostgreSQL, y WebSockets con Redis para tiempo real. En frontend he trabajado con Vue, Nuxt y React, y con Electron para escritorio. He integrado WhatsApp, Messenger, Instagram, SMS, pasarelas de pago y Zoho CRM, y hoy llevo a producción chatbots con IA sobre Amazon Bedrock.
 
 ### Cómo construyo con IA
 
 Trabajo con Claude Code y Codex, y elijo el modelo según la tarea. La IA propone; yo decido y valido. Mi método: planeación y especificaciones primero con OpenSpec, un AGENTS.md estructurado por índices, búsqueda léxica (RAG) para que el agente lea solo lo necesario, TDD, pruebas E2E, validadores automáticos y revisión de seguridad con OWASP. Este sitio se construyó así.
 
-### Qué busco
+### Qué aporto
 
-Un puesto de backend developer con Node.js, <mark>remoto o híbrido en Perú</mark>, en un equipo que cuide la calidad: especificaciones primero, TDD, revisiones de código y CI/CD.
+Me integro al equipo y al negocio, no solo al repositorio. Entiendo los objetivos, los convierto en una propuesta concreta y la desarrollamos en equipo. Según el momento me toca construir o liderar, y me siento cómodo en los dos papeles.
 
 ### Además
 
-También cuido la interfaz: este sitio es la prueba. Me importan los detalles que nadie nota pero todos sienten, como la accesibilidad, el rendimiento y las animaciones con intención. Soy ingeniero de sistemas (Universidad Autónoma del Perú), con una especialización en gestión de riesgos de TI y ciberseguridad (Universidad del Pacífico), y participo en hackathons: fui segundo lugar en la Hackathon Mundialista.
+Trabajar al lado de diseñadores UI/UX durante años me dejó buen ojo para los detalles. No es mi especialidad, pero sé cuándo algo está bien hecho y cuándo no, y lo aplico en lo que construyo.
+
+Estudié Ingeniería de Sistemas en la Universidad Autónoma del Perú y luego una especialización en gestión de riesgos de TI y ciberseguridad en la Universidad del Pacífico. En mis primeros años también participé en varias hackathons.
 
 ### Idiomas
 
-Español nativo, inglés y francés.
+Español nativo, inglés intermedio y francés básico.

@@ -1,6 +1,7 @@
 # agent-rag Specification
 
 ## Purpose
+
 Permitir que los agentes encuentren rápido código, documentación y decisiones del repositorio mediante búsqueda híbrida local.
 
 ## Requirements

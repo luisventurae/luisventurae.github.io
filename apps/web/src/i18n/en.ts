@@ -28,6 +28,7 @@ export const en: UiStrings = {
     facts: '{years} years of experience · Node.js · TypeScript · AWS',
     roles: [
       'Microservices on AWS',
+      'AI Engineer',
       'Hexagonal architecture',
       'APIs and chatbots in production',
       'Strictly typed TypeScript',

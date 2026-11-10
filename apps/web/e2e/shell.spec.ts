@@ -65,6 +65,42 @@ test.describe('site shell', () => {
     await page.goto('/')
     await expect(page.getByText('Microservicios en AWS', { exact: true }).first()).toBeVisible()
     await page.waitForTimeout(3000)
-    await expect(page.getByText('Arquitectura hexagonal')).toHaveCount(0)
+    await expect(
+      page.locator('#top').getByText('Arquitectura hexagonal', { exact: true }),
+    ).toHaveCount(0)
+  })
+})
+
+test.describe('home sections', () => {
+  const ORDER = ['about', 'experience', 'projects', 'stack', 'contact', 'terminal']
+
+  for (const path of ['/', '/fr/']) {
+    test(`${path} puts proof before tools and the nav follows the page`, async ({ page }) => {
+      await page.goto(path)
+      const section_ids = await page
+        .locator('main section[id]:not(#top)')
+        .evaluateAll((sections) => sections.map((section) => section.id))
+      expect(section_ids).toEqual(ORDER)
+      const nav_targets = await page
+        .getByRole('navigation')
+        .first()
+        .locator('ul a')
+        .evaluateAll((links) => links.map((link) => link.getAttribute('href')?.replace('#', '')))
+      expect(nav_targets).toEqual(ORDER)
+    })
+  }
+
+  test('experience starts with the current job and labels engagement types', async ({ page }) => {
+    await page.goto('/')
+    const entries = page.locator('#experience ol > li')
+    await expect(entries.first()).toContainText('Prestamype')
+    await expect(entries.first()).toContainText('jun 2024 – actualidad')
+    await expect(entries.first()).toContainText('Tiempo completo')
+    await expect(entries.filter({ hasText: 'Instituto Cepeban' })).toContainText('Freelance')
+  })
+
+  test('about shows the profile and the role sought without the terminal', async ({ page }) => {
+    await page.goto('/en/')
+    await expect(page.locator('#about')).toContainText('A backend developer role with Node.js')
   })
 })

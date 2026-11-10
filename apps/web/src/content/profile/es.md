@@ -2,22 +2,20 @@
 title: Luis Ventura E
 ---
 
-Soy Luis Ventura E, Full Stack Web Engineer. Construyo software web que se siente bien: interfaces cuidadas al detalle y backends que aguantan tráfico real, con JavaScript y TypeScript de punta a punta.
+Soy Luis Ventura E, Backend Engineer con {years} años de experiencia construyendo sistemas en Node.js y TypeScript que aguantan tráfico real. Hoy trabajo en Prestamype, una fintech peruana, diseñando microservicios sobre AWS.
 
-## Qué hago
+### Qué hago
 
-Diseño y desarrollo aplicaciones web completas: frontend con Vue, Nuxt, React y Astro; backend con Node.js, NestJS, AdonisJS y Express; bases de datos MongoDB, MySQL y PostgreSQL; tiempo real con WebSockets y Redis.
+Diseño y desarrollo backends: microservicios con arquitectura hexagonal, APIs con NestJS, Express y AdonisJS, infraestructura como código con AWS CDK, tiempo real con WebSockets y Redis, y bases de datos MongoDB, MySQL y PostgreSQL. He integrado WhatsApp Business API, Zoho CRM, Airtable, Twilio y Authy, y construyo chatbots en producción.
 
-## Cómo trabajo
+### Qué busco
 
-Me importan los detalles que nadie nota pero todos sienten: animaciones con intención, accesibilidad, rendimiento y código con pruebas. Trabajo con especificaciones primero (OpenSpec), TDD y CI/CD.
+Un puesto de backend developer con Node.js, remoto o híbrido en Perú, en un equipo que cuide la calidad: especificaciones primero, TDD, revisiones de código y CI/CD.
 
-## Integraciones
+### Además
 
-He integrado WhatsApp Business API, Zoho CRM, Airtable, Twilio y Authy en productos reales.
+También cuido la interfaz: este sitio es la prueba. Me importan los detalles que nadie nota pero todos sienten, como la accesibilidad, el rendimiento y las animaciones con intención.
 
-## Idiomas
+### Idiomas
 
-Hablo español, inglés y francés.
-
-<!-- TODO(media): historia personal, qué buscas, logros destacados. -->
+Español nativo, inglés y francés.

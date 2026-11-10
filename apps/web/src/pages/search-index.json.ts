@@ -3,7 +3,8 @@ import type { APIRoute } from 'astro'
 
 import { SKILLS } from '../data/skills'
 import { getUi } from '../i18n'
-import { loadProfile, loadProjects } from '../lib/content'
+import { loadExperience, loadProfile, loadProjects } from '../lib/content'
+import { formatExperiencePeriod } from '../lib/experience'
 import { buildSearchDocuments } from '../lib/search-documents'
 
 /** Prerendered chunks for the terminal's text search and the local RAG ingest. */
@@ -13,6 +14,7 @@ export const GET: APIRoute = async () => {
     LOCALES.map(async (locale) => {
       const ui = getUi(locale)
       const projects = await loadProjects(locale)
+      const experience = await loadExperience(locale)
       return buildSearchDocuments({
         locale,
         profile: await loadProfile(locale),
@@ -25,6 +27,16 @@ export const GET: APIRoute = async () => {
           tech_labels: project.techs.map((id) => skill_labels.get(id) ?? id),
           body: project.body_text,
         })),
+        experience: experience.map((item) => ({
+          id: item.id,
+          company: item.company,
+          role: item.role,
+          kind_label: ui.experience.kinds[item.kind],
+          period: formatExperiencePeriod(item, locale, ui.experience.present),
+          tech_labels: item.techs.map((id) => skill_labels.get(id) ?? id),
+          body: item.body_text,
+        })),
+        experience_title: ui.experience.title,
         skills: SKILLS,
         category_labels: ui.stack.categories,
         stack_title: ui.stack.title,

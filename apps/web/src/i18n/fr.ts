@@ -15,6 +15,8 @@ export const fr: UiStrings = {
     theme_to_light: 'Passer au thème clair',
   },
   nav: {
+    about: 'À propos',
+    experience: 'Expérience',
     stack: 'Stack',
     projects: 'Projets',
     terminal: 'Terminal',
@@ -35,6 +37,17 @@ export const fr: UiStrings = {
     drag_hint: 'Fais glisser les lettres',
     cta_projects: 'Voir les projets',
     cta_terminal: 'Ouvrir le terminal',
+  },
+  about: {
+    title: 'À propos',
+    intro: 'Qui je suis, ce que je fais et ce que je recherche.',
+  },
+  experience: {
+    title: 'Expérience',
+    intro: 'Où j’ai travaillé depuis 2019, du plus récent au plus ancien.',
+    present: 'aujourd’hui',
+    kinds: { 'full-time': 'Temps plein', 'part-time': 'Temps partiel', freelance: 'Freelance' },
+    projects: 'Projets',
   },
   stack: {
     title: 'Stack',

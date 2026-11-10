@@ -12,10 +12,22 @@ interface ProjectDocument {
   body: string
 }
 
+interface ExperienceDocument {
+  id: string
+  company: string
+  role: string
+  kind_label: string
+  period: string
+  tech_labels: string[]
+  body: string
+}
+
 export interface LocaleDocuments {
   locale: Locale
   profile: { title: string; body: string }
   projects: ProjectDocument[]
+  experience: ExperienceDocument[]
+  experience_title: string
   skills: Skill[]
   category_labels: Record<SkillCategory, string>
   stack_title: string
@@ -23,7 +35,7 @@ export interface LocaleDocuments {
 
 /**
  * Builds the retrieval chunks shared by the production text search and the local RAG
- * index. Every source of truth (profile, projects, skills) becomes markdown first.
+ * index. Every source of truth (profile, experience, projects, skills) becomes markdown first.
  */
 export function buildSearchDocuments(input: LocaleDocuments): DocumentChunk[] {
   const profile = chunkMarkdown({
@@ -40,13 +52,28 @@ export function buildSearchDocuments(input: LocaleDocuments): DocumentChunk[] {
       title: project.title,
     }),
   )
+  const experience = input.experience.flatMap((item) =>
+    chunkMarkdown({
+      markdown: experienceMarkdown(item),
+      locale: input.locale,
+      source: `experience/${item.id}`,
+      title: `${input.experience_title}: ${item.company}`,
+    }),
+  )
   const skills = chunkMarkdown({
     markdown: skillsMarkdown(input.skills, input.category_labels),
     locale: input.locale,
     source: 'skills',
     title: input.stack_title,
   })
-  return [...profile, ...projects, ...skills]
+  return [...profile, ...experience, ...projects, ...skills]
+}
+
+function experienceMarkdown(item: ExperienceDocument): string {
+  return [
+    `${item.role} · ${item.kind_label} · ${item.period}. Stack: ${item.tech_labels.join(', ')}.`,
+    item.body,
+  ].join('\n\n')
 }
 
 function projectMarkdown(project: ProjectDocument): string {

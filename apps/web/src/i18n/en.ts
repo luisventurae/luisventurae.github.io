@@ -15,6 +15,8 @@ export const en: UiStrings = {
     theme_to_light: 'Switch to light theme',
   },
   nav: {
+    about: 'About',
+    experience: 'Experience',
     stack: 'Stack',
     projects: 'Projects',
     terminal: 'Terminal',
@@ -35,6 +37,17 @@ export const en: UiStrings = {
     drag_hint: 'Drag the letters',
     cta_projects: 'See projects',
     cta_terminal: 'Open the terminal',
+  },
+  about: {
+    title: 'About',
+    intro: 'Who I am, what I do and what I am looking for.',
+  },
+  experience: {
+    title: 'Experience',
+    intro: 'Where I have worked since 2019, most recent first.',
+    present: 'present',
+    kinds: { 'full-time': 'Full-time', 'part-time': 'Part-time', freelance: 'Freelance' },
+    projects: 'Projects',
   },
   stack: {
     title: 'Stack',

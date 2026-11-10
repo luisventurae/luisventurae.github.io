@@ -21,14 +21,14 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 4. Sobre mí y Experiencia (`feat(web): add about and experience sections`)
 
-- [ ] 4.1 Reescribir `content/profile/{es,en,fr}.md`:
+- [x] 4.1 Reescribir `content/profile/{es,en,fr}.md`:
   - qué hace (backend Node.js, microservicios, AWS CDK, arquitectura hexagonal, chatbots);
   - qué busca (backend Node.js, remoto o híbrido, Perú);
   - idiomas.
 
   Verificar que el primer párrafo sigue sirviendo para `whoami` (test de terminal).
 
-- [ ] 4.2 Colección `experience`:
+- [x] 4.2 Colección `experience`:
   - esquema con `role` en `content.config.ts`;
   - `data/experience.ts`: Prestamype (full-time, 2024-06 → actual, `TODO(content)`), Securitec (full-time, 2019-09 → 2023-10), Asu Cuenta (full-time, 2019-01 → 2019-08), Pool Work Confort (part-time, fechas `TODO(content)`), Instituto Cepeban (freelance), Busconsulting (freelance);
   - markdown es/en/fr;
@@ -36,10 +36,10 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
   Verificar con `npm test`.
 
-- [ ] 4.3 `ExperienceTimeline.astro` y la sección "Sobre mí" en `HomePage.astro`, con el nuevo orden de secciones y la `Nav` alineada; i18n de los títulos, modalidad y "actualidad"; verificar con `npm run build -w apps/web`
-- [ ] 4.4 Incluir la experiencia en `search-documents.ts` (test existente ampliado) y quitar Facebook de `SOCIAL_LINKS`; verificar con `npm test`
-- [ ] 4.5 E2E: orden de secciones y de la navegación en `/` y `/fr/`, primera entrada Prestamype con "actualidad" y Cepeban como freelance; verificar con `npm run test:e2e`
-- [ ] 4.6 Documentar la colección de experiencia en `docs/architecture.md` y los componentes en `docs/design-system.md`; verificar los enlaces del índice de `docs/README.md`
+- [x] 4.3 `ExperienceTimeline.astro` y la sección "Sobre mí" en `HomePage.astro`, con el nuevo orden de secciones y la `Nav` alineada; i18n de los títulos, modalidad y "actualidad"; verificar con `npm run build -w apps/web`
+- [x] 4.4 Incluir la experiencia en `search-documents.ts` (test existente ampliado) y quitar Facebook de `SOCIAL_LINKS`; verificar con `npm test`
+- [x] 4.5 E2E: orden de secciones y de la navegación en `/` y `/fr/`, primera entrada Prestamype con "actualidad" y Cepeban como freelance; verificar con `npm run test:e2e`
+- [x] 4.6 Documentar la colección de experiencia en `docs/architecture.md` y los componentes en `docs/design-system.md`; verificar los enlaces del índice de `docs/README.md`
 
 ## 5. Stack por niveles (`refactor(web): group stack by usage tier`)
 

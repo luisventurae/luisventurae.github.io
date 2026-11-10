@@ -1,4 +1,7 @@
+import type { Locale } from '@portfolio/shared'
+
 import { CAREER_START } from '../data/site'
+import { formatPeriod } from './projects'
 
 const YEAR_MONTH = /^(\d{4})-(0[1-9]|1[0-2])$/
 const YEARS_TOKEN = /\{years\}/g
@@ -24,4 +27,27 @@ export function careerYears(now: Date = new Date()): number {
 /** Replaces every `{years}` token in localized copy with the computed value. */
 export function interpolateYears(text: string, years: number): string {
   return text.replace(YEARS_TOKEN, String(years))
+}
+
+interface Period {
+  start: string
+  end?: string | undefined
+}
+
+/** Ongoing engagements first, then by end month and start month, most recent first. */
+export function sortExperience<T extends Period>(items: T[]): T[] {
+  const endKey = (item: T): string => item.end ?? '9999-12'
+  return [...items].sort(
+    (a, b) => endKey(b).localeCompare(endKey(a)) || b.start.localeCompare(a.start),
+  )
+}
+
+export function formatExperiencePeriod(
+  period: Period,
+  locale: Locale,
+  present_label: string,
+): string {
+  if (!period.end) return `${formatPeriod({ start: period.start }, locale)} – ${present_label}`
+  if (period.end === period.start) return formatPeriod({ start: period.start }, locale)
+  return formatPeriod(period, locale)
 }

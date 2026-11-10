@@ -2,22 +2,20 @@
 title: Luis Ventura E
 ---
 
-Je suis Luis Ventura E, Full Stack Web Engineer. Je construis des logiciels web agréables à utiliser : des interfaces soignées dans le détail et des backends qui tiennent un vrai trafic, en JavaScript et TypeScript de bout en bout.
+Je suis Luis Ventura E, Backend Engineer avec {years} ans d’expérience dans la construction de systèmes Node.js et TypeScript qui tiennent un vrai trafic. Je travaille aujourd’hui chez Prestamype, une fintech péruvienne, où je conçois des microservices sur AWS.
 
-## Ce que je fais
+### Ce que je fais
 
-Je conçois et développe des applications web complètes : frontends avec Vue, Nuxt, React et Astro ; backends avec Node.js, NestJS, AdonisJS et Express ; bases de données MongoDB, MySQL et PostgreSQL ; temps réel avec WebSockets et Redis.
+Je conçois et développe des backends : microservices en architecture hexagonale, APIs avec NestJS, Express et AdonisJS, infrastructure as code avec AWS CDK, temps réel avec WebSockets et Redis, et bases de données MongoDB, MySQL et PostgreSQL. J’ai intégré WhatsApp Business API, Zoho CRM, Airtable, Twilio et Authy, et je construis des chatbots en production.
 
-## Comment je travaille
+### Ce que je recherche
 
-Je tiens aux détails que personne ne remarque mais que tout le monde ressent : des animations voulues, l’accessibilité, la performance et du code testé. Je travaille spec d’abord (OpenSpec), en TDD et avec CI/CD.
+Un poste de développeur backend Node.js, en télétravail ou en hybride au Pérou, dans une équipe qui soigne la qualité : spécifications d’abord, TDD, revue de code et CI/CD.
 
-## Intégrations
+### En plus
 
-J’ai intégré l’API WhatsApp Business, Zoho CRM, Airtable, Twilio et Authy dans de vrais produits.
+Je soigne aussi l’interface : ce site en est la preuve. Je tiens aux détails que personne ne remarque mais que tout le monde ressent : accessibilité, performance et animations utiles.
 
-## Langues
+### Langues
 
-Je parle espagnol, anglais et français.
-
-<!-- TODO(media): histoire personnelle, ce que tu recherches, réalisations clés. -->
+Espagnol natif, anglais et français.

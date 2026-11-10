@@ -1,0 +1,75 @@
+---
+import type { Locale } from '@portfolio/shared'
+
+import type { EngagementKind } from '../../data/experience'
+import type { ExperienceView } from '../../lib/content'
+import { formatExperiencePeriod } from '../../lib/experience'
+
+interface ExperienceLabels {
+  present: string
+  kinds: Record<EngagementKind, string>
+  projects: string
+}
+
+interface Props {
+  locale: Locale
+  items: ExperienceView[]
+  /** Project titles by slug, to name the related projects. */
+  project_titles: Record<string, string>
+  /** Technology labels by skill id. */
+  tech_labels: Record<string, string>
+  labels: ExperienceLabels
+}
+
+const { locale, items, project_titles, tech_labels, labels } = Astro.props
+---
+
+<ol class="relative grid gap-12 border-l border-line pl-6 md:pl-10">
+  {items.map((item) => (
+    <li class="experience-item relative grid gap-3 md:grid-cols-[13rem_1fr] md:gap-10">
+      <span
+        aria-hidden="true"
+        class:list={[
+          'absolute top-2 -left-[calc(1.5rem+5px)] size-2.5 rounded-full md:-left-[calc(2.5rem+5px)]',
+          item.end ? 'bg-line' : 'bg-lime ring-4 ring-lime/30',
+        ]}
+      />
+      <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 md:flex-col md:gap-2">
+        <p class="font-mono text-small text-ink-muted">
+          {formatExperiencePeriod(item, locale, labels.present)}
+        </p>
+        <p class="rounded-full border border-line px-2.5 py-0.5 text-small font-medium">
+          {labels.kinds[item.kind]}
+        </p>
+      </div>
+      <div>
+        <h3 class="font-display text-title font-bold">{item.company}</h3>
+        <p class="mt-1 font-semibold text-accent-ink">{item.role}</p>
+        <div class="project-body mt-3 max-w-[65ch]" set:html={item.body_html} />
+        {item.project_slugs.length > 0 && (
+          <p class="mt-4 text-small">
+            <span class="font-mono text-ink-muted">{labels.projects}:</span>{' '}
+            {item.project_slugs.map((slug, index) => (
+              <>
+                {index > 0 && ', '}
+                <a
+                  href={`#project-${slug}`}
+                  class="font-semibold underline decoration-line underline-offset-4 pointer-fine:hover:decoration-ink"
+                >
+                  {project_titles[slug] ?? slug}
+                </a>
+              </>
+            ))}
+          </p>
+        )}
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {item.techs.map((tech) => (
+            <li class="rounded-full bg-paper-raised px-2.5 py-0.5 font-mono text-[0.75rem] text-ink-muted">
+              {tech_labels[tech] ?? tech}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  ))}
+</ol>

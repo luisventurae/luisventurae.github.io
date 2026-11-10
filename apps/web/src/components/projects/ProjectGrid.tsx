@@ -37,7 +37,7 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
             selection.active !== null && project.techs.some((tech) => tech.id === selection.active)
           const is_dimmed = selection.active !== null && !is_match
           return (
-            <li key={project.slug}>
+            <li key={project.slug} id={`project-${project.slug}`} className="scroll-mt-24">
               <TiltCard
                 project={project}
                 is_match={is_match}

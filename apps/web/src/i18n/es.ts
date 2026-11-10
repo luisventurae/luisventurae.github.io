@@ -13,6 +13,8 @@ export const es = {
     theme_to_light: 'Cambiar a tema claro',
   },
   nav: {
+    about: 'Sobre mí',
+    experience: 'Experiencia',
     stack: 'Stack',
     projects: 'Proyectos',
     terminal: 'Terminal',
@@ -33,6 +35,17 @@ export const es = {
     drag_hint: 'Arrastra las letras',
     cta_projects: 'Ver proyectos',
     cta_terminal: 'Abrir la terminal',
+  },
+  about: {
+    title: 'Sobre mí',
+    intro: 'Quién soy, qué hago y qué busco.',
+  },
+  experience: {
+    title: 'Experiencia',
+    intro: 'Dónde he trabajado desde 2019, de lo más reciente a lo más antiguo.',
+    present: 'actualidad',
+    kinds: { 'full-time': 'Tiempo completo', 'part-time': 'Medio tiempo', freelance: 'Freelance' },
+    projects: 'Proyectos',
   },
   stack: {
     title: 'Stack',

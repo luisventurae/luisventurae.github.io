@@ -16,6 +16,18 @@ const documents = buildSearchDocuments({
       body: '### Qué hice\n\nWebSockets con Redis.',
     },
   ],
+  experience: [
+    {
+      id: 'prestamype',
+      company: 'Prestamype',
+      role: 'Backend Engineer',
+      kind_label: 'Tiempo completo',
+      period: 'jun 2024 – actualidad',
+      tech_labels: ['Node.js', 'AWS'],
+      body: 'Microservicios sobre AWS.',
+    },
+  ],
+  experience_title: 'Experiencia',
   skills: [
     { id: 'nodejs', label: 'Node.js', category: 'backend', level: 9 },
     { id: 'vue', label: 'Vue.js', category: 'frontend', level: 6 },
@@ -27,7 +39,7 @@ const documents = buildSearchDocuments({
 describe('buildSearchDocuments', () => {
   it('covers profile, projects and skills with their sources', () => {
     expect(new Set(documents.map((doc) => doc.source))).toEqual(
-      new Set(['profile', 'projects/ticker', 'skills']),
+      new Set(['profile', 'projects/ticker', 'experience/prestamype', 'skills']),
     )
     expect(documents.every((doc) => doc.locale === 'es')).toBe(true)
   })
@@ -35,6 +47,14 @@ describe('buildSearchDocuments', () => {
   it('puts project metadata in the first chunk', () => {
     const first = documents.find((doc) => doc.source === 'projects/ticker')
     expect(first?.text).toContain('Securitec, jun 2023. Stack: Vue.js, Redis.')
+  })
+
+  it('describes each experience entry with role, type and period', () => {
+    const entry = documents.find((doc) => doc.source === 'experience/prestamype')
+    expect(entry?.text).toContain(
+      'Backend Engineer · Tiempo completo · jun 2024 – actualidad. Stack: Node.js, AWS.',
+    )
+    expect(entry?.title).toBe('Experiencia: Prestamype')
   })
 
   it('describes skills by category with levels', () => {

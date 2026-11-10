@@ -1,0 +1,82 @@
+name: CI
+
+# Runs on every PR to develop/master and on pushes to develop. Also reused by deploy.yml.
+on:
+  pull_request:
+    branches: [develop, master]
+  push:
+    branches: [develop]
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The job only has read permissions; findings go to the job summary and artifact.
+          GITLEAKS_ENABLE_COMMENTS: 'false'
+
+  checks:
+    name: Format, lint, types, tests, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run lint:unused
+      - run: npm run typecheck
+      - run: npm run test:coverage
+      # Sanity build with the same test values as the e2e suite: this job has no
+      # environment, so production variables are not available here (see deploy.yml).
+      - name: Build web
+        run: npm run build -w apps/web
+        env:
+          PUBLIC_API_URL: http://api.test
+          # Public test site key from Cloudflare docs: always passes.
+          PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+      - name: Bundle API (dry run)
+        run: npm run build -w apps/api
+
+  e2e:
+    name: End-to-end
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Cache Playwright browsers
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - name: Upload report
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report
+          retention-days: 7

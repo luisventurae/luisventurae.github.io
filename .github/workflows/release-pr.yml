@@ -1,0 +1,41 @@
+name: Release PR
+
+# When CI passes on develop, open (or refresh) the single develop → master PR.
+# Merging it is a human decision; the merge triggers deploy.yml.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [develop]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  release-pr:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Open or update the release PR
+        env:
+          # Optional fine-grained token so the PR triggers CI; falls back to GITHUB_TOKEN.
+          GH_TOKEN: ${{ secrets.RELEASE_PR_TOKEN || github.token }}
+        run: |
+          set -euo pipefail
+          commits=$(git log --no-merges --format='- %s (%h)' origin/master..origin/develop)
+          if [ -z "$commits" ]; then
+            echo "develop has nothing new for master."
+            exit 0
+          fi
+          title="release: $(date -u +%Y-%m-%d)"
+          body=$(printf '## Changes\n\n%s\n\nMerging deploys the web to gh-pages and, if it changed, the API to Cloudflare Workers.\n' "$commits")
+          existing=$(gh pr list --base master --head develop --state open --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh pr edit "$existing" --title "$title" --body "$body"
+          else
+            gh pr create --base master --head develop --title "$title" --body "$body"
+          fi

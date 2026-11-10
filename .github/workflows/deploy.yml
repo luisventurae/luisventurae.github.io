@@ -1,29 +1,91 @@
 name: Deploy
 
+# Production deploys only from master (after the release PR is merged).
 on:
   push:
     branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  ci:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+
+  changes:
     runs-on: ubuntu-latest
+    outputs:
+      api: ${{ steps.filter.outputs.api }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: filter
+        uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
+        with:
+          filters: |
+            api:
+              - 'apps/api/**'
+              - 'packages/shared/**'
+              - 'package-lock.json'
+
+  web:
+    name: Web → gh-pages
+    needs: ci
+    runs-on: ubuntu-latest
+    environment: production
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '24'
-
-      - run: npm install
-
-      - run: npm run generate
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build -w apps/web
         env:
-          NUXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.NUXT_PUBLIC_TURNSTILE_SITE_KEY }}
-          NUXT_PUBLIC_WORKER_URL: ${{ secrets.NUXT_PUBLIC_WORKER_URL }}
-
-      - uses: peaceiris/actions-gh-pages@v4
+          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
+      - uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./.output/public
+          publish_dir: ./apps/web/dist
+          publish_branch: gh-pages
+          force_orphan: true
+
+  api:
+    name: API → Cloudflare Workers
+    needs: [ci, changes]
+    if: needs.changes.outputs.api == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Inject production identifiers
+        working-directory: apps/api
+        env:
+          RATE_LIMIT_KV_ID: ${{ vars.RATE_LIMIT_KV_ID }}
+          CV_BUCKET_NAME: ${{ vars.CV_BUCKET_NAME }}
+          EMAIL_FROM: ${{ vars.EMAIL_FROM }}
+        run: |
+          set -euo pipefail
+          for name in RATE_LIMIT_KV_ID CV_BUCKET_NAME EMAIL_FROM; do
+            [ -n "${!name}" ] || { echo "Missing repository variable $name"; exit 1; }
+            sed -i "s|__${name}__|${!name}|g" wrangler.toml
+          done
+      - name: Deploy
+        working-directory: apps/api
+        run: npx wrangler deploy --env production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

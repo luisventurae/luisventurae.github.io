@@ -1,0 +1,18 @@
+# Development image shared by the web, api and rag-ingest services.
+# Source code is bind-mounted; dependencies live in a named volume so native
+# binaries (workerd, rollup, tsc7) match the container platform.
+FROM node:24.22.2-trixie-slim
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends ca-certificates curl \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV NPM_CONFIG_UPDATE_NOTIFIER=false \
+  NPM_CONFIG_FUND=false \
+  WRANGLER_SEND_METRICS=false \
+  ASTRO_TELEMETRY_DISABLED=1
+
+WORKDIR /app
+# Named volumes copy this ownership on first creation, so `node` can write to them.
+RUN mkdir -p /app/node_modules /app/apps/api/.wrangler && chown -R node:node /app
+USER node

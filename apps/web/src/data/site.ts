@@ -1,0 +1,23 @@
+export const SITE_URL = 'https://luisventurae.github.io'
+export const SOURCE_URL = 'https://github.com/luisventurae/luisventurae.github.io'
+
+export const PERSON = {
+  name: 'Luis Ventura E',
+  full_name: 'Luis Miguel Ventura E',
+  job_title: 'Full Stack Web Engineer',
+  image_path: '/luis-83x83.jpg',
+} as const
+
+export interface SocialLink {
+  key: 'linkedin' | 'github' | 'gitlab' | 'twitter' | 'facebook'
+  label: string
+  url: string
+}
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  { key: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/luisventurae' },
+  { key: 'github', label: 'GitHub', url: 'https://github.com/luisventurae' },
+  { key: 'gitlab', label: 'GitLab', url: 'https://gitlab.com/luisventurae' },
+  { key: 'twitter', label: 'X (Twitter)', url: 'https://x.com/luisventurae' },
+  { key: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/luisventurae' },
+]

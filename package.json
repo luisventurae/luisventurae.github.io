@@ -1,32 +1,44 @@
 {
-  "name": "nuxt-app",
-  "version": "2.0.0",
+  "name": "luisventurae-portfolio",
+  "version": "3.0.0",
   "private": true,
   "license": "MIT",
   "type": "module",
   "engines": {
     "node": "24.22.2"
   },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "dev:host": "nuxt dev --host",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "deploy:gh": "nuxt generate && gh-pages -d .output/public"
-  },
-  "dependencies": {
-    "@nuxtjs/i18n": "^9.5.6",
-    "@vueuse/core": "^10.9.0",
-    "nuxt": "^3.11.2",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "dev": "concurrently -k -n api,web -c magenta,cyan \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "tsc7 -p tsconfig.json && npm run typecheck --workspaces --if-present",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "npm run test:e2e -w apps/web",
+    "verify": "npm run format:check && npm run lint && npm run lint:unused && npm run typecheck && npm run test:coverage",
+    "lint:unused": "knip --no-progress"
   },
   "devDependencies": {
-    "dayjs-nuxt": "^2.1.9",
-    "gh-pages": "^6.1.1",
-    "nuxt-svgo": "^4.0.0",
-    "sass": "^1.75.0"
+    "@portfolio/config": "*",
+    "@types/node": "^24.0.0",
+    "@vitest/coverage-v8": "^5.1.0",
+    "concurrently": "^10.0.7",
+    "eslint": "^10.14.0",
+    "knip": "^6.44.2",
+    "prettier": "^3.9.10",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript7": "npm:typescript@^7.0.2",
+    "vitest": "^5.1.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261109.1": true
   }
 }

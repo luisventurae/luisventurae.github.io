@@ -3,6 +3,7 @@ import type { ImageMetadata } from 'astro'
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 
 import { PROJECTS } from '../data/projects'
+import { careerYears, interpolateYears } from './experience'
 import { formatPeriod, projectSlugFromEntryId, sortProjects } from './projects'
 
 type ProjectEntry = CollectionEntry<'projects'>
@@ -58,5 +59,5 @@ export async function loadProjects(locale: Locale): Promise<ProjectView[]> {
 export async function loadProfile(locale: Locale): Promise<ProfileView> {
   const entry = await getEntry('profile', locale)
   if (!entry) throw new Error(`Missing profile for ${locale}`)
-  return { title: entry.data.title, body: entry.body ?? '' }
+  return { title: entry.data.title, body: interpolateYears(entry.body ?? '', careerYears()) }
 }

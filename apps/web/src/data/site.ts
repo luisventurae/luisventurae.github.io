@@ -8,6 +8,9 @@ export const PERSON = {
   image_path: '/luis-83x83.jpg',
 } as const
 
+/** First month of professional work (`YYYY-MM`); years of experience are derived from it. */
+export const CAREER_START = '2019-01'
+
 export interface SocialLink {
   key: 'linkedin' | 'github' | 'gitlab' | 'twitter' | 'facebook'
   label: string

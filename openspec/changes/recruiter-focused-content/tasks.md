@@ -8,14 +8,14 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 2. Años de experiencia (`feat(web): compute years of experience from career start`)
 
-- [ ] 2.1 TDD de `yearsOfExperience` en `apps/web/src/lib/experience.ts` (2019-01 → 2026-11-10 = 7; 2027-01-01 = 8; mes incompleto no suma); verificar con `npm test`
-- [ ] 2.2 Añadir `CAREER_START`, `AVAILABILITY` y `job_title = 'Backend Engineer · Node.js'` a `data/site.ts`; interpolar `{years}` en `loadProfile` con un test en `lib/content` o `lib/i18n`; verificar con `npm test`
-- [ ] 2.3 Corregir `asu-cuenta` en `data/projects.ts` a 2019-01 → 2019-08 y ajustar `projects.test.ts` si fija fechas; verificar con `npm test`
+- [x] 2.1 TDD de `yearsOfExperience` en `apps/web/src/lib/experience.ts` (2019-01 → 2026-11-10 = 7; 2027-01-01 = 8; mes incompleto no suma); verificar con `npm test`
+- [x] 2.2 Añadir `CAREER_START` a `data/site.ts` (la disponibilidad vive en i18n) y `careerYears()` a `lib/experience.ts`; interpolar `{years}` en `loadProfile` mediante `interpolateYears` (con tests en `experience.test.ts`); verificar con `npm test`
+- [x] 2.3 Corregir `asu-cuenta` en `data/projects.ts` a 2019-01 → 2019-08 y ajustar `projects.test.ts` si fija fechas; verificar con `npm test`
 
 ## 3. Hero y metadatos (`feat(web): position hero and metadata as backend engineer`)
 
 - [ ] 3.1 Hero: línea fija de datos clave con `{years}` y badge de disponibilidad, roles complementarios en es/en/fr y stickers Node.js/AWS/TypeScript; test en `Hero.test.tsx` que confirme que los datos fijos no cambian al avanzar la rotación; verificar con `npm test`
-- [ ] 3.2 `meta.title` y `meta.description` en es/en/fr, `jobTitle` del JSON-LD (`seo.test.ts`), y regenerar las imágenes OG con `apps/web/scripts/generate-og.mjs`; verificar con `npm test` y comprobando visualmente `public/og/*.png`
+- [ ] 3.2 `PERSON.job_title = 'Backend Engineer · Node.js'`, `meta.title` y `meta.description` en es/en/fr, `jobTitle` del JSON-LD (`seo.test.ts`), y regenerar las imágenes OG con `apps/web/scripts/generate-og.mjs`; verificar con `npm test` y comprobando visualmente `public/og/*.png`
 - [ ] 3.3 E2E: el hero muestra "7 años", Node.js y la disponibilidad con JavaScript desactivado (`shell.spec.ts`); verificar con `npm run test:e2e`
 - [ ] 3.4 Actualizar el rol y la esencia en `docs/branding.md`; verificar que `rg "Full Stack Web Engineer" apps docs` solo devuelve menciones históricas
 

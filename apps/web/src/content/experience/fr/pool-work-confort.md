@@ -1,7 +1,5 @@
 ---
-role: Full Stack Developer
+role: Software Engineer
 ---
 
-Boutique en ligne avec Nuxt et AdonisJS, et un service d’envoi d’e-mails automatisé avec files d’attente et suivi des statuts.
-
-<!-- TODO(content): confirmar el cargo y añadir un logro con cifras. -->
+Refonte complète de la plateforme : redesign, optimisation SEO, sécurité renforcée et services spécifiques en serverless. Cela incluait une boutique en ligne avec Nuxt et AdonisJS et un service d’e-mails automatisé avec files d’attente et suivi des statuts.

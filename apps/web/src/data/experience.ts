@@ -48,14 +48,13 @@ export const EXPERIENCE: ExperienceMeta[] = [
     techs: ['nodejs', 'nestjs', 'vue', 'nuxt', 'mongodb', 'websockets', 'redis', 'aws'],
   },
   {
-    // TODO(content): confirm the Pool Work Confort dates; these come from its projects.
     id: 'pool-work-confort',
     company: 'Pool Work Confort',
     kind: 'part-time',
-    start: '2021-10',
-    end: '2022-03',
+    start: '2023-11',
+    end: '2024-03',
     project_slugs: ['pwc-store', 'pwc-mailer'],
-    techs: ['nodejs', 'adonisjs', 'vue', 'nuxt', 'mongodb', 'mysql'],
+    techs: ['nodejs', 'adonisjs', 'vue', 'nuxt', 'mongodb', 'mysql', 'aws', 'seo'],
   },
   {
     id: 'instituto-cepeban',
@@ -74,6 +73,15 @@ export const EXPERIENCE: ExperienceMeta[] = [
     end: '2020-09',
     project_slugs: ['busconsulting-admin'],
     techs: ['electron', 'vue', 'nodejs', 'mysql'],
+  },
+  {
+    id: 'pool-work-confort-2020',
+    company: 'Pool Work Confort',
+    kind: 'freelance',
+    start: '2020-06',
+    end: '2020-08',
+    project_slugs: [],
+    techs: ['vue', 'nuxt', 'seo'],
   },
   {
     id: 'asu-cuenta',

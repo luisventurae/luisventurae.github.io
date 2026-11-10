@@ -49,9 +49,11 @@ export const es = {
   },
   stack: {
     title: 'Stack',
-    intro: 'Elige una tecnología y mira en qué proyectos la usé.',
+    intro: 'Agrupado por cuánto lo uso. Elige una tecnología y mira en qué proyectos la usé.',
     all: 'Todo',
     categories: { backend: 'Backend', frontend: 'Frontend', other: 'Otros' },
+    tiers: { daily: 'Uso diario', production: 'En producción', exploring: 'Explorando' },
+    tiers_legend: 'Nivel de uso',
     no_projects: 'Ningún proyecto de esta lista la usa (todavía).',
     used_in: ['Usada en 1 proyecto', 'Usada en {count} proyectos'],
     see_projects: 'Ver proyectos',

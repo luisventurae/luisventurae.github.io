@@ -29,10 +29,12 @@ const documents = buildSearchDocuments({
   ],
   experience_title: 'Experiencia',
   skills: [
-    { id: 'nodejs', label: 'Node.js', category: 'backend', level: 9 },
-    { id: 'vue', label: 'Vue.js', category: 'frontend', level: 6 },
+    { id: 'nodejs', label: 'Node.js', category: 'backend', tier: 'daily' },
+    { id: 'kafka', label: 'Kafka', category: 'backend', tier: 'exploring' },
+    { id: 'vue', label: 'Vue.js', category: 'frontend', tier: 'production' },
   ],
   category_labels: { backend: 'Backend', frontend: 'Frontend', other: 'Otros' },
+  tier_labels: { daily: 'Uso diario', production: 'En producción', exploring: 'Explorando' },
   stack_title: 'Stack',
 })
 
@@ -57,8 +59,10 @@ describe('buildSearchDocuments', () => {
     expect(entry?.title).toBe('Experiencia: Prestamype')
   })
 
-  it('describes skills by category with levels', () => {
+  it('describes skills by category and usage tier, without numeric ratings', () => {
     const backend = documents.find((doc) => doc.source === 'skills' && doc.text.includes('Backend'))
-    expect(backend?.text).toContain('Node.js (9/10)')
+    expect(backend?.text).toContain('Uso diario: Node.js.')
+    expect(backend?.text).toContain('Explorando: Kafka.')
+    expect(backend?.text).not.toMatch(/\/10/)
   })
 })

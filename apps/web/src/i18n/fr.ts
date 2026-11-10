@@ -51,9 +51,12 @@ export const fr: UiStrings = {
   },
   stack: {
     title: 'Stack',
-    intro: 'Choisis une technologie et vois dans quels projets je l’ai utilisée.',
+    intro:
+      'Regroupé selon mon usage. Choisis une technologie et vois dans quels projets je l’ai utilisée.',
     all: 'Tout',
     categories: { backend: 'Backend', frontend: 'Frontend', other: 'Autres' },
+    tiers: { daily: 'Usage quotidien', production: 'En production', exploring: 'En exploration' },
+    tiers_legend: 'Niveau d’usage',
     no_projects: 'Aucun projet de cette liste ne l’utilise (pour l’instant).',
     used_in: ['Utilisée dans 1 projet', 'Utilisée dans {count} projets'],
     see_projects: 'Voir les projets',

@@ -44,16 +44,16 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 5. Stack por niveles (`refactor(web): group stack by usage tier`)
 
-- [ ] 5.1 Reemplazar `level` por `tier` en `data/skills.ts`:
+- [x] 5.1 Reemplazar `level` por `tier` en `data/skills.ts`:
   - añadir `aws-cdk`, `microservices`, `hexagonal-architecture`, `chatbots` y `claude-code`;
   - AWS pasa a `daily`;
   - quitar Solidity, Spring Boot, cPanel y Heroku.
 
   Verificar con `npm run typecheck`.
 
-- [ ] 5.2 `StackMap`: `chipSize(tier)` con leyenda localizada de los 3 niveles, y `knows_about` con `tier !== 'exploring'`; tests en `StackMap.test.tsx`; verificar con `npm test`
-- [ ] 5.3 Terminal `skills`: mostrar el tier localizado en lugar del número (`commands.test.ts`); verificar con `npm test`
-- [ ] 5.4 Actualizar `docs/design-system.md` (chips por tier); verificar con `npm run format:check`
+- [x] 5.2 `StackMap`: `chipSize(tier)` con leyenda localizada de los 3 niveles, y `knows_about` con `tier !== 'exploring'`; tests en `StackMap.test.tsx`; verificar con `npm test`
+- [x] 5.3 Terminal `skills`: mostrar el tier localizado en lugar del número (`commands.test.ts`); verificar con `npm test`
+- [x] 5.4 Actualizar `docs/design-system.md` (chips por tier); verificar con `npm run format:check`
 
 ## 6. Casos de estudio (`feat(web): restructure projects as case studies`)
 

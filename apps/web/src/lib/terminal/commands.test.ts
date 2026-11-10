@@ -7,6 +7,7 @@ const context: TerminalContext = {
   locale: 'es',
   messages: es.terminal.messages,
   category_labels: es.stack.categories,
+  tier_labels: es.stack.tiers,
   whoami: 'Soy Luis, Backend Engineer · Node.js.',
   projects: [
     {
@@ -19,8 +20,9 @@ const context: TerminalContext = {
     },
   ],
   skills: [
-    { label: 'Node.js', category: 'backend', level: 9 },
-    { label: 'Vue.js', category: 'frontend', level: 6 },
+    { label: 'Node.js', category: 'backend', tier: 'daily' },
+    { label: 'Kafka', category: 'backend', tier: 'exploring' },
+    { label: 'Vue.js', category: 'frontend', tier: 'production' },
   ],
 }
 
@@ -50,6 +52,14 @@ describe('runCommand', () => {
     expect(texts('skills frontend').join('\n')).toContain('Vue.js')
     expect(texts('skills frontend').join('\n')).not.toContain('Node.js')
     expect(texts('skills cosmos')[0]).toContain('backend, frontend, other')
+  })
+
+  it('groups skills by usage tier', () => {
+    expect(texts('skills backend')).toEqual([
+      'Backend',
+      '  Uso diario: Node.js',
+      '  Explorando: Kafka',
+    ])
   })
 
   it('returns effects for side-effect commands', () => {

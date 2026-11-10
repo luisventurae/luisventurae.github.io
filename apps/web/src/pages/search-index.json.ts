@@ -39,6 +39,7 @@ export const GET: APIRoute = async () => {
         experience_title: ui.experience.title,
         skills: SKILLS,
         category_labels: ui.stack.categories,
+        tier_labels: ui.stack.tiers,
         stack_title: ui.stack.title,
       })
     }),

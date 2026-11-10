@@ -4,7 +4,7 @@ import type { Locale } from '@portfolio/shared'
 import { getImage } from 'astro:assets'
 
 import { PERSON } from '../data/site'
-import { SKILLS } from '../data/skills'
+import { SKILLS, sortByTier } from '../data/skills'
 import { getUi } from '../i18n'
 import { loadExperience, loadProfile, loadProjects } from '../lib/content'
 import { careerYears, interpolateYears } from '../lib/experience'
@@ -37,19 +37,17 @@ const structured_projects = projects.map((project) => ({
   description: project.summary,
   url: project.url,
 }))
-const knows_about = SKILLS.filter((skill) => skill.level >= 6).map((skill) => skill.label)
+const knows_about = SKILLS.filter((skill) => skill.tier !== 'exploring').map((skill) => skill.label)
 
 const usage = skillUsage(projects)
 const skill_by_id = new Map(SKILLS.map((skill) => [skill.id, skill]))
-const stack_skills: StackSkill[] = [...SKILLS]
-  .sort((a, b) => b.level - a.level)
-  .map((skill) => ({
-    id: skill.id,
-    label: skill.label,
-    category: skill.category,
-    level: skill.level,
-    project_count: usage[skill.id] ?? 0,
-  }))
+const stack_skills: StackSkill[] = sortByTier(SKILLS).map((skill) => ({
+  id: skill.id,
+  label: skill.label,
+  category: skill.category,
+  tier: skill.tier,
+  project_count: usage[skill.id] ?? 0,
+}))
 
 const project_cards: ProjectCard[] = await Promise.all(
   projects.map(async (project) => ({
@@ -81,6 +79,8 @@ const project_cards: ProjectCard[] = await Promise.all(
 const stack_labels = {
   all: ui.stack.all,
   categories: ui.stack.categories,
+  tiers: ui.stack.tiers,
+  tiers_legend: ui.stack.tiers_legend,
   no_projects: ui.stack.no_projects,
   used_in: ui.stack.used_in,
   clear: ui.stack.clear,
@@ -110,6 +110,7 @@ const terminal_context: TerminalContext = {
   locale,
   messages: ui.terminal.messages,
   category_labels: ui.stack.categories,
+  tier_labels: ui.stack.tiers,
   whoami: profile.body.split('\n\n')[0]?.trim() ?? '',
   projects: projects.map((project) => ({
     slug: project.slug,
@@ -122,7 +123,7 @@ const terminal_context: TerminalContext = {
   skills: SKILLS.map((skill) => ({
     label: skill.label,
     category: skill.category,
-    level: skill.level,
+    tier: skill.tier,
   })),
 }
 const project_labels = {

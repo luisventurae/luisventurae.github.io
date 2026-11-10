@@ -11,6 +11,7 @@ const context: TerminalContext = {
   locale: 'es',
   messages: es.terminal.messages,
   category_labels: es.stack.categories,
+  tier_labels: es.stack.tiers,
   whoami: 'Soy Luis.',
   projects: [
     {
@@ -22,7 +23,7 @@ const context: TerminalContext = {
       techs: ['Redis'],
     },
   ],
-  skills: [{ label: 'Node.js', category: 'backend', level: 9 }],
+  skills: [{ label: 'Node.js', category: 'backend', tier: 'daily' }],
 }
 
 const search_index = [

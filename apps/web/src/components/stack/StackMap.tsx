@@ -1,7 +1,7 @@
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'motion/react'
 import { useState, useSyncExternalStore, type CSSProperties, type ReactElement } from 'react'
 
-import type { SkillCategory } from '../../data/skills'
+import { SKILL_TIERS, type SkillCategory, type SkillTier } from '../../data/skills'
 import { SPRING_SNAPPY } from '../../lib/motion'
 import { selection_store } from '../../lib/selection-store'
 
@@ -9,7 +9,7 @@ export interface StackSkill {
   id: string
   label: string
   category: SkillCategory
-  level: number
+  tier: SkillTier
   project_count: number
 }
 
@@ -18,6 +18,8 @@ export interface StackMapProps {
   labels: {
     all: string
     categories: Record<SkillCategory, string>
+    tiers: Record<SkillTier, string>
+    tiers_legend: string
     no_projects: string
     used_in: string[]
     clear: string
@@ -34,11 +36,15 @@ const CATEGORY_COLOR: Record<SkillCategory, string> = {
   other: 'var(--sky)',
 }
 
-/** Visual weight by proficiency: bigger and bolder means more experience. */
-export function chipSize(level: number): string {
-  if (level >= 8) return 'text-xl font-bold px-5 py-2.5'
-  if (level >= 5) return 'text-base font-semibold px-4 py-2'
-  return 'text-small font-medium px-3 py-1.5'
+const CHIP_SIZE: Record<SkillTier, string> = {
+  daily: 'text-xl font-bold px-5 py-2.5',
+  production: 'text-base font-semibold px-4 py-2',
+  exploring: 'text-small font-medium px-3 py-1.5',
+}
+
+/** Visual weight by usage tier: bigger and bolder means used more, never a self-rating. */
+export function chipSize(tier: SkillTier): string {
+  return CHIP_SIZE[tier]
 }
 
 export function StackMap({ skills, labels }: StackMapProps): ReactElement {
@@ -98,6 +104,8 @@ export function StackMap({ skills, labels }: StackMapProps): ReactElement {
         </motion.ul>
       </LayoutGroup>
 
+      <TierLegend labels={labels} />
+
       <p className="mt-8 min-h-[1.6em] font-mono text-small text-ink-muted" aria-live="polite">
         {selected && <SelectionSummary skill={selected} labels={labels} />}
       </p>
@@ -134,7 +142,7 @@ function SkillChip({ skill, is_selected, is_dimmed, reduce_motion }: SkillChipPr
         onFocus={() => selection_store.preview(skill.id)}
         onBlur={() => selection_store.preview(null)}
         style={{ '--chip-color': color } as CSSProperties}
-        className={`pressable flex items-center gap-2 rounded-full border font-display transition-[background-color,border-color,color] duration-150 ${chipSize(skill.level)} ${
+        className={`pressable flex items-center gap-2 rounded-full border font-display transition-[background-color,border-color,color] duration-150 ${chipSize(skill.tier)} ${
           is_selected
             ? 'border-transparent bg-(--chip-color) text-on-accent'
             : 'border-line bg-paper-raised pointer-fine:hover:border-(--chip-color)'
@@ -178,6 +186,33 @@ function SelectionSummary({
       <ClearButton label={labels.clear} />
     </>
   )
+}
+
+function TierLegend({ labels }: { labels: StackMapProps['labels'] }): ReactElement {
+  return (
+    <ul
+      aria-label={labels.tiers_legend}
+      className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-small text-ink-muted"
+    >
+      {SKILL_TIERS.map((tier) => (
+        <li key={tier} className="flex items-center gap-2">
+          <span
+            aria-hidden="true"
+            className={`rounded-full border border-line font-display leading-none ${TIER_SAMPLE[tier]}`}
+          >
+            Aa
+          </span>
+          {labels.tiers[tier]}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+const TIER_SAMPLE: Record<SkillTier, string> = {
+  daily: 'px-2 py-1 text-base font-bold',
+  production: 'px-1.5 py-0.5 text-small font-semibold',
+  exploring: 'px-1.5 py-0.5 text-[0.7rem] font-medium',
 }
 
 function ClearButton({ label }: { label: string }): ReactElement {

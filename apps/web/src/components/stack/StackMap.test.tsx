@@ -7,13 +7,15 @@ import { chipSize, StackMap, type StackMapProps } from './StackMap'
 
 const props: StackMapProps = {
   skills: [
-    { id: 'nodejs', label: 'Node.js', category: 'backend', level: 9, project_count: 2 },
-    { id: 'vue', label: 'Vue.js', category: 'frontend', level: 6, project_count: 1 },
-    { id: 'kafka', label: 'Kafka', category: 'backend', level: 3, project_count: 0 },
+    { id: 'nodejs', label: 'Node.js', category: 'backend', tier: 'daily', project_count: 2 },
+    { id: 'vue', label: 'Vue.js', category: 'frontend', tier: 'production', project_count: 1 },
+    { id: 'kafka', label: 'Kafka', category: 'backend', tier: 'exploring', project_count: 0 },
   ],
   labels: {
     all: 'Todo',
     categories: { backend: 'Backend', frontend: 'Frontend', other: 'Otros' },
+    tiers: { daily: 'Uso diario', production: 'En producción', exploring: 'Explorando' },
+    tiers_legend: 'Nivel de uso',
     no_projects: 'Ningún proyecto la usa.',
     used_in: ['Usada en 1 proyecto', 'Usada en {count} proyectos'],
     clear: 'Quitar selección',
@@ -59,8 +61,19 @@ describe('StackMap', () => {
   })
 
   it('weights chips by proficiency', () => {
-    expect(chipSize(9)).toContain('text-xl')
-    expect(chipSize(6)).toContain('text-base')
-    expect(chipSize(2)).toContain('text-small')
+    expect(chipSize('daily')).toContain('text-xl')
+    expect(chipSize('production')).toContain('text-base')
+    expect(chipSize('exploring')).toContain('text-small')
+  })
+
+  it('shows a legend for the three usage tiers and no numeric rating', () => {
+    render(<StackMap {...props} />)
+    const legend = screen.getByRole('list', { name: 'Nivel de uso' })
+    expect(
+      within(legend)
+        .getAllByRole('listitem')
+        .map((item) => item.textContent),
+    ).toEqual(['AaUso diario', 'AaEn producción', 'AaExplorando'])
+    expect(screen.queryByText(/\/10/)).not.toBeInTheDocument()
   })
 })

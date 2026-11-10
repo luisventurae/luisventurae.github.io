@@ -1,6 +1,6 @@
 import { chunkMarkdown, type DocumentChunk, type Locale } from '@portfolio/shared'
 
-import type { Skill, SkillCategory } from '../data/skills'
+import { SKILL_TIERS, type Skill, type SkillCategory, type SkillTier } from '../data/skills'
 
 interface ProjectDocument {
   slug: string
@@ -30,6 +30,7 @@ export interface LocaleDocuments {
   experience_title: string
   skills: Skill[]
   category_labels: Record<SkillCategory, string>
+  tier_labels: Record<SkillTier, string>
   stack_title: string
 }
 
@@ -61,7 +62,7 @@ export function buildSearchDocuments(input: LocaleDocuments): DocumentChunk[] {
     }),
   )
   const skills = chunkMarkdown({
-    markdown: skillsMarkdown(input.skills, input.category_labels),
+    markdown: skillsMarkdown(input.skills, input.category_labels, input.tier_labels),
     locale: input.locale,
     source: 'skills',
     title: input.stack_title,
@@ -83,15 +84,21 @@ function projectMarkdown(project: ProjectDocument): string {
   ].join('\n\n')
 }
 
-function skillsMarkdown(skills: Skill[], labels: Record<SkillCategory, string>): string {
+function skillsMarkdown(
+  skills: Skill[],
+  labels: Record<SkillCategory, string>,
+  tier_labels: Record<SkillTier, string>,
+): string {
   const categories = Object.keys(labels) as SkillCategory[]
   return categories
     .map((category) => {
-      const items = skills
-        .filter((skill) => skill.category === category)
-        .sort((a, b) => b.level - a.level)
-        .map((skill) => `${skill.label} (${skill.level}/10)`)
-      return `## ${labels[category]}\n\n${items.join(', ')}.`
+      const tiers = SKILL_TIERS.flatMap((tier) => {
+        const items = skills
+          .filter((skill) => skill.category === category && skill.tier === tier)
+          .map((skill) => skill.label)
+        return items.length > 0 ? [`${tier_labels[tier]}: ${items.join(', ')}.`] : []
+      })
+      return `## ${labels[category]}\n\n${tiers.join('\n')}`
     })
     .join('\n\n')
 }

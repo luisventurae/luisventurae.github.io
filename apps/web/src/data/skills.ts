@@ -1,74 +1,88 @@
 /**
- * Technologies and proficiency (1–10), migrated from the previous site's SkillCard.
- * Entries marked `added_v3` come from this rebuild and should be reviewed by the owner.
- * Project technologies (src/data/projects.ts) must reference these ids.
+ * Technologies grouped by how much they are used (openspec stack-map › Categorized technologies).
+ * Tiers replace the old numeric self-rating: `daily` is the current work stack, `production`
+ * shipped to real users, `exploring` used in side work or learning. Order inside a tier is the
+ * display order. Project and experience technologies must reference these ids.
  */
 export type SkillCategory = 'backend' | 'frontend' | 'other'
+
+export type SkillTier = 'daily' | 'production' | 'exploring'
+
+export const SKILL_TIERS: SkillTier[] = ['daily', 'production', 'exploring']
 
 export interface Skill {
   id: string
   label: string
   category: SkillCategory
-  level: number
-  added_v3?: true
+  tier: SkillTier
 }
 
 export const SKILLS: Skill[] = [
-  // Backend — languages
-  { id: 'javascript', label: 'JavaScript', category: 'backend', level: 10 },
-  { id: 'typescript', label: 'TypeScript', category: 'backend', level: 8.5 },
-  { id: 'php', label: 'PHP', category: 'backend', level: 3 },
-  { id: 'java', label: 'Java', category: 'backend', level: 4 },
-  { id: 'solidity', label: 'Solidity', category: 'backend', level: 1 },
+  // Backend — languages and runtime
+  { id: 'nodejs', label: 'Node.js', category: 'backend', tier: 'daily' },
+  { id: 'typescript', label: 'TypeScript', category: 'backend', tier: 'daily' },
+  { id: 'javascript', label: 'JavaScript', category: 'backend', tier: 'daily' },
+  { id: 'java', label: 'Java', category: 'backend', tier: 'exploring' },
+  { id: 'php', label: 'PHP', category: 'backend', tier: 'exploring' },
+  // Backend — architecture and cloud
+  { id: 'aws', label: 'AWS', category: 'backend', tier: 'daily' },
+  { id: 'aws-cdk', label: 'AWS CDK', category: 'backend', tier: 'daily' },
+  { id: 'microservices', label: 'Microservices', category: 'backend', tier: 'daily' },
+  {
+    id: 'hexagonal-architecture',
+    label: 'Hexagonal Architecture',
+    category: 'backend',
+    tier: 'daily',
+  },
+  { id: 'cloudflare', label: 'Cloudflare Workers', category: 'backend', tier: 'production' },
+  { id: 'vercel', label: 'Vercel', category: 'backend', tier: 'production' },
+  { id: 'linux', label: 'Linux', category: 'backend', tier: 'production' },
   // Backend — frameworks
-  { id: 'nodejs', label: 'Node.js', category: 'backend', level: 9 },
-  { id: 'nestjs', label: 'NestJS', category: 'backend', level: 7 },
-  { id: 'express', label: 'Express', category: 'backend', level: 7 },
-  { id: 'adonisjs', label: 'AdonisJS', category: 'backend', level: 8 },
-  { id: 'mongoose', label: 'Mongoose', category: 'backend', level: 9 },
-  { id: 'spring-boot', label: 'Spring Boot', category: 'backend', level: 1 },
-  { id: 'hono', label: 'Hono', category: 'backend', level: 5, added_v3: true },
-  // Backend — databases
-  { id: 'mongodb', label: 'MongoDB', category: 'backend', level: 4 },
-  { id: 'mysql', label: 'MySQL', category: 'backend', level: 4 },
-  { id: 'postgresql', label: 'PostgreSQL', category: 'backend', level: 4 },
-  { id: 'sql-server', label: 'SQL Server', category: 'backend', level: 4 },
-  // Backend — servers & cloud
-  { id: 'linux', label: 'Linux', category: 'backend', level: 4 },
-  { id: 'cpanel', label: 'cPanel', category: 'backend', level: 5 },
-  { id: 'aws', label: 'AWS', category: 'backend', level: 3 },
-  { id: 'heroku', label: 'Heroku', category: 'backend', level: 4 },
-  { id: 'vercel', label: 'Vercel', category: 'backend', level: 6 },
-  { id: 'cloudflare', label: 'Cloudflare', category: 'backend', level: 4 },
-  // Backend — communication
-  { id: 'websockets', label: 'WebSockets', category: 'backend', level: 8 },
-  { id: 'redis', label: 'Redis', category: 'backend', level: 4 },
-  { id: 'kafka', label: 'Kafka', category: 'backend', level: 3 },
+  { id: 'nestjs', label: 'NestJS', category: 'backend', tier: 'production' },
+  { id: 'express', label: 'Express', category: 'backend', tier: 'production' },
+  { id: 'adonisjs', label: 'AdonisJS', category: 'backend', tier: 'production' },
+  { id: 'hono', label: 'Hono', category: 'backend', tier: 'production' },
+  { id: 'mongoose', label: 'Mongoose', category: 'backend', tier: 'production' },
+  // Backend — data and messaging
+  { id: 'mongodb', label: 'MongoDB', category: 'backend', tier: 'daily' },
+  { id: 'mysql', label: 'MySQL', category: 'backend', tier: 'production' },
+  { id: 'postgresql', label: 'PostgreSQL', category: 'backend', tier: 'production' },
+  { id: 'sql-server', label: 'SQL Server', category: 'backend', tier: 'production' },
+  { id: 'redis', label: 'Redis', category: 'backend', tier: 'production' },
+  { id: 'websockets', label: 'WebSockets', category: 'backend', tier: 'production' },
+  { id: 'kafka', label: 'Kafka', category: 'backend', tier: 'exploring' },
   // Frontend
-  { id: 'vue', label: 'Vue.js', category: 'frontend', level: 6 },
-  { id: 'nuxt', label: 'Nuxt', category: 'frontend', level: 4 },
-  { id: 'react', label: 'React', category: 'frontend', level: 5, added_v3: true },
-  { id: 'astro', label: 'Astro', category: 'frontend', level: 5, added_v3: true },
-  { id: 'vite', label: 'Vite', category: 'frontend', level: 4 },
-  { id: 'web-components', label: 'Web Components', category: 'frontend', level: 7 },
-  { id: 'electron', label: 'Electron', category: 'frontend', level: 5, added_v3: true },
-  { id: 'sass', label: 'Sass / SCSS', category: 'frontend', level: 9 },
-  { id: 'stylus', label: 'Stylus', category: 'frontend', level: 8 },
-  { id: 'tailwind', label: 'Tailwind CSS', category: 'frontend', level: 5, added_v3: true },
-  { id: 'antdv', label: 'Ant Design Vue', category: 'frontend', level: 5 },
-  { id: 'seo', label: 'SEO', category: 'frontend', level: 7 },
-  { id: 'responsive', label: 'Responsive Design', category: 'frontend', level: 8 },
-  { id: 'pwa', label: 'PWA', category: 'frontend', level: 8 },
-  // Other — tools & integrations
-  { id: 'git', label: 'Git', category: 'other', level: 9 },
-  { id: 'docker', label: 'Docker', category: 'other', level: 4 },
-  { id: 'waba', label: 'WhatsApp Business API', category: 'other', level: 8 },
-  { id: 'zoho-crm', label: 'Zoho CRM', category: 'other', level: 5 },
-  { id: 'airtable', label: 'Airtable API', category: 'other', level: 6 },
-  { id: 'twilio', label: 'Twilio', category: 'other', level: 5 },
-  { id: 'authy', label: 'Authy', category: 'other', level: 4 },
-  { id: 'rag', label: 'RAG / Ollama', category: 'other', level: 4, added_v3: true },
-  { id: 'vitest', label: 'Vitest', category: 'other', level: 5, added_v3: true },
-  { id: 'playwright', label: 'Playwright', category: 'other', level: 4, added_v3: true },
-  { id: 'scrum', label: 'Scrum', category: 'other', level: 6 },
+  { id: 'vue', label: 'Vue.js', category: 'frontend', tier: 'production' },
+  { id: 'nuxt', label: 'Nuxt', category: 'frontend', tier: 'production' },
+  { id: 'react', label: 'React', category: 'frontend', tier: 'production' },
+  { id: 'astro', label: 'Astro', category: 'frontend', tier: 'production' },
+  { id: 'tailwind', label: 'Tailwind CSS', category: 'frontend', tier: 'production' },
+  { id: 'electron', label: 'Electron', category: 'frontend', tier: 'production' },
+  { id: 'web-components', label: 'Web Components', category: 'frontend', tier: 'production' },
+  { id: 'vite', label: 'Vite', category: 'frontend', tier: 'production' },
+  { id: 'sass', label: 'Sass / SCSS', category: 'frontend', tier: 'production' },
+  { id: 'stylus', label: 'Stylus', category: 'frontend', tier: 'production' },
+  { id: 'antdv', label: 'Ant Design Vue', category: 'frontend', tier: 'production' },
+  { id: 'pwa', label: 'PWA', category: 'frontend', tier: 'production' },
+  { id: 'responsive', label: 'Responsive Design', category: 'frontend', tier: 'production' },
+  { id: 'seo', label: 'SEO', category: 'frontend', tier: 'production' },
+  // Other — tools, integrations and practices
+  { id: 'git', label: 'Git', category: 'other', tier: 'daily' },
+  { id: 'claude-code', label: 'Claude Code', category: 'other', tier: 'daily' },
+  { id: 'scrum', label: 'Scrum', category: 'other', tier: 'daily' },
+  { id: 'chatbots', label: 'Chatbots', category: 'other', tier: 'production' },
+  { id: 'waba', label: 'WhatsApp Business API', category: 'other', tier: 'production' },
+  { id: 'zoho-crm', label: 'Zoho CRM', category: 'other', tier: 'production' },
+  { id: 'airtable', label: 'Airtable API', category: 'other', tier: 'production' },
+  { id: 'twilio', label: 'Twilio', category: 'other', tier: 'production' },
+  { id: 'authy', label: 'Authy', category: 'other', tier: 'production' },
+  { id: 'docker', label: 'Docker', category: 'other', tier: 'production' },
+  { id: 'vitest', label: 'Vitest', category: 'other', tier: 'production' },
+  { id: 'playwright', label: 'Playwright', category: 'other', tier: 'production' },
+  { id: 'rag', label: 'RAG / Ollama', category: 'other', tier: 'exploring' },
 ]
+
+/** Daily first, then production, then exploring; stable inside each tier. */
+export function sortByTier<T extends { tier: SkillTier }>(skills: T[]): T[] {
+  return [...skills].sort((a, b) => SKILL_TIERS.indexOf(a.tier) - SKILL_TIERS.indexOf(b.tier))
+}

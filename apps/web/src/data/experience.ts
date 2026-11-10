@@ -22,7 +22,7 @@ export const EXPERIENCE: ExperienceMeta[] = [
     company: 'Prestamype',
     kind: 'full-time',
     start: '2024-06',
-    project_slugs: [],
+    project_slugs: ['prestamype-invoices'],
     techs: [
       'nodejs',
       'typescript',

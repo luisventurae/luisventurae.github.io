@@ -2,19 +2,37 @@ import type { ImageMetadata } from 'astro'
 
 import { SOURCE_URL } from './site'
 
+import asu_home_mobile from '../assets/projects/ss-asu-1-mobile.webp'
 import asu_cover from '../assets/projects/ss-asu-1.webp'
+import asu_map from '../assets/projects/ss-asu-2.webp'
+import asu_transactions from '../assets/projects/ss-asu-3.webp'
 import busconsulting_cover from '../assets/projects/ss-busc-1.webp'
+import busconsulting_site_mobile from '../assets/projects/ss-busconsulting-1-mobile.webp'
+import busconsulting_site from '../assets/projects/ss-busconsulting-1.webp'
 import cepeban_cover from '../assets/projects/ss-cepeban-0.webp'
 import portfolio_cover from '../assets/projects/ss-portfolio-1.webp'
+import prestamype_home_mobile from '../assets/projects/ss-prestamype-1-mobile.webp'
+import prestamype_home from '../assets/projects/ss-prestamype-1.webp'
+import prestamype_reports_mobile from '../assets/projects/ss-prestamype-2-mobile.webp'
+import prestamype_reports from '../assets/projects/ss-prestamype-2.webp'
 import pwc_mailer_cover from '../assets/projects/ss-pwc-0.webp'
-import pwc_store_cover from '../assets/projects/ss-pwc-1.webp'
+import pwc_store_home_mobile from '../assets/projects/ss-pwc-1-mobile.webp'
+import pwc_store_home from '../assets/projects/ss-pwc-1.webp'
+import pwc_store_catalog_mobile from '../assets/projects/ss-pwc-2-mobile.webp'
+import pwc_store_catalog from '../assets/projects/ss-pwc-2.webp'
+import pwc_quote from '../assets/projects/ss-pwc-intra-3.webp'
+import pwc_quote_menu from '../assets/projects/ss-pwc-intra-4.webp'
 import securitec_cover from '../assets/projects/ss-securitec-1.webp'
+import ticker_login from '../assets/projects/ss-securitec-ticker-1.webp'
+import ticker_dashboard from '../assets/projects/ss-securitec-ticker-2.webp'
+import ticker_inbox_mobile from '../assets/projects/ss-securitec-ticker-4-mobile.webp'
 import ticker_cover from '../assets/projects/ss-ticker-1.webp'
 
 /**
  * Locale-independent project metadata. Localized text lives in
  * src/content/projects/<locale>/<slug>.md. The employer comes from src/data/experience.ts
- * (`project_slugs`); a project no job lists is personal. `TODO(media)`: more screenshots, videos and links.
+ * (`project_slugs`); a project no job lists is personal. The first image is the card cover; portrait
+ * images are shown as phone screens. `url` must pass `safeExternalUrl` (https only). `TODO(media)`: videos.
  */
 export interface ProjectMeta {
   slug: string
@@ -31,14 +49,24 @@ export interface ProjectMeta {
 
 export const PROJECTS: ProjectMeta[] = [
   {
+    slug: 'prestamype-invoices',
+    order: 0,
+    kind: 'web-app',
+    start: '2024-06',
+    featured: true,
+    techs: ['nodejs', 'typescript', 'aws', 'aws-cdk', 'microservices', 'hexagonal-architecture'],
+    media: [prestamype_reports, prestamype_reports_mobile, prestamype_home, prestamype_home_mobile],
+    url: 'https://www.prestamype.com',
+  },
+  {
     slug: 'ticker',
     order: 1,
     kind: 'web-app',
-    start: '2023-06',
+    start: '2020-03',
     end: '2023-10',
     featured: true,
     techs: ['vue', 'nuxt', 'nestjs', 'nodejs', 'mongodb', 'websockets', 'redis'],
-    media: [ticker_cover],
+    media: [ticker_dashboard, ticker_inbox_mobile, ticker_login, ticker_cover],
   },
   {
     slug: 'portfolio',
@@ -76,7 +104,15 @@ export const PROJECTS: ProjectMeta[] = [
     start: '2024-01',
     end: '2024-03',
     techs: ['vue', 'nuxt', 'adonisjs', 'nodejs', 'mongodb'],
-    media: [pwc_store_cover],
+    media: [
+      pwc_store_home,
+      pwc_store_home_mobile,
+      pwc_store_catalog,
+      pwc_store_catalog_mobile,
+      pwc_quote,
+      pwc_quote_menu,
+    ],
+    url: 'https://www.poolworkconf.com',
   },
   {
     slug: 'pwc-mailer',
@@ -102,7 +138,7 @@ export const PROJECTS: ProjectMeta[] = [
     start: '2019-01',
     end: '2019-08',
     techs: ['vue', 'nodejs', 'mongodb'],
-    media: [asu_cover],
+    media: [asu_cover, asu_home_mobile, asu_map, asu_transactions],
   },
   {
     slug: 'busconsulting-admin',
@@ -110,6 +146,7 @@ export const PROJECTS: ProjectMeta[] = [
     kind: 'desktop-app',
     start: '2020-09',
     techs: ['electron', 'vue', 'nodejs', 'mysql'],
-    media: [busconsulting_cover],
+    media: [busconsulting_cover, busconsulting_site, busconsulting_site_mobile],
+    url: 'https://busconsultingweb.com',
   },
 ]

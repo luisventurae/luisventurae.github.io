@@ -80,8 +80,8 @@ export const EXPERIENCE: ExperienceMeta[] = [
     kind: 'freelance',
     start: '2020-06',
     end: '2020-08',
-    project_slugs: [],
-    techs: ['vue', 'nuxt', 'seo'],
+    project_slugs: ['pwc-web-2020'],
+    techs: ['vue', 'nuxt', 'php', 'sql-server', 'seo'],
   },
   {
     id: 'asu-cuenta',

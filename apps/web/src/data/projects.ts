@@ -20,6 +20,8 @@ import pwc_store_home_mobile from '../assets/projects/ss-pwc-1-mobile.webp'
 import pwc_store_home from '../assets/projects/ss-pwc-1.webp'
 import pwc_store_catalog_mobile from '../assets/projects/ss-pwc-2-mobile.webp'
 import pwc_store_catalog from '../assets/projects/ss-pwc-2.webp'
+import pwc_web_2020_mobile from '../assets/projects/ss-pwc-old-1-mobile.webp'
+import pwc_web_2020 from '../assets/projects/ss-pwc-old-1.webp'
 import pwc_quote from '../assets/projects/ss-pwc-intra-3.webp'
 import pwc_quote_menu from '../assets/projects/ss-pwc-intra-4.webp'
 import securitec_cover from '../assets/projects/ss-securitec-1.webp'
@@ -124,8 +126,17 @@ export const PROJECTS: ProjectMeta[] = [
     media: [pwc_mailer_cover],
   },
   {
-    slug: 'cepeban-crm',
+    slug: 'pwc-web-2020',
     order: 6,
+    kind: 'website',
+    start: '2020-06',
+    end: '2020-08',
+    techs: ['vue', 'nuxt', 'php', 'sql-server', 'seo'],
+    media: [pwc_web_2020, pwc_web_2020_mobile],
+  },
+  {
+    slug: 'cepeban-crm',
+    order: 7,
     kind: 'api',
     start: '2021-03',
     techs: ['nodejs', 'express', 'mysql', 'zoho-crm'],
@@ -133,7 +144,7 @@ export const PROJECTS: ProjectMeta[] = [
   },
   {
     slug: 'asu-cuenta',
-    order: 7,
+    order: 8,
     kind: 'web-app',
     start: '2019-01',
     end: '2019-08',
@@ -142,7 +153,7 @@ export const PROJECTS: ProjectMeta[] = [
   },
   {
     slug: 'busconsulting-admin',
-    order: 8,
+    order: 9,
     kind: 'desktop-app',
     start: '2020-09',
     techs: ['electron', 'vue', 'nodejs', 'mysql'],

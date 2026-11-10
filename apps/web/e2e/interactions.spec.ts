@@ -84,7 +84,7 @@ test.describe('stack and projects', () => {
     await expect(page.getByText(/Usada en 1 proyecto/)).toBeVisible()
     await page.locator('#projects').scrollIntoViewIfNeeded()
     await expect(page.locator('[data-state="match"]')).toHaveCount(1)
-    await expect(page.locator('[data-state="dimmed"]')).toHaveCount(8)
+    await expect(page.locator('[data-state="dimmed"]')).toHaveCount(9)
   })
 
   test('the drawer navigates with keys and returns focus on close', async ({ page }) => {

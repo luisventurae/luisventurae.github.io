@@ -20,6 +20,8 @@ export interface ProjectGridProps {
 }
 
 const MAX_TILT_DEG = 6
+/** Wide cards tilt less: the same angle moves their far edge twice as much. */
+const MAX_TILT_FEATURED_DEG = 3
 
 export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElement {
   const [open_index, setOpenIndex] = useState<number | null>(null)
@@ -37,7 +39,12 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
             selection.active !== null && project.techs.some((tech) => tech.id === selection.active)
           const is_dimmed = selection.active !== null && !is_match
           return (
-            <li key={project.slug} id={`project-${project.slug}`} className="scroll-mt-24">
+            <li
+              key={project.slug}
+              id={`project-${project.slug}`}
+              data-featured={project.featured || undefined}
+              className={`scroll-mt-24 ${project.featured ? 'md:col-span-2' : ''}`}
+            >
               <TiltCard
                 project={project}
                 is_match={is_match}
@@ -79,8 +86,9 @@ function TiltCard({
   const reduce_motion = useReducedMotion() ?? false
   const pointer_x = useMotionValue(0.5)
   const pointer_y = useMotionValue(0.5)
-  const rotate_x = useTiltAxis(pointer_y, MAX_TILT_DEG)
-  const rotate_y = useTiltAxis(pointer_x, -MAX_TILT_DEG)
+  const max_tilt = project.featured ? MAX_TILT_FEATURED_DEG : MAX_TILT_DEG
+  const rotate_x = useTiltAxis(pointer_y, max_tilt)
+  const rotate_y = useTiltAxis(pointer_x, -max_tilt)
 
   const handlePointerMove = (event: PointerEvent<HTMLButtonElement>): void => {
     if (event.pointerType !== 'mouse' || reduce_motion) return
@@ -110,9 +118,13 @@ function TiltCard({
         style={{ rotateX: rotate_x, rotateY: rotate_y }}
         className={`pressable group block w-full overflow-hidden rounded-lg border bg-paper-raised text-left shadow-card transition-[border-color,box-shadow] duration-200 pointer-fine:hover:shadow-lift ${
           is_match ? 'border-accent ring-2 ring-accent/40' : 'border-line'
-        }`}
+        } ${project.featured ? 'md:grid md:grid-cols-[3fr_2fr]' : ''}`}
       >
-        <div className="aspect-[16/10] overflow-hidden border-b border-line">
+        <div
+          className={`aspect-[16/10] overflow-hidden border-b border-line ${
+            project.featured ? 'md:aspect-auto md:h-full md:border-r md:border-b-0' : ''
+          }`}
+        >
           <ProjectMediaView media={project.media[0]} title={project.title} eager={false} />
         </div>
         <div className="p-6">

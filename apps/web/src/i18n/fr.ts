@@ -66,6 +66,7 @@ export const fr: UiStrings = {
     title: 'Projets',
     intro: 'Une sélection de ce que j’ai construit. Ouvre-les et fais-les défiler.',
     open: 'Voir le détail',
+    role: 'Mon rôle',
     period: 'Période',
     technologies: 'Technologies',
     visit: 'Visiter le site',

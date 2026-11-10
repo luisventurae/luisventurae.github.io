@@ -57,9 +57,9 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 
 ## 6. Casos de estudio (`feat(web): restructure projects as case studies`)
 
-- [ ] 6.1 Añadir `featured` a `ProjectMeta` y `role` al esquema de proyectos; el drawer muestra el rol; `ProjectGrid` da doble ancho a los destacados (test en `ProjectGrid.test.tsx`); verificar con `npm test`
-- [ ] 6.2 Reescribir los 7 proyectos en es/en/fr con Contexto, Reto, Decisiones y Resultado, marcando las cifras desconocidas con `TODO(content)` en comentarios; verificar con `npm run build -w apps/web`
-- [ ] 6.3 Proyecto nuevo `portfolio` (destacado, con `url` al repo y textos es/en/fr) con captura generada con Playwright o el placeholder; Ticker destacado; verificar con `npm run test:e2e` (el JSON-LD `ItemList` coincide con las tarjetas)
+- [x] 6.1 Añadir `featured` a `ProjectMeta` y `role` al esquema de proyectos; el drawer muestra el rol; `ProjectGrid` da doble ancho a los destacados (test en `ProjectGrid.test.tsx`); verificar con `npm test`
+- [x] 6.2 Reescribir los 7 proyectos en es/en/fr con Contexto, Reto, Decisiones y Resultado, marcando las cifras desconocidas con `TODO(content)` en comentarios; verificar con `npm run build -w apps/web`
+- [x] 6.3 Proyecto nuevo `portfolio` (destacado, con `url` al repo y textos es/en/fr) con captura generada con Playwright o el placeholder; Ticker destacado; verificar con `npm run test:e2e` (el JSON-LD `ItemList` coincide con las tarjetas)
 
 ## 7. CV por correo (`feat(api): email the CV link via Resend with per-recipient limit`)
 

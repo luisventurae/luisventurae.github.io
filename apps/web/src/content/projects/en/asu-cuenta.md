@@ -1,12 +1,26 @@
 ---
 title: Asu Cuenta
-summary: E-commerce and finance management
+summary: E-commerce and finance tracking
+role: Full Stack Developer
 ---
 
-E-commerce web app with a financial management module.
+E-commerce web app with a finance module.
 
-### What I did
+### Context
 
-I built the Vue frontend and the Node.js backend with MongoDB: catalog, orders and income/expense reports.
+The business sold online and tracked its finances separately.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Challenge
+
+Bring sales and finance together in one app.
+
+### Technical decisions
+
+- Vue frontend and Node.js backend with MongoDB.
+- Catalog, orders and income and expense reports on the same data model.
+
+### Outcome
+
+Sales and financial reports live in the same app.
+
+<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->

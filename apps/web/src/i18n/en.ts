@@ -65,6 +65,7 @@ export const en: UiStrings = {
     title: 'Projects',
     intro: "A selection of what I've built. Open them and swipe through.",
     open: 'View details',
+    role: 'My role',
     period: 'Period',
     technologies: 'Technologies',
     visit: 'Visit site',

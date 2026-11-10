@@ -57,6 +57,8 @@ const project_cards: ProjectCard[] = await Promise.all(
     company: project.company,
     period: project.period,
     url: project.url,
+    role: project.role,
+    featured: project.featured,
     body_html: project.body_html,
     techs: project.techs.flatMap((id) => {
       const skill = skill_by_id.get(id)
@@ -129,6 +131,7 @@ const terminal_context: TerminalContext = {
 const project_labels = {
   open: ui.projects.open,
   period: ui.projects.period,
+  role: ui.projects.role,
   technologies: ui.projects.technologies,
   visit: ui.projects.visit,
   previous: ui.projects.previous,

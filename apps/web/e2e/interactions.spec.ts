@@ -8,7 +8,7 @@ test.describe('stack and projects', () => {
     await expect(page.getByText(/Usada en 1 proyecto/)).toBeVisible()
     await page.locator('#projects').scrollIntoViewIfNeeded()
     await expect(page.locator('[data-state="match"]')).toHaveCount(1)
-    await expect(page.locator('[data-state="dimmed"]')).toHaveCount(6)
+    await expect(page.locator('[data-state="dimmed"]')).toHaveCount(7)
   })
 
   test('the drawer navigates with keys and returns focus on close', async ({ page }) => {
@@ -19,7 +19,8 @@ test.describe('stack and projects', () => {
     const dialog = page.getByRole('dialog')
     await expect(dialog.getByRole('heading', { level: 2 })).toHaveText('Ticker')
     await page.keyboard.press('ArrowRight')
-    await expect(dialog.getByRole('heading', { level: 2 })).toHaveText('Securitec')
+    await expect(dialog.getByRole('heading', { level: 2 })).toHaveText('Este portafolio')
+    await expect(dialog).toContainText('Mi rol: Diseño, frontend y backend')
     await page.keyboard.press('Escape')
     await expect(dialog).toBeHidden()
     await expect(card).toBeFocused()
@@ -41,7 +42,7 @@ test.describe('stack and projects', () => {
     await page.mouse.move(box.x + box.width * 0.2, y, { steps: 4 })
     await page.mouse.up()
     await expect(page.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText(
-      'Securitec',
+      'Este portafolio',
     )
   })
 })

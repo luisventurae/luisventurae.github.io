@@ -1,12 +1,26 @@
 ---
 title: Securitec
-summary: Site web informatif de l’entreprise
+summary: Site corporate avec une API de contenu sur AWS
+role: Backend Developer
 ---
 
-Site corporate de Securitec et son API de contenus.
+Site corporate de Securitec avec son API de contenu.
 
-### Ce que j’ai fait
+### Contexte
 
-J’ai construit l’API avec NestJS sur Node.js et MongoDB, déployée sur AWS, pour gérer le contenu du site.
+L’entreprise devait mettre à jour le contenu de son site sans modifier le code.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Défi
+
+Une API de contenu simple à maintenir et hébergée dans le cloud.
+
+### Décisions techniques
+
+- API NestJS sur Node.js et MongoDB pour gérer le contenu.
+- Déploiement sur AWS.
+
+### Résultat
+
+Le contenu du site se gère depuis l’API, sans publier de code à chaque changement.
+
+<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->

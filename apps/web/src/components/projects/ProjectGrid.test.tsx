@@ -10,6 +10,7 @@ import type { ProjectCard, ProjectsLabels } from './types'
 const labels: ProjectsLabels = {
   open: 'Ver detalle',
   period: 'Período',
+  role: 'Mi rol',
   technologies: 'Tecnologías',
   visit: 'Visitar sitio',
   previous: 'Proyecto anterior',
@@ -27,11 +28,16 @@ function project(slug: string, title: string, tech_ids: string[]): ProjectCard {
     period: 'jun 2023',
     techs: tech_ids.map((id) => ({ id, label: id, category: 'backend' })),
     media: [],
+    role: 'Backend Developer',
+    featured: false,
     body_html: `<p>${title} body</p>`,
   }
 }
 
-const projects = [project('a', 'Alpha', ['vue']), project('b', 'Beta', ['nodejs'])]
+const projects = [
+  { ...project('a', 'Alpha', ['vue']), featured: true },
+  project('b', 'Beta', ['nodejs']),
+]
 
 describe('ProjectGrid', () => {
   afterEach(() => act(() => selection_store.clear()))
@@ -56,9 +62,22 @@ describe('ProjectGrid', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Ver detalle: Alpha' }))
     const dialog = await screen.findByRole('dialog')
     expect(dialog).toHaveTextContent('Alpha body')
+    expect(dialog).toHaveTextContent('Mi rol: Backend Developer')
     expect(screen.getByRole('button', { name: 'Proyecto anterior' })).toBeDisabled()
     await userEvent.click(screen.getByRole('button', { name: 'Proyecto siguiente' }))
     expect(await screen.findByText('Beta body')).toBeInTheDocument()
+  })
+})
+
+describe('featured projects', () => {
+  it('gives featured cards a wider slot', () => {
+    render(<ProjectGrid projects={projects} labels={labels} />)
+    const alpha = document.getElementById('project-a')
+    const beta = document.getElementById('project-b')
+    expect(alpha).toHaveAttribute('data-featured', 'true')
+    expect(alpha?.className).toContain('md:col-span-2')
+    expect(beta).not.toHaveAttribute('data-featured')
+    expect(beta?.className).not.toContain('md:col-span-2')
   })
 })
 

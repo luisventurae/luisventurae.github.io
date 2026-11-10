@@ -38,6 +38,8 @@ export interface ProjectView {
   techs: string[]
   media: ImageMetadata[]
   url?: string | undefined
+  role: string
+  featured: boolean
   body_html: string
   body_text: string
 }
@@ -66,6 +68,8 @@ export async function loadProjects(locale: Locale): Promise<ProjectView[]> {
       techs: meta.techs,
       media: meta.media,
       url: meta.url,
+      role: entry.data.role,
+      featured: meta.featured === true,
       body_html: entry.rendered?.html ?? '',
       body_text: entry.body ?? '',
     }

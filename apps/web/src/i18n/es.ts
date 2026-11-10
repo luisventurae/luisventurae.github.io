@@ -63,6 +63,7 @@ export const es = {
     title: 'Proyectos',
     intro: 'Una selección de lo que he construido. Ábrelos y desliza para recorrerlos.',
     open: 'Ver detalle',
+    role: 'Mi rol',
     period: 'Período',
     technologies: 'Tecnologías',
     visit: 'Visitar sitio',

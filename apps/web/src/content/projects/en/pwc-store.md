@@ -1,12 +1,26 @@
 ---
 title: Pool Work Confort
-summary: Informational website and online store
+summary: Brand website and online store
+role: Full Stack Developer
 ---
 
-Pool Work Confort’s informational website and online store.
+Pool Work Confort’s website and online store.
 
-### What I did
+### Context
 
-I built the frontend with Vue and Nuxt and the backend with AdonisJS on Node.js and MongoDB, including the catalog and checkout flow.
+The brand needed to present its products and sell them online from the same site.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Challenge
+
+A complete catalog and checkout flow on a site that ranks well in search engines.
+
+### Technical decisions
+
+- Vue and Nuxt frontend for a fast, indexable site.
+- AdonisJS backend on Node.js and MongoDB for the catalog and orders.
+
+### Outcome
+
+The brand has a website and an online store with a catalog and checkout flow.
+
+<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->

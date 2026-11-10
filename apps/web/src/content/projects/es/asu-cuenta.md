@@ -1,12 +1,26 @@
 ---
 title: Asu Cuenta
 summary: E-commerce y control de finanzas
+role: Full Stack Developer
 ---
 
 Aplicación web de comercio electrónico con módulo de control financiero.
 
-### Qué hice
+### Contexto
 
-Construí el frontend en Vue y el backend en Node.js con MongoDB: catálogo, pedidos y reportes de ingresos y gastos.
+El negocio vendía en línea y llevaba sus finanzas por separado.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Reto
+
+Unir ventas y finanzas en una sola aplicación.
+
+### Decisiones técnicas
+
+- Frontend en Vue y backend en Node.js con MongoDB.
+- Catálogo, pedidos y reportes de ingresos y gastos en el mismo modelo de datos.
+
+### Resultado
+
+Ventas y reportes financieros conviven en la misma aplicación.
+
+<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->

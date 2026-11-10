@@ -24,6 +24,8 @@ export interface ProjectCard {
   techs: ProjectTech[]
   media: ProjectMedia[]
   url?: string | undefined
+  role: string
+  featured: boolean
   /** HTML rendered at build time from our own markdown in src/content (trusted). */
   body_html: string
 }
@@ -31,6 +33,7 @@ export interface ProjectCard {
 export interface ProjectsLabels {
   open: string
   period: string
+  role: string
   technologies: string
   visit: string
   previous: string

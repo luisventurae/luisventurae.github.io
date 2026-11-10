@@ -1,8 +1,11 @@
 import type { ImageMetadata } from 'astro'
 
+import { SOURCE_URL } from './site'
+
 import asu_cover from '../assets/projects/ss-asu-1.webp'
 import busconsulting_cover from '../assets/projects/ss-busc-1.webp'
 import cepeban_cover from '../assets/projects/ss-cepeban-0.webp'
+import portfolio_cover from '../assets/projects/ss-portfolio-1.webp'
 import pwc_mailer_cover from '../assets/projects/ss-pwc-0.webp'
 import pwc_store_cover from '../assets/projects/ss-pwc-1.webp'
 import securitec_cover from '../assets/projects/ss-securitec-1.webp'
@@ -22,6 +25,8 @@ export interface ProjectMeta {
   techs: string[]
   media: ImageMetadata[]
   url?: string
+  /** Rendered more prominently as a case study. */
+  featured?: true
 }
 
 export const PROJECTS: ProjectMeta[] = [
@@ -31,12 +36,36 @@ export const PROJECTS: ProjectMeta[] = [
     company: 'Securitec',
     kind: 'web-app',
     start: '2023-06',
+    end: '2023-10',
+    featured: true,
     techs: ['vue', 'nuxt', 'nestjs', 'nodejs', 'mongodb', 'websockets', 'redis'],
     media: [ticker_cover],
   },
   {
-    slug: 'securitec-web',
+    slug: 'portfolio',
     order: 2,
+    company: 'Open source',
+    kind: 'web-app',
+    start: '2026-11',
+    featured: true,
+    techs: [
+      'astro',
+      'react',
+      'typescript',
+      'tailwind',
+      'hono',
+      'cloudflare',
+      'hexagonal-architecture',
+      'vitest',
+      'playwright',
+      'rag',
+    ],
+    media: [portfolio_cover],
+    url: SOURCE_URL,
+  },
+  {
+    slug: 'securitec-web',
+    order: 3,
     company: 'Securitec',
     kind: 'website',
     start: '2022-08',
@@ -45,7 +74,7 @@ export const PROJECTS: ProjectMeta[] = [
   },
   {
     slug: 'pwc-store',
-    order: 3,
+    order: 4,
     company: 'Pool Work Confort',
     kind: 'website',
     start: '2022-03',
@@ -54,7 +83,7 @@ export const PROJECTS: ProjectMeta[] = [
   },
   {
     slug: 'pwc-mailer',
-    order: 4,
+    order: 5,
     company: 'Pool Work Confort',
     kind: 'software',
     start: '2021-10',
@@ -63,7 +92,7 @@ export const PROJECTS: ProjectMeta[] = [
   },
   {
     slug: 'cepeban-crm',
-    order: 5,
+    order: 6,
     company: 'Instituto Cepeban',
     kind: 'api',
     start: '2021-03',
@@ -72,7 +101,7 @@ export const PROJECTS: ProjectMeta[] = [
   },
   {
     slug: 'asu-cuenta',
-    order: 6,
+    order: 7,
     company: 'Asu Cuenta',
     kind: 'web-app',
     start: '2019-01',
@@ -82,7 +111,7 @@ export const PROJECTS: ProjectMeta[] = [
   },
   {
     slug: 'busconsulting-admin',
-    order: 7,
+    order: 8,
     company: 'Busconsulting',
     kind: 'desktop-app',
     start: '2020-09',

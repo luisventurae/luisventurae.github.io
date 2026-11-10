@@ -197,6 +197,9 @@ function ProjectDetail({
           {project.company} · <span className="sr-only">{labels.period}: </span>
           {project.period}
         </p>
+        <p className="mt-1 font-mono text-small text-accent-ink">
+          {labels.role}: {project.role}
+        </p>
         {is_present ? (
           <Drawer.Title className={title_class}>{project.title}</Drawer.Title>
         ) : (

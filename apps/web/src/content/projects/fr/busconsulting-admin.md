@@ -1,12 +1,26 @@
 ---
 title: Busconsulting Admin
-summary: Administration du site en application de bureau
+summary: Administration de bureau du site web
+role: Full Stack Developer (freelance)
 ---
 
 Application de bureau pour administrer le site de Busconsulting avec gestion des utilisateurs.
 
-### Ce que j’ai fait
+### Contexte
 
-J’ai développé l’app avec Electron et Vue, avec un backend Node.js sur MySQL pour les utilisateurs, les rôles et le contenu.
+L’équipe devait modifier le site avec des permissions différentes selon la personne.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Défi
+
+Un outil de bureau simple avec utilisateurs et rôles.
+
+### Décisions techniques
+
+- Application avec Electron et Vue.
+- Backend Node.js sur MySQL pour les utilisateurs, les rôles et le contenu.
+
+### Résultat
+
+L’équipe administre le site depuis une application de bureau, chacun avec son rôle.
+
+<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->

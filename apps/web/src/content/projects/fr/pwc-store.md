@@ -1,12 +1,26 @@
 ---
 title: Pool Work Confort
-summary: Site informatif et boutique en ligne
+summary: Site vitrine et boutique en ligne
+role: Full Stack Developer
 ---
 
-Site informatif et boutique en ligne de Pool Work Confort.
+Site vitrine et boutique en ligne de Pool Work Confort.
 
-### Ce que j’ai fait
+### Contexte
 
-J’ai développé le frontend avec Vue et Nuxt et le backend avec AdonisJS sur Node.js et MongoDB, y compris le catalogue et le parcours d’achat.
+La marque devait présenter ses produits et les vendre en ligne depuis le même site.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Défi
+
+Un catalogue et un parcours d’achat complets sur un site bien référencé.
+
+### Décisions techniques
+
+- Frontend Vue et Nuxt pour un site rapide et indexable.
+- Backend AdonisJS sur Node.js et MongoDB pour le catalogue et les commandes.
+
+### Résultat
+
+La marque dispose d’un site vitrine et d’une boutique avec catalogue et parcours d’achat.
+
+<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->

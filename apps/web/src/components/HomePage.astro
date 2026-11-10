@@ -214,14 +214,17 @@ const project_labels = {
 
   <section id="contact" aria-labelledby="contact-title" class="container-page py-(--space-section)">
     <SectionHeading id="contact" index="05" title={ui.contact.title} intro={ui.contact.intro} />
-    <CvSection
-      client:visible
-      locale={locale}
-      api_url={api_url}
-      turnstile_site_key={turnstile_site_key}
-      match_labels={match_labels}
-      form_labels={contact_labels}
-    />
+    {/* Hydrate before it is on screen so the first tap on a chip is never lost. */}
+    <div data-reveal>
+      <CvSection
+        client:visible={{ rootMargin: '400px' }}
+        locale={locale}
+        api_url={api_url}
+        turnstile_site_key={turnstile_site_key}
+        match_labels={match_labels}
+        form_labels={contact_labels}
+      />
+    </div>
   </section>
 
   <section

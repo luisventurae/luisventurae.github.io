@@ -447,6 +447,35 @@
   }
 }
 
+/*
+ * Vacancy match: a single light sweep across the meter when the match reaches 100 %.
+ * Rare by nature, so it can delight; it plays once per arrival, after the fill settles.
+ */
+@keyframes meter-shine {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 250% 0;
+  }
+}
+
+.meter-shine {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.75), transparent);
+  translate: 250% 0;
+  animation: meter-shine 900ms var(--ease-in-out-strong) 250ms backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meter-shine {
+    display: none;
+  }
+}
+
 /* Theme switch: circular reveal from the toggle (see ThemeToggle.tsx). */
 ::view-transition-old(root),
 ::view-transition-new(root) {

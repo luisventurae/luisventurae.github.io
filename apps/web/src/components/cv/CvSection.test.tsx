@@ -59,6 +59,15 @@ describe('CvSection', () => {
     expect(screen.getByText('50%')).toBeInTheDocument()
   })
 
+  it('celebrates a full match once with a light sweep on the meter', async () => {
+    render(<CvSection {...props} />)
+    await userEvent.click(chip('Node.js'))
+    expect(screen.getByText('100%')).toBeInTheDocument()
+    expect(document.querySelector('.meter-shine')).not.toBeNull()
+    await userEvent.click(chip('Java'))
+    expect(document.querySelector('.meter-shine')).toBeNull()
+  })
+
   it('hides the percentage again when nothing is selected', async () => {
     render(<CvSection {...props} />)
     await userEvent.click(chip('AWS'))

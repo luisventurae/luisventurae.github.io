@@ -1,6 +1,6 @@
 import type { VacancyRequirementId } from '@portfolio/shared'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import type { ReactElement } from 'react'
+import type { CSSProperties, ReactElement } from 'react'
 
 import { VACANCY_REQUIREMENTS, type RequirementStrength } from '../../data/vacancy-match'
 import { matchScore, requirementStrength } from '../../lib/vacancy-match'
@@ -31,6 +31,9 @@ const METER_SPRING = { type: 'spring', duration: 0.5, bounce: 0.2 } as const
 const EVIDENCE_ENTER = { duration: 0.2, ease: [0.23, 1, 0.32, 1] } as const
 const EVIDENCE_EXIT = { duration: 0.12, ease: [0.23, 1, 0.32, 1] } as const
 
+/** The number confirms each change with a quick, slightly bouncy pop. */
+const SCORE_POP = { type: 'spring', duration: 0.35, bounce: 0.35 } as const
+
 const LEVEL_KEY: Record<RequirementStrength, keyof VacancyMatchLabels['levels']> = {
   1: 'met',
   0.5: 'partial',
@@ -43,7 +46,10 @@ export function VacancyMatch(props: VacancyMatchProps): ReactElement {
   const score = matchScore(selected)
 
   return (
-    <div className="grid gap-8 rounded-lg border border-line bg-paper-raised p-6 shadow-card md:p-8">
+    <div
+      className="reveal-item grid gap-8 rounded-lg border border-line bg-paper-raised p-6 shadow-card md:p-8"
+      style={{ '--reveal-distance': '32px' } as CSSProperties}
+    >
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div className="max-w-[52ch]">
           <h3 className="text-title font-bold">{labels.prompt}</h3>
@@ -59,10 +65,14 @@ export function VacancyMatch(props: VacancyMatchProps): ReactElement {
       </header>
 
       <ul className="flex flex-wrap gap-2" aria-label={labels.prompt}>
-        {VACANCY_REQUIREMENTS.map(({ id }) => {
+        {VACANCY_REQUIREMENTS.map(({ id }, index) => {
           const is_selected = selected.includes(id)
           return (
-            <li key={id}>
+            <li
+              key={id}
+              className="reveal-item"
+              style={{ '--reveal-index': index + 2, '--reveal-distance': '10px' } as CSSProperties}
+            >
               <button
                 type="button"
                 aria-pressed={is_selected}
@@ -121,17 +131,26 @@ function MatchMeter({
         ) : (
           <>
             <span className="text-ink-muted">{labels.score}</span>
-            <span className="text-title font-bold tabular-nums">{score}%</span>
+            <motion.span
+              key={score}
+              className="inline-block origin-right text-title font-bold tabular-nums"
+              initial={reduce_motion ? false : { scale: 0.85, opacity: 0.4 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={SCORE_POP}
+            >
+              {score}%
+            </motion.span>
           </>
         )}
       </p>
-      <div aria-hidden="true" className="h-3 overflow-hidden rounded-full bg-line/70">
+      <div aria-hidden="true" className="relative h-3 overflow-hidden rounded-full bg-line/70">
         <motion.div
           className="h-full origin-left rounded-full bg-lime"
           initial={false}
           animate={{ scaleX: (score ?? 0) / 100 }}
           transition={reduce_motion ? { duration: 0 } : METER_SPRING}
         />
+        {score === 100 && <span className="meter-shine" />}
       </div>
     </div>
   )

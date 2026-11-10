@@ -50,6 +50,32 @@ test.describe('case studies and experience', () => {
   })
 })
 
+test.describe('about magnifier', () => {
+  test('letters under the pointer grow and settle back on leave', async ({ page }) => {
+    await page.goto('/')
+    const about = page.locator('.about-body[data-lens]')
+    await about.scrollIntoViewIfNeeded()
+    const paragraph = about.locator('p').nth(1)
+    const box = await paragraph.boundingBox()
+    if (!box) throw new Error('about paragraph not visible')
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 4 })
+    await expect(about.locator('.lens-char[style*="scale"]').first()).toBeVisible()
+    await page.mouse.move(2, 2)
+    await expect(about.locator('.lens-char[style*="scale"]')).toHaveCount(0)
+    // Screen readers get the intact text, never the letter-by-letter copy.
+    await expect(about).toHaveAttribute('aria-hidden', 'true')
+    await expect(page.locator('#about .sr-only h3').first()).toHaveText('Qué hago')
+  })
+
+  test('touch screens keep the plain text @mobile', async ({ page }, info) => {
+    test.skip(info.project.name !== 'mobile', 'touch only')
+    await page.goto('/')
+    await page.locator('#about').scrollIntoViewIfNeeded()
+    await page.waitForTimeout(500)
+    await expect(page.locator('.lens-char')).toHaveCount(0)
+  })
+})
+
 test.describe('stack and projects', () => {
   test('selecting a technology highlights the projects that use it', async ({ page }) => {
     await page.goto('/')

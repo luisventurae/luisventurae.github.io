@@ -442,6 +442,18 @@
   }
 }
 
+/*
+ * Magnifying lens over "Sobre mí" (lib/magnifier.ts, desktop only). Words never break inside;
+ * each letter scales from slightly below its centre so it grows around the x-height.
+ */
+[data-lens] .lens-word {
+  white-space: nowrap;
+}
+[data-lens] .lens-char {
+  display: inline-block;
+  transform-origin: 50% 60%;
+}
+
 /* Case study links in the timeline: the arrow leans toward where the link goes. */
 .case-link-arrow {
   transition: translate var(--duration-fast) var(--ease-out-strong);

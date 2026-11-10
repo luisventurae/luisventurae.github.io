@@ -8,6 +8,7 @@ import { getUi } from '../i18n'
 import { loadProjects } from '../lib/content'
 import { skillUsage } from '../lib/projects'
 import type { ProjectCard } from './projects/types'
+import { ContactForm } from './contact/ContactForm'
 import { ProjectGrid } from './projects/ProjectGrid'
 import { StackMap, type StackSkill } from './stack/StackMap'
 import Base from '../layouts/Base.astro'
@@ -77,6 +78,17 @@ const stack_labels = {
   clear: ui.stack.clear,
   see_projects: ui.stack.see_projects,
 }
+const api_url = import.meta.env.PUBLIC_API_URL ?? 'http://localhost:8787'
+const turnstile_site_key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA'
+const contact_labels = {
+  email: ui.contact.email,
+  company: ui.contact.company,
+  submit: ui.contact.submit,
+  sending: ui.contact.sending,
+  success: ui.contact.success,
+  download_again: ui.contact.download_again,
+  errors: ui.contact.errors,
+}
 const project_labels = {
   open: ui.projects.open,
   period: ui.projects.period,
@@ -132,6 +144,13 @@ const project_labels = {
 
   <section id="contact" aria-labelledby="contact-title" class="container-page py-(--space-section)">
     <SectionHeading id="contact" index="04" title={ui.contact.title} intro={ui.contact.intro} />
+    <ContactForm
+      client:visible
+      locale={locale}
+      api_url={api_url}
+      turnstile_site_key={turnstile_site_key}
+      labels={contact_labels}
+    />
   </section>
 
   <Footer slot="footer" locale={locale} />

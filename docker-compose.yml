@@ -15,7 +15,15 @@ x-node: &node
 services:
   deps:
     <<: *node
-    command: npm ci --no-audit
+    # Reinstalls only when package-lock.json changes, so restarting a service never
+    # wipes node_modules under a running container.
+    command:
+      - sh
+      - -c
+      - >-
+        hash=$$(sha256sum package-lock.json | cut -d' ' -f1);
+        [ "$$(cat node_modules/.lock-hash 2>/dev/null)" = "$$hash" ] ||
+        (npm ci --no-audit && echo "$$hash" > node_modules/.lock-hash)
     restart: 'no'
 
   api:

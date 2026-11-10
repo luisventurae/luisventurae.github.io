@@ -60,6 +60,10 @@ export const eslint_config = tseslint.config(
     rules: {
       '@typescript-eslint/naming-convention': ['error', ...naming_rules],
       '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
       'no-restricted-syntax': [
         'error',
         {

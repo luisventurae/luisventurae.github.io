@@ -50,7 +50,7 @@
 
 ## 11. Web: formulario de CV
 
-- [ ] 11.1 Formulario con Turnstile, cliente de API tipado, estados con morph y toast, descarga del CV — verificar: tests de componente con API simulada
+- [x] 11.1 Formulario con Turnstile, cliente de API tipado, estados con morph y toast, descarga del CV — verificar: tests de componente con API simulada
 
 ## 12. RAG local
 

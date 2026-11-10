@@ -29,6 +29,23 @@ describe('Hero', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Luis Ventura E' })).toBeInTheDocument()
   })
 
+  it('decorates with draggable stickers of the main stack, hidden from assistive tech', () => {
+    const { container } = render(<Hero {...props} />)
+    const stickers = [...container.querySelectorAll('.hero-sticker')]
+    expect(stickers.map((sticker) => sticker.textContent)).toEqual(
+      expect.arrayContaining([
+        'Node.js',
+        'TypeScript',
+        'AWS',
+        'NestJS',
+        'MongoDB',
+        'Claude Code',
+        'Bedrock',
+      ]),
+    )
+    for (const sticker of stickers) expect(sticker).toHaveAttribute('aria-hidden', 'true')
+  })
+
   it('shows the tagline and calls to action', () => {
     render(<Hero {...props} />)
     expect(screen.getByText(props.tagline)).toBeInTheDocument()

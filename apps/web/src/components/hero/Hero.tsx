@@ -21,6 +21,10 @@ export interface HeroProps {
 }
 
 const PLAY_COLORS = ['var(--accent)', 'var(--violet)', 'var(--lime)', 'var(--sky)']
+/**
+ * Main stack as draggable stickers (decorative: the facts line already states it). Desktop only,
+ * in the empty space right of the copy; `depth` staggers their entrance.
+ */
 const STICKERS = [
   { label: 'Node.js', className: 'right-[30%] bottom-[34%] -rotate-6 bg-lime', depth: 0 },
   { label: 'AWS', className: 'right-[6%] bottom-[40%] rotate-6 bg-sky', depth: 1 },
@@ -28,6 +32,18 @@ const STICKERS = [
     label: 'TypeScript',
     className: 'right-[14%] bottom-[8%] -rotate-3 bg-violet text-paper',
     depth: 2,
+  },
+  { label: 'NestJS', className: 'right-[40%] bottom-[48%] rotate-3 bg-sky', depth: 3 },
+  { label: 'MongoDB', className: 'right-[3%] bottom-[18%] -rotate-2 bg-lime', depth: 4 },
+  {
+    label: 'Claude Code',
+    className: 'right-[32%] bottom-[12%] rotate-2 bg-ink text-paper',
+    depth: 5,
+  },
+  {
+    label: 'Bedrock',
+    className: 'right-[16%] bottom-[52%] -rotate-6 bg-violet text-paper',
+    depth: 6,
   },
 ]
 const ROLE_INTERVAL_MS = 2600

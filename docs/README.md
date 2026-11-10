@@ -11,5 +11,6 @@
 | [Sistema de diseño](design-system.md)        | Tokens de color, tipografía, espaciado, motion y componentes base.       |
 | [Arquitectura](architecture.md)              | Monorepo, apps, paquetes y flujo de datos.                               |
 | [Seguridad y secretos](security.md)          | Repositorio público: qué es secreto, dónde vive y cómo se maneja.        |
+| [Entorno local](local-environment.md)        | Docker Compose, Ollama, Mailpit y RAG local.                             |
 
 Las especificaciones funcionales viven en [`../openspec/`](../openspec/).

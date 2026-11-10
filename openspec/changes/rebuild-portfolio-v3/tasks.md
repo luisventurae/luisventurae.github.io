@@ -13,8 +13,8 @@
 
 ## 3. Entorno local
 
-- [ ] 3.1 `Dockerfile.dev`, `docker-compose.yml` (web, api, ollama, ollama-pull, mailpit, rag-ingest) y `.env.example` — verificar: `docker compose config`
-- [ ] 3.2 `docs/local-environment.md` — verificar: enlazado desde `docs/README.md`
+- [x] 3.1 `Dockerfile.dev`, `docker-compose.yml` (web, api, ollama, ollama-pull, mailpit, rag-ingest) y `.env.example` — verificar: `docker compose config`
+- [x] 3.2 `docs/local-environment.md` — verificar: enlazado desde `docs/README.md`
 
 ## 4. Contratos compartidos
 

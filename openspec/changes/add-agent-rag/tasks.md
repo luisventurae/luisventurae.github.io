@@ -20,4 +20,4 @@
 ## 4. Documentación y cierre
 
 - [x] 4.1 Crear `docs/agent-rag.md`; actualizar `docs/README.md`, `docs/architecture.md`, `AGENTS.md` y `CLAUDE.md` (cuándo `rag`, cuándo `rg`) — verificar: enlaces resuelven
-- [ ] 4.2 Ejecución final — verificar: `npm run verify`, `openspec validate add-agent-rag --strict`, y archivar
+- [x] 4.2 Ejecución final — verificar: `npm run verify`, `openspec validate add-agent-rag --strict`, y archivar

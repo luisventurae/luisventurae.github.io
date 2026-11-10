@@ -4,12 +4,12 @@ import type { ChunkKind } from '../core/types.ts'
 
 const KINDS: readonly ChunkKind[] = ['code', 'test', 'doc', 'spec', 'commit']
 
-export const USAGE = `Usage:
+const USAGE = `Usage:
   rag search <query> [--k <n>] [--kind code|test|doc|spec|commit] [--json]
   rag index [--rebuild]
   rag status`
 
-export type Command =
+type Command =
   | {
       name: 'search'
       query: string

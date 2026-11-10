@@ -38,7 +38,7 @@ export interface CommandResult {
   effect?: TerminalEffect
 }
 
-export interface TerminalProject {
+interface TerminalProject {
   slug: string
   title: string
   summary: string
@@ -47,7 +47,7 @@ export interface TerminalProject {
   techs: string[]
 }
 
-export interface TerminalSkill {
+interface TerminalSkill {
   label: string
   category: SkillCategory
   level: number

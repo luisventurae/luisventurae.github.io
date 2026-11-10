@@ -7,7 +7,7 @@ import { requestCv, type ClientErrorCode } from '../../lib/api-client'
 import { startDownload } from '../../lib/download'
 import { useTurnstile } from './useTurnstile'
 
-export interface ContactFormLabels {
+interface ContactFormLabels {
   email: string
   company: string
   submit: string

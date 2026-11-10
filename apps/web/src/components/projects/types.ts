@@ -8,7 +8,7 @@ export interface ProjectMedia {
   alt: string
 }
 
-export interface ProjectTech {
+interface ProjectTech {
   id: string
   label: string
   category: SkillCategory

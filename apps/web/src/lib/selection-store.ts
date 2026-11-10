@@ -2,7 +2,7 @@
  * Shared "active technology" state between the Stack and Projects islands.
  * Framework-agnostic and compatible with React's useSyncExternalStore.
  */
-export interface SelectionSnapshot {
+interface SelectionSnapshot {
   selected: string | null
   previewed: string | null
   active: string | null

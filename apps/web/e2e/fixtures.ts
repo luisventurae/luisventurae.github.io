@@ -1,6 +1,6 @@
 import { test as base, type Page } from '@playwright/test'
 
-export const API_URL = 'http://api.test'
+const API_URL = 'http://api.test'
 
 /** Replaces Cloudflare Turnstile with a stub that immediately yields a token. */
 async function stubTurnstile(page: Page): Promise<void> {

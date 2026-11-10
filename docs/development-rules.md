@@ -104,6 +104,7 @@ En el frontend se aplican los mismos principios a escala: la lógica pura vive e
 - **Prettier** es la única autoridad de formato (`npm run format`, `npm run format:check` en CI). No se discute estilo en review.
 - ESLint (flat config) con `typescript-eslint`, `naming-convention`, `jsx-a11y` y `eslint-plugin-astro`.
 - Cero warnings en CI.
+- **knip** (`npm run lint:unused`) bloquea archivos, exports y dependencias sin uso: el código muerto se borra, no se comenta.
 
 ## 7. TDD y pruebas
 

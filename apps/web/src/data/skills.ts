@@ -13,8 +13,6 @@ export interface Skill {
   added_v3?: true
 }
 
-export const SKILL_CATEGORIES: SkillCategory[] = ['backend', 'frontend', 'other']
-
 export const SKILLS: Skill[] = [
   // Backend — languages
   { id: 'javascript', label: 'JavaScript', category: 'backend', level: 10 },

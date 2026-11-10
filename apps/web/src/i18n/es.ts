@@ -53,7 +53,6 @@ export const es = {
     next: 'Proyecto siguiente',
     close: 'Cerrar',
     swipe_hint: 'Desliza para cambiar de proyecto',
-    present: 'Actualidad',
   },
   terminal: {
     title: 'Terminal',

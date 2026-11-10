@@ -55,7 +55,6 @@ export const fr: UiStrings = {
     next: 'Projet suivant',
     close: 'Fermer',
     swipe_hint: 'Fais glisser pour changer de projet',
-    present: 'Aujourd’hui',
   },
   terminal: {
     title: 'Terminal',

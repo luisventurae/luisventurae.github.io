@@ -22,7 +22,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "npm run test:e2e -w apps/web",
-    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage"
+    "verify": "npm run format:check && npm run lint && npm run lint:unused && npm run typecheck && npm run test:coverage",
+    "lint:unused": "knip --no-progress"
   },
   "devDependencies": {
     "@portfolio/config": "*",
@@ -30,6 +31,7 @@
     "@vitest/coverage-v8": "^5.1.0",
     "concurrently": "^10.0.7",
     "eslint": "^10.14.0",
+    "knip": "^6.44.2",
     "prettier": "^3.9.10",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript7": "npm:typescript@^7.0.2",

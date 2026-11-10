@@ -2,7 +2,7 @@ import { chunkMarkdown, type DocumentChunk, type Locale } from '@portfolio/share
 
 import type { Skill, SkillCategory } from '../data/skills'
 
-export interface ProjectDocument {
+interface ProjectDocument {
   slug: string
   title: string
   summary: string

@@ -1,4 +1,4 @@
-import { LOCALES } from '@portfolio/shared'
+import { LOCALES, SearchIndexSchema } from '@portfolio/shared'
 import type { APIRoute } from 'astro'
 
 import { SKILLS } from '../data/skills'
@@ -44,5 +44,6 @@ export const GET: APIRoute = async () => {
       })
     }),
   )
-  return Response.json(documents.flat())
+  // Fail the build if the produced index ever breaks the contract the terminal relies on.
+  return Response.json(SearchIndexSchema.parse(documents.flat()))
 }

@@ -79,6 +79,7 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 - [x] 7.4 `config.ts` (`resend` | `mailpit`, `RESEND_API_KEY` obligatorio con resend y en producción), `main.ts` (segunda política de rate limit), `wrangler.toml` sin `send_email`, `.dev.vars.example`; tests de config; verificar con `npm test` y `npm run typecheck`
 - [x] 7.5 Web: `api-client.ts` y `ContactForm.tsx` con éxito "Revisa tu correo" y mensaje `email_failed` en es/en/fr; eliminar `startDownload` y `download_again` (`knip` limpio); verificar con `npm run verify`
 - [x] 7.6 Actualizar `docs/deployment.md` (Resend, DNS SPF/DKIM, secret), `docs/security.md` (secretos, límite por destinatario) y `docs/architecture.md` (flujo de contacto); verificar que los pasos documentados coinciden con `wrangler.toml`
+- [x] 7.7 Validar con zod el contrato de `search-index.json` (pedido durante la implementación): `DocumentChunkSchema` y `SearchIndexSchema` en `packages/shared`, `parse` en el build y `parseSearchIndex` en la terminal; verificar con `npm test` (chunking y search)
 
 ## 8. Match de vacante (`feat(web): add vacancy match game before the CV form`)
 

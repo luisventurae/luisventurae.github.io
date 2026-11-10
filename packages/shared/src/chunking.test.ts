@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { chunkMarkdown } from './chunking'
+import { chunkMarkdown, SearchIndexSchema } from './chunking'
 
 const base = { locale: 'es', source: 'projects/ticker', title: 'Ticker' } as const
 
@@ -51,5 +51,28 @@ describe('chunkMarkdown', () => {
   it('carries locale, source and title in every chunk', () => {
     const [chunk] = chunkMarkdown({ ...base, markdown: 'Texto.' })
     expect(chunk).toMatchObject({ locale: 'es', source: 'projects/ticker', title: 'Ticker' })
+  })
+})
+
+describe('SearchIndexSchema', () => {
+  const chunk = {
+    id: 'es:projects/ticker:0',
+    text: 'Ticker',
+    locale: 'es',
+    source: 'projects/ticker',
+    title: 'Ticker',
+  }
+
+  it('accepts the chunks produced by chunkMarkdown', () => {
+    const chunks = chunkMarkdown({ ...base, markdown: '## Reto\n\nEscalar sockets.' })
+    expect(SearchIndexSchema.parse(chunks)).toEqual(chunks)
+  })
+
+  it.each([
+    ['unsupported locale', { ...chunk, locale: 'de' }],
+    ['missing text', { ...chunk, text: undefined }],
+    ['unknown fields', { ...chunk, html: '<script>' }],
+  ])('rejects %s', (_label, item) => {
+    expect(SearchIndexSchema.safeParse([item]).success).toBe(false)
   })
 })

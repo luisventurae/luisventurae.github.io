@@ -1,7 +1,7 @@
 import type { DocumentChunk } from '@portfolio/shared'
 import { describe, expect, it } from 'vitest'
 
-import { createSearch } from './search'
+import { createSearch, parseSearchIndex } from './search'
 
 const chunks: DocumentChunk[] = [
   {
@@ -46,5 +46,16 @@ describe('createSearch', () => {
 
   it('returns nothing for unmatched queries', () => {
     expect(search('kubernetes', 'es')).toEqual([])
+  })
+})
+
+describe('parseSearchIndex', () => {
+  it('returns the validated chunks', () => {
+    expect(parseSearchIndex(chunks)).toEqual(chunks)
+  })
+
+  it('falls back to an empty index when the payload breaks the contract', () => {
+    expect(parseSearchIndex({ chunks })).toEqual([])
+    expect(parseSearchIndex([{ ...chunks[0], locale: 'de' }])).toEqual([])
   })
 })

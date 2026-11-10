@@ -29,7 +29,7 @@ Monorepo con **npm workspaces**. El frontend es un sitio estático publicado en 
 | Workspace | Responsabilidad |
 | --- | --- |
 | `apps/web` | Sitio Astro con islas React: hero, stack, proyectos, terminal, formulario. Contenido en `src/content/`. |
-| `apps/api` | Worker con Hono en capas SOLID (`domain`, `application`, `infrastructure`, `http`). |
+| `apps/api` | Worker con Hono, arquitectura hexagonal ligera: `core/` (puertos + casos de uso) y `adapters/` (HTTP, Turnstile, KV, email, Ollama). |
 | `packages/shared` | Schemas zod y tipos de los contratos HTTP. |
 | `packages/rag-ingest` | CLI que trocea el contenido, genera embeddings y carga el índice en la API local. |
 | `packages/config` | Configuración compartida de TypeScript, ESLint y Prettier. |

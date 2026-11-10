@@ -7,7 +7,7 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 1. [Nombres](#1-nombres)
 2. [Tipado estricto](#2-tipado-estricto)
 3. [Funciones](#3-funciones)
-4. [SOLID y arquitectura del backend](#4-solid-y-arquitectura-del-backend)
+4. [SOLID y arquitectura del backend](#4-solid-y-arquitectura-del-backend) (hexagonal ligera)
 5. [Monorepo](#5-monorepo)
 6. [Formato y lint](#6-formato-y-lint)
 7. [TDD y pruebas](#7-tdd-y-pruebas)
@@ -58,23 +58,34 @@ SOLID aplica a todo el código y es **obligatorio en `apps/api`**.
 
 | Principio | Cómo se aplica |
 | --- | --- |
-| **S**ingle responsibility | Un caso de uso por clase; las rutas HTTP solo traducen request ⇄ caso de uso. |
+| **S**ingle responsibility | Un caso de uso por función; las rutas HTTP solo traducen request ⇄ caso de uso. |
 | **O**pen/closed | Proveedores nuevos (otro email, otro LLM) se añaden con un adaptador nuevo, sin tocar los casos de uso. |
 | **L**iskov substitution | Todo adaptador cumple el contrato completo de su puerto; los fakes de test también. |
 | **I**nterface segregation | Puertos pequeños y específicos (`CaptchaVerifier`, `RateLimiter`, `EmailSender`, `EmbeddingProvider`, `ChatModel`, `VectorIndexRepository`). |
-| **D**ependency inversion | Los casos de uso dependen de interfaces del dominio; las implementaciones se inyectan en el composition root. |
+| **D**ependency inversion | Los casos de uso dependen de puertos (interfaces); las implementaciones se inyectan en el composition root. |
 
-Capas de `apps/api/src`:
+### Hexagonal ligera
+
+El backend es pequeño, así que se usa una **arquitectura hexagonal (puertos y adaptadores) en versión ligera**: dos carpetas y un composition root, sin capas extra, sin clases donde una función basta.
 
 ```
-domain/          entidades, errores de dominio y puertos (interfaces) — sin dependencias externas
-application/     casos de uso (SubmitContactRequest, AskQuestion, IndexDocuments)
-infrastructure/  adaptadores que implementan los puertos (Turnstile, KV, Email, Ollama)
-http/            app Hono, rutas, middlewares, mapeo de errores
-container.ts     composition root: construye adaptadores y casos de uso a partir de `env`
+apps/api/src/
+  core/         puertos (interfaces) + casos de uso como funciones puras que reciben sus dependencias
+    ports.ts    CaptchaVerifier, RateLimiter, EmailSender, EmbeddingProvider, ChatModel, VectorIndexRepository
+    contact.ts  submitContactRequest(deps, input)
+    rag.ts      indexDocuments(deps, input), askQuestion(deps, input)
+  adapters/     implementaciones de los puertos y entrada HTTP
+    http/       app Hono y rutas (adaptador de entrada): validan, llaman al caso de uso, mapean errores
+    turnstile.ts, kv-rate-limiter.ts, email-*.ts, ollama.ts, kv-vector-index.ts
+  main.ts       composition root: construye los adaptadores a partir de `env` y exporta el Worker
 ```
 
-Reglas de dependencia: `http → application → domain` e `infrastructure → domain`. `domain` y `application` nunca importan de `infrastructure` ni de `http`. Los casos de uso se prueban con fakes de los puertos.
+Reglas:
+- `core/` no importa nada de `adapters/` ni de Hono/Cloudflare; solo de `packages/shared` y de sí mismo.
+- Un caso de uso = una función exportada con un objeto `deps` tipado con los puertos que necesita (y nada más).
+- Las rutas HTTP son delgadas: sin lógica de negocio.
+- Los casos de uso se prueban con fakes en memoria de los puertos; los adaptadores con tests de integración acotados.
+- No se añaden capas (repositorios genéricos, servicios de dominio, DTOs duplicados) hasta que haga falta de verdad.
 
 En el frontend se aplican los mismos principios a escala: la lógica pura vive en `src/lib/`, los componentes solo componen y renderizan, y el acceso a la API pasa por un cliente tipado.
 

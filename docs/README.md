@@ -1,17 +1,27 @@
 # Documentación
 
-Índice general de la documentación técnica del portafolio.
+Índice de búsqueda de la documentación técnica del portafolio.
 
-## Índice
+## Qué documento responde qué
 
-| Documento                                    | Contenido                                                                |
-| -------------------------------------------- | ------------------------------------------------------------------------ |
-| [Reglas de desarrollo](development-rules.md) | Nombres, tipado, SOLID, TDD, formato, idioma, commits. **Leer primero.** |
-| [Branding](branding.md)                      | Esencia, voz, paleta, tipografía y personalidad del movimiento.          |
-| [Sistema de diseño](design-system.md)        | Tokens de color, tipografía, espaciado, motion y componentes base.       |
-| [Arquitectura](architecture.md)              | Monorepo, apps, paquetes y flujo de datos.                               |
-| [Seguridad y secretos](security.md)          | Repositorio público: qué es secreto, dónde vive y cómo se maneja.        |
-| [Entorno local](local-environment.md)        | Docker Compose, Ollama, Mailpit y RAG local.                             |
-| [Despliegue](deployment.md)                  | CI/CD `develop → master`, GitHub Pages, Cloudflare Workers y rollback.   |
+| Pregunta                                                        | Documento                                    |
+| --------------------------------------------------------------- | -------------------------------------------- |
+| ¿Cómo nombro variables, funciones, tipos? ¿TDD, SOLID, commits? | [Reglas de desarrollo](development-rules.md) |
+| ¿Voz, paleta, tipografía, personalidad de la marca?             | [Branding](branding.md)                      |
+| ¿Tokens de color, espaciado, motion, componentes base?          | [Sistema de diseño](design-system.md)        |
+| ¿Qué apps y paquetes hay y cómo fluyen los datos?               | [Arquitectura](architecture.md)              |
+| ¿Qué es secreto, dónde vive, cómo se protege la API?            | [Seguridad y secretos](security.md)          |
+| ¿Cómo levanto el proyecto en local (Docker Compose, Mailpit)?   | [Entorno local](local-environment.md)        |
+| ¿Cómo se despliega? ¿CI/CD, GitHub Pages, Workers, rollback?    | [Despliegue](deployment.md)                  |
+| ¿Qué cambio está en curso y qué comportamiento debe cumplir?    | [`../openspec/`](../openspec/)               |
 
-Las especificaciones funcionales viven en [`../openspec/`](../openspec/).
+## Buscar con `rg`
+
+El corpus es pequeño: busca directamente en `docs/` y `openspec/` en lugar de leer archivos enteros.
+
+```bash
+rg -i "<término>" docs/ openspec/      # líneas que coinciden, con contexto de archivo
+rg -il "<término>" docs/ openspec/     # solo los archivos que coinciden
+```
+
+Abre solo las secciones de los archivos que aparezcan. Al cambiar el comportamiento documentado, actualiza el documento en el mismo commit.

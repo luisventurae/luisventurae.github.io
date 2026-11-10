@@ -77,7 +77,7 @@ npx wrangler secret put NOTIFY_EMAIL --env production
 - **Turnstile**: un sitio con dominio `luisventurae.github.io`.
 - Si falta un CV en algún idioma, la API sirve el español.
 
-La API valida la configuración al arrancar y se niega a funcionar en producción con secretos de desarrollo, RAG activado o Mailpit (ver [`security.md`](security.md)).
+La API valida la configuración al arrancar y se niega a funcionar en producción con secretos de desarrollo o Mailpit (ver [`security.md`](security.md)).
 
 ## 5. Primer despliegue
 

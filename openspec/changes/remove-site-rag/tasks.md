@@ -18,7 +18,7 @@
 
 ## 4. Documentación e índice para agentes
 
-- [ ] 4.1 Reescribir `docs/README.md` como índice de búsqueda (pregunta → documento) y añadir la guía "buscar con `rg` en `docs/` y `openspec/`" — verificar: enlaces resuelven
-- [ ] 4.2 Referenciar el índice en `CLAUDE.md` — verificar: lectura manual
-- [ ] 4.3 Limpiar menciones de Ollama/RAG en `architecture`, `local-environment`, `security`, `development-rules`, `deployment`, README raíz y `openspec/config.yaml` — verificar: `rg -i "ollama|rag" docs README.md openspec/config.yaml` sin restos
+- [x] 4.1 Reescribir `docs/README.md` como índice de búsqueda (pregunta → documento) y añadir la guía "buscar con `rg` en `docs/` y `openspec/`" — verificar: enlaces resuelven
+- [x] 4.2 Referenciar el índice en `CLAUDE.md` — verificar: lectura manual
+- [x] 4.3 Limpiar menciones de Ollama/RAG en `architecture`, `local-environment`, `security`, `development-rules`, `deployment`, README raíz y `openspec/config.yaml` — verificar: `rg -i "ollama|rag" docs README.md openspec/config.yaml` sin restos
 - [ ] 4.4 Ejecución final — verificar: `npm run verify` y `npm run test:e2e`; PR a `develop` indicando `docker volume rm luisventurae-github-io_ollama_models`

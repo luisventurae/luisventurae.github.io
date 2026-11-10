@@ -46,7 +46,7 @@
 
 ## 10. Web: proyectos
 
-- [ ] 10.1 Grid con tilt y drawer con galería, navegación por botones/flechas/swipe con resistencia en bordes y placeholder de media — verificar: tests de lógica de swipe y de componente
+- [x] 10.1 Grid con tilt y drawer con galería, navegación por botones/flechas/swipe con resistencia en bordes y placeholder de media — verificar: tests de lógica de swipe y de componente
 
 ## 11. Web: formulario de CV
 

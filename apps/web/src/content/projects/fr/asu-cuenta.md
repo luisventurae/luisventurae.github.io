@@ -5,7 +5,7 @@ summary: E-commerce et gestion financière
 
 Application web d’e-commerce avec un module de gestion financière.
 
-## Ce que j’ai fait
+### Ce que j’ai fait
 
 J’ai construit le frontend en Vue et le backend en Node.js avec MongoDB : catalogue, commandes et rapports de recettes et dépenses.
 

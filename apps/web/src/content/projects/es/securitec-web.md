@@ -5,7 +5,7 @@ summary: Sitio web informativo de la empresa
 
 Sitio corporativo de Securitec con su API de contenidos.
 
-## Qué hice
+### Qué hice
 
 Construí la API con NestJS sobre Node.js y MongoDB, desplegada en AWS, para gestionar el contenido del sitio.
 

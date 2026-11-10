@@ -1,9 +1,15 @@
 ---
 import type { Locale } from '@portfolio/shared'
 
+import { getImage } from 'astro:assets'
+
 import { SKILLS } from '../data/skills'
 import { getUi } from '../i18n'
 import { loadProjects } from '../lib/content'
+import { skillUsage } from '../lib/projects'
+import type { ProjectCard } from './projects/types'
+import { ProjectGrid } from './projects/ProjectGrid'
+import { StackMap, type StackSkill } from './stack/StackMap'
 import Base from '../layouts/Base.astro'
 import Footer from './Footer.astro'
 import { Hero } from './hero/Hero'
@@ -23,6 +29,64 @@ const structured_projects = projects.map((project) => ({
   url: project.url,
 }))
 const knows_about = SKILLS.filter((skill) => skill.level >= 6).map((skill) => skill.label)
+
+const usage = skillUsage(projects)
+const skill_by_id = new Map(SKILLS.map((skill) => [skill.id, skill]))
+const stack_skills: StackSkill[] = [...SKILLS]
+  .sort((a, b) => b.level - a.level)
+  .map((skill) => ({
+    id: skill.id,
+    label: skill.label,
+    category: skill.category,
+    level: skill.level,
+    project_count: usage[skill.id] ?? 0,
+  }))
+
+const project_cards: ProjectCard[] = await Promise.all(
+  projects.map(async (project) => ({
+    slug: project.slug,
+    title: project.title,
+    summary: project.summary,
+    company: project.company,
+    period: project.period,
+    url: project.url,
+    body_html: project.body_html,
+    techs: project.techs.flatMap((id) => {
+      const skill = skill_by_id.get(id)
+      return skill ? [{ id, label: skill.label, category: skill.category }] : []
+    }),
+    media: await Promise.all(
+      project.media.map(async (image) => {
+        const optimized = await getImage({ src: image, widths: [480, 960, 1440], format: 'webp' })
+        return {
+          src: optimized.src,
+          srcset: optimized.srcSet.attribute,
+          width: image.width,
+          height: image.height,
+          alt: `${project.title} — ${project.summary}`,
+        }
+      }),
+    ),
+  })),
+)
+const stack_labels = {
+  all: ui.stack.all,
+  categories: ui.stack.categories,
+  no_projects: ui.stack.no_projects,
+  used_in: ui.stack.used_in,
+  clear: ui.stack.clear,
+  see_projects: ui.stack.see_projects,
+}
+const project_labels = {
+  open: ui.projects.open,
+  period: ui.projects.period,
+  technologies: ui.projects.technologies,
+  visit: ui.projects.visit,
+  previous: ui.projects.previous,
+  next: ui.projects.next,
+  close: ui.projects.close,
+  swipe_hint: ui.projects.swipe_hint,
+}
 ---
 
 <Base locale={locale} projects={structured_projects} knows_about={knows_about}>
@@ -46,6 +110,7 @@ const knows_about = SKILLS.filter((skill) => skill.level >= 6).map((skill) => sk
 
   <section id="stack" aria-labelledby="stack-title" class="container-page py-(--space-section)">
     <SectionHeading id="stack" index="01" title={ui.stack.title} intro={ui.stack.intro} />
+    <StackMap client:visible skills={stack_skills} labels={stack_labels} />
   </section>
 
   <section
@@ -54,17 +119,7 @@ const knows_about = SKILLS.filter((skill) => skill.level >= 6).map((skill) => sk
     class="container-page py-(--space-section)"
   >
     <SectionHeading id="projects" index="02" title={ui.projects.title} intro={ui.projects.intro} />
-    <ul class="grid gap-4 md:grid-cols-2">
-      {projects.map((project) => (
-        <li class="rounded-lg border border-line bg-paper-raised p-6">
-          <p class="font-mono text-small text-ink-muted">
-            {project.company} · {project.period}
-          </p>
-          <h3 class="mt-2 text-title font-bold">{project.title}</h3>
-          <p class="mt-1 text-ink-muted">{project.summary}</p>
-        </li>
-      ))}
-    </ul>
+    <ProjectGrid client:visible projects={project_cards} labels={project_labels} />
   </section>
 
   <section

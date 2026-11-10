@@ -99,6 +99,15 @@
     transform: scale(0.97);
   }
 
+  .project-body h3 {
+    margin-top: 1.5rem;
+    font-size: var(--text-title);
+    font-weight: 700;
+  }
+  .project-body p {
+    color: var(--ink-muted);
+  }
+
   .skip-link {
     position: absolute;
     left: var(--gutter);

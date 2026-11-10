@@ -1,5 +1,5 @@
 ---
-title: Securitec
+title: Sitio corporativo
 summary: Sitio corporativo con API de contenidos en AWS
 role: Backend Developer
 ---

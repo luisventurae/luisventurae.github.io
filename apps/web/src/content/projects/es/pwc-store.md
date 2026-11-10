@@ -1,5 +1,5 @@
 ---
-title: Pool Work Confort
+title: Tienda en línea
 summary: Sitio informativo y tienda virtual
 role: Full Stack Developer
 ---

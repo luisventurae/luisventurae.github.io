@@ -1,5 +1,5 @@
 ---
-title: Pool Work Confort
+title: Online store
 summary: Brand website and online store
 role: Full Stack Developer
 ---

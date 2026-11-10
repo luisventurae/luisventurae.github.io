@@ -1,5 +1,5 @@
 ---
-title: Pool Work Confort
+title: Boutique en ligne
 summary: Site vitrine et boutique en ligne
 role: Full Stack Developer
 ---

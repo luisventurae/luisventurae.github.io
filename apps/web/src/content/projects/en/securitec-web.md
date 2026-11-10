@@ -1,5 +1,5 @@
 ---
-title: Securitec
+title: Corporate website
 summary: Corporate website with a content API on AWS
 role: Backend Developer
 ---

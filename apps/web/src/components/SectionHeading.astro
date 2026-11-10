@@ -1,0 +1,20 @@
+---
+interface Props {
+  id: string
+  title: string
+  intro: string
+  index: string
+}
+
+const { id, title, intro, index } = Astro.props
+---
+
+<header class="mb-12 grid gap-4 md:grid-cols-[auto_1fr] md:items-end md:gap-10">
+  <h2 id={`${id}-title`} class="text-display font-extrabold">
+    <span class="mr-3 align-top font-mono text-small font-medium tracking-normal text-accent-ink">
+      {index}
+    </span>
+    {title}
+  </h2>
+  <p class="max-w-[48ch] text-ink-muted md:justify-self-end md:text-right">{intro}</p>
+</header>

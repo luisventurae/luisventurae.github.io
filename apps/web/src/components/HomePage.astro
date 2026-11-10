@@ -1,0 +1,57 @@
+---
+import type { Locale } from '@portfolio/shared'
+
+import { getUi } from '../i18n'
+import Base from '../layouts/Base.astro'
+import Footer from './Footer.astro'
+import Nav from './Nav.astro'
+import SectionHeading from './SectionHeading.astro'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const ui = getUi(locale)
+---
+
+<Base locale={locale} projects={[]} knows_about={[]}>
+  <Nav slot="header" locale={locale} />
+
+  <section
+    id="top"
+    class="container-page flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16"
+  >
+    <p class="font-mono text-small text-ink-muted">{ui.hero.greeting}</p>
+    <h1 class="text-hero font-extrabold">
+      Luis Ventura E<span class="text-accent">.</span>
+    </h1>
+    <p class="mt-6 max-w-[40ch] text-title leading-tight text-ink-muted">{ui.hero.tagline}</p>
+  </section>
+
+  <section id="stack" aria-labelledby="stack-title" class="container-page py-(--space-section)">
+    <SectionHeading id="stack" index="01" title={ui.stack.title} intro={ui.stack.intro} />
+  </section>
+
+  <section
+    id="projects"
+    aria-labelledby="projects-title"
+    class="container-page py-(--space-section)"
+  >
+    <SectionHeading id="projects" index="02" title={ui.projects.title} intro={ui.projects.intro} />
+  </section>
+
+  <section
+    id="terminal"
+    aria-labelledby="terminal-title"
+    class="container-page py-(--space-section)"
+  >
+    <SectionHeading id="terminal" index="03" title={ui.terminal.title} intro={ui.terminal.intro} />
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title" class="container-page py-(--space-section)">
+    <SectionHeading id="contact" index="04" title={ui.contact.title} intro={ui.contact.intro} />
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+</Base>

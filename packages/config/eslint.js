@@ -88,7 +88,7 @@ export const eslint_config = tseslint.config(
   },
   {
     files: ['**/*.tsx'],
-    plugins: { 'jsx-a11y': jsx_a11y, 'react-hooks': react_hooks },
+    plugins: { 'jsx-a11y-x': jsx_a11y, 'react-hooks': react_hooks },
     languageOptions: { globals: { ...globals.browser } },
     rules: {
       ...jsx_a11y.configs.strict.rules,

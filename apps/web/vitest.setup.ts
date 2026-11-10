@@ -23,3 +23,6 @@ export function mockMatchMedia(matching_queries: string[] = []): void {
 }
 
 mockMatchMedia()
+
+/** jsdom does not implement element scrolling; galleries call `scrollTo` on their track. */
+if (typeof Element !== 'undefined') Element.prototype.scrollTo = vi.fn()

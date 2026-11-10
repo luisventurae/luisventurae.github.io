@@ -19,6 +19,16 @@ const labels: ProjectsLabels = {
   swipe_hint: 'Desliza',
   at_company: 'En {company}',
   personal: 'Proyecto personal',
+  gallery: 'Capturas de {title}',
+  carousel: 'carrusel',
+  slide: 'captura',
+  mobile_view: 'Móvil',
+  desktop_view: 'Escritorio',
+  previous_image: 'Captura anterior',
+  next_image: 'Captura siguiente',
+  go_to_image: 'Ver captura {n} de {count}',
+  screenshots: '{count} capturas',
+  new_tab: 'se abre en una pestaña nueva',
 }
 
 function project(slug: string, title: string, tech_ids: string[]): ProjectCard {
@@ -143,6 +153,26 @@ describe('scroll reveal', () => {
       card.getAttribute('data-reveal-state'),
     )
     expect(states).toEqual(['static', 'static'])
+  })
+})
+
+describe('screenshot count', () => {
+  it('tells how many screenshots a case study has', () => {
+    const shot = {
+      src: '/a.webp',
+      srcset: '',
+      width: 1440,
+      height: 900,
+      alt: 'a',
+      frame: 'desktop' as const,
+    }
+    const with_media = [
+      { ...project('c', 'Gamma', []), media: [shot, { ...shot, src: '/b.webp' }] },
+    ]
+    render(<ProjectGrid projects={with_media} labels={labels} />)
+    expect(screen.getByRole('button', { name: 'Ver detalle: Gamma' })).toHaveTextContent(
+      '2 capturas',
+    )
   })
 })
 

@@ -65,6 +65,7 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
                   is_match={is_match}
                   is_dimmed={is_dimmed}
                   open_label={labels.open}
+                  screenshots_label={labels.screenshots}
                   origin={projectOrigin(project.employer, labels)}
                   onOpen={() => setOpenIndex(index)}
                 />
@@ -161,6 +162,8 @@ interface TiltCardProps {
   is_match: boolean
   is_dimmed: boolean
   open_label: string
+  /** Badge template with a `{count}` token. */
+  screenshots_label: string
   /** "En Securitec" or "Proyecto personal". */
   origin: string
   onOpen: () => void
@@ -171,6 +174,7 @@ function TiltCard({
   is_match,
   is_dimmed,
   open_label,
+  screenshots_label,
   origin,
   onOpen,
 }: TiltCardProps): ReactElement {
@@ -212,11 +216,19 @@ function TiltCard({
         } ${project.featured ? 'md:grid md:grid-cols-[3fr_2fr]' : ''}`}
       >
         <div
-          className={`project-media aspect-[16/10] overflow-hidden border-b border-line ${
+          className={`project-media relative aspect-[16/10] overflow-hidden border-b border-line ${
             project.featured ? 'md:aspect-auto md:h-full md:border-r md:border-b-0' : ''
           }`}
         >
           <ProjectMediaView media={project.media[0]} title={project.title} eager={false} />
+          {project.media.length > 1 && (
+            <span
+              aria-hidden="true"
+              className="absolute right-3 bottom-3 rounded-full border border-line bg-paper-raised/90 px-2.5 py-0.5 font-mono text-[0.75rem] text-ink-muted"
+            >
+              {screenshots_label.replace('{count}', String(project.media.length))}
+            </span>
+          )}
         </div>
         <div className="p-6">
           <p className="font-mono text-small text-ink-muted">

@@ -1,4 +1,5 @@
 import type { SkillCategory } from '../../data/skills'
+import type { MediaFrame } from '../../lib/gallery'
 import type { ProjectEmployer } from '../../lib/projects'
 
 export interface ProjectMedia {
@@ -7,6 +8,8 @@ export interface ProjectMedia {
   width: number
   height: number
   alt: string
+  /** Portrait captures render inside a phone frame. */
+  frame: MediaFrame
 }
 
 interface ProjectTech {
@@ -42,6 +45,19 @@ export interface ProjectsLabels {
   next: string
   close: string
   swipe_hint: string
+  /** Templates: `{title}`, `{n}` and `{count}` tokens. */
+  gallery: string
+  /** `aria-roledescription` of the gallery and of each slide. */
+  carousel: string
+  slide: string
+  mobile_view: string
+  desktop_view: string
+  previous_image: string
+  next_image: string
+  go_to_image: string
+  /** Card badge, `{count}` token. */
+  screenshots: string
+  new_tab: string
   /** Template with a `{company}` token, e.g. "En {company}". */
   at_company: string
   personal: string

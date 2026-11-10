@@ -80,6 +80,8 @@ Reglas concretas en [`design-system.md` › Motion](design-system.md#5-motion).
 - Sin foto de perfil en el hero: el protagonista es el nombre y lo que se puede hacer con él.
 - Capturas de proyectos con bordes redondeados y sombra suave, sobre papel.
 - Videos cortos (≤ 15 s, sin audio, `muted loop playsinline`) para mostrar interacción real.
+- Capturas en `apps/web/src/assets/projects/` como `ss-<proyecto>-<n>.webp`; las de móvil, en vertical (`-mobile`). La primera es la portada de la tarjeta. Antes de publicar, nada de datos de clientes ni de otras marcas en pantalla: el repositorio es público.
+- Los enlaces al sitio original de un proyecto solo aceptan `https` (`safeExternalUrl`), abren en pestaña nueva sin `opener` ni referrer y muestran el dominio antes de salir.
 - Todo recurso pendiente se marca con `TODO(media)` en el contenido.
 
 ## 8. Qué evitar

@@ -4,7 +4,8 @@ import { Drawer } from 'vaul'
 
 import { projectOrigin } from '../../lib/projects'
 import { resolveSwipe } from '../../lib/swipe'
-import { ProjectMediaView } from './ProjectMediaView'
+import { ExternalProjectLink } from './ExternalProjectLink'
+import { ProjectGallery } from './ProjectGallery'
 import type { ProjectCard, ProjectsLabels } from './types'
 
 export interface ProjectDrawerProps {
@@ -210,9 +211,7 @@ function ProjectDetail({
   const summary_class = 'mt-2 text-title leading-snug text-ink-muted'
   return (
     <div aria-hidden={!is_present} inert={!is_present}>
-      <div className="aspect-[16/9] overflow-hidden rounded-lg border border-line">
-        <ProjectMediaView media={project.media[0]} title={project.title} eager />
-      </div>
+      <ProjectGallery media={project.media} title={project.title} labels={labels} />
       <header className="mt-6">
         <p className="font-mono text-small text-ink-muted">
           <EmployerLink project={project} labels={labels} onClick={onEmployerClick} /> ·{' '}
@@ -249,16 +248,7 @@ function ProjectDetail({
           </li>
         ))}
       </ul>
-      {project.url && (
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="pressable mt-8 inline-flex rounded-md bg-accent px-5 py-3 font-semibold text-on-accent"
-        >
-          {labels.visit} ↗
-        </a>
-      )}
+      {project.url && <ExternalProjectLink url={project.url} labels={labels} />}
     </div>
   )
 }

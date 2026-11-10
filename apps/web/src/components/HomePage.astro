@@ -8,6 +8,7 @@ import { SKILLS, sortByTier } from '../data/skills'
 import { getUi } from '../i18n'
 import { loadExperience, loadProfile, loadProjects } from '../lib/content'
 import { careerYears, interpolateYears } from '../lib/experience'
+import { fillTemplate, mediaFrame } from '../lib/gallery'
 import type { TerminalContext } from '../lib/terminal/commands'
 import { projectOrigin, skillUsage } from '../lib/projects'
 import { parsePublicEnv } from '../lib/public-env'
@@ -66,14 +67,22 @@ const project_cards: ProjectCard[] = await Promise.all(
       return skill ? [{ id, label: skill.label, category: skill.category }] : []
     }),
     media: await Promise.all(
-      project.media.map(async (image) => {
-        const optimized = await getImage({ src: image, widths: [480, 960, 1440], format: 'webp' })
+      project.media.map(async (image, image_index) => {
+        const frame = mediaFrame(image.width, image.height)
+        const widths = frame === 'mobile' ? [320, 480, 780] : [480, 960, 1440]
+        const optimized = await getImage({ src: image, widths, format: 'webp' })
+        const view = frame === 'mobile' ? ui.projects.mobile_view : ui.projects.desktop_view
         return {
           src: optimized.src,
           srcset: optimized.srcSet.attribute,
           width: image.width,
           height: image.height,
-          alt: `${project.title} — ${project.summary}`,
+          frame,
+          alt: `${fillTemplate(ui.projects.screenshot_alt, {
+            title: project.title,
+            n: image_index + 1,
+            count: project.media.length,
+          })} (${view.toLowerCase()})`,
         }
       }),
     ),
@@ -148,6 +157,16 @@ const project_labels = {
   next: ui.projects.next,
   close: ui.projects.close,
   swipe_hint: ui.projects.swipe_hint,
+  gallery: ui.projects.gallery,
+  carousel: ui.projects.carousel,
+  slide: ui.projects.slide,
+  mobile_view: ui.projects.mobile_view,
+  desktop_view: ui.projects.desktop_view,
+  previous_image: ui.projects.previous_image,
+  next_image: ui.projects.next_image,
+  go_to_image: ui.projects.go_to_image,
+  screenshots: ui.projects.screenshots,
+  new_tab: ui.projects.new_tab,
   at_company: ui.projects.at_company,
   personal: ui.projects.personal,
 }

@@ -563,3 +563,11 @@
     transition-property: opacity, color, background-color, border-color !important;
   }
 }
+
+/* Project gallery: the track scrolls natively (swipe, trackpad); its scrollbar would only add noise. */
+.gallery-track {
+  scrollbar-width: none;
+}
+.gallery-track::-webkit-scrollbar {
+  display: none;
+}

@@ -84,7 +84,7 @@ test.describe('stack and projects', () => {
     await expect(page.getByText(/Usada en 1 proyecto/)).toBeVisible()
     await page.locator('#projects').scrollIntoViewIfNeeded()
     await expect(page.locator('[data-state="match"]')).toHaveCount(1)
-    await expect(page.locator('[data-state="dimmed"]')).toHaveCount(7)
+    await expect(page.locator('[data-state="dimmed"]')).toHaveCount(8)
   })
 
   test('the drawer navigates with keys and returns focus on close', async ({ page }) => {
@@ -110,9 +110,12 @@ test.describe('stack and projects', () => {
     await expect(page.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText('Ticker')
     // Let the drawer finish its enter animation so the gesture starts on a still target.
     await page.waitForTimeout(600)
+    // Swipe on the text: a swipe on the screenshots changes the screenshot instead.
+    await article.getByRole('heading', { level: 2 }).scrollIntoViewIfNeeded()
     const box = await article.boundingBox()
-    if (!box) throw new Error('drawer content not visible')
-    const y = box.y + 120
+    const heading = await article.getByRole('heading', { level: 2 }).boundingBox()
+    if (!box || !heading) throw new Error('drawer content not visible')
+    const y = heading.y + heading.height / 2
     await page.mouse.move(box.x + box.width * 0.8, y)
     await page.mouse.down()
     await page.mouse.move(box.x + box.width * 0.2, y, { steps: 4 })
@@ -120,6 +123,31 @@ test.describe('stack and projects', () => {
     await expect(page.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText(
       'Este portafolio',
     )
+  })
+
+  test('the screenshots slide without leaving the project', async ({ page }) => {
+    await page.goto('/')
+    await page.locator('#projects').scrollIntoViewIfNeeded()
+    await page.getByRole('button', { name: /Ver detalle: Ticker/ }).click()
+    const dialog = page.getByRole('dialog')
+    const first_dot = dialog.getByRole('button', { name: /Ver captura 1 de/ })
+    await expect(first_dot).toHaveAttribute('aria-current', 'true')
+    await first_dot.focus()
+    await page.keyboard.press('ArrowRight')
+    await expect(dialog.getByRole('button', { name: /Ver captura 2 de/ })).toHaveAttribute(
+      'aria-current',
+      'true',
+    )
+    await expect(dialog.getByRole('heading', { level: 2 })).toHaveText('Ticker')
+  })
+
+  test('a case study links safely to the live site', async ({ page }) => {
+    await page.goto('/#project-pwc-store')
+    const link = page.getByRole('dialog').getByRole('link', { name: /poolworkconf\.com/ })
+    await expect(link).toHaveAttribute('href', 'https://www.poolworkconf.com/')
+    await expect(link).toHaveAttribute('target', '_blank')
+    await expect(link).toHaveAttribute('rel', 'noopener noreferrer external')
+    await expect(link).toHaveAttribute('referrerpolicy', 'no-referrer')
   })
 })
 

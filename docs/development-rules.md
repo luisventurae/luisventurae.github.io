@@ -46,6 +46,7 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 - Las funciones exportadas declaran su tipo de retorno.
 - Todo dato que cruza una frontera (contenido markdown, request/response HTTP, variables de entorno, respuestas de Ollama) se valida con un schema de zod.
 - **TypeScript 7** (`tsc` nativo) es el verificador de tipos (`npm run typecheck`). Como TS 7 todavía no expone API de JavaScript, las herramientas que la necesitan (typescript-eslint, astro check) usan `@typescript/typescript6` instalado bajo el nombre `typescript`; TS 7 vive en el alias `typescript7`.
+- En `apps/web`, `typecheck` ejecuta `astro sync` antes de `tsc7`: los tipos de `astro:content` se generan en `.astro/` (ignorado por git) y sin ellos las colecciones se tipan como `any` en un checkout limpio (CI).
 
 ## 3. Funciones
 

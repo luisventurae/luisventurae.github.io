@@ -15,7 +15,7 @@ export interface HeroProps {
   /** Social profiles shown above the name. */
   social: SocialLinksProps
   /** Complementary descriptions that rotate under the main role. */
-  roles: string[]
+  roles: readonly [string, ...string[]]
   tagline: string
   drag_hint: string
   cta_projects: string

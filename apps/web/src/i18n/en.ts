@@ -1,4 +1,4 @@
-import type { UiStrings } from './es'
+import type { UiStrings } from './types'
 
 export const en: UiStrings = {
   meta: {

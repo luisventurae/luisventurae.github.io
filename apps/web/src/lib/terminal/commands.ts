@@ -1,7 +1,7 @@
 import { isLocale, type Locale } from '@portfolio/shared'
 
 import { SKILL_TIERS, type SkillCategory, type SkillTier } from '../../data/skills'
-import type { UiStrings } from '../../i18n/es'
+import type { UiStrings } from '../../i18n/types'
 import type { Theme } from '../theme'
 import { parseCommand } from './input'
 
@@ -17,7 +17,7 @@ export const COMMAND_NAMES = [
   'contact',
   'clear',
 ] as const
-type CommandName = (typeof COMMAND_NAMES)[number]
+export type CommandName = (typeof COMMAND_NAMES)[number]
 
 export interface TerminalLine {
   kind: 'text' | 'muted' | 'error' | 'accent'

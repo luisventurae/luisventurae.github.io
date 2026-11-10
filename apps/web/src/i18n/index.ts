@@ -1,8 +1,9 @@
 import type { Locale } from '@portfolio/shared'
 
 import { en } from './en'
-import { es, type UiStrings } from './es'
+import { es } from './es'
 import { fr } from './fr'
+import type { UiStrings } from './types'
 
 const UI: Record<Locale, UiStrings> = { es, en, fr }
 

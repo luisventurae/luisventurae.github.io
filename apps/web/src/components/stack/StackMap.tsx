@@ -21,7 +21,8 @@ export interface StackMapProps {
     tiers: Record<SkillTier, string>
     tiers_legend: string
     no_projects: string
-    used_in: string[]
+    /** Singular and plural forms; the plural has a `{count}` token. */
+    used_in: readonly [one: string, other: string]
     clear: string
     see_projects: string
   }

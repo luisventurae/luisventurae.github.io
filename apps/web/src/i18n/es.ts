@@ -1,4 +1,6 @@
-export const es = {
+import type { UiStrings } from './types'
+
+export const es: UiStrings = {
   meta: {
     title: 'Luis Ventura E — Backend Engineer · Node.js',
     description:
@@ -196,5 +198,3 @@ export const es = {
     rights: 'Todos los derechos reservados.',
   },
 }
-
-export type UiStrings = typeof es

@@ -80,6 +80,17 @@ const alternate_og_locales = LOCALES.filter((item) => item !== locale).map(
 
     <script type="application/ld+json" set:html={JSON.stringify(structured_data)} />
     <script is:inline>
+      // Scroll reveal hides below-the-fold content only when JS runs (see lib/reveal.ts).
+      // Failsafe: if the reveal module never starts, show everything instead of a blank page.
+      ;(function () {
+        var root = document.documentElement
+        root.classList.add('js')
+        setTimeout(function () {
+          if (!root.hasAttribute('data-reveal-ready')) root.classList.add('no-reveal')
+        }, 3000)
+      })()
+    </script>
+    <script is:inline>
       // Apply the theme before first paint (no flash). Mirrors lib/theme.ts.
       ;(function () {
         try {
@@ -103,5 +114,9 @@ const alternate_og_locales = LOCALES.filter((item) => item !== locale).map(
       <slot />
     </main>
     <slot name="footer" />
+    <script>
+      import { observeReveals } from '../lib/reveal'
+      observeReveals()
+    </script>
   </body>
 </html>

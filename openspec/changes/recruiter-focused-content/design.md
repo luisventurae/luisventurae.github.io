@@ -98,6 +98,16 @@ La línea de datos clave y el badge de disponibilidad son HTML estático dentro 
 - El markdown sigue las secciones Contexto, Reto, Decisiones y Resultado.
 - Nuevo slug `portfolio`, con `url` al repositorio y una captura generada con Playwright (o el placeholder de iniciales mientras tanto).
 
+### D8. Revelado al hacer scroll (pedido tras la primera revisión)
+
+Las secciones nuevas se veían estáticas al lado del hero y del stack. El enfoque Emil Kowalski permite deleite en lo que se ve una vez por visita, siempre que tenga un propósito.
+
+- **Secciones Astro** (Sobre mí, Experiencia, títulos de sección, tarjeta del CV): sistema CSS + un `IntersectionObserver` compartido (`lib/reveal.ts`). Cada contenedor con `data-reveal` recibe `data-inview` una sola vez, y CSS anima a sus hijos con stagger por `--reveal-index`. El estado oculto solo aplica bajo `html.js`, una clase que pone el script inline del `<head>`; sin JavaScript todo se ve. El observador no toca nodos gestionados por React, para no provocar desajustes de hidratación.
+- **Experiencia**: la línea vertical se dibuja con una animación de scroll (`animation-timeline: view()`, fuera del hilo principal), con fallback estático. Cada punto entra con un pequeño rebote (`scale` desde 0.6, nunca 0) y el trabajo actual emite un solo "ping". En hover o foco, la entrada resalta su punto.
+- **Sobre mí**: las cifras clave del párrafo inicial se subrayan con un marcador que se "dibuja" (`background-size`) al entrar en pantalla.
+- **Proyectos (isla React)**: cada tarjeta se revela por sí misma con `useInView` (`once`), con desplazamiento y un telón `clip-path` en la imagen. Las tarjetas que ya estaban en pantalla al hidratar no se ocultan, para evitar parpadeos. La isla pasa a `client:idle`, así hidrata antes de que el visitante llegue a la sección.
+- **Duraciones**: entradas de 500–700 ms (es contenido de marketing, se ve una vez), stagger de 60 ms con un tope de 6 elementos, curvas `--ease-out-strong` y, para el telón, `--ease-in-out-strong`. Con reduced motion, solo opacidad.
+
 ## Risks / Trade-offs
 
 - [Un remitente nuevo cae en spam] → dominio verificado con SPF/DKIM/DMARC en Resend, texto plano sin enlaces de terceros y asunto claro.

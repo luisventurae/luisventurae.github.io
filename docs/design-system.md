@@ -88,6 +88,21 @@ Springs (Motion, en `apps/web/src/lib/motion.ts`):
 
 Stagger: 40 ms entre elementos.
 
+### Revelado al hacer scroll
+
+Las secciones bajo el hero se revelan la primera vez que entran en pantalla (`lib/reveal.ts` + CSS en `global.css`):
+
+| Pieza                  | Uso                                                                                                                |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `data-reveal`          | Contenedor observado (solo nodos de Astro, nunca de React). Recibe `data-inview` una sola vez.                     |
+| `.reveal-item`         | Hijo animado (`reveal-rise`, 700 ms, `--ease-out-strong`, 24 px). Stagger con `--reveal-index` × 60 ms, tope de 6. |
+| `.reveal-title`        | Variante con blur para los títulos de sección, coherente con la entrada del hero.                                  |
+| `.reveal-children`     | Escalona sus hijos directos de forma automática (útil para markdown renderizado).                                  |
+| `data-reveal="self"`   | El propio contenedor se anima.                                                                                     |
+| `<mark>` en "Sobre mí" | Marcador lima que se dibuja (`background-size`, 700 ms, `--ease-in-out-strong`) sobre las cifras clave.            |
+
+Reglas: el estado oculto solo aplica bajo `html.js`. Si el módulo no arranca en 3 s, la clase `no-reveal` lo muestra todo. Las animaciones usan `fill-mode: backwards`, así que no bloquean después el hover ni el `scale` de `.pressable`. Con reduced motion, el revelado es un fundido de 400 ms sin movimiento.
+
 Entrada del hero: las letras del nombre usan `hero-rise` (700 ms, blur) porque son decoración. El texto de apoyo (badge, rol, datos clave, rol rotativo, tagline, CTAs) usa `hero-fade`: 360 ms, `translate` de 8 px sin blur y retrasos de 0 a 240 ms. Así los datos clave se leen antes de que termine el nombre. El rol rotativo hace un crossfade de 320 ms con blur de 4 px. Reglas completas en [`development-rules.md` › Accesibilidad y motion](development-rules.md#11-accesibilidad-y-motion).
 
 ## 6. Componentes base

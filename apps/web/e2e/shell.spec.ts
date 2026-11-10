@@ -15,6 +15,30 @@ test.describe('hero without JavaScript', () => {
     ).toBeVisible()
     await expect(hero.getByText('Disponible · remoto o híbrido · Perú')).toBeVisible()
   })
+
+  test('shows every revealed section without waiting for animations', async ({ page }) => {
+    await page.goto('/')
+    const hidden = await page
+      .locator('[data-reveal], [data-reveal] .reveal-item, .reveal-children > *')
+      .evaluateAll(
+        (elements) =>
+          elements.filter((element) => getComputedStyle(element).opacity !== '1').length,
+      )
+    expect(hidden).toBe(0)
+    await expect(page.locator('#experience ol > li').first()).toContainText('Prestamype')
+  })
+})
+
+test.describe('scroll reveal', () => {
+  test('reveals a section once and keeps it visible', async ({ page }) => {
+    await page.goto('/')
+    const heading = page.locator('#experience header[data-reveal]')
+    await expect(heading).not.toHaveAttribute('data-inview')
+    await heading.scrollIntoViewIfNeeded()
+    await expect(heading).toHaveAttribute('data-inview', '')
+    await page.evaluate(() => window.scrollTo(0, 0))
+    await expect(heading).toHaveAttribute('data-inview', '')
+  })
 })
 
 test.describe('site shell', () => {

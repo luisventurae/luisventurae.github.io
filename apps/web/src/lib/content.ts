@@ -5,6 +5,7 @@ import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 import { EXPERIENCE, type EngagementKind } from '../data/experience'
 import { PROJECTS } from '../data/projects'
 import { careerYears, interpolateYears, sortExperience } from './experience'
+import { stripInlineMarks } from './plain-text'
 import { formatPeriod, projectSlugFromEntryId, sortProjects } from './projects'
 
 type ProjectEntry = CollectionEntry<'projects'>
@@ -82,7 +83,7 @@ export async function loadProfile(locale: Locale): Promise<ProfileView> {
   const years = careerYears()
   return {
     title: entry.data.title,
-    body: interpolateYears(entry.body ?? '', years),
+    body: stripInlineMarks(interpolateYears(entry.body ?? '', years)),
     body_html: interpolateYears(entry.rendered?.html ?? '', years),
   }
 }

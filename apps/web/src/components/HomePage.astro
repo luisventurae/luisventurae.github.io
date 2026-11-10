@@ -175,7 +175,7 @@ const project_labels = {
 
   <section id="about" aria-labelledby="about-title" class="container-page py-(--space-section)">
     <SectionHeading id="about" index="01" title={ui.about.title} intro={ui.about.intro} />
-    <div class="about-body max-w-[65ch]" set:html={profile.body_html} />
+    <div data-reveal class="about-body reveal-children max-w-[65ch]" set:html={profile.body_html} />
   </section>
 
   <section

@@ -108,6 +108,14 @@ Cada grupo es un commit (Conventional Commits, sin trailers de atribución) y se
 - [x] 10.2 Capturas en es, en y fr, en móvil y escritorio, con el skill `run`, para revisar el hero, la línea de tiempo y el juego
 - [x] 10.3 Hallazgos de la verificación: el firmador aceptaba variantes no canónicas del último carácter de la firma (corregido en `fix(api)`, con test); en móvil, la flecha del CTA quedaba sola en una línea y el `· AWS` del hero quedaba huérfano (corregidos); sin scroll horizontal en es/en/fr a 390 px y a 1280 px
 
+## 11. Revelado y motion de las secciones nuevas (`feat(web): …`, pedido tras la primera revisión)
+
+- [x] 11.1 Sistema de revelado: clase `js` en el `<head>`, `lib/reveal.ts` (IntersectionObserver, una sola vez, fallback sin IO) con tests, y CSS de `data-reveal` con stagger y reduced motion; títulos de sección y "Sobre mí" (bloques escalonados y marcador sobre las cifras clave); verificar con `npm test` y E2E sin JS
+- [ ] 11.2 Experiencia: línea dibujada con scroll, entradas escalonadas, punto con rebote, "ping" del trabajo actual y resalte en hover/foco; verificar con capturas a mitad de animación y E2E
+- [ ] 11.3 Proyectos: revelado por tarjeta con `useInView`, telón `clip-path` en la imagen, sin ocultar lo que ya está en pantalla al hidratar, isla en `client:idle` y zoom suave de la imagen en hover (puntero fino); verificar con tests de `ProjectGrid` y E2E
+- [ ] 11.4 Match de vacante: la tarjeta y los chips entran escalonados, el porcentaje hace un "pop" con spring en cada cambio y un brillo único al llegar al 100 %; verificar con tests de `CvSection` y capturas
+- [ ] 11.5 Documentar el sistema de revelado en `docs/design-system.md` y revisarlo todo con la tabla Antes/Después; verificar con `npm run verify` y `npm run test:e2e`
+
 ## Workflow follow-up
 
 - Completar los `TODO(content)`: Prestamype, cargos, fechas de Pool Work, cifras y PDF del CV en EN/FR en R2.

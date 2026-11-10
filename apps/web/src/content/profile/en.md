@@ -2,7 +2,7 @@
 title: Luis Ventura E
 ---
 
-I'm Luis Ventura E, a Backend Engineer with {years} years of experience building Node.js and TypeScript systems that handle real traffic. I currently work at Prestamype, a Peruvian fintech, designing microservices on AWS.
+I'm Luis Ventura E, a Backend Engineer with <mark>{years} years of experience</mark> building <mark>Node.js and TypeScript</mark> systems that handle real traffic. I currently work at <mark>Prestamype</mark>, a Peruvian fintech, designing microservices on AWS.
 
 ### What I do
 
@@ -10,7 +10,7 @@ I design and build backends: microservices with hexagonal architecture, APIs wit
 
 ### What I'm looking for
 
-A backend developer role with Node.js, remote or hybrid in Peru, on a team that cares about quality: specs first, TDD, code review and CI/CD.
+A backend developer role with Node.js, <mark>remote or hybrid in Peru</mark>, on a team that cares about quality: specs first, TDD, code review and CI/CD.
 
 ### Also
 

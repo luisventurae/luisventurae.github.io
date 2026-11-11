@@ -1,5 +1,5 @@
 ---
-title: Gestion des factures
+title: Gestionnaire de factures
 summary: Module où les entreprises gèrent, encaissent et font avancer leurs factures
 role: Backend Engineer
 ---

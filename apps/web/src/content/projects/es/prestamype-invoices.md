@@ -1,5 +1,5 @@
 ---
-title: Gestión de facturas
+title: Gestor de facturas
 summary: Módulo para que las empresas gestionen, cobren y adelanten sus facturas
 role: Backend Engineer
 ---

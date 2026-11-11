@@ -1,5 +1,5 @@
 ---
-title: Invoice management
+title: Invoice manager
 summary: Module where companies manage, collect and get advances on their invoices
 role: Backend Engineer
 ---

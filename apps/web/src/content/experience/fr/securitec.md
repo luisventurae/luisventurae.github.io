@@ -2,8 +2,11 @@
 role: Lead Developer
 ---
 
-Entré comme Full Stack Engineer en 2019, j’ai dirigé à partir de mars 2020 l’équipe de développement de Ticker : j’ai proposé, conçu et construit le produit et défini son architecture pour qu’il évolue sans réécriture.
+Je suis arrivé en 2019 comme Full Stack Engineer. En mars 2020, j’ai proposé comment implémenter et développer Ticker, défini son architecture et pris la tête de l’équipe qui l’a construit, de 4 à 5 personnes.
 
-- J’ai construit Ticker de zéro : une plateforme omnicanale de service client en temps réel, en production depuis 5 ans chez de grands clients B2B.
-- J’ai intégré WhatsApp, Messenger, Instagram, SMS et une passerelle de paiement.
-- Stack : NestJS, WebSockets, Redis et MongoDB, plus l’API de contenu du site corporate sur AWS.
+- Ticker est une plateforme de service client où tous les canaux arrivent dans une seule boîte de réception, en temps réel. Elle est en production depuis 5 ans chez des clients B2B du retail et des services.
+- Les messages arrivent instantanément même quand le backend tourne sur plusieurs instances : WebSockets et Redis.
+- J’ai connecté WhatsApp, Messenger, Instagram, SMS et une passerelle de paiement.
+- Backend en NestJS et MongoDB, sur Huawei Cloud et GCP. J’ai aussi réalisé le backend du site corporate, en PHP.
+
+<!-- TODO(content): ajouter un chiffre de volume (messages par mois ou agents connectés). -->

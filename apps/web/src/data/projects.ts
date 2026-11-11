@@ -79,6 +79,7 @@ export const PROJECTS: ProjectMeta[] = [
       'huawei-cloud',
     ],
     media: [ticker_dashboard, ticker_inbox_mobile, ticker_login, ticker_cover],
+    url: 'https://app.beexconv.com',
   },
   {
     slug: 'portfolio',
@@ -108,6 +109,7 @@ export const PROJECTS: ProjectMeta[] = [
     start: '2022-08',
     techs: ['php', 'owasp'],
     media: [securitec_cover],
+    url: 'https://securitec.pe',
   },
   {
     slug: 'pwc-store',
@@ -145,6 +147,7 @@ export const PROJECTS: ProjectMeta[] = [
     end: '2020-08',
     techs: ['vue', 'nuxt', 'php', 'sql-server', 'seo'],
     media: [pwc_web_2020, pwc_web_2020_mobile],
+    url: 'https://www.poolworkconf.com',
   },
   {
     slug: 'cepeban-crm',

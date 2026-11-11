@@ -21,6 +21,19 @@ describe('createHmacTokenSigner', () => {
     expect(await signer.verify(tampered)).toBeNull()
   })
 
+  it('rejects non-canonical signatures that decode to the same bytes', async () => {
+    // 32 HMAC bytes take 43 base64url chars; the last one carries 2 unused bits, so
+    // several characters decode to the same signature. Only the canonical one is valid.
+    const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
+    const signer = createHmacTokenSigner(SECRET)
+    const token = await signer.sign(payload)
+    const last = ALPHABET.indexOf(token.at(-1) ?? '')
+    for (const flip of [1, 2, 3]) {
+      const variant = `${token.slice(0, -1)}${ALPHABET[last ^ flip] ?? ''}`
+      expect(await signer.verify(variant), variant).toBeNull()
+    }
+  })
+
   it('rejects tokens signed with another secret', async () => {
     const token = await createHmacTokenSigner(`${SECRET}-other`).sign(payload)
     expect(await createHmacTokenSigner(SECRET).verify(token)).toBeNull()

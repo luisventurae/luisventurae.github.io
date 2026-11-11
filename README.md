@@ -1,6 +1,6 @@
 # Luis Ventura E — Portafolio
 
-Hola, soy Luis, Full Stack Web Engineer. Este repositorio es mi portafolio y también una muestra de cómo trabajo: el código, las decisiones y el historial están a la vista.
+Hola, soy Luis, Backend Engineer especializado en Node.js. Este repositorio es mi portafolio y también una muestra de cómo trabajo: el código, las decisiones y el historial están a la vista.
 
 **En vivo:** [luisventurae.github.io](https://luisventurae.github.io) · ES / EN / FR
 

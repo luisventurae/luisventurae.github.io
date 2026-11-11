@@ -1,4 +1,4 @@
-import type { DocumentChunk, Locale } from '@portfolio/shared'
+import { SearchIndexSchema, type DocumentChunk, type Locale } from '@portfolio/shared'
 import MiniSearch from 'minisearch'
 
 export interface SearchResult {
@@ -10,6 +10,15 @@ export interface SearchResult {
 
 const MAX_RESULTS = 3
 const EXCERPT_LENGTH = 160
+
+/**
+ * Validates the fetched `search-index.json` against the shared zod contract. A payload that
+ * breaks it yields an empty index, so the terminal answers "no results" instead of crashing.
+ */
+export function parseSearchIndex(json: unknown): DocumentChunk[] {
+  const parsed = SearchIndexSchema.safeParse(json)
+  return parsed.success ? parsed.data : []
+}
 
 /** Offline full-text search over the prebuilt chunks. */
 export function createSearch(

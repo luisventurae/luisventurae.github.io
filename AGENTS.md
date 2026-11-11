@@ -14,6 +14,8 @@ Sources of truth:
 
 - Conventions: [docs/development-rules.md](docs/development-rules.md) (read before writing code).
 - UI work: [docs/design-system.md](docs/design-system.md) and [docs/branding.md](docs/branding.md).
+  Use the `emil-design-eng` skill (Emil Kowalski) for UI polish and motion.
+  Project tokens and docs override any design skill; don't invent colors, easings or components (see its §8).
 - Architecture and local setup: [docs/architecture.md](docs/architecture.md), [docs/local-environment.md](docs/local-environment.md).
 - Work in progress and behavior specs: `openspec/changes/` and `openspec/specs/`; keep `tasks.md` up to date.
 

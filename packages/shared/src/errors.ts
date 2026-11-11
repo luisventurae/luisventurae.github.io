@@ -7,6 +7,7 @@ export const API_ERROR_CODES = [
   'payload_too_large',
   'invalid_token',
   'not_found',
+  'email_failed',
   'internal_error',
 ] as const
 

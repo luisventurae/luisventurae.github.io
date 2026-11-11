@@ -32,3 +32,12 @@ A push to `master` SHALL publish the built web app to the `gh-pages` branch and 
 
 - **WHEN** a merge to `master` only changes web files
 - **THEN** the web is published and the API deploy is skipped
+
+### Requirement: Scheduled yearly rebuild
+
+The production deployment SHALL also run on a yearly schedule in early January from `master`, so that build-time values such as years of experience stay current without a code change.
+
+#### Scenario: New year
+
+- **WHEN** the scheduled run fires on January 2
+- **THEN** the web app is rebuilt and published from `master` with the updated years of experience

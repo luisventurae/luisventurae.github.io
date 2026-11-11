@@ -6,10 +6,20 @@ import {
   useTransform,
   type MotionValue,
 } from 'motion/react'
-import { useState, useSyncExternalStore, type PointerEvent, type ReactElement } from 'react'
+import {
+  useEffect,
+  useState,
+  useSyncExternalStore,
+  type CSSProperties,
+  type PointerEvent,
+  type ReactElement,
+  type ReactNode,
+} from 'react'
 
 import { SPRING_SNAPPY, SPRING_TILT } from '../../lib/motion'
+import { projectOrigin, projectSlugFromHash } from '../../lib/projects'
 import { selection_store } from '../../lib/selection-store'
+import { useScrollReveal } from '../../lib/use-scroll-reveal'
 import { ProjectDrawer } from './ProjectDrawer'
 import { ProjectMediaView } from './ProjectMediaView'
 import type { ProjectCard, ProjectsLabels } from './types'
@@ -20,6 +30,8 @@ export interface ProjectGridProps {
 }
 
 const MAX_TILT_DEG = 6
+/** Wide cards tilt less: the same angle moves their far edge twice as much. */
+const MAX_TILT_FEATURED_DEG = 3
 
 export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElement {
   const [open_index, setOpenIndex] = useState<number | null>(null)
@@ -29,6 +41,10 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
     selection_store.getServerSnapshot,
   )
 
+  useCaseStudyLinks(projects, setOpenIndex)
+
+  const columns = gridColumns(projects)
+
   return (
     <>
       <ul className="grid gap-6 md:grid-cols-2">
@@ -37,14 +53,23 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
             selection.active !== null && project.techs.some((tech) => tech.id === selection.active)
           const is_dimmed = selection.active !== null && !is_match
           return (
-            <li key={project.slug}>
-              <TiltCard
-                project={project}
-                is_match={is_match}
-                is_dimmed={is_dimmed}
-                open_label={labels.open}
-                onOpen={() => setOpenIndex(index)}
-              />
+            <li
+              key={project.slug}
+              id={`project-${project.slug}`}
+              data-featured={project.featured || undefined}
+              className={`scroll-mt-24 ${project.featured ? 'md:col-span-2' : ''}`}
+            >
+              <RevealOnScroll column={columns[index] ?? 0}>
+                <TiltCard
+                  project={project}
+                  is_match={is_match}
+                  is_dimmed={is_dimmed}
+                  open_label={labels.open}
+                  screenshots_label={labels.screenshots}
+                  origin={projectOrigin(project.employer, labels)}
+                  onOpen={() => setOpenIndex(index)}
+                />
+              </RevealOnScroll>
             </li>
           )
         })}
@@ -61,11 +86,86 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
   )
 }
 
+/**
+ * Opens a project from `#project-<slug>`: on load, on hash changes, and on clicks on any
+ * such link on the page (the experience timeline), without scrolling the page behind the
+ * drawer. Without JavaScript the same links just scroll to the card.
+ */
+function useCaseStudyLinks(projects: ProjectCard[], open: (index: number) => void): void {
+  useEffect(() => {
+    const indexOf = (hash: string): number => {
+      const slug = projectSlugFromHash(hash)
+      return slug === null ? -1 : projects.findIndex((project) => project.slug === slug)
+    }
+    const openFromLocation = (): void => {
+      const index = indexOf(window.location.hash)
+      if (index >= 0) open(index)
+    }
+    const handleClick = (event: MouseEvent): void => {
+      if (event.defaultPrevented || event.button !== 0) return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      const link =
+        event.target instanceof Element ? event.target.closest('a[href^="#project-"]') : null
+      if (!link) return
+      const index = indexOf(link.getAttribute('href') ?? '')
+      if (index < 0) return
+      event.preventDefault()
+      open(index)
+    }
+    openFromLocation()
+    window.addEventListener('hashchange', openFromLocation)
+    document.addEventListener('click', handleClick)
+    return () => {
+      window.removeEventListener('hashchange', openFromLocation)
+      document.removeEventListener('click', handleClick)
+    }
+  }, [projects, open])
+}
+
+/** Column of each card in the two-column grid; featured cards take a full row. */
+function gridColumns(projects: ProjectCard[]): number[] {
+  let column = 0
+  return projects.map((project) => {
+    if (project.featured) {
+      column = 0
+      return 0
+    }
+    const current = column
+    column = (column + 1) % 2
+    return current
+  })
+}
+
+/** Cards rise in as they are scrolled to; the right column trails the left by 90 ms. */
+function RevealOnScroll({
+  column,
+  children,
+}: {
+  column: number
+  children: ReactNode
+}): ReactElement {
+  const { ref, state } = useScrollReveal<HTMLDivElement>()
+  return (
+    <div
+      ref={ref}
+      className="project-reveal"
+      data-reveal-state={state}
+      style={{ '--reveal-index': column } as CSSProperties}
+    >
+      {children}
+    </div>
+  )
+}
+
 interface TiltCardProps {
   project: ProjectCard
   is_match: boolean
   is_dimmed: boolean
   open_label: string
+  /** Badge template with a `{count}` token. */
+  screenshots_label: string
+  /** "En Securitec" or "Proyecto personal". */
+  origin: string
   onOpen: () => void
 }
 
@@ -74,13 +174,16 @@ function TiltCard({
   is_match,
   is_dimmed,
   open_label,
+  screenshots_label,
+  origin,
   onOpen,
 }: TiltCardProps): ReactElement {
   const reduce_motion = useReducedMotion() ?? false
   const pointer_x = useMotionValue(0.5)
   const pointer_y = useMotionValue(0.5)
-  const rotate_x = useTiltAxis(pointer_y, MAX_TILT_DEG)
-  const rotate_y = useTiltAxis(pointer_x, -MAX_TILT_DEG)
+  const max_tilt = project.featured ? MAX_TILT_FEATURED_DEG : MAX_TILT_DEG
+  const rotate_x = useTiltAxis(pointer_y, max_tilt)
+  const rotate_y = useTiltAxis(pointer_x, -max_tilt)
 
   const handlePointerMove = (event: PointerEvent<HTMLButtonElement>): void => {
     if (event.pointerType !== 'mouse' || reduce_motion) return
@@ -108,16 +211,28 @@ function TiltCard({
         onPointerLeave={resetTilt}
         aria-label={`${open_label}: ${project.title}`}
         style={{ rotateX: rotate_x, rotateY: rotate_y }}
-        className={`pressable group block w-full overflow-hidden rounded-lg border bg-paper-raised text-left shadow-card transition-[border-color,box-shadow] duration-200 pointer-fine:hover:shadow-lift ${
+        className={`pressable group block w-full overflow-hidden rounded-lg border bg-paper-raised text-left shadow-card transition-[border-color,box-shadow,scale] duration-200 pointer-fine:hover:shadow-lift ${
           is_match ? 'border-accent ring-2 ring-accent/40' : 'border-line'
-        }`}
+        } ${project.featured ? 'md:grid md:grid-cols-[3fr_2fr]' : ''}`}
       >
-        <div className="aspect-[16/10] overflow-hidden border-b border-line">
+        <div
+          className={`project-media relative aspect-[16/10] overflow-hidden border-b border-line ${
+            project.featured ? 'md:aspect-auto md:h-full md:border-r md:border-b-0' : ''
+          }`}
+        >
           <ProjectMediaView media={project.media[0]} title={project.title} eager={false} />
+          {project.media.length > 1 && (
+            <span
+              aria-hidden="true"
+              className="absolute right-3 bottom-3 rounded-full border border-line bg-paper-raised/90 px-2.5 py-0.5 font-mono text-[0.75rem] text-ink-muted"
+            >
+              {screenshots_label.replace('{count}', String(project.media.length))}
+            </span>
+          )}
         </div>
         <div className="p-6">
           <p className="font-mono text-small text-ink-muted">
-            {project.company} · {project.period}
+            {origin} · {project.period}
           </p>
           <h3 className="mt-2 text-title font-bold">{project.title}</h3>
           <p className="mt-1 text-ink-muted">{project.summary}</p>

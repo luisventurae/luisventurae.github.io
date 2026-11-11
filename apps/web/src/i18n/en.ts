@@ -1,11 +1,11 @@
-import type { UiStrings } from './es'
+import type { UiStrings } from './types'
 
 export const en: UiStrings = {
   meta: {
-    title: 'Luis Ventura E — Full Stack Web Engineer',
+    title: 'Luis Ventura E — Backend Engineer · Node.js',
     description:
-      'I build web software that feels right: interfaces crafted to the detail and backends that handle real traffic. JavaScript and TypeScript end to end.',
-    og_image_alt: 'Luis Ventura E — Full Stack Web Engineer',
+      'Backend Engineer with {years} years of experience in Node.js, TypeScript and AWS: microservices, hexagonal architecture and chatbots. Open to remote or hybrid roles in Peru.',
+    og_image_alt: 'Luis Ventura E — Backend Engineer · Node.js',
   },
   a11y: {
     skip_to_content: 'Skip to content',
@@ -15,6 +15,8 @@ export const en: UiStrings = {
     theme_to_light: 'Switch to light theme',
   },
   nav: {
+    about: 'About',
+    experience: 'Experience',
     stack: 'Stack',
     projects: 'Projects',
     terminal: 'Terminal',
@@ -22,23 +24,39 @@ export const en: UiStrings = {
   },
   hero: {
     greeting: "Hi, I'm",
+    social: 'Social profiles',
+    facts: '{years} years of experience · Node.js · TypeScript · AWS',
     roles: [
-      'Full Stack Web Engineer',
-      'Design in motion',
-      'Backends that scale',
-      'TypeScript end to end',
+      'Microservices on AWS',
+      'AI Engineer',
+      'Hexagonal architecture',
+      'APIs and chatbots in production',
+      'Strictly typed TypeScript',
+      'And I care about the UI too',
     ],
-    tagline:
-      'I build web software that feels right: every detail measured, every interaction intentional.',
+    tagline: 'I build products people use every day, mostly the part you don’t see.',
     drag_hint: 'Drag the letters',
     cta_projects: 'See projects',
     cta_terminal: 'Open the terminal',
   },
+  about: {
+    title: 'About',
+    intro: 'Who I am, what I do and what I am looking for.',
+  },
+  experience: {
+    title: 'Experience',
+    intro: 'Where I have worked since 2019, most recent first.',
+    present: 'present',
+    kinds: { 'full-time': 'Full-time', 'part-time': 'Part-time', freelance: 'Freelance' },
+    projects: 'Projects',
+  },
   stack: {
     title: 'Stack',
-    intro: 'Pick a technology and see which projects I used it in.',
+    intro: 'Grouped by how much I use it. Pick a technology and see which projects I used it in.',
     all: 'All',
     categories: { backend: 'Backend', frontend: 'Frontend', other: 'Other' },
+    tiers: { daily: 'Daily use', production: 'In production', exploring: 'Exploring' },
+    tiers_legend: 'Usage level',
     no_projects: 'No project on this list uses it (yet).',
     used_in: ['Used in 1 project', 'Used in {count} projects'],
     see_projects: 'See projects',
@@ -46,8 +64,12 @@ export const en: UiStrings = {
   },
   projects: {
     title: 'Projects',
-    intro: "A selection of what I've built. Open them and swipe through.",
+    intro:
+      'Projects I built at my jobs, plus a personal one: this portfolio. Open them and swipe through.',
+    at_company: 'At {company}',
+    personal: 'Personal project',
     open: 'View details',
+    role: 'My role',
     period: 'Period',
     technologies: 'Technologies',
     visit: 'Visit site',
@@ -55,6 +77,18 @@ export const en: UiStrings = {
     next: 'Next project',
     close: 'Close',
     swipe_hint: 'Swipe to change project',
+    counter: 'Project {n} of {count}',
+    gallery: '{title} screenshots',
+    carousel: 'carousel',
+    slide: 'screenshot',
+    screenshot_alt: '{title}: screenshot {n} of {count}',
+    mobile_view: 'Mobile',
+    desktop_view: 'Desktop',
+    previous_image: 'Previous screenshot',
+    next_image: 'Next screenshot',
+    go_to_image: 'Show screenshot {n} of {count}',
+    screenshots: '{count} screenshots',
+    new_tab: 'opens in a new tab',
   },
   terminal: {
     title: 'Terminal',
@@ -87,15 +121,94 @@ export const en: UiStrings = {
       categories_hint: 'Categories: backend, frontend, other.',
     },
   },
+  cv_match: {
+    prompt: 'What does your role require?',
+    hint: 'Pick the requirements and see how well I fit. No tricks: I also tell you what I do not meet.',
+    empty: 'Pick at least one requirement to see the match.',
+    score: 'Match',
+    cta: 'Get the full resume in your inbox',
+    skip: 'Skip to the form',
+    levels: { met: 'Meets', partial: 'Partial', unmet: 'Does not meet' },
+    requirements: {
+      nodejs: { label: 'Node.js', proof: '{years} years building production APIs with Node.js.' },
+      typescript: {
+        label: 'TypeScript',
+        proof: 'Strict TypeScript end to end, this site included.',
+      },
+      aws: { label: 'AWS', proof: 'Infrastructure as code with AWS CDK at Prestamype.' },
+      microservices: {
+        label: 'Microservices',
+        proof: 'Microservices with hexagonal architecture at Prestamype.',
+      },
+      mongodb: {
+        label: 'MongoDB',
+        proof: 'MongoDB at Prestamype and on Ticker.',
+      },
+      'clean-architecture': {
+        label: 'Clean architecture',
+        proof: 'Ports, adapters and pure use cases, test-driven.',
+      },
+      integrations: {
+        label: 'Integrations and chatbots',
+        proof: 'WhatsApp Business API, Zoho CRM, Twilio and chatbots in production.',
+      },
+      'ai-llm': {
+        label: 'AI and LLMs',
+        proof:
+          'Claude Code and Codex daily, and Amazon Bedrock in production chatbots, always with specs, TDD and review.',
+      },
+      rag: {
+        label: 'RAG',
+        proof:
+          'A local RAG (BM25 and embeddings) on this site, so agents read only what they need.',
+      },
+      'ai-guardrails': {
+        label: 'AI guardrails',
+        proof:
+          'Production chatbots with controlled flows and validation of what the model answers, plus security review with OWASP.',
+      },
+      leadership: {
+        label: 'Technical leadership',
+        proof:
+          'Led development teams since 2020, including Ticker: architecture, requirements and coordination with Business and Product.',
+      },
+      scrum: { label: 'Scrum', proof: 'Agile teams with Scrum, specs first and CI/CD.' },
+      english: { label: 'English', proof: 'I work in English, and I also speak French.' },
+      'remote-hybrid': {
+        label: 'Remote or hybrid',
+        proof: 'Exactly what I am looking for, from Peru.',
+      },
+      java: { label: 'Java', proof: 'I have used it, but my strength is Node.js.' },
+      kubernetes: {
+        label: 'Kubernetes',
+        proof: 'Not in production yet; I work with Docker and AWS.',
+      },
+      dotnet: { label: '.NET', proof: 'Not part of my stack; my strength is Node.js.' },
+      python: {
+        label: 'Python',
+        proof: 'Not part of my stack; I work with Node.js and TypeScript.',
+      },
+      angular: {
+        label: 'Angular',
+        proof: 'I have not used it; on the frontend I work with Vue, Nuxt and React.',
+      },
+      azure: {
+        label: 'Azure',
+        proof: 'I have not used it; my cloud experience is AWS, GCP and Huawei Cloud.',
+      },
+      'on-site': { label: 'On-site', proof: 'I am looking for remote or hybrid roles.' },
+    },
+  },
   contact: {
     title: "Let's talk?",
-    intro: 'Leave your email and company and download my resume instantly.',
+    intro: 'Tell me what your role requires and I will email you my resume.',
     email: 'Email',
     company: 'Company',
-    submit: 'Get resume',
-    sending: 'Verifying…',
-    success: 'Done! Your download has started.',
-    download_again: 'Download again',
+    submit: 'Email me the resume',
+    sending: 'Sending…',
+    success: 'Sent! Check your inbox.',
+    check_inbox:
+      'I sent it to {email}. The link expires in 7 days; if you do not see it, check your spam folder.',
     errors: {
       invalid_request: 'Check the email and company.',
       captcha_failed: "We couldn't verify the captcha. Please try again.",
@@ -104,6 +217,7 @@ export const en: UiStrings = {
       invalid_token: 'The download link expired.',
       not_found: "We couldn't find that resource.",
       internal_error: 'Something failed on our side. Try again later.',
+      email_failed: 'We could not send the email. Please try again in a few minutes.',
       network: "Can't reach the server.",
       captcha_missing: 'Complete the captcha first.',
     },

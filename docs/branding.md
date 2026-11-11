@@ -15,7 +15,9 @@ Identidad del portafolio de Luis Ventura E. Los valores concretos (hex, tamaños
 
 ## 1. Esencia
 
-**Un ingeniero que se divierte construyendo cosas que se sienten bien.** El sitio es _playful_ y expresivo, pero cada detalle está medido: el juego demuestra oficio, no lo reemplaza.
+**Un ingeniero backend que se divierte construyendo cosas que se sienten bien.** El sitio es _playful_ y expresivo, pero cada detalle está medido: el juego demuestra oficio, no lo reemplaza.
+
+El público principal son reclutadores que buscan un perfil backend Node.js (remoto o híbrido, Perú). Rol, años de experiencia y stack principal se leen en el hero sin esperar ni interactuar; sobre el nombre van las redes sociales, y la preferencia remoto o híbrido se explica en "Sobre mí": la información clave nunca rota ni depende de una animación.
 
 Tres ideas guía:
 
@@ -39,7 +41,7 @@ Tres ideas guía:
 ## 3. Nombre y firma
 
 - Nombre público: **Luis Ventura E**. Nombre completo en datos estructurados: Luis Miguel Ventura E.
-- Rol: **Full Stack Web Engineer**.
+- Rol: **Backend Engineer · Node.js**. El frontend y el motion son el plus que lo diferencia, no el titular.
 - Monograma provisional: `lv.` en tipografía display con el punto en color de acento. `TODO(media)`: reemplazar por el logo definitivo si existe.
 
 ## 4. Paleta
@@ -78,6 +80,8 @@ Reglas concretas en [`design-system.md` › Motion](design-system.md#5-motion).
 - Sin foto de perfil en el hero: el protagonista es el nombre y lo que se puede hacer con él.
 - Capturas de proyectos con bordes redondeados y sombra suave, sobre papel.
 - Videos cortos (≤ 15 s, sin audio, `muted loop playsinline`) para mostrar interacción real.
+- Capturas en `apps/web/src/assets/projects/` como `ss-<proyecto>-<n>.webp`; las de móvil, en vertical (`-mobile`). La primera es la portada de la tarjeta. Antes de publicar, nada de datos de clientes ni de otras marcas en pantalla: el repositorio es público.
+- Los enlaces al sitio original de un proyecto solo aceptan `https` (`safeExternalUrl`), abren en pestaña nueva sin `opener` ni referrer y muestran el dominio antes de salir.
 - Todo recurso pendiente se marca con `TODO(media)` en el contenido.
 
 ## 8. Qué evitar

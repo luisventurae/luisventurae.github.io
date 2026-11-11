@@ -1,12 +1,25 @@
 ---
-title: Pool Work Confort
-summary: Sitio web informativo y tienda virtual
+title: Tienda en línea
+summary: Rediseño del sitio web y la tienda en línea
+role: Full Stack Developer
 ---
 
-Sitio informativo y tienda en línea de Pool Work Confort.
+Rediseño del sitio informativo y de la tienda en línea de Pool Work Confort.
 
-### Qué hice
+### Contexto
 
-Desarrollé el frontend con Vue y Nuxt y el backend con AdonisJS sobre Node.js y MongoDB, incluyendo el catálogo y el flujo de compra.
+La marca presentaba sus productos y los vendía en línea desde un sitio que necesitaba mejor posicionamiento, seguridad y experiencia de uso.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Reto
+
+Renovar el sitio y la tienda sin perder posicionamiento en buscadores, y dejar de depender de servicios de correo de terceros.
+
+### Decisiones técnicas
+
+- Frontend con Vue y Nuxt para un sitio rápido e indexable, con PHP en el servidor.
+- Optimización del SEO, refuerzo de la seguridad y mejoras de experiencia de usuario.
+- Integración con el microservicio de correos propio.
+
+### Resultado
+
+Un sitio y una tienda en línea rediseñados, más seguros y mejor posicionados, con los correos enviados por un servicio propio.

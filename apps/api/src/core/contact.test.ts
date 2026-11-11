@@ -19,41 +19,97 @@ async function expectCode(promise: Promise<unknown>, code: string): Promise<void
 }
 
 describe('submitContactRequest', () => {
-  it('returns a signed download url that expires in 10 minutes', async () => {
+  it('emails the requester a signed link valid for 7 days and only confirms the send', async () => {
     const fakes = createFakes()
     const result = await submitContactRequest(fakes.deps, input)
 
-    expect(result.download_url).toMatch(/^https:\/\/api\.example\.com\/cv\/.+/)
-    expect(Date.parse(result.expires_at)).toBe(fakes.clock.now() + DOWNLOAD_TTL_MS)
+    expect(result).toEqual({ status: 'sent' })
+    expect(DOWNLOAD_TTL_MS).toBe(7 * 24 * 60 * 60 * 1000)
+    expect(fakes.cv_emails).toHaveLength(1)
+    const sent = fakes.cv_emails[0]
+    expect(sent?.to).toBe('recruiter@company.com')
+    const url = /https:\/\/api\.example\.com\/cv\/(\S+)/.exec(sent?.text ?? '')
+    expect(url).not.toBeNull()
+    const payload = fakes.tokens.get(decodeURIComponent(url?.[1] ?? ''))
+    expect(payload).toEqual({ locale: 'en', exp: fakes.clock.now() + DOWNLOAD_TTL_MS })
   })
 
-  it('notifies the owner with the requester email and company', async () => {
+  it('writes the CV email in the request locale', async () => {
     const fakes = createFakes()
-    await submitContactRequest(fakes.deps, input)
+    await submitContactRequest(fakes.deps, { ...input, request: { ...request, locale: 'fr' } })
+    expect(fakes.cv_emails[0]?.subject).toContain('CV')
+    expect(fakes.cv_emails[0]?.text).toContain('Bonjour')
+  })
+
+  it('never puts requester free text in the CV email', async () => {
+    const fakes = createFakes()
+    const spam = 'Buy cheap pills at spam.example'
+    await submitContactRequest(fakes.deps, { ...input, request: { ...request, company: spam } })
+    expect(JSON.stringify(fakes.cv_emails)).not.toContain(spam)
+  })
+
+  it('notifies the owner with the requester email, company and interests', async () => {
+    const fakes = createFakes()
+    await submitContactRequest(fakes.deps, {
+      ...input,
+      request: { ...request, interests: ['nodejs', 'aws'] },
+    })
 
     expect(fakes.emails).toHaveLength(1)
     expect(fakes.emails[0]?.text).toContain('recruiter@company.com')
     expect(fakes.emails[0]?.text).toContain('ACME')
+    expect(fakes.emails[0]?.text).toContain('nodejs, aws')
   })
 
   it('rejects a failed captcha before any other side effect', async () => {
     const fakes = createFakes({ captcha_ok: false })
     await expectCode(submitContactRequest(fakes.deps, input), 'captcha_failed')
     expect(fakes.rate_keys).toEqual([])
+    expect(fakes.recipient_keys).toEqual([])
     expect(fakes.emails).toEqual([])
+    expect(fakes.cv_emails).toEqual([])
   })
 
   it('rejects when the client exceeded the rate limit', async () => {
     const fakes = createFakes({ rate_limit_ok: false })
     await expectCode(submitContactRequest(fakes.deps, input), 'rate_limited')
     expect(fakes.rate_keys).toEqual(['contact:203.0.113.7'])
+    expect(fakes.cv_emails).toEqual([])
   })
 
-  it('still succeeds when the notification fails, and logs without PII', async () => {
-    const fakes = createFakes({ email_fails: true })
+  it('limits emails per recipient with a hashed, case-insensitive key', async () => {
+    const fakes = createFakes({ recipient_limit_ok: false })
+    await expectCode(
+      submitContactRequest(fakes.deps, {
+        ...input,
+        request: { ...request, email: 'Recruiter@Company.com' },
+      }),
+      'rate_limited',
+    )
+    expect(fakes.cv_emails).toEqual([])
+    const key = fakes.recipient_keys[0] ?? ''
+    expect(key).toMatch(/^contact:to:[0-9a-f]{64}$/)
+    expect(key).not.toContain('recruiter')
+
+    const other = createFakes()
+    await submitContactRequest(other.deps, input)
+    expect(other.recipient_keys).toEqual([key])
+  })
+
+  it('fails with email_failed when the CV email cannot be sent', async () => {
+    const fakes = createFakes({ cv_email_fails: true })
+    await expectCode(submitContactRequest(fakes.deps, input), 'email_failed')
+    expect(fakes.emails).toEqual([])
+    expect(fakes.logs).toContainEqual(
+      expect.objectContaining({ level: 'error', event: 'contact.cv_email_failed' }),
+    )
+  })
+
+  it('still succeeds when the owner notification fails, and logs without PII', async () => {
+    const fakes = createFakes({ owner_email_fails: true })
     const result = await submitContactRequest(fakes.deps, input)
 
-    expect(result.download_url).toBeTruthy()
+    expect(result).toEqual({ status: 'sent' })
     expect(fakes.logs).toContainEqual(
       expect.objectContaining({ level: 'error', event: 'contact.notify_failed' }),
     )

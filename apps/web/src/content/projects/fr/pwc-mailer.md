@@ -1,12 +1,26 @@
 ---
 title: PWC Mailer
-summary: Logiciel d’envoi automatisé d’e-mails
+summary: Microservice interne qui envoie tous les e-mails de la plateforme
+role: Backend Developer
 ---
 
-Outil interne pour planifier et envoyer des campagnes d’e-mails automatiquement.
+Microservice qui traite tous les envois d’e-mails de la plateforme de Pool Work Confort.
 
-### Ce que j’ai fait
+### Contexte
 
-J’ai implémenté le service avec AdonisJS sur Node.js et MySQL : modèles, files d’envoi et suivi des statuts.
+Les e-mails du site et des systèmes internes partaient via des services d’envoi tiers.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Défi
+
+Centraliser tous les envois dans un service interne que n’importe quelle application pourrait utiliser.
+
+### Décisions techniques
+
+- Service avec Node.js et TypeScript sur Cloudflare Workers.
+- Envoi par SMTP, sans fournisseur d’e-mail tiers.
+- Connexion sécurisée avec Cloudflare Zero Trust et bonnes pratiques de sécurité.
+- Intégré au site web et au système de gestion.
+
+### Résultat
+
+Tous les e-mails de la plateforme partent d’un seul service interne.

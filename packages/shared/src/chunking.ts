@@ -1,12 +1,18 @@
-import type { Locale } from './locale'
+import { z } from 'zod'
 
-export interface DocumentChunk {
-  id: string
-  text: string
-  locale: Locale
-  source: string
-  title: string
-}
+import { LocaleSchema, type Locale } from './locale'
+
+/** Contract of `search-index.json`: produced at build time, consumed by the terminal. */
+export const DocumentChunkSchema = z.strictObject({
+  id: z.string().min(1),
+  text: z.string(),
+  locale: LocaleSchema,
+  source: z.string().min(1),
+  title: z.string(),
+})
+export type DocumentChunk = z.infer<typeof DocumentChunkSchema>
+
+export const SearchIndexSchema = z.array(DocumentChunkSchema)
 
 export interface ChunkInput {
   markdown: string

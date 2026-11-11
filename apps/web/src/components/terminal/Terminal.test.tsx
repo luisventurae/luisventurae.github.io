@@ -11,18 +11,19 @@ const context: TerminalContext = {
   locale: 'es',
   messages: es.terminal.messages,
   category_labels: es.stack.categories,
+  tier_labels: es.stack.tiers,
   whoami: 'Soy Luis.',
   projects: [
     {
       slug: 'ticker',
       title: 'Ticker',
       summary: 'Plataforma omnicanal',
-      company: 'Securitec',
+      origin: 'En Securitec',
       period: 'jun 2023',
       techs: ['Redis'],
     },
   ],
-  skills: [{ label: 'Node.js', category: 'backend', level: 9 }],
+  skills: [{ label: 'Node.js', category: 'backend', tier: 'daily' }],
 }
 
 const search_index = [
@@ -55,7 +56,7 @@ describe('Terminal', () => {
     await userEvent.type(input, 'whoami{Enter}')
     expect(log()).toHaveTextContent('Soy Luis.')
     await userEvent.type(input, 'cat ticker{Enter}')
-    expect(log()).toHaveTextContent('Securitec · jun 2023')
+    expect(log()).toHaveTextContent('En Securitec · jun 2023')
   })
 
   it('recalls history with the arrow keys and clears the log', async () => {

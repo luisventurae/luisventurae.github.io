@@ -7,20 +7,22 @@ const context: TerminalContext = {
   locale: 'es',
   messages: es.terminal.messages,
   category_labels: es.stack.categories,
-  whoami: 'Soy Luis, Full Stack Web Engineer.',
+  tier_labels: es.stack.tiers,
+  whoami: 'Soy Luis, Backend Engineer · Node.js.',
   projects: [
     {
       slug: 'ticker',
       title: 'Ticker',
       summary: 'Plataforma omnicanal',
-      company: 'Securitec',
+      origin: 'En Securitec',
       period: 'jun 2023',
       techs: ['Vue.js', 'Redis'],
     },
   ],
   skills: [
-    { label: 'Node.js', category: 'backend', level: 9 },
-    { label: 'Vue.js', category: 'frontend', level: 6 },
+    { label: 'Node.js', category: 'backend', tier: 'daily' },
+    { label: 'Kafka', category: 'backend', tier: 'exploring' },
+    { label: 'Vue.js', category: 'frontend', tier: 'production' },
   ],
 }
 
@@ -33,12 +35,12 @@ describe('runCommand', () => {
   })
 
   it('answers whoami', () => {
-    expect(texts('whoami')).toEqual(['Soy Luis, Full Stack Web Engineer.'])
+    expect(texts('whoami')).toEqual(['Soy Luis, Backend Engineer · Node.js.'])
   })
 
   it('lists projects and shows one with cat', () => {
     expect(texts('ls projects').join('\n')).toContain('ticker')
-    expect(texts('cat ticker').join('\n')).toContain('Securitec · jun 2023')
+    expect(texts('cat ticker').join('\n')).toContain('En Securitec · jun 2023')
     expect(texts('cat nope')[0]).toContain('nope')
   })
 
@@ -50,6 +52,14 @@ describe('runCommand', () => {
     expect(texts('skills frontend').join('\n')).toContain('Vue.js')
     expect(texts('skills frontend').join('\n')).not.toContain('Node.js')
     expect(texts('skills cosmos')[0]).toContain('backend, frontend, other')
+  })
+
+  it('groups skills by usage tier', () => {
+    expect(texts('skills backend')).toEqual([
+      'Backend',
+      '  Uso diario: Node.js',
+      '  Explorando: Kafka',
+    ])
   })
 
   it('returns effects for side-effect commands', () => {

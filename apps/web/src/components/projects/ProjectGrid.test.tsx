@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react'
+import { act, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it } from 'vitest'
 
@@ -10,12 +10,26 @@ import type { ProjectCard, ProjectsLabels } from './types'
 const labels: ProjectsLabels = {
   open: 'Ver detalle',
   period: 'Período',
+  role: 'Mi rol',
   technologies: 'Tecnologías',
   visit: 'Visitar sitio',
   previous: 'Proyecto anterior',
   next: 'Proyecto siguiente',
   close: 'Cerrar',
   swipe_hint: 'Desliza',
+  counter: 'Proyecto {n} de {count}',
+  at_company: 'En {company}',
+  personal: 'Proyecto personal',
+  gallery: 'Capturas de {title}',
+  carousel: 'carrusel',
+  slide: 'captura',
+  mobile_view: 'Móvil',
+  desktop_view: 'Escritorio',
+  previous_image: 'Captura anterior',
+  next_image: 'Captura siguiente',
+  go_to_image: 'Ver captura {n} de {count}',
+  screenshots: '{count} capturas',
+  new_tab: 'se abre en una pestaña nueva',
 }
 
 function project(slug: string, title: string, tech_ids: string[]): ProjectCard {
@@ -23,15 +37,20 @@ function project(slug: string, title: string, tech_ids: string[]): ProjectCard {
     slug,
     title,
     summary: `${title} summary`,
-    company: 'ACME',
+    employer: { experience_id: 'acme', company: 'ACME' },
     period: 'jun 2023',
     techs: tech_ids.map((id) => ({ id, label: id, category: 'backend' })),
     media: [],
+    role: 'Backend Developer',
+    featured: false,
     body_html: `<p>${title} body</p>`,
   }
 }
 
-const projects = [project('a', 'Alpha', ['vue']), project('b', 'Beta', ['nodejs'])]
+const projects = [
+  { ...project('a', 'Alpha', ['vue']), featured: true },
+  { ...project('b', 'Beta', ['nodejs']), employer: null },
+]
 
 describe('ProjectGrid', () => {
   afterEach(() => act(() => selection_store.clear()))
@@ -56,9 +75,117 @@ describe('ProjectGrid', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Ver detalle: Alpha' }))
     const dialog = await screen.findByRole('dialog')
     expect(dialog).toHaveTextContent('Alpha body')
+    expect(dialog).toHaveTextContent('Mi rol: Backend Developer')
     expect(screen.getByRole('button', { name: 'Proyecto anterior' })).toBeDisabled()
     await userEvent.click(screen.getByRole('button', { name: 'Proyecto siguiente' }))
     expect(await screen.findByText('Beta body')).toBeInTheDocument()
+  })
+})
+
+describe('work origin', () => {
+  afterEach(() => window.history.replaceState(null, '', '/'))
+
+  it('says where each project was built', () => {
+    render(<ProjectGrid projects={projects} labels={labels} />)
+    expect(screen.getByRole('button', { name: 'Ver detalle: Alpha' })).toHaveTextContent(
+      'En ACME · jun 2023',
+    )
+    expect(screen.getByRole('button', { name: 'Ver detalle: Beta' })).toHaveTextContent(
+      'Proyecto personal · jun 2023',
+    )
+  })
+
+  it('links the drawer back to the job and closes on the way', async () => {
+    render(<ProjectGrid projects={projects} labels={labels} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Ver detalle: Alpha' }))
+    const dialog = await screen.findByRole('dialog')
+    const back = within(dialog).getByRole('link', { name: 'En ACME' })
+    expect(back).toHaveAttribute('href', '#experience-acme')
+    await userEvent.click(back)
+    // jsdom never finishes the exit animation; the jump to the job is covered in E2E.
+    await waitFor(() => expect(dialog).toHaveAttribute('data-state', 'closed'))
+  })
+
+  it('shows a personal project without a link back', async () => {
+    render(<ProjectGrid projects={projects} labels={labels} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Ver detalle: Beta' }))
+    const dialog = await screen.findByRole('dialog')
+    expect(dialog).toHaveTextContent('Proyecto personal')
+    expect(within(dialog).queryByRole('link', { name: 'Proyecto personal' })).toBeNull()
+  })
+})
+
+describe('deep links', () => {
+  afterEach(() => window.history.replaceState(null, '', '/'))
+
+  it('opens the project named in the URL hash', async () => {
+    window.history.replaceState(null, '', '/#project-b')
+    render(<ProjectGrid projects={projects} labels={labels} />)
+    expect(await screen.findByRole('dialog')).toHaveTextContent('Beta body')
+  })
+
+  it('opens a project from a link elsewhere on the page', async () => {
+    render(
+      <>
+        <a href="#project-b">Beta</a>
+        <ProjectGrid projects={projects} labels={labels} />
+      </>,
+    )
+    await userEvent.click(screen.getByRole('link', { name: 'Beta' }))
+    expect(await screen.findByRole('dialog')).toHaveTextContent('Beta body')
+  })
+
+  it('leaves links to unknown projects alone', async () => {
+    render(
+      <>
+        <a href="#project-zeta">Zeta</a>
+        <ProjectGrid projects={projects} labels={labels} />
+      </>,
+    )
+    await userEvent.click(screen.getByRole('link', { name: 'Zeta' }))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+})
+
+describe('scroll reveal', () => {
+  it('never hides cards when the browser cannot observe them', () => {
+    render(<ProjectGrid projects={projects} labels={labels} />)
+    const states = [...document.querySelectorAll('.project-reveal')].map((card) =>
+      card.getAttribute('data-reveal-state'),
+    )
+    expect(states).toEqual(['static', 'static'])
+  })
+})
+
+describe('screenshot count', () => {
+  it('tells how many screenshots a project has', () => {
+    const shot = {
+      src: '/a.webp',
+      srcset: '',
+      width: 1440,
+      height: 900,
+      alt: 'a',
+      frame: 'desktop' as const,
+    }
+    const with_media = [
+      { ...project('c', 'Gamma', []), media: [shot, { ...shot, src: '/b.webp' }] },
+    ]
+    render(<ProjectGrid projects={with_media} labels={labels} />)
+    expect(screen.getByRole('button', { name: 'Ver detalle: Gamma' })).toHaveTextContent(
+      '2 capturas',
+    )
+  })
+})
+
+describe('featured projects', () => {
+  it('gives featured cards a wider slot', () => {
+    render(<ProjectGrid projects={projects} labels={labels} />)
+    const alpha = document.getElementById('project-a')
+    const beta = document.getElementById('project-b')
+    expect(alpha).toHaveAttribute('data-featured', 'true')
+    expect(alpha?.className).toContain('md:col-span-2')
+    expect(beta).not.toHaveAttribute('data-featured')
+    expect(beta?.className).not.toContain('md:col-span-2')
   })
 })
 

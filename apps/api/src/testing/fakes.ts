@@ -6,8 +6,14 @@ import type { DownloadTokenPayload, EmailMessageInput } from '../core/ports'
 interface FakeOptions {
   captcha_ok?: boolean
   rate_limit_ok?: boolean
-  email_fails?: boolean
+  recipient_limit_ok?: boolean
+  owner_email_fails?: boolean
+  cv_email_fails?: boolean
   cv_locales?: Locale[]
+}
+
+interface SentCvEmail extends EmailMessageInput {
+  to: string
 }
 
 interface LogEntry {
@@ -19,7 +25,9 @@ interface LogEntry {
 /** In-memory implementations of the ports for use-case tests. */
 export function createFakes(options: FakeOptions = {}) {
   const emails: EmailMessageInput[] = []
+  const cv_emails: SentCvEmail[] = []
   const rate_keys: string[] = []
+  const recipient_keys: string[] = []
   const cv_requests: Locale[] = []
   const logs: LogEntry[] = []
   const tokens = new Map<string, DownloadTokenPayload>()
@@ -32,6 +40,12 @@ export function createFakes(options: FakeOptions = {}) {
       consume: async (key) => {
         rate_keys.push(key)
         return options.rate_limit_ok ?? true
+      },
+    },
+    recipient_rate_limiter: {
+      consume: async (key) => {
+        recipient_keys.push(key)
+        return options.recipient_limit_ok ?? true
       },
     },
     signer: {
@@ -51,8 +65,12 @@ export function createFakes(options: FakeOptions = {}) {
     },
     email: {
       notifyOwner: async (message) => {
-        if (options.email_fails) throw new Error('smtp down')
+        if (options.owner_email_fails) throw new Error('smtp down')
         emails.push(message)
+      },
+      sendCvLink: async (to, message) => {
+        if (options.cv_email_fails) throw new Error('provider rejected')
+        cv_emails.push({ to, ...message })
       },
     },
     logger: {
@@ -63,5 +81,5 @@ export function createFakes(options: FakeOptions = {}) {
     clock,
   }
 
-  return { deps, emails, rate_keys, cv_requests, logs, clock }
+  return { deps, emails, cv_emails, rate_keys, recipient_keys, cv_requests, logs, clock, tokens }
 }

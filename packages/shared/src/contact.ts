@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { LocaleSchema } from './locale'
+import { MAX_INTERESTS, VacancyRequirementIdSchema } from './vacancy'
 
 export { ApiErrorSchema } from './errors'
 
@@ -11,11 +12,16 @@ export const ContactRequestSchema = z.strictObject({
   company: z.string().trim().min(1).max(120),
   locale: LocaleSchema,
   captcha_token: z.string().min(1).max(2048),
+  interests: z
+    .array(VacancyRequirementIdSchema)
+    .max(MAX_INTERESTS)
+    .refine((ids) => new Set(ids).size === ids.length, 'Duplicated interests')
+    .optional(),
 })
 export type ContactRequest = z.infer<typeof ContactRequestSchema>
 
-export const ContactResponseSchema = z.object({
-  download_url: z.url({ protocol: /^https?$/ }),
-  expires_at: z.iso.datetime(),
+/** The CV link travels only by email, so the response just confirms the send. */
+export const ContactResponseSchema = z.strictObject({
+  status: z.literal('sent'),
 })
 export type ContactResponse = z.infer<typeof ContactResponseSchema>

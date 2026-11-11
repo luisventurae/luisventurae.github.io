@@ -1,11 +1,11 @@
-import type { UiStrings } from './es'
+import type { UiStrings } from './types'
 
 export const fr: UiStrings = {
   meta: {
-    title: 'Luis Ventura E — Full Stack Web Engineer',
+    title: 'Luis Ventura E — Backend Engineer · Node.js',
     description:
-      'Je construis des logiciels web agréables à utiliser : des interfaces soignées dans le détail et des backends qui tiennent un vrai trafic. JavaScript et TypeScript de bout en bout.',
-    og_image_alt: 'Luis Ventura E — Full Stack Web Engineer',
+      'Backend Engineer avec {years} ans d’expérience en Node.js, TypeScript et AWS : microservices, architecture hexagonale et chatbots. Disponible en télétravail ou en hybride au Pérou.',
+    og_image_alt: 'Luis Ventura E — Backend Engineer · Node.js',
   },
   a11y: {
     skip_to_content: 'Aller au contenu',
@@ -15,6 +15,8 @@ export const fr: UiStrings = {
     theme_to_light: 'Passer au thème clair',
   },
   nav: {
+    about: 'À propos',
+    experience: 'Expérience',
     stack: 'Stack',
     projects: 'Projets',
     terminal: 'Terminal',
@@ -22,23 +24,41 @@ export const fr: UiStrings = {
   },
   hero: {
     greeting: 'Salut, je suis',
+    social: 'Réseaux sociaux',
+    facts: '{years} ans d’expérience · Node.js · TypeScript · AWS',
     roles: [
-      'Full Stack Web Engineer',
-      'Design en mouvement',
-      'Des backends qui tiennent',
-      'TypeScript de bout en bout',
+      'Microservices sur AWS',
+      'AI Engineer',
+      'Architecture hexagonale',
+      'APIs et chatbots en production',
+      'TypeScript au typage strict',
+      'Et je soigne aussi l’UI',
     ],
     tagline:
-      'Je construis des logiciels web agréables : chaque détail mesuré, chaque interaction voulue.',
+      'Je construis des produits que les gens utilisent tous les jours, surtout la partie qu’on ne voit pas.',
     drag_hint: 'Fais glisser les lettres',
     cta_projects: 'Voir les projets',
     cta_terminal: 'Ouvrir le terminal',
   },
+  about: {
+    title: 'À propos',
+    intro: 'Qui je suis, ce que je fais et ce que je recherche.',
+  },
+  experience: {
+    title: 'Expérience',
+    intro: 'Où j’ai travaillé depuis 2019, du plus récent au plus ancien.',
+    present: 'aujourd’hui',
+    kinds: { 'full-time': 'Temps plein', 'part-time': 'Temps partiel', freelance: 'Freelance' },
+    projects: 'Projets',
+  },
   stack: {
     title: 'Stack',
-    intro: 'Choisis une technologie et vois dans quels projets je l’ai utilisée.',
+    intro:
+      'Regroupé selon mon usage. Choisis une technologie et vois dans quels projets je l’ai utilisée.',
     all: 'Tout',
     categories: { backend: 'Backend', frontend: 'Frontend', other: 'Autres' },
+    tiers: { daily: 'Usage quotidien', production: 'En production', exploring: 'En exploration' },
+    tiers_legend: 'Niveau d’usage',
     no_projects: 'Aucun projet de cette liste ne l’utilise (pour l’instant).',
     used_in: ['Utilisée dans 1 projet', 'Utilisée dans {count} projets'],
     see_projects: 'Voir les projets',
@@ -46,8 +66,12 @@ export const fr: UiStrings = {
   },
   projects: {
     title: 'Projets',
-    intro: 'Une sélection de ce que j’ai construit. Ouvre-les et fais-les défiler.',
+    intro:
+      'Des projets construits dans mes emplois, plus un personnel : ce portfolio. Ouvre-les et fais-les défiler.',
+    at_company: 'Chez {company}',
+    personal: 'Projet personnel',
     open: 'Voir le détail',
+    role: 'Mon rôle',
     period: 'Période',
     technologies: 'Technologies',
     visit: 'Visiter le site',
@@ -55,6 +79,18 @@ export const fr: UiStrings = {
     next: 'Projet suivant',
     close: 'Fermer',
     swipe_hint: 'Fais glisser pour changer de projet',
+    counter: 'Projet {n} sur {count}',
+    gallery: 'Captures de {title}',
+    carousel: 'carrousel',
+    slide: 'capture',
+    screenshot_alt: '{title} : capture {n} sur {count}',
+    mobile_view: 'Mobile',
+    desktop_view: 'Ordinateur',
+    previous_image: 'Capture précédente',
+    next_image: 'Capture suivante',
+    go_to_image: 'Voir la capture {n} sur {count}',
+    screenshots: '{count} captures',
+    new_tab: 's’ouvre dans un nouvel onglet',
   },
   terminal: {
     title: 'Terminal',
@@ -87,15 +123,100 @@ export const fr: UiStrings = {
       categories_hint: 'Catégories : backend, frontend, other.',
     },
   },
+  cv_match: {
+    prompt: 'Que demande ton poste ?',
+    hint: 'Coche les exigences et vois à quel point je corresponds. Sans triche : je te dis aussi ce qui ne colle pas.',
+    empty: 'Choisis au moins une exigence pour voir le match.',
+    score: 'Match',
+    cta: 'Reçois le CV complet par e-mail',
+    skip: 'Passer au formulaire',
+    levels: { met: 'Correspond', partial: 'Partiel', unmet: 'Ne correspond pas' },
+    requirements: {
+      nodejs: {
+        label: 'Node.js',
+        proof: '{years} ans à construire des APIs en production avec Node.js.',
+      },
+      typescript: {
+        label: 'TypeScript',
+        proof: 'TypeScript strict de bout en bout, ce site compris.',
+      },
+      aws: { label: 'AWS', proof: 'Infrastructure as code avec AWS CDK chez Prestamype.' },
+      microservices: {
+        label: 'Microservices',
+        proof: 'Microservices en architecture hexagonale chez Prestamype.',
+      },
+      mongodb: {
+        label: 'MongoDB',
+        proof: 'MongoDB chez Prestamype et sur Ticker.',
+      },
+      'clean-architecture': {
+        label: 'Architecture propre',
+        proof: 'Ports, adaptateurs et cas d’usage purs, en TDD.',
+      },
+      integrations: {
+        label: 'Intégrations et chatbots',
+        proof: 'WhatsApp Business API, Zoho CRM, Twilio et chatbots en production.',
+      },
+      'ai-llm': {
+        label: 'IA et LLM',
+        proof:
+          'Claude Code et Codex au quotidien, et Amazon Bedrock dans des chatbots en production, toujours avec specs, TDD et revue.',
+      },
+      rag: {
+        label: 'RAG',
+        proof:
+          'Un RAG local (BM25 et embeddings) sur ce site, pour que les agents ne lisent que le nécessaire.',
+      },
+      'ai-guardrails': {
+        label: 'Garde-fous IA',
+        proof:
+          'Des chatbots en production avec des flux contrôlés et la validation des réponses du modèle, plus une revue de sécurité avec l’OWASP.',
+      },
+      leadership: {
+        label: 'Leadership technique',
+        proof:
+          'J’ai dirigé des équipes de développement depuis 2020, dont Ticker : architecture, besoins et coordination avec le Business et le Produit.',
+      },
+      scrum: {
+        label: 'Scrum',
+        proof: 'Équipes agiles avec Scrum, spécifications d’abord et CI/CD.',
+      },
+      english: { label: 'Anglais', proof: 'Je travaille en anglais et je parle aussi français.' },
+      'remote-hybrid': {
+        label: 'Télétravail ou hybride',
+        proof: 'C’est exactement ce que je cherche, depuis le Pérou.',
+      },
+      java: { label: 'Java', proof: 'Je l’ai utilisé, mais ma force est Node.js.' },
+      kubernetes: {
+        label: 'Kubernetes',
+        proof: 'Pas encore en production ; je travaille avec Docker et AWS.',
+      },
+      dotnet: { label: '.NET', proof: 'Ne fait pas partie de ma stack ; ma force est Node.js.' },
+      python: {
+        label: 'Python',
+        proof: 'Ne fait pas partie de ma stack ; je travaille avec Node.js et TypeScript.',
+      },
+      angular: {
+        label: 'Angular',
+        proof: 'Je ne l’ai pas utilisé ; en frontend je travaille avec Vue, Nuxt et React.',
+      },
+      azure: {
+        label: 'Azure',
+        proof: 'Je ne l’ai pas utilisé ; mon expérience cloud : AWS, GCP et Huawei Cloud.',
+      },
+      'on-site': { label: 'Sur site', proof: 'Je cherche des postes en télétravail ou hybrides.' },
+    },
+  },
   contact: {
     title: 'On en parle ?',
-    intro: 'Laisse ton email et ton entreprise et télécharge mon CV tout de suite.',
+    intro: 'Dis-moi ce que demande ton poste et je t’envoie mon CV par e-mail.',
     email: 'Email',
     company: 'Entreprise',
-    submit: 'Obtenir le CV',
-    sending: 'Vérification…',
-    success: 'C’est parti ! Ton téléchargement a commencé.',
-    download_again: 'Télécharger à nouveau',
+    submit: 'M’envoyer le CV',
+    sending: 'Envoi…',
+    success: 'Envoyé ! Regarde ta boîte mail.',
+    check_inbox:
+      'Je l’ai envoyé à {email}. Le lien expire dans 7 jours ; sinon, regarde dans les spams.',
     errors: {
       invalid_request: 'Vérifie l’email et l’entreprise.',
       captcha_failed: 'Impossible de vérifier le captcha. Réessaie.',
@@ -104,6 +225,7 @@ export const fr: UiStrings = {
       invalid_token: 'Le lien de téléchargement a expiré.',
       not_found: 'Ressource introuvable.',
       internal_error: 'Un problème est survenu de notre côté. Réessaie plus tard.',
+      email_failed: 'Impossible d’envoyer l’e-mail. Réessaie dans quelques minutes.',
       network: 'Impossible de joindre le serveur.',
       captcha_missing: 'Complète d’abord le captcha.',
     },

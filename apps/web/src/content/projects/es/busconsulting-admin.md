@@ -1,12 +1,25 @@
 ---
 title: Busconsulting Admin
-summary: Administrador de escritorio del sitio web
+summary: Aplicación de escritorio para administrar el sitio web
+role: Full Stack Developer (freelance)
 ---
 
-Aplicación de escritorio para administrar el sitio web de Busconsulting con control de usuarios.
+Aplicación de escritorio para que los trabajadores de Busconsulting administren su sitio web.
 
-### Qué hice
+### Contexto
 
-Desarrollé la app con Electron y Vue, con un backend Node.js sobre MySQL para usuarios, roles y contenido.
+El contenido del sitio vivía en una base de datos que el equipo no podía tocar sin conocimientos técnicos.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Reto
+
+Darle al equipo una herramienta simple y con acceso protegido para mantener el sitio.
+
+### Decisiones técnicas
+
+- Aplicación de escritorio en Java, desarrollada con NetBeans.
+- Base de datos MySQL compartida con el sitio web.
+- Acceso mediante usuario y contraseña.
+
+### Resultado
+
+Los trabajadores administran el sitio desde una aplicación propia, sin depender de un desarrollador.

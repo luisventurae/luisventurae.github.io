@@ -1,12 +1,26 @@
 ---
 title: Cepeban CRM
-summary: Integración de CRM y aplicación de atención
+summary: Sincronización en tiempo real entre la plataforma de atención y el CRM
+role: Backend Developer (freelance)
 ---
 
-API que integra el CRM interno del Instituto Cepeban con su aplicación de atención a estudiantes.
+Servicio backend que mantiene al día Zoho CRM del Instituto Cepeban con los datos de su plataforma de atención al cliente, sin intervención manual.
 
-### Qué hice
+### Contexto
 
-Desarrollé la API con Express sobre Node.js y MySQL, sincronizando datos con Zoho CRM.
+Los datos de los contactos vivían en dos sistemas que no se hablaban entre sí.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Reto
+
+Mantener ambos sistemas coherentes en tiempo real, sin carga manual y sin exponer credenciales.
+
+### Decisiones técnicas
+
+- Servicio a medida con NestJS sobre Node.js, de uso privado para el instituto.
+- Webhooks en tiempo real: cada actualización de un contacto o asignación de una conversación a un asesor crea o actualiza su registro en Zoho CRM.
+- Autenticación con Zoho CRM mediante tokens que se renuevan solos.
+- Traducción de los datos y campos personalizados del contacto al modelo del CRM.
+
+### Resultado
+
+Los contactos y las asignaciones llegan al CRM al instante, sin cargarlos a mano.

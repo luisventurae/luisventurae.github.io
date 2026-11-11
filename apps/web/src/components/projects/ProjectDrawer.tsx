@@ -2,8 +2,11 @@ import { AnimatePresence, motion, useIsPresent, useReducedMotion, type PanInfo }
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactElement } from 'react'
 import { Drawer } from 'vaul'
 
+import { fillTemplate } from '../../lib/gallery'
+import { projectOrigin } from '../../lib/projects'
 import { resolveSwipe } from '../../lib/swipe'
-import { ProjectMediaView } from './ProjectMediaView'
+import { ExternalProjectLink } from './ExternalProjectLink'
+import { ProjectGallery } from './ProjectGallery'
 import type { ProjectCard, ProjectsLabels } from './types'
 
 export interface ProjectDrawerProps {
@@ -26,6 +29,8 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
   const scroll_ref = useRef<HTMLDivElement>(null)
   const content_ref = useRef<HTMLDivElement>(null)
   const trigger_ref = useRef<HTMLElement | null>(null)
+  /** Anchor to visit once the drawer has closed (the link back to the job). */
+  const pending_hash_ref = useRef<string | null>(null)
   const project = index === null ? undefined : projects[index]
 
   useEffect(() => {
@@ -83,33 +88,40 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
           }}
           onCloseAutoFocus={(event) => {
             event.preventDefault()
-            trigger_ref.current?.focus()
+            const pending_hash = pending_hash_ref.current
+            pending_hash_ref.current = null
+            // Navigate only after the scroll lock is gone; focusing the trigger would undo it.
+            if (pending_hash) window.location.hash = pending_hash
+            else trigger_ref.current?.focus()
           }}
-          className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[92dvh] max-w-4xl flex-col rounded-t-lg bg-paper-raised outline-none"
+          // Mobile: a sheet flush with the bottom edge. Desktop: a floating panel with all four
+          // corners, so its end is visible; vaul slides it past its 1.5 rem offset.
+          className="project-drawer fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[92dvh] max-w-4xl flex-col rounded-t-lg bg-paper-raised outline-none md:inset-x-6 md:bottom-6 md:max-h-[calc(100dvh-7rem)] md:rounded-lg md:shadow-lift md:[--initial-transform:calc(100%_+_1.5rem)]"
         >
           <Drawer.Handle className="mt-3 mb-1 !h-1.5 !w-12 !bg-line" />
           {project && (
             <>
               <div className="flex items-center justify-between gap-4 px-6 pt-2 pb-3">
                 <p className="font-mono text-small text-ink-muted" aria-live="polite">
-                  {(index ?? 0) + 1} / {projects.length}
-                  <span className="ml-3 hidden sm:inline">· {labels.swipe_hint}</span>
+                  {fillTemplate(labels.counter, { n: (index ?? 0) + 1, count: projects.length })}
+                  <span className="ml-3 hidden pointer-coarse:sm:inline">
+                    · {labels.swipe_hint}
+                  </span>
                 </p>
                 <div className="flex gap-2">
                   <NavButton
                     label={labels.previous}
                     disabled={is_first}
                     onClick={() => goTo((index ?? 0) - 1, 'gesture')}
-                  >
-                    ←
-                  </NavButton>
+                    arrow="←"
+                  />
                   <NavButton
                     label={labels.next}
                     disabled={is_last}
                     onClick={() => goTo((index ?? 0) + 1, 'gesture')}
-                  >
-                    →
-                  </NavButton>
+                    arrow="→"
+                    arrow_last
+                  />
                   <Drawer.Close
                     aria-label={labels.close}
                     className="pressable grid size-10 place-items-center rounded-full border border-line pointer-fine:hover:border-ink"
@@ -119,7 +131,10 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
                 </div>
               </div>
 
-              <div ref={scroll_ref} className="overflow-y-auto overscroll-contain px-6 pb-10">
+              <div
+                ref={scroll_ref}
+                className="drawer-scroll overflow-y-auto overscroll-contain px-6 pt-3 pb-[calc(2.5rem+env(safe-area-inset-bottom))] md:pb-8"
+              >
                 <AnimatePresence mode="popLayout" initial={false} custom={slide}>
                   <motion.article
                     key={project.slug}
@@ -135,7 +150,14 @@ export function ProjectDrawer(props: ProjectDrawerProps): ReactElement {
                     onDragEnd={handleDragEnd}
                     className="touch-pan-y"
                   >
-                    <ProjectDetail project={project} labels={labels} />
+                    <ProjectDetail
+                      project={project}
+                      labels={labels}
+                      onEmployerClick={(hash) => {
+                        pending_hash_ref.current = hash
+                        onClose()
+                      }}
+                    />
                   </motion.article>
                 </AnimatePresence>
               </div>
@@ -180,22 +202,26 @@ const SLIDE_VARIANTS = {
 function ProjectDetail({
   project,
   labels,
+  onEmployerClick,
 }: {
   project: ProjectCard
   labels: ProjectsLabels
+  onEmployerClick: (hash: string) => void
 }): ReactElement {
   const is_present = useIsPresent()
   const title_class = 'mt-2 text-display font-extrabold'
   const summary_class = 'mt-2 text-title leading-snug text-ink-muted'
   return (
     <div aria-hidden={!is_present} inert={!is_present}>
-      <div className="aspect-[16/9] overflow-hidden rounded-lg border border-line">
-        <ProjectMediaView media={project.media[0]} title={project.title} eager />
-      </div>
+      <ProjectGallery media={project.media} title={project.title} labels={labels} />
       <header className="mt-6">
         <p className="font-mono text-small text-ink-muted">
-          {project.company} · <span className="sr-only">{labels.period}: </span>
+          <EmployerLink project={project} labels={labels} onClick={onEmployerClick} /> ·{' '}
+          <span className="sr-only">{labels.period}: </span>
           {project.period}
+        </p>
+        <p className="mt-1 font-mono text-small text-accent-ink">
+          {labels.role}: {project.role}
         </p>
         {is_present ? (
           <Drawer.Title className={title_class}>{project.title}</Drawer.Title>
@@ -224,17 +250,36 @@ function ProjectDetail({
           </li>
         ))}
       </ul>
-      {project.url && (
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="pressable mt-8 inline-flex rounded-md bg-accent px-5 py-3 font-semibold text-on-accent"
-        >
-          {labels.visit} ↗
-        </a>
-      )}
+      {project.url && <ExternalProjectLink url={project.url} labels={labels} />}
     </div>
+  )
+}
+
+/** Links a project back to its job in the experience timeline; personal projects get a label. */
+function EmployerLink({
+  project,
+  labels,
+  onClick,
+}: {
+  project: ProjectCard
+  labels: ProjectsLabels
+  onClick: (hash: string) => void
+}): ReactElement {
+  const origin = projectOrigin(project.employer, labels)
+  if (!project.employer) return <>{origin}</>
+  const hash = `#experience-${project.employer.experience_id}`
+  return (
+    <a
+      href={hash}
+      onClick={(event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+        event.preventDefault()
+        onClick(hash)
+      }}
+      className="text-ink underline decoration-line underline-offset-4 transition-[text-decoration-color] duration-(--duration-fast) ease-[ease] pointer-fine:hover:decoration-ink"
+    >
+      {origin}
+    </a>
   )
 }
 
@@ -242,19 +287,28 @@ interface NavButtonProps {
   label: string
   disabled: boolean
   onClick: () => void
-  children: string
+  arrow: string
+  /** Puts the arrow after the text ("Proyecto siguiente →"). */
+  arrow_last?: boolean
 }
 
-function NavButton({ label, disabled, onClick, children }: NavButtonProps): ReactElement {
+/**
+ * Project navigation. From `md` it spells out "Proyecto anterior / siguiente" so it never reads
+ * like the screenshot arrows, which are chevrons on the image itself.
+ */
+function NavButton({ label, disabled, onClick, arrow, arrow_last }: NavButtonProps): ReactElement {
+  const text = <span className="hidden text-small font-semibold md:inline">{label}</span>
   return (
     <button
       type="button"
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className="pressable grid size-10 place-items-center rounded-full border border-line disabled:opacity-35 pointer-fine:enabled:hover:border-ink"
+      className="pressable inline-flex h-10 min-w-10 items-center justify-center gap-2 rounded-full border border-line disabled:opacity-35 md:px-4 pointer-fine:enabled:hover:border-ink"
     >
-      <span aria-hidden="true">{children}</span>
+      {arrow_last && text}
+      <span aria-hidden="true">{arrow}</span>
+      {!arrow_last && text}
     </button>
   )
 }

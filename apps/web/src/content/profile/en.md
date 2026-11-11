@@ -2,22 +2,28 @@
 title: Luis Ventura E
 ---
 
-I'm Luis Ventura E, a Full Stack Web Engineer. I build web software that feels right: interfaces crafted to the detail and backends that handle real traffic, with JavaScript and TypeScript end to end.
+I'm Luis Ventura E, a Backend Engineer with <mark>{years} years of experience</mark> building <mark>Node.js and TypeScript</mark> systems that handle real traffic.
 
-## What I do
+### What I do
 
-I design and build complete web applications: frontends with Vue, Nuxt, React and Astro; backends with Node.js, NestJS, AdonisJS and Express; MongoDB, MySQL and PostgreSQL databases; real time with WebSockets and Redis.
+**In short.** I build the part of an app you don't see: the part that stores the data, takes the payments, sends WhatsApp messages and talks to other systems. That's my strength, but I've also built the screens, so I understand the whole product. I've led teams since 2020 and work closely with business and product.
 
-## How I work
+**For the tech team.** I design microservices with hexagonal architecture and APIs with NestJS, Express and AdonisJS, on AWS with infrastructure as code (CDK). I use MongoDB, MySQL and PostgreSQL, and WebSockets with Redis for real time. On the frontend I've worked with Vue, Nuxt and React, and with Electron for desktop. I've integrated WhatsApp, Messenger, Instagram, SMS, payment gateways and Zoho CRM, and today I ship AI chatbots built on Amazon Bedrock to production.
 
-I care about the details nobody notices but everyone feels: intentional motion, accessibility, performance and tested code. I work spec-first (OpenSpec), with TDD and CI/CD.
+### How I build with AI
 
-## Integrations
+I work with Claude Code and Codex, picking the model that fits each task. The AI proposes; I decide and validate. My method: planning and specs first with OpenSpec, an AGENTS.md structured around indexes, lexical search (RAG) so the agent reads only what it needs, TDD, E2E tests, automated validators and security review with OWASP. This site was built that way.
 
-I have integrated the WhatsApp Business API, Zoho CRM, Airtable, Twilio and Authy into real products.
+### What I bring
 
-## Languages
+I join the team and the business, not just the repository. I understand the goals, turn them into a concrete proposal and we build it as a team. Depending on the moment I build or I lead, and I'm comfortable in both roles.
 
-I speak Spanish, English and French.
+### Also
 
-<!-- TODO(media): personal story, what you are looking for, key achievements. -->
+Working alongside UI/UX designers for years gave me a good eye for detail. It isn't my specialty, but I can tell when something is done well and when it isn't, and I apply that to what I build.
+
+I studied Systems Engineering at Universidad Autónoma del Perú and later specialized in IT risk management and cybersecurity at Universidad del Pacífico. Early in my career I also took part in several hackathons.
+
+### Languages
+
+Native Spanish, intermediate English and basic French.

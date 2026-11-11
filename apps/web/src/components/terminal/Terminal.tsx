@@ -17,7 +17,7 @@ import {
   type TerminalLine,
 } from '../../lib/terminal/commands'
 import { completeInput, navigateHistory } from '../../lib/terminal/input'
-import { createSearch, type SearchResult } from '../../lib/terminal/search'
+import { createSearch, parseSearchIndex, type SearchResult } from '../../lib/terminal/search'
 import { applyTheme, nextTheme, readTheme } from '../../lib/theme'
 
 export interface TerminalProps {
@@ -64,7 +64,9 @@ export function Terminal({ input_label, context }: TerminalProps): ReactElement 
   const append = (...lines: Entry[]): void => setEntries((current) => [...current, ...lines])
 
   const search = async (query: string): Promise<void> => {
-    search_ref.current ??= createSearch(await (await fetch('/search-index.json')).json())
+    search_ref.current ??= createSearch(
+      parseSearchIndex(await (await fetch('/search-index.json')).json()),
+    )
     const results = search_ref.current(query, context.locale)
     if (results.length === 0) {
       append(createEntry('muted', messages.no_results.replace('{query}', query)))

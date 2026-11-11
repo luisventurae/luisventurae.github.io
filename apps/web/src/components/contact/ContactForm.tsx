@@ -1,10 +1,9 @@
-import type { Locale } from '@portfolio/shared'
+import type { Locale, VacancyRequirementId } from '@portfolio/shared'
 import { AnimatePresence, motion } from 'motion/react'
 import { useId, useState, type ReactElement, type SubmitEvent } from 'react'
 import { toast, Toaster } from 'sonner'
 
 import { requestCv, type ClientErrorCode } from '../../lib/api-client'
-import { startDownload } from '../../lib/download'
 import { useTurnstile } from './useTurnstile'
 
 interface ContactFormLabels {
@@ -13,7 +12,8 @@ interface ContactFormLabels {
   submit: string
   sending: string
   success: string
-  download_again: string
+  /** Shown after sending; `{email}` is replaced with the address the CV went to. */
+  check_inbox: string
   errors: Record<ClientErrorCode | 'captcha_missing', string>
 }
 
@@ -22,6 +22,8 @@ export interface ContactFormProps {
   api_url: string
   turnstile_site_key: string
   labels: ContactFormLabels
+  /** Requirements picked in the vacancy match, sent along for the owner notification. */
+  interests?: VacancyRequirementId[]
 }
 
 type Status = 'idle' | 'sending' | 'success'
@@ -31,10 +33,11 @@ export function ContactForm({
   api_url,
   turnstile_site_key,
   labels,
+  interests,
 }: ContactFormProps): ReactElement {
   const [status, setStatus] = useState<Status>('idle')
   const [error, setError] = useState<string | null>(null)
-  const [download_url, setDownloadUrl] = useState<string | null>(null)
+  const [sent_to, setSentTo] = useState<string | null>(null)
   const {
     setContainer: setTurnstileContainer,
     token: captcha_token,
@@ -52,13 +55,15 @@ export function ContactForm({
       return
     }
     const form = new FormData(event.currentTarget)
+    const email = String(form.get('email') ?? '').trim()
     setStatus('sending')
     setError(null)
     const result = await requestCv(api_url, {
-      email: String(form.get('email') ?? '').trim(),
+      email,
       company: String(form.get('company') ?? '').trim(),
       locale,
       captcha_token,
+      ...(interests && interests.length > 0 ? { interests } : {}),
     })
     resetCaptcha()
     if (!result.ok) {
@@ -68,9 +73,8 @@ export function ContactForm({
       return
     }
     setStatus('success')
-    setDownloadUrl(result.data.download_url)
+    setSentTo(email)
     toast.success(labels.success)
-    startDownload(result.data.download_url)
   }
 
   return (
@@ -101,15 +105,10 @@ export function ContactForm({
 
         <div className="flex flex-wrap items-center gap-4">
           <SubmitButton status={status} labels={labels} />
-          {download_url && (
-            <a
-              href={download_url}
-              className="font-medium text-accent-ink underline underline-offset-4"
-            >
-              {labels.download_again}
-            </a>
-          )}
         </div>
+        <p role="status" className="min-h-[1.5em] text-small text-ink-muted">
+          {sent_to && labels.check_inbox.replace('{email}', sent_to)}
+        </p>
       </form>
       <Toaster
         position="bottom-center"

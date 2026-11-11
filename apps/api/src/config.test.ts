@@ -18,6 +18,7 @@ const production_env = {
   DOWNLOAD_TOKEN_SECRET: 'x'.repeat(48),
   NOTIFY_EMAIL: 'owner@example.test',
   EMAIL_FROM: 'portfolio@example.dev',
+  RESEND_API_KEY: 're_production_key',
 }
 
 describe('parseConfig', () => {
@@ -25,8 +26,18 @@ describe('parseConfig', () => {
     expect(parseConfig(local_env).EMAIL_TRANSPORT).toBe('mailpit')
   })
 
-  it('accepts a safe production environment', () => {
-    expect(parseConfig(production_env).ENVIRONMENT).toBe('production')
+  it('accepts a safe production environment that sends through Resend', () => {
+    const config = parseConfig(production_env)
+    expect(config.ENVIRONMENT).toBe('production')
+    expect(config.EMAIL_TRANSPORT).toBe('resend')
+  })
+
+  it('requires the Resend API key for the resend transport', () => {
+    const attempt = (): unknown => parseConfig({ ...production_env, RESEND_API_KEY: undefined })
+    expect(attempt).toThrow(/RESEND_API_KEY/)
+    expect(() =>
+      parseConfig({ ...local_env, EMAIL_TRANSPORT: 'resend', MAILPIT_URL: undefined }),
+    ).toThrow(/RESEND_API_KEY/)
   })
 
   it('ignores the former RAG variables', () => {

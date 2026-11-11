@@ -52,5 +52,7 @@ export default defineConfig({
   markdown: { syntaxHighlight: false },
   vite: {
     plugins: [tailwindcss()],
+    // Never inline fonts as data: URIs; the CSP only allows fonts from 'self' (font-src).
+    build: { assetsInlineLimit: (file) => (file.endsWith('.woff2') ? false : undefined) },
   },
 })

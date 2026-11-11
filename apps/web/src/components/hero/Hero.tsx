@@ -2,12 +2,20 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useRef, useState, type ReactElement } from 'react'
 
 import { SPRING_PLAYFUL } from '../../lib/motion'
+import { SocialLinks, type SocialLinksProps } from './SocialLinks'
 import { useRotatingIndex } from './useRotatingIndex'
 
 export interface HeroProps {
   name: string
   greeting: string
-  roles: string[]
+  /** Main role; static so recruiters never wait for it. */
+  role: string
+  /** Key facts line (years, main stack), already interpolated. */
+  facts: string
+  /** Social profiles shown above the name. */
+  social: SocialLinksProps
+  /** Complementary descriptions that rotate under the main role. */
+  roles: readonly [string, ...string[]]
   tagline: string
   drag_hint: string
   cta_projects: string
@@ -15,14 +23,31 @@ export interface HeroProps {
 }
 
 const PLAY_COLORS = ['var(--accent)', 'var(--violet)', 'var(--lime)', 'var(--sky)']
+/**
+ * Main stack as draggable stickers (decorative: the facts line already states it). Desktop only,
+ * in the empty space right of the copy; `depth` staggers their entrance.
+ */
 const STICKERS = [
-  { label: 'TypeScript', className: 'right-[30%] bottom-[34%] -rotate-6 bg-sky', depth: 0 },
-  { label: 'Node.js', className: 'right-[6%] bottom-[40%] rotate-6 bg-lime', depth: 1 },
+  { label: 'Node.js', className: 'right-[30%] bottom-[34%] -rotate-6 bg-lime', depth: 0 },
+  { label: 'AWS', className: 'right-[6%] bottom-[40%] rotate-6 bg-sky', depth: 1 },
   {
-    label: 'Vue · React',
+    label: 'TypeScript',
     className: 'right-[14%] bottom-[8%] -rotate-3 bg-violet text-paper',
     depth: 2,
   },
+  { label: 'NestJS', className: 'right-[40%] bottom-[48%] rotate-3 bg-sky', depth: 3 },
+  { label: 'MongoDB', className: 'right-[3%] bottom-[18%] -rotate-2 bg-lime', depth: 4 },
+  {
+    label: 'Claude Code',
+    className: 'right-[32%] bottom-[12%] rotate-2 bg-ink text-paper',
+    depth: 5,
+  },
+  {
+    label: 'Bedrock',
+    className: 'right-[16%] bottom-[52%] -rotate-6 bg-violet text-paper',
+    depth: 6,
+  },
+  { label: 'PostgreSQL', className: 'right-[18%] bottom-[24%] rotate-4 bg-sky', depth: 7 },
 ]
 const ROLE_INTERVAL_MS = 2600
 
@@ -51,6 +76,8 @@ export function Hero(props: HeroProps): ReactElement {
         </motion.span>
       ))}
 
+      <SocialLinks {...props.social} />
+
       <p className="font-mono text-small text-ink-muted">{props.greeting}</p>
 
       <h1 className="relative text-hero font-extrabold">
@@ -78,33 +105,49 @@ export function Hero(props: HeroProps): ReactElement {
 
       <p
         aria-hidden={has_dragged}
-        className="hero-hint mt-3 font-mono text-small text-ink-muted transition-opacity duration-300"
+        className="hero-hint mt-3 font-mono text-small text-ink-muted transition-opacity duration-(--duration-base) ease-(--ease-out-strong)"
         style={{ opacity: has_dragged ? 0 : 1 }}
       >
         ↖ {props.drag_hint}
       </p>
 
       <p
-        className="mt-8 h-[1.4em] overflow-hidden text-title leading-[1.3] font-semibold"
+        className="hero-fade mt-8 text-title leading-[1.3] font-semibold"
+        style={{ animationDelay: '80ms' }}
+      >
+        {props.role}
+      </p>
+      <p
+        className="hero-fade mt-2 font-mono text-small text-balance text-ink-muted"
+        style={{ animationDelay: '120ms' }}
+      >
+        {props.facts}
+      </p>
+
+      <p
+        className="hero-fade mt-4 h-[1.4em] overflow-hidden leading-[1.3] font-semibold"
+        style={{ animationDelay: '160ms' }}
         aria-live="off"
       >
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
             key={role_index}
             className="block"
-            initial={{ opacity: 0, y: '60%', filter: 'blur(6px)' }}
+            initial={{ opacity: 0, y: '40%', filter: 'blur(4px)' }}
             animate={{ opacity: 1, y: '0%', filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: '-60%', filter: 'blur(6px)' }}
-            transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
+            exit={{ opacity: 0, y: '-40%', filter: 'blur(4px)' }}
+            transition={{ duration: 0.32, ease: [0.23, 1, 0.32, 1] }}
           >
             {props.roles[role_index]}
           </motion.span>
         </AnimatePresence>
       </p>
 
-      <p className="mt-4 max-w-[44ch] text-ink-muted">{props.tagline}</p>
+      <p className="hero-fade mt-4 max-w-[44ch] text-ink-muted" style={{ animationDelay: '200ms' }}>
+        {props.tagline}
+      </p>
 
-      <div className="mt-10 flex flex-wrap gap-3">
+      <div className="hero-fade mt-10 flex flex-wrap gap-3" style={{ animationDelay: '240ms' }}>
         <a
           href="#projects"
           className="pressable rounded-md bg-accent px-6 py-3 font-semibold text-on-accent shadow-card"

@@ -1,12 +1,25 @@
 ---
 title: Busconsulting Admin
-summary: Desktop website administrator
+summary: Desktop application to manage the website
+role: Full Stack Developer (freelance)
 ---
 
-Desktop application to manage Busconsulting’s website with user management.
+Desktop application for Busconsulting’s staff to manage their website.
 
-### What I did
+### Context
 
-I built the app with Electron and Vue, with a Node.js backend on MySQL for users, roles and content.
+The site’s content lived in a database the team could not touch without technical knowledge.
 
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->
+### Challenge
+
+Give the team a simple tool with protected access to maintain the site.
+
+### Technical decisions
+
+- Desktop application in Java, developed with NetBeans.
+- MySQL database shared with the website.
+- Access with username and password.
+
+### Outcome
+
+Staff manage the site from their own application, without depending on a developer.

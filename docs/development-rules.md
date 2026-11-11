@@ -45,6 +45,7 @@ Convenciones obligatorias del monorepo. Si una regla no aplica a un caso concret
 - Prohibido `any`. Usar `unknown` y estrechar con guards o zod.
 - Las funciones exportadas declaran su tipo de retorno.
 - Todo dato que cruza una frontera (contenido markdown, request/response HTTP, variables de entorno) se valida con un schema de zod.
+- Los textos de la interfaz (`apps/web/src/i18n`) cumplen la interfaz explícita `UiStrings` (`i18n/types.ts`), de solo lectura. Los mapas usan como claves los tipos de origen (`VacancyRequirementId`, `EngagementKind`, `SkillCategory`, `ClientErrorCode`…), y los textos con marcadores usan `Template<'n' | 'count'>`: si una traducción pierde un `{token}`, no compila.
 - **TypeScript 7** (`tsc` nativo) es el verificador de tipos (`npm run typecheck`). Como TS 7 todavía no expone API de JavaScript, las herramientas que la necesitan (typescript-eslint, astro check) usan `@typescript/typescript6` instalado bajo el nombre `typescript`; TS 7 vive en el alias `typescript7`.
 - En `apps/web`, `typecheck` ejecuta `astro sync` antes de `tsc7`: los tipos de `astro:content` se generan en `.astro/` (ignorado por git) y sin ellos las colecciones se tipan como `any` en un checkout limpio (CI).
 
@@ -134,6 +135,7 @@ En el frontend se aplican los mismos principios a escala: la lógica pura vive e
 - Tokens, escalas, componentes base y motion: [`docs/design-system.md`](design-system.md).
 - En código, `apps/web/src/styles/tokens.css` es la **única fuente de valores** (color, tipografía, espaciado, radios, sombras, easings, duraciones). Tailwind los consume vía `@theme`.
 - Prohibido hardcodear colores, duraciones o easings fuera de los tokens.
+- Cómo evitar que cada agente o skill imponga su propio estilo: [Consistencia entre agentes](design-system.md#8-consistencia-entre-agentes).
 
 ## 11. Accesibilidad y motion
 

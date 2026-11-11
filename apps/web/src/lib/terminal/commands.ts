@@ -1,7 +1,7 @@
 import { isLocale, type Locale } from '@portfolio/shared'
 
-import type { SkillCategory } from '../../data/skills'
-import type { UiStrings } from '../../i18n/es'
+import { SKILL_TIERS, type SkillCategory, type SkillTier } from '../../data/skills'
+import type { UiStrings } from '../../i18n/types'
 import type { Theme } from '../theme'
 import { parseCommand } from './input'
 
@@ -17,7 +17,7 @@ export const COMMAND_NAMES = [
   'contact',
   'clear',
 ] as const
-type CommandName = (typeof COMMAND_NAMES)[number]
+export type CommandName = (typeof COMMAND_NAMES)[number]
 
 export interface TerminalLine {
   kind: 'text' | 'muted' | 'error' | 'accent'
@@ -40,7 +40,8 @@ interface TerminalProject {
   slug: string
   title: string
   summary: string
-  company: string
+  /** Where it was built, e.g. "En Securitec" or "Proyecto personal". */
+  origin: string
   period: string
   techs: string[]
 }
@@ -48,13 +49,14 @@ interface TerminalProject {
 interface TerminalSkill {
   label: string
   category: SkillCategory
-  level: number
+  tier: SkillTier
 }
 
 export interface TerminalContext {
   locale: Locale
   messages: UiStrings['terminal']['messages']
   category_labels: Record<SkillCategory, string>
+  tier_labels: Record<SkillTier, string>
   whoami: string
   projects: TerminalProject[]
   skills: TerminalSkill[]
@@ -93,7 +95,7 @@ const HANDLERS: Record<CommandName, Handler> = {
     return {
       lines: [
         accent(project.title),
-        muted(`${project.company} · ${project.period}`),
+        muted(`${project.origin} · ${project.period}`),
         text(project.summary),
         muted(project.techs.join(' · ')),
       ],
@@ -110,12 +112,9 @@ const HANDLERS: Record<CommandName, Handler> = {
     return {
       lines: categories.flatMap((item) => [
         accent(context.category_labels[item]),
-        text(
-          `  ${context.skills
-            .filter((skill) => skill.category === item)
-            .sort((a, b) => b.level - a.level)
-            .map((skill) => skill.label)
-            .join(' · ')}`,
+        ...skillTierLines(
+          context.skills.filter((skill) => skill.category === item),
+          context.tier_labels,
         ),
       ]),
     }
@@ -161,4 +160,14 @@ function isCommand(name: string): name is CommandName {
 
 function isCategory(value: string): value is SkillCategory {
   return value === 'backend' || value === 'frontend' || value === 'other'
+}
+
+function skillTierLines(
+  skills: TerminalSkill[],
+  tier_labels: Record<SkillTier, string>,
+): TerminalLine[] {
+  return SKILL_TIERS.flatMap((tier) => {
+    const labels = skills.filter((skill) => skill.tier === tier).map((skill) => skill.label)
+    return labels.length > 0 ? [text(`  ${tier_labels[tier]}: ${labels.join(' · ')}`)] : []
+  })
 }

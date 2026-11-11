@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mockMatchMedia } from '../../../vitest.setup'
-import { startDownload } from '../../lib/download'
 import { ContactForm, type ContactFormProps } from './ContactForm'
 
 const captcha = vi.hoisted(() => ({ token: 'captcha-token' as string | null }))
@@ -15,7 +14,6 @@ vi.mock('./useTurnstile', () => ({
     reset: () => undefined,
   }),
 }))
-vi.mock('../../lib/download', () => ({ startDownload: vi.fn() }))
 
 const props: ContactFormProps = {
   locale: 'es',
@@ -24,10 +22,10 @@ const props: ContactFormProps = {
   labels: {
     email: 'Email',
     company: 'Empresa',
-    submit: 'Obtener CV',
-    sending: 'Verificando…',
-    success: '¡Listo!',
-    download_again: 'Descargar de nuevo',
+    submit: 'Enviarme el CV',
+    sending: 'Enviando…',
+    success: '¡Enviado!',
+    check_inbox: 'Revisa {email}: el enlace vence en 7 días.',
     errors: {
       invalid_request: 'Revisa los datos.',
       captcha_failed: 'Captcha inválido.',
@@ -36,6 +34,7 @@ const props: ContactFormProps = {
       invalid_token: 'Expiró.',
       not_found: 'No encontrado.',
       internal_error: 'Error interno.',
+      email_failed: 'No pudimos enviar el correo.',
       network: 'Sin conexión.',
       captcha_missing: 'Completa el captcha.',
     },
@@ -45,7 +44,7 @@ const props: ContactFormProps = {
 async function fillAndSubmit(): Promise<void> {
   await userEvent.type(screen.getByLabelText('Email'), 'recruiter@company.com')
   await userEvent.type(screen.getByLabelText('Empresa'), 'ACME')
-  await userEvent.click(screen.getByRole('button', { name: 'Obtener CV' }))
+  await userEvent.click(screen.getByRole('button', { name: 'Enviarme el CV' }))
 }
 
 describe('ContactForm', () => {
@@ -55,15 +54,11 @@ describe('ContactForm', () => {
   afterEach(() => {
     vi.unstubAllGlobals()
     mockMatchMedia()
-    vi.mocked(startDownload).mockClear()
   })
 
-  it('requests the CV and starts the download', async () => {
+  it('requests the CV and asks to check the inbox', async () => {
     const fetcher = vi.fn(async (_url: string, _init?: RequestInit) =>
-      Response.json({
-        download_url: 'https://api.example.com/cv/abc',
-        expires_at: '2026-11-10T10:00:00.000Z',
-      }),
+      Response.json({ status: 'sent' }),
     )
     vi.stubGlobal('fetch', fetcher)
     render(<ContactForm {...props} />)
@@ -75,11 +70,32 @@ describe('ContactForm', () => {
       locale: 'es',
       captcha_token: 'captcha-token',
     })
-    expect(startDownload).toHaveBeenCalledWith('https://api.example.com/cv/abc')
-    expect(await screen.findByRole('link', { name: 'Descargar de nuevo' })).toHaveAttribute(
-      'href',
-      'https://api.example.com/cv/abc',
+    expect(await screen.findByRole('status')).toHaveTextContent(
+      'Revisa recruiter@company.com: el enlace vence en 7 días.',
     )
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+  })
+
+  it('sends the selected interests with the request', async () => {
+    const fetcher = vi.fn(async (_url: string, _init?: RequestInit) =>
+      Response.json({ status: 'sent' }),
+    )
+    vi.stubGlobal('fetch', fetcher)
+    render(<ContactForm {...props} interests={['nodejs', 'aws']} />)
+    await fillAndSubmit()
+    expect(JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body))).toMatchObject({
+      interests: ['nodejs', 'aws'],
+    })
+  })
+
+  it('explains when the email could not be sent', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => Response.json({ error: { code: 'email_failed' } }, { status: 502 })),
+    )
+    render(<ContactForm {...props} />)
+    await fillAndSubmit()
+    expect(await screen.findByRole('alert')).toHaveTextContent('No pudimos enviar el correo.')
   })
 
   it('shows the localized API error', async () => {
@@ -90,7 +106,6 @@ describe('ContactForm', () => {
     render(<ContactForm {...props} />)
     await fillAndSubmit()
     expect(await screen.findByRole('alert')).toHaveTextContent('Demasiados intentos.')
-    expect(startDownload).not.toHaveBeenCalled()
   })
 
   it('asks to complete the captcha first', async () => {

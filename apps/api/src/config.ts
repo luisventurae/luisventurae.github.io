@@ -9,7 +9,8 @@ const EnvSchema = z.object({
   DOWNLOAD_TOKEN_SECRET: z.string().min(32),
   NOTIFY_EMAIL: z.email(),
   EMAIL_FROM: z.email().default('portfolio@localhost.test'),
-  EMAIL_TRANSPORT: z.enum(['cloudflare', 'mailpit']).default('cloudflare'),
+  EMAIL_TRANSPORT: z.enum(['resend', 'mailpit']).default('resend'),
+  RESEND_API_KEY: z.string().min(1).optional(),
   MAILPIT_URL: z.url().optional(),
 })
 
@@ -33,6 +34,9 @@ export function parseConfig(env: Record<string, unknown>): Config {
   if (config.EMAIL_TRANSPORT === 'mailpit' && !config.MAILPIT_URL) {
     throw new ConfigError(['MAILPIT_URL'])
   }
+  if (config.EMAIL_TRANSPORT === 'resend' && !config.RESEND_API_KEY) {
+    throw new ConfigError(['RESEND_API_KEY'])
+  }
   return config
 }
 
@@ -40,6 +44,6 @@ function assertProductionSafe(config: z.infer<typeof EnvSchema>): void {
   const issues: string[] = []
   if (config.DOWNLOAD_TOKEN_SECRET.includes(LOCAL_SECRET_MARKER))
     issues.push('DOWNLOAD_TOKEN_SECRET')
-  if (config.EMAIL_TRANSPORT !== 'cloudflare') issues.push('EMAIL_TRANSPORT')
+  if (config.EMAIL_TRANSPORT !== 'resend') issues.push('EMAIL_TRANSPORT')
   if (issues.length > 0) throw new ConfigError(issues)
 }

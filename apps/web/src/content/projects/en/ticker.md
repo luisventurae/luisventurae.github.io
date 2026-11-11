@@ -1,16 +1,27 @@
 ---
 title: Ticker
-summary: Omnichannel customer service platform
+summary: Real-time omnichannel customer service platform
+role: Lead Developer
 ---
 
 Web platform that brings customer service from several channels into a single real-time inbox.
 
-### What I did
+### Context
 
-I built the frontend with Vue and Nuxt and the backend services with NestJS on Node.js. Real-time communication uses WebSockets with Redis to fan out events across instances, with MongoDB as the main store.
+Securitec served its customers through several channels, each living in a different tool.
 
-### Why it matters
+### Challenge
+
+Deliver messages from every channel to one inbox instantly, even with the backend running on several instances.
+
+### Technical decisions
+
+- Backend services with NestJS on Node.js, with MongoDB as the main store.
+- WebSockets for real-time delivery, with Redis distributing events across instances.
+- Vue and Nuxt frontend for the agents’ inbox.
+- Integrations with WhatsApp, Messenger, Instagram and SMS, plus a payment gateway.
+- I built it from scratch and led the team; it has now been in production for 5 years with large B2B customers.
+
+### Outcome
 
 Agents handle conversations from different channels without switching tools, and messages arrive instantly.
-
-<!-- TODO(media): rol, reto, resultados/métricas, más capturas o video. -->

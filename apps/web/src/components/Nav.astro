@@ -12,10 +12,12 @@ interface Props {
 const { locale } = Astro.props
 const ui = getUi(locale)
 const sections = [
-  { id: 'stack', label: ui.nav.stack },
+  { id: 'about', label: ui.nav.about },
+  { id: 'experience', label: ui.nav.experience },
   { id: 'projects', label: ui.nav.projects },
-  { id: 'terminal', label: ui.nav.terminal },
+  { id: 'stack', label: ui.nav.stack },
   { id: 'contact', label: ui.nav.contact },
+  { id: 'terminal', label: ui.nav.terminal },
 ] as const
 ---
 

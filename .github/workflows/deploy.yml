@@ -5,6 +5,10 @@ on:
   push:
     branches: [master]
   workflow_dispatch:
+  # Yearly rebuild from master so build-time values (years of experience, counted from
+  # 2019-01) stay current without a code change. Only the web is rebuilt; see `changes`.
+  schedule:
+    - cron: '0 12 2 1 *'
 
 permissions:
   contents: read
@@ -19,6 +23,8 @@ jobs:
     secrets: inherit
 
   changes:
+    # Skipped on the yearly schedule, which also skips the API deploy that depends on it.
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     outputs:
       api: ${{ steps.filter.outputs.api }}

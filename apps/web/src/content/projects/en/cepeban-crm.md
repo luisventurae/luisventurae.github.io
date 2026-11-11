@@ -1,26 +1,26 @@
 ---
 title: Cepeban CRM
-summary: CRM integration and student service app
+summary: Real-time sync between the customer service platform and the CRM
 role: Backend Developer (freelance)
 ---
 
-API that connects Instituto Cepeban’s internal CRM with its student service app.
+Backend service that keeps Instituto Cepeban’s Zoho CRM up to date with the data from its customer service platform, with no manual work.
 
 ### Context
 
-Student data lived in the internal CRM and in Zoho CRM without being synced.
+Contact data lived in two systems that did not talk to each other.
 
 ### Challenge
 
-Keep both systems consistent with no manual work.
+Keep both systems consistent in real time, with no manual entry and without exposing credentials.
 
 ### Technical decisions
 
-- Express API on Node.js and MySQL.
-- Sync through the Zoho CRM API.
+- Custom service with NestJS on Node.js, for the institute’s private use.
+- Real-time webhooks: every contact update or conversation assigned to an agent creates or updates its Zoho CRM record.
+- Zoho CRM authentication with tokens that renew themselves.
+- Translation of the contact’s data and custom fields into the CRM’s model.
 
 ### Outcome
 
-The service app and the CRM share the same student data.
-
-<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->
+Contacts and assignments reach the CRM instantly, with no manual entry.

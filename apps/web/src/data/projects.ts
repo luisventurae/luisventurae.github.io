@@ -151,7 +151,7 @@ export const PROJECTS: ProjectMeta[] = [
     order: 8,
     kind: 'api',
     start: '2021-03',
-    techs: ['nodejs', 'express', 'mysql', 'zoho-crm'],
+    techs: ['nodejs', 'nestjs', 'zoho-crm', 'deluge'],
     media: [cepeban_cover],
   },
   {

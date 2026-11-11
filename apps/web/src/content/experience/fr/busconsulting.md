@@ -2,6 +2,7 @@
 role: Full Stack Developer
 ---
 
-Application de bureau Electron et Vue pour administrer le site web, avec utilisateurs et rôles sur Node.js et MySQL.
+J’ai développé deux services pour Busconsulting : son site web dynamique et une application de bureau pour que l’équipe administre ce site.
 
-<!-- TODO(content): confirmar el cargo y añadir un logro con cifras. -->
+- **Site web dynamique :** HTML, CSS, JavaScript et PHP, avec MySQL.
+- **Application de bureau :** réalisée en Java avec NetBeans et MySQL, pour le personnel de l’entreprise, afin d’administrer le site.

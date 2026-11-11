@@ -2,6 +2,7 @@
 role: Full Stack Developer
 ---
 
-Aplicación de escritorio en Electron y Vue para administrar el sitio web, con usuarios y roles sobre Node.js y MySQL.
+Desarrollé dos servicios para Busconsulting: su sitio web dinámico y una aplicación de escritorio para que el equipo administre ese sitio.
 
-<!-- TODO(content): confirmar el cargo y añadir un logro con cifras. -->
+- **Sitio web dinámico:** HTML, CSS, JavaScript y PHP, con MySQL.
+- **Aplicación de escritorio:** hecha en Java con NetBeans y MySQL, para los trabajadores de la empresa, que les permite administrar el sitio.

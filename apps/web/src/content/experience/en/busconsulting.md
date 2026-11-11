@@ -2,6 +2,7 @@
 role: Full Stack Developer
 ---
 
-Electron and Vue desktop app to manage the website, with users and roles on Node.js and MySQL.
+I built two services for Busconsulting: its dynamic website and a desktop application for the team to manage that site.
 
-<!-- TODO(content): confirmar el cargo y añadir un logro con cifras. -->
+- **Dynamic website:** HTML, CSS, JavaScript and PHP, with MySQL.
+- **Desktop application:** built in Java with NetBeans and MySQL, for the company’s staff, to manage the site.

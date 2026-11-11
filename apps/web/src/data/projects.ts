@@ -99,7 +99,7 @@ export const PROJECTS: ProjectMeta[] = [
       'rag',
     ],
     media: [portfolio_cover],
-    url: SOURCE_URL,
+    url: SOURCE_URL + '#luis-ventura-e--portfolio',
   },
   {
     slug: 'securitec-web',

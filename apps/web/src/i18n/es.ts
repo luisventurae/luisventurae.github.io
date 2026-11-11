@@ -144,7 +144,7 @@ export const es: UiStrings = {
         label: 'Microservicios',
         proof: 'Microservicios con arquitectura hexagonal en Prestamype.',
       },
-      mongodb: { label: 'MongoDB', proof: 'MongoDB en Prestamype, Ticker y varios e-commerce.' },
+      mongodb: { label: 'MongoDB', proof: 'MongoDB en Prestamype y Ticker.' },
       'clean-architecture': {
         label: 'Arquitectura limpia',
         proof: 'Puertos, adaptadores y casos de uso puros, con TDD.',

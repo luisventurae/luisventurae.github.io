@@ -1,7 +1,5 @@
 ---
-role: Full Stack Developer
+role: Backend Developer
 ---
 
-E-commerce with a finance module: catalog, orders and income and expense reports with Vue, Node.js and MongoDB.
-
-<!-- TODO(content): confirmar el cargo y añadir un logro con cifras. -->
+I was a key contributor to the backend of Asu Cuenta’s web application, an app for paying at partner stores by scanning a QR code, with top-up credits and a reward for every purchase. Everything ran in real time, with Node.js, AdonisJS and WebSockets. I worked closely with the development team to deliver the solutions.

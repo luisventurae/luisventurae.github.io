@@ -142,7 +142,7 @@ export const en: UiStrings = {
       },
       mongodb: {
         label: 'MongoDB',
-        proof: 'MongoDB at Prestamype, on Ticker and several e-commerce apps.',
+        proof: 'MongoDB at Prestamype and on Ticker.',
       },
       'clean-architecture': {
         label: 'Clean architecture',

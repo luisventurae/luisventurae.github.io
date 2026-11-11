@@ -130,6 +130,6 @@ export const EXPERIENCE: ExperienceMeta[] = [
     start: '2019-01',
     end: '2019-08',
     project_slugs: ['asu-cuenta'],
-    techs: ['vue', 'nodejs', 'mongodb'],
+    techs: ['nodejs', 'adonisjs', 'websockets'],
   },
 ]

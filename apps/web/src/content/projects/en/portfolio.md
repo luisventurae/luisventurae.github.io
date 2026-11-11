@@ -1,27 +1,27 @@
 ---
 title: This portfolio
-summary: Static site and serverless API with TDD, i18n and RAG for agents
+summary: Static site with a serverless API, automated tests and three languages
 role: Design, frontend and backend
 ---
 
-The site you are looking at. It is also a sample of how I work: the code, the decisions and the history are public.
+This very site. I also built it to show how I work, so the code, the decisions and the history are all in the open.
 
 ### Context
 
-I wanted a portfolio that shows engineering judgment, not just a list of technologies.
+I wanted the portfolio to show how I think and build, not just a list of technologies.
 
 ### Challenge
 
-Deliver my CV to recruiters without exposing data or opening a spam vector, from a fast, accessible static site in three languages.
+Be able to send my CV to recruiters without leaving it exposed or opening the door to spam, on a fast, accessible static site in three languages.
 
 ### Technical decisions
 
-- API on Cloudflare Workers with Hono and a light hexagonal architecture: pure use cases and adapters for Turnstile, KV, R2 and email.
-- HMAC-signed download links and per-IP rate limits to protect the CV.
-- Static site with Astro and React islands; purposeful motion that honors `prefers-reduced-motion`.
-- Specs first with OpenSpec, TDD with Vitest, E2E and accessibility with Playwright and axe, and CI/CD with GitHub Actions.
-- A local RAG (BM25 + embeddings) so development agents find code and decisions without reading whole files.
+- API on Cloudflare Workers with Hono. I kept the logic apart from the external services (Turnstile, KV, R2 and email) with a light hexagonal architecture.
+- The CV is downloaded through a signed link that expires, and sending is limited per IP and per recipient.
+- Site built with Astro and React components only where they are needed. Animations respect `prefers-reduced-motion`.
+- Every change starts from an OpenSpec specification, with unit tests in Vitest and end-to-end and accessibility tests with Playwright and axe. Deployment runs on GitHub Actions.
+- A local search tool (BM25 and embeddings) that development agents use to find code and decisions without reading whole files.
 
 ### Outcome
 
-A site in es, en and fr that ships itself from `master`, with the API and the web tested end to end.
+The site publishes itself when changes land on `master`, in Spanish, English and French, with the API and the web covered by tests.

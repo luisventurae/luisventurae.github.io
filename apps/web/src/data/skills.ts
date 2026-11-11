@@ -22,6 +22,9 @@ export const SKILLS: Skill[] = [
   { id: 'nodejs', label: 'Node.js', category: 'backend', tier: 'daily' },
   { id: 'typescript', label: 'TypeScript', category: 'backend', tier: 'daily' },
   { id: 'javascript', label: 'JavaScript', category: 'backend', tier: 'daily' },
+  { id: 'html', label: 'HTML', category: 'frontend', tier: 'production' },
+  { id: 'css', label: 'CSS', category: 'frontend', tier: 'production' },
+  { id: 'netbeans', label: 'NetBeans', category: 'other', tier: 'production' },
   { id: 'java', label: 'Java', category: 'backend', tier: 'exploring' },
   { id: 'php', label: 'PHP', category: 'backend', tier: 'exploring' },
   // Backend — architecture and cloud

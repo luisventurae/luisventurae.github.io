@@ -1,7 +1,7 @@
 import { expect, test } from './fixtures'
 
-test.describe('case studies and experience', () => {
-  test('a job opens its case study and the case study leads back to the job', async ({ page }) => {
+test.describe('projects and experience', () => {
+  test('a job opens its project and the project leads back to the job', async ({ page }) => {
     await page.goto('/')
     const securitec = page.locator('#experience-securitec')
     await securitec.scrollIntoViewIfNeeded()
@@ -18,7 +18,7 @@ test.describe('case studies and experience', () => {
     await expect(securitec).toBeInViewport()
   })
 
-  test('closing a case study opened from a job returns focus to its link', async ({ page }) => {
+  test('closing a project opened from a job returns focus to its link', async ({ page }) => {
     await page.goto('/')
     const link = page.locator('#experience-securitec').getByRole('link', { name: /Ticker/ })
     await link.scrollIntoViewIfNeeded()
@@ -31,7 +31,7 @@ test.describe('case studies and experience', () => {
     await expect(page.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText('Ticker')
   })
 
-  test('a case study URL opens its drawer', async ({ page }) => {
+  test('a project URL opens its drawer', async ({ page }) => {
     await page.goto('/#project-pwc-store')
     await expect(page.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText(
       'Tienda en línea',
@@ -143,7 +143,7 @@ test.describe('stack and projects', () => {
     await expect(dialog.getByRole('heading', { level: 2 })).toHaveText('Ticker')
   })
 
-  test('a case study links safely to the live site', async ({ page }) => {
+  test('a project links safely to the live site', async ({ page }) => {
     await page.goto('/#project-pwc-store')
     const link = page.getByRole('dialog').getByRole('link', { name: /poolworkconf\.com/ })
     await expect(link).toHaveAttribute('href', 'https://www.poolworkconf.com/')

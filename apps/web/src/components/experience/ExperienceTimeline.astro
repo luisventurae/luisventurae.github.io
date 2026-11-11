@@ -14,7 +14,7 @@ interface ExperienceLabels {
 interface Props {
   locale: Locale
   items: ExperienceView[]
-  /** Case study titles by slug, to name the related projects. */
+  /** Project titles by slug, to name the related projects. */
   project_titles: Record<string, string>
   /** Technology labels by skill id. */
   tech_labels: Record<string, string>
@@ -53,16 +53,16 @@ const { locale, items, project_titles, tech_labels, labels } = Astro.props
         {item.project_slugs.length > 0 && (
           <div class="mt-4">
             <p class="font-mono text-small text-ink-muted">{labels.projects}</p>
-            {/* Opens the case study in the projects drawer; without JS it scrolls to the card. */}
+            {/* Opens the project in the drawer; without JS it scrolls to the card. */}
             <ul class="mt-2 flex flex-wrap gap-2">
               {item.project_slugs.map((slug) => (
                 <li>
                   <a
                     href={`#project-${slug}`}
-                    class="case-link pressable inline-flex items-center gap-1.5 rounded-sm border border-line bg-paper-raised px-3 py-1.5 text-small font-semibold pointer-fine:hover:border-ink"
+                    class="project-link pressable inline-flex items-center gap-1.5 rounded-sm border border-line bg-paper-raised px-3 py-1.5 text-small font-semibold pointer-fine:hover:border-ink"
                   >
                     {project_titles[slug] ?? slug}
-                    <span aria-hidden="true" class="case-link-arrow">
+                    <span aria-hidden="true" class="project-link-arrow">
                       →
                     </span>
                   </a>

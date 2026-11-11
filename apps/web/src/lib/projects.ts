@@ -35,7 +35,7 @@ export function projectOrigin(
 
 const PROJECT_HASH = /^#project-(.+)$/
 
-/** Slug of a `#project-<slug>` anchor, the deep link to a case study. */
+/** Slug of a `#project-<slug>` anchor, the deep link to a project. */
 export function projectSlugFromHash(hash: string): string | null {
   return PROJECT_HASH.exec(hash)?.[1] ?? null
 }

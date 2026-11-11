@@ -24,7 +24,7 @@ interface ProjectGalleryProps {
 }
 
 /**
- * Screenshot slider for the case study drawer: a native scroll-snap track (touch swipe with
+ * Screenshot slider for the project drawer: a native scroll-snap track (touch swipe with
  * real momentum), arrow buttons for pointers, dots and ← / → while it has focus.
  * Swipes on the track never reach the drawer, so they change the screenshot, not the project.
  */

@@ -85,7 +85,7 @@ describe('ProjectGrid', () => {
 describe('work origin', () => {
   afterEach(() => window.history.replaceState(null, '', '/'))
 
-  it('says where each case study was built', () => {
+  it('says where each project was built', () => {
     render(<ProjectGrid projects={projects} labels={labels} />)
     expect(screen.getByRole('button', { name: 'Ver detalle: Alpha' })).toHaveTextContent(
       'En ACME · jun 2023',
@@ -118,13 +118,13 @@ describe('work origin', () => {
 describe('deep links', () => {
   afterEach(() => window.history.replaceState(null, '', '/'))
 
-  it('opens the case study named in the URL hash', async () => {
+  it('opens the project named in the URL hash', async () => {
     window.history.replaceState(null, '', '/#project-b')
     render(<ProjectGrid projects={projects} labels={labels} />)
     expect(await screen.findByRole('dialog')).toHaveTextContent('Beta body')
   })
 
-  it('opens a case study from a link elsewhere on the page', async () => {
+  it('opens a project from a link elsewhere on the page', async () => {
     render(
       <>
         <a href="#project-b">Beta</a>
@@ -158,7 +158,7 @@ describe('scroll reveal', () => {
 })
 
 describe('screenshot count', () => {
-  it('tells how many screenshots a case study has', () => {
+  it('tells how many screenshots a project has', () => {
     const shot = {
       src: '/a.webp',
       srcset: '',

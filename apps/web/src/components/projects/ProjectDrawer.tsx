@@ -255,7 +255,7 @@ function ProjectDetail({
   )
 }
 
-/** Links a case study back to its job in the experience timeline; personal projects get a label. */
+/** Links a project back to its job in the experience timeline; personal projects get a label. */
 function EmployerLink({
   project,
   labels,

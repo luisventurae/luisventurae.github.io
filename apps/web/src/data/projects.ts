@@ -45,7 +45,7 @@ export interface ProjectMeta {
   techs: string[]
   media: ImageMetadata[]
   url?: string
-  /** Rendered more prominently as a case study. */
+  /** Rendered more prominently in the projects grid. */
   featured?: true
 }
 

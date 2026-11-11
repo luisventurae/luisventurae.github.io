@@ -87,7 +87,7 @@ export function ProjectGrid({ projects, labels }: ProjectGridProps): ReactElemen
 }
 
 /**
- * Opens a case study from `#project-<slug>`: on load, on hash changes, and on clicks on any
+ * Opens a project from `#project-<slug>`: on load, on hash changes, and on clicks on any
  * such link on the page (the experience timeline), without scrolling the page behind the
  * drawer. Without JavaScript the same links just scroll to the card.
  */

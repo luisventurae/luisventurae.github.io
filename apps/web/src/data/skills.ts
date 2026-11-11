@@ -93,6 +93,7 @@ export const SKILLS: Skill[] = [
   { id: 'scrum', label: 'Scrum', category: 'other', tier: 'daily' },
   { id: 'chatbots', label: 'Chatbots', category: 'other', tier: 'production' },
   { id: 'waba', label: 'WhatsApp Business API', category: 'other', tier: 'production' },
+  { id: 'deluge', label: 'Deluge', category: 'other', tier: 'production' },
   { id: 'zoho-crm', label: 'Zoho CRM', category: 'other', tier: 'production' },
   { id: 'airtable', label: 'Airtable API', category: 'other', tier: 'production' },
   { id: 'twilio', label: 'Twilio', category: 'other', tier: 'production' },

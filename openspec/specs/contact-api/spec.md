@@ -8,7 +8,7 @@ Permitir que un visitante solicite el CV dejando su email y empresa, protegido c
 
 ### Requirement: CV request validation
 
-`POST /contact` SHALL accept a JSON body with `email`, `company`, `locale`, a captcha token and an optional `interests` list of at most 12 known vacancy requirement identifiers, and SHALL reject with status 400 any body with an invalid email, empty company, unsupported locale, missing token or unknown interest.
+`POST /contact` SHALL accept a JSON body with `email`, `company`, `locale`, a captcha token and an optional `interests` list of known vacancy requirement identifiers without duplicates, and SHALL reject with status 400 any body with an invalid email, empty company, unsupported locale, missing token or unknown interest.
 
 #### Scenario: Invalid email
 

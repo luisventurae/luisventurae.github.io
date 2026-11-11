@@ -13,6 +13,8 @@ export const VACANCY_REQUIREMENT_IDS = [
   'clean-architecture',
   'integrations',
   'ai-llm',
+  'rag',
+  'ai-guardrails',
   'leadership',
   'remote-hybrid',
   'scrum',
@@ -20,9 +22,14 @@ export const VACANCY_REQUIREMENT_IDS = [
   'java',
   'on-site',
   'kubernetes',
+  'dotnet',
+  'python',
+  'angular',
+  'azure',
 ] as const
 
 export const VacancyRequirementIdSchema = z.enum(VACANCY_REQUIREMENT_IDS)
 export type VacancyRequirementId = z.infer<typeof VacancyRequirementIdSchema>
 
-export const MAX_INTERESTS = 12
+/** Every requirement can be selected at once. */
+export const MAX_INTERESTS = VACANCY_REQUIREMENT_IDS.length

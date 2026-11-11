@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { ApiErrorSchema, ContactRequestSchema, ContactResponseSchema } from './contact'
+import { VACANCY_REQUIREMENT_IDS } from './vacancy'
 
 const valid_request = {
   email: 'recruiter@company.com',
@@ -37,9 +38,17 @@ describe('ContactRequestSchema', () => {
   it.each([
     ['unknown interest', ['cobol']],
     ['duplicated interests', ['nodejs', 'nodejs']],
-    ['more than 12 interests', Array.from({ length: 13 }, () => 'nodejs')],
+    [
+      'more interests than requirements',
+      Array.from({ length: VACANCY_REQUIREMENT_IDS.length + 1 }, () => 'nodejs'),
+    ],
   ])('rejects %s', (_label, interests) => {
     expect(ContactRequestSchema.safeParse({ ...valid_request, interests }).success).toBe(false)
+  })
+
+  it('accepts every requirement selected at once', () => {
+    const interests = [...VACANCY_REQUIREMENT_IDS]
+    expect(ContactRequestSchema.safeParse({ ...valid_request, interests }).success).toBe(true)
   })
 
   it('rejects unknown fields', () => {

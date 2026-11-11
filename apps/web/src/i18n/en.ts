@@ -157,6 +157,16 @@ export const en: UiStrings = {
         proof:
           'Claude Code and Codex daily, and Amazon Bedrock in production chatbots, always with specs, TDD and review.',
       },
+      rag: {
+        label: 'RAG',
+        proof:
+          'A local RAG (BM25 and embeddings) on this site, so agents read only what they need.',
+      },
+      'ai-guardrails': {
+        label: 'AI guardrails',
+        proof:
+          'Production chatbots with controlled flows and validation of what the model answers, plus security review with OWASP.',
+      },
       leadership: {
         label: 'Technical leadership',
         proof:
@@ -172,6 +182,19 @@ export const en: UiStrings = {
       kubernetes: {
         label: 'Kubernetes',
         proof: 'Not in production yet; I work with Docker and AWS.',
+      },
+      dotnet: { label: '.NET', proof: 'Not part of my stack; my strength is Node.js.' },
+      python: {
+        label: 'Python',
+        proof: 'Not part of my stack; I work with Node.js and TypeScript.',
+      },
+      angular: {
+        label: 'Angular',
+        proof: 'I have not used it; on the frontend I work with Vue, Nuxt and React.',
+      },
+      azure: {
+        label: 'Azure',
+        proof: 'I have not used it; my cloud experience is AWS, GCP and Huawei Cloud.',
       },
       'on-site': { label: 'On-site', proof: 'I am looking for remote or hybrid roles.' },
     },

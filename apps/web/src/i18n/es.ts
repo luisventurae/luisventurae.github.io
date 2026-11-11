@@ -158,6 +158,16 @@ export const es: UiStrings = {
         proof:
           'Claude Code y Codex a diario, y Amazon Bedrock en chatbots en producción, siempre con specs, TDD y revisión.',
       },
+      rag: {
+        label: 'RAG',
+        proof:
+          'Un RAG local (BM25 y embeddings) en este sitio, para que los agentes lean solo lo necesario.',
+      },
+      'ai-guardrails': {
+        label: 'Guardarraíles de IA',
+        proof:
+          'Chatbots en producción con flujos controlados y validación de lo que responde el modelo, más revisión de seguridad con OWASP.',
+      },
       leadership: {
         label: 'Liderazgo técnico',
         proof:
@@ -168,6 +178,19 @@ export const es: UiStrings = {
       'remote-hybrid': { label: 'Remoto o híbrido', proof: 'Es justo lo que busco, desde Perú.' },
       java: { label: 'Java', proof: 'Lo he usado, pero mi fuerte es Node.js.' },
       kubernetes: { label: 'Kubernetes', proof: 'Aún no en producción; trabajo con Docker y AWS.' },
+      dotnet: { label: '.NET', proof: 'No es parte de mi stack; mi fuerte es Node.js.' },
+      python: {
+        label: 'Python',
+        proof: 'No es parte de mi stack; trabajo con Node.js y TypeScript.',
+      },
+      angular: {
+        label: 'Angular',
+        proof: 'No lo he usado; en frontend trabajo con Vue, Nuxt y React.',
+      },
+      azure: {
+        label: 'Azure',
+        proof: 'No lo he usado; mi experiencia en nube es AWS, GCP y Huawei Cloud.',
+      },
       'on-site': { label: 'Presencial', proof: 'Busco roles remotos o híbridos.' },
     },
   },

@@ -162,6 +162,16 @@ export const fr: UiStrings = {
         proof:
           'Claude Code et Codex au quotidien, et Amazon Bedrock dans des chatbots en production, toujours avec specs, TDD et revue.',
       },
+      rag: {
+        label: 'RAG',
+        proof:
+          'Un RAG local (BM25 et embeddings) sur ce site, pour que les agents ne lisent que le nécessaire.',
+      },
+      'ai-guardrails': {
+        label: 'Garde-fous IA',
+        proof:
+          'Des chatbots en production avec des flux contrôlés et la validation des réponses du modèle, plus une revue de sécurité avec l’OWASP.',
+      },
       leadership: {
         label: 'Leadership technique',
         proof:
@@ -180,6 +190,19 @@ export const fr: UiStrings = {
       kubernetes: {
         label: 'Kubernetes',
         proof: 'Pas encore en production ; je travaille avec Docker et AWS.',
+      },
+      dotnet: { label: '.NET', proof: 'Ne fait pas partie de ma stack ; ma force est Node.js.' },
+      python: {
+        label: 'Python',
+        proof: 'Ne fait pas partie de ma stack ; je travaille avec Node.js et TypeScript.',
+      },
+      angular: {
+        label: 'Angular',
+        proof: 'Je ne l’ai pas utilisé ; en frontend je travaille avec Vue, Nuxt et React.',
+      },
+      azure: {
+        label: 'Azure',
+        proof: 'Je ne l’ai pas utilisé ; mon expérience cloud : AWS, GCP et Huawei Cloud.',
       },
       'on-site': { label: 'Sur site', proof: 'Je cherche des postes en télétravail ou hybrides.' },
     },

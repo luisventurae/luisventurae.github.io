@@ -67,7 +67,17 @@ export const PROJECTS: ProjectMeta[] = [
     start: '2020-03',
     end: '2023-10',
     featured: true,
-    techs: ['vue', 'nuxt', 'nestjs', 'nodejs', 'mongodb', 'websockets', 'redis'],
+    techs: [
+      'vue',
+      'nuxt',
+      'nestjs',
+      'nodejs',
+      'mongodb',
+      'websockets',
+      'redis',
+      'gcp',
+      'huawei-cloud',
+    ],
     media: [ticker_dashboard, ticker_inbox_mobile, ticker_login, ticker_cover],
   },
   {
@@ -96,7 +106,7 @@ export const PROJECTS: ProjectMeta[] = [
     order: 3,
     kind: 'website',
     start: '2022-08',
-    techs: ['nestjs', 'nodejs', 'mongodb', 'aws'],
+    techs: ['php', 'owasp'],
     media: [securitec_cover],
   },
   {

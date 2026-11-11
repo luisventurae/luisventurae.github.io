@@ -1,26 +1,25 @@
 ---
 title: Corporate website
-summary: Corporate website with a content API on AWS
+summary: PHP backend of the corporate website, now typed and more secure
 role: Backend Developer
 ---
 
-Securitec’s corporate website with its content API.
+Backend of the Securitec corporate website, built in PHP.
 
 ### Context
 
-The company needed to update its site content without code changes.
+I received the backend as basic PHP, with no typing and little protection.
 
 ### Challenge
 
-A content API that is simple to maintain and runs in the cloud.
+Make it grow and keep it well organized, and secure it against the most common attacks.
 
 ### Technical decisions
 
-- NestJS API on Node.js and MongoDB to manage content.
-- Deployed on AWS.
+- I built the whole backend and evolved it from that basic PHP into a larger one, with typing.
+- Validation and normalization of every input.
+- Rate limiting and protection against common attacks, following OWASP.
 
 ### Outcome
 
-Site content is managed through the API, with no code release for each change.
-
-<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->
+A larger, typed and more secure backend than the one I received.

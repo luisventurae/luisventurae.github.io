@@ -82,11 +82,11 @@ test.describe('stack and projects', () => {
   test('selecting a technology highlights the projects that use it', async ({ page }) => {
     await page.goto('/')
     await page.locator('#stack').scrollIntoViewIfNeeded()
-    await page.getByRole('button', { name: /^Electron/ }).click()
+    await page.getByRole('button', { name: /^Deluge/ }).click()
     await expect(page.getByText(/Usada en 1 proyecto/)).toBeVisible()
     await page.locator('#projects').scrollIntoViewIfNeeded()
     await expect(page.locator('[data-state="match"]')).toHaveCount(1)
-    await expect(page.locator('[data-state="dimmed"]')).toHaveCount(9)
+    await expect(page.locator('[data-state="dimmed"]')).toHaveCount(11)
   })
 
   test('the drawer navigates with keys and returns focus on close', async ({ page }) => {

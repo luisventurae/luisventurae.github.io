@@ -2,7 +2,7 @@
 title: Luis Ventura E
 ---
 
-Je suis Luis Ventura E, Backend Engineer avec <mark>{years} ans d’expérience</mark> dans la construction de systèmes <mark>Node.js et TypeScript</mark> qui tiennent un vrai trafic. Je travaille aujourd’hui chez <mark>Prestamype</mark>, une fintech péruvienne, où je suis responsable d’un module et des chatbots de la plateforme sur AWS.
+Je suis Luis Ventura E, Backend Engineer avec <mark>{years} ans d’expérience</mark> dans la construction de systèmes <mark>Node.js et TypeScript</mark> qui tiennent un vrai trafic.
 
 ### Ce que je fais
 
@@ -26,4 +26,4 @@ J’ai étudié l’ingénierie des systèmes à l’Universidad Autónoma del P
 
 ### Langues
 
-Espagnol natif, anglais et français.
+Espagnol natif, anglais intermédiaire et français de base.

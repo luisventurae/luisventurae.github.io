@@ -2,6 +2,4 @@
 role: Backend Developer
 ---
 
-Express API that syncs the internal CRM with Zoho CRM and the student service app.
-
-<!-- TODO(content): confirmar el cargo y añadir un logro con cifras. -->
+I built a service that sends contacts from the institute’s customer service platform to Zoho CRM the moment they change, so the team no longer has to enter them by hand. Built with NestJS and Deluge.

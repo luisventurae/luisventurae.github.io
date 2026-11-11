@@ -103,7 +103,7 @@ export const EXPERIENCE: ExperienceMeta[] = [
     start: '2021-03',
     end: '2021-03',
     project_slugs: ['cepeban-crm'],
-    techs: ['nodejs', 'express', 'mysql', 'zoho-crm'],
+    techs: ['nodejs', 'nestjs', 'zoho-crm', 'deluge'],
   },
   {
     id: 'busconsulting',

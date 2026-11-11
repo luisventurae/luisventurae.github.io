@@ -18,7 +18,7 @@ export const es: UiStrings = {
     about: 'Sobre mí',
     experience: 'Experiencia',
     stack: 'Stack',
-    projects: 'Casos de estudio',
+    projects: 'Proyectos',
     terminal: 'Terminal',
     contact: 'Contacto',
   },
@@ -49,7 +49,7 @@ export const es: UiStrings = {
     intro: 'Dónde he trabajado desde 2019, de lo más reciente a lo más antiguo.',
     present: 'actualidad',
     kinds: { 'full-time': 'Tiempo completo', 'part-time': 'Medio tiempo', freelance: 'Freelance' },
-    projects: 'Casos de estudio',
+    projects: 'Proyectos',
   },
   stack: {
     title: 'Stack',
@@ -64,7 +64,7 @@ export const es: UiStrings = {
     clear: 'Quitar selección',
   },
   projects: {
-    title: 'Casos de estudio',
+    title: 'Proyectos',
     intro:
       'Proyectos que construí en mis empleos, más uno personal: este portafolio. Ábrelos y desliza para recorrerlos.',
     at_company: 'En {company}',

@@ -18,7 +18,7 @@ export const en: UiStrings = {
     about: 'About',
     experience: 'Experience',
     stack: 'Stack',
-    projects: 'Case studies',
+    projects: 'Projects',
     terminal: 'Terminal',
     contact: 'Contact',
   },
@@ -48,7 +48,7 @@ export const en: UiStrings = {
     intro: 'Where I have worked since 2019, most recent first.',
     present: 'present',
     kinds: { 'full-time': 'Full-time', 'part-time': 'Part-time', freelance: 'Freelance' },
-    projects: 'Case studies',
+    projects: 'Projects',
   },
   stack: {
     title: 'Stack',
@@ -63,7 +63,7 @@ export const en: UiStrings = {
     clear: 'Clear selection',
   },
   projects: {
-    title: 'Case studies',
+    title: 'Projects',
     intro:
       'Projects I built at my jobs, plus a personal one: this portfolio. Open them and swipe through.',
     at_company: 'At {company}',

@@ -27,6 +27,16 @@ export const SKILLS: Skill[] = [
   // Backend — architecture and cloud
   { id: 'aws', label: 'AWS', category: 'backend', tier: 'daily' },
   { id: 'aws-cdk', label: 'AWS CDK', category: 'backend', tier: 'daily' },
+  { id: 'lambda', label: 'AWS Lambda', category: 'backend', tier: 'production' },
+  { id: 'sqs', label: 'Amazon SQS', category: 'backend', tier: 'production' },
+  { id: 'sns', label: 'Amazon SNS', category: 'backend', tier: 'production' },
+  { id: 'eum', label: 'AWS End User Messaging', category: 'backend', tier: 'production' },
+  { id: 's3', label: 'Amazon S3', category: 'backend', tier: 'production' },
+  { id: 'eventbridge', label: 'Amazon EventBridge', category: 'backend', tier: 'production' },
+  { id: 'ses', label: 'Amazon SES', category: 'backend', tier: 'production' },
+  { id: 'dynamodb', label: 'Amazon DynamoDB', category: 'backend', tier: 'production' },
+  { id: 'cloudwatch', label: 'Amazon CloudWatch', category: 'backend', tier: 'production' },
+  { id: 'codepipeline', label: 'AWS CodePipeline', category: 'backend', tier: 'production' },
   { id: 'bedrock', label: 'Amazon Bedrock', category: 'backend', tier: 'production' },
   { id: 'microservices', label: 'Microservices', category: 'backend', tier: 'daily' },
   {
@@ -42,6 +52,7 @@ export const SKILLS: Skill[] = [
   { id: 'nestjs', label: 'NestJS', category: 'backend', tier: 'production' },
   { id: 'express', label: 'Express', category: 'backend', tier: 'production' },
   { id: 'adonisjs', label: 'AdonisJS', category: 'backend', tier: 'production' },
+  { id: 'koajs', label: 'Koa.js', category: 'backend', tier: 'production' },
   { id: 'hono', label: 'Hono', category: 'backend', tier: 'production' },
   { id: 'mongoose', label: 'Mongoose', category: 'backend', tier: 'production' },
   // Backend — data and messaging
@@ -71,6 +82,10 @@ export const SKILLS: Skill[] = [
   { id: 'git', label: 'Git', category: 'other', tier: 'daily' },
   { id: 'claude-code', label: 'Claude Code', category: 'other', tier: 'daily' },
   { id: 'codex', label: 'Codex', category: 'other', tier: 'daily' },
+  { id: 'sdd', label: 'SDD', category: 'other', tier: 'daily' },
+  { id: 'tdd', label: 'TDD', category: 'other', tier: 'daily' },
+  { id: 'design-patterns', label: 'Design Patterns', category: 'other', tier: 'daily' },
+  { id: 'owasp', label: 'OWASP', category: 'other', tier: 'daily' },
   { id: 'scrum', label: 'Scrum', category: 'other', tier: 'daily' },
   { id: 'chatbots', label: 'Chatbots', category: 'other', tier: 'production' },
   { id: 'waba', label: 'WhatsApp Business API', category: 'other', tier: 'production' },
@@ -81,7 +96,7 @@ export const SKILLS: Skill[] = [
   { id: 'docker', label: 'Docker', category: 'other', tier: 'production' },
   { id: 'vitest', label: 'Vitest', category: 'other', tier: 'production' },
   { id: 'playwright', label: 'Playwright', category: 'other', tier: 'production' },
-  { id: 'rag', label: 'RAG / Ollama', category: 'other', tier: 'exploring' },
+  { id: 'rag', label: 'RAG', category: 'other', tier: 'exploring' },
 ]
 
 /** Daily first, then production, then exploring; stable inside each tier. */

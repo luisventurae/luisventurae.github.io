@@ -1,26 +1,30 @@
 ---
 title: Asu Cuenta
-summary: E-commerce and finance tracking
-role: Full Stack Developer
+summary: QR payment app with top-up credits and rewards at partner stores
+role: Backend Developer
 ---
 
-E-commerce web app with a finance module.
+Web application for Asu Cuenta, a company that connected businesses with people who wanted to pay for purchases with credits by scanning a QR code.
 
 ### Context
 
-The business sold online and tracked its finances separately.
+Users topped up credits, called asus (1 asu = S/ 1), and used them to pay at registered stores.
 
 ### Challenge
 
-Bring sales and finance together in one app.
+Offer a simple, reliable, real-time flow from top-up to QR payment, with rewards and a clear history for each user.
 
 ### Technical decisions
 
-- Vue frontend and Node.js backend with MongoDB.
-- Catalog, orders and income and expense reports on the same data model.
+- Node.js backend with AdonisJS and WebSockets, so credits, payments and transactions update in real time.
+- Payment by scanning a QR code at the store.
+- A reward for every purchase.
+- A list of the registered stores where the app can be used.
+- Transaction and top-up history for each user.
+- Teamwork with the rest of the product’s developers.
 
 ### Outcome
 
-Sales and financial reports live in the same app.
+Users top up credits, pay with a QR code, earn rewards and see their transactions instantly from the same app.
 
 <!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->

@@ -161,7 +161,7 @@ export const PROJECTS: ProjectMeta[] = [
     kind: 'web-app',
     start: '2019-01',
     end: '2019-08',
-    techs: ['vue', 'nodejs', 'mongodb'],
+    techs: ['nodejs', 'adonisjs', 'websockets'],
     media: [asu_cover, asu_home_mobile, asu_map, asu_transactions],
   },
   {

@@ -37,6 +37,8 @@ export const SKILLS: Skill[] = [
   { id: 'dynamodb', label: 'Amazon DynamoDB', category: 'backend', tier: 'production' },
   { id: 'cloudwatch', label: 'Amazon CloudWatch', category: 'backend', tier: 'production' },
   { id: 'codepipeline', label: 'AWS CodePipeline', category: 'backend', tier: 'production' },
+  { id: 'gcp', label: 'Google Cloud (GCP)', category: 'backend', tier: 'production' },
+  { id: 'huawei-cloud', label: 'Huawei Cloud', category: 'backend', tier: 'production' },
   { id: 'bedrock', label: 'Amazon Bedrock', category: 'backend', tier: 'production' },
   { id: 'microservices', label: 'Microservices', category: 'backend', tier: 'daily' },
   {

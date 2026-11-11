@@ -1,0 +1,122 @@
+---
+import '../styles/global.css'
+
+import type { Locale } from '@portfolio/shared'
+
+import { getUi, HTML_LANGS, OG_LOCALES } from '../i18n'
+import { alternateLinks, localePath } from '../lib/i18n'
+import { buildStructuredData, type StructuredProject } from '../lib/seo'
+import { LOCALES } from '@portfolio/shared'
+import { SITE_URL, SOCIAL_LINKS } from '../data/site'
+import { careerYears, interpolateYears } from '../lib/experience'
+
+interface Props {
+  locale: Locale
+  projects: StructuredProject[]
+  knows_about: string[]
+}
+
+const { locale, projects, knows_about } = Astro.props
+const ui = getUi(locale)
+const description = interpolateYears(ui.meta.description, careerYears())
+const page_url = new URL(localePath(locale), SITE_URL).href
+const og_image = new URL(`/og/${locale}.png`, SITE_URL).href
+const structured_data = buildStructuredData({
+  locale,
+  site_url: SITE_URL,
+  page_url,
+  title: ui.meta.title,
+  description,
+  same_as: SOCIAL_LINKS.map((link) => link.url),
+  knows_about,
+  projects,
+})
+const alternate_og_locales = LOCALES.filter((item) => item !== locale).map(
+  (item) => OG_LOCALES[item],
+)
+---
+
+<!doctype html>
+<html lang={HTML_LANGS[locale]} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{ui.meta.title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Luis Ventura E" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#12100e" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href={page_url} />
+    {alternateLinks(SITE_URL).map((link) => (
+      <link rel="alternate" hreflang={link.hreflang} href={link.href} />
+    ))}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Luis Ventura E" />
+    <meta property="og:title" content={ui.meta.title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={page_url} />
+    <meta property="og:locale" content={OG_LOCALES[locale]} />
+    {alternate_og_locales.map((item) => (
+      <meta property="og:locale:alternate" content={item} />
+    ))}
+    <meta property="og:image" content={og_image} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ui.meta.og_image_alt} />
+    <meta property="profile:first_name" content="Luis" />
+    <meta property="profile:last_name" content="Ventura" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ui.meta.title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={og_image} />
+    <meta name="twitter:image:alt" content={ui.meta.og_image_alt} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structured_data)} />
+    <script is:inline>
+      // Scroll reveal hides below-the-fold content only when JS runs (see lib/reveal.ts).
+      // Failsafe: if the reveal module never starts, show everything instead of a blank page.
+      ;(function () {
+        var root = document.documentElement
+        root.classList.add('js')
+        setTimeout(function () {
+          if (!root.hasAttribute('data-reveal-ready')) root.classList.add('no-reveal')
+        }, 3000)
+      })()
+    </script>
+    <script is:inline>
+      // Apply the theme before first paint (no flash). Mirrors lib/theme.ts.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('theme')
+          var prefers_dark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          var theme =
+            stored === 'dark' || stored === 'light' ? stored : prefers_dark ? 'dark' : 'light'
+          document.documentElement.dataset.theme = theme
+        } catch (_error) {
+          /* storage blocked: keep the default */
+        }
+      })()
+    </script>
+  </head>
+  <body class="bg-paper text-ink">
+    <a class="skip-link" href="#main">
+      {ui.a11y.skip_to_content}
+    </a>
+    <slot name="header" />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+    <script>
+      import { observeReveals } from '../lib/reveal'
+      observeReveals()
+    </script>
+  </body>
+</html>

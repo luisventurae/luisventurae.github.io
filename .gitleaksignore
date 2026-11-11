@@ -1,0 +1,5 @@
+# Reviewed false positives (fingerprint = commit:file:rule:line). Never add real secrets here:
+# a real leak must be rotated, not ignored (docs/security.md › Si se filtra un secreto).
+
+# Fake HMAC key in a unit test, already replaced by 'x'.repeat(48); kept in history.
+49346262775c159d49106117b3da06b921069ea0:apps/api/src/adapters/hmac-token-signer.test.ts:generic-api-key:5

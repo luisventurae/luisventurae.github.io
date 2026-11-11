@@ -1,0 +1,87 @@
+---
+import { LOCALES, type Locale } from '@portfolio/shared'
+
+import { getUi, LOCALE_LABELS } from '../i18n'
+import { localePath } from '../lib/i18n'
+import { ThemeToggle } from './ThemeToggle'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const ui = getUi(locale)
+const sections = [
+  { id: 'about', label: ui.nav.about },
+  { id: 'experience', label: ui.nav.experience },
+  { id: 'projects', label: ui.nav.projects },
+  { id: 'stack', label: ui.nav.stack },
+  { id: 'contact', label: ui.nav.contact },
+  { id: 'terminal', label: ui.nav.terminal },
+] as const
+---
+
+<header class="sticky top-0 z-40 border-b border-line/60 bg-paper/80 backdrop-blur-md">
+  <nav aria-label={ui.a11y.main_nav} class="container-page flex h-16 items-center gap-6">
+    <a
+      href={localePath(locale)}
+      class="pressable font-display text-2xl font-bold tracking-tight"
+      aria-label="Luis Ventura E"
+    >
+      lv<span class="text-accent">.</span>
+    </a>
+
+    <ul class="ml-auto hidden items-center gap-6 text-small font-medium md:flex">
+      {sections.map((section) => (
+        <li>
+          <a
+            href={`#${section.id}`}
+            class="text-ink-muted transition-colors duration-150 pointer-fine:hover:text-ink"
+          >
+            {section.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="ml-auto flex items-center gap-2 md:ml-0">
+      <div
+        role="group"
+        aria-label={ui.a11y.language}
+        class="flex rounded-full border border-line p-1"
+      >
+        {LOCALES.map((item) => (
+          <a
+            href={localePath(item)}
+            hreflang={item}
+            lang={item}
+            aria-current={item === locale ? 'true' : undefined}
+            title={LOCALE_LABELS[item]}
+            data-locale-link
+            class:list={[
+              'pressable rounded-full px-2.5 py-1 text-small font-semibold uppercase',
+              item === locale ? 'bg-ink text-paper' : 'text-ink-muted pointer-fine:hover:text-ink',
+            ]}
+          >
+            {item}
+          </a>
+        ))}
+      </div>
+      <ThemeToggle
+        client:load
+        label_to_dark={ui.a11y.theme_to_dark}
+        label_to_light={ui.a11y.theme_to_light}
+      />
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Keep the current section when switching language (openspec site-shell › Localized routes).
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-locale-link]')) {
+    link.addEventListener('click', () => {
+      const current_hash = window.location.hash
+      if (current_hash) link.hash = current_hash
+    })
+  }
+</script>

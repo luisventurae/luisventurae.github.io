@@ -1,0 +1,40 @@
+# Cloudflare Worker for the portfolio API.
+# This repository is public: no account IDs, namespace IDs or secrets here.
+# Production identifiers are injected by CI from GitHub variables (see docs/deployment.md)
+# and secrets are set with `wrangler secret put` (see docs/security.md).
+name = "portfolio-api"
+main = "src/main.ts"
+compatibility_date = "2026-11-01"
+
+# ── Local development (wrangler dev) ─────────────────────────────────────────
+[vars]
+ENVIRONMENT = "development"
+ALLOWED_ORIGIN = "http://localhost:4321"
+EMAIL_TRANSPORT = "mailpit"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "local-rate-limit"
+
+[[r2_buckets]]
+binding = "CV_BUCKET"
+bucket_name = "portfolio-cv"
+
+# ── Production (wrangler deploy --env production) ────────────────────────────
+[env.production]
+name = "portfolio-api"
+workers_dev = true
+
+[env.production.vars]
+ENVIRONMENT = "production"
+ALLOWED_ORIGIN = "https://luisventurae.github.io"
+EMAIL_TRANSPORT = "resend"
+EMAIL_FROM = "__EMAIL_FROM__"
+
+[[env.production.kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "__RATE_LIMIT_KV_ID__"
+
+[[env.production.r2_buckets]]
+binding = "CV_BUCKET"
+bucket_name = "__CV_BUCKET_NAME__"

@@ -1,0 +1,87 @@
+---
+import type { Locale } from '@portfolio/shared'
+
+import type { EngagementKind } from '../../data/experience'
+import type { ExperienceView } from '../../lib/content'
+import { formatExperiencePeriod } from '../../lib/experience'
+
+interface ExperienceLabels {
+  present: string
+  kinds: Record<EngagementKind, string>
+  projects: string
+}
+
+interface Props {
+  locale: Locale
+  items: ExperienceView[]
+  /** Project titles by slug, to name the related projects. */
+  project_titles: Record<string, string>
+  /** Technology labels by skill id. */
+  tech_labels: Record<string, string>
+  labels: ExperienceLabels
+}
+
+const { locale, items, project_titles, tech_labels, labels } = Astro.props
+---
+
+<ol class="timeline relative grid gap-12 pl-6 md:pl-10">
+  {items.map((item) => (
+    <li
+      id={`experience-${item.id}`}
+      data-reveal
+      class="experience-item relative grid scroll-mt-24 gap-3 md:grid-cols-[13rem_1fr] md:gap-10"
+    >
+      <span
+        aria-hidden="true"
+        class:list={[
+          'timeline-dot absolute top-2 -left-[calc(1.5rem+5px)] size-2.5 rounded-full md:-left-[calc(2.5rem+5px)]',
+          item.end ? 'bg-line' : 'is-current bg-lime ring-4 ring-lime/30',
+        ]}
+      />
+      <div class="reveal-item flex flex-wrap items-baseline gap-x-3 gap-y-1 md:flex-col md:gap-2">
+        <p class="experience-period font-mono text-small text-ink-muted">
+          {formatExperiencePeriod(item, locale, labels.present)}
+        </p>
+        <p class="rounded-full border border-line px-2.5 py-0.5 text-small font-medium">
+          {labels.kinds[item.kind]}
+        </p>
+      </div>
+      <div class="reveal-item" style="--reveal-index: 1">
+        <h3 class="font-display text-title font-bold">{item.company}</h3>
+        <p class="mt-1 font-semibold text-accent-ink">{item.role}</p>
+        <div class="project-body mt-3 max-w-[65ch]" set:html={item.body_html} />
+        {item.project_slugs.length > 0 && (
+          <div class="mt-4">
+            <p class="font-mono text-small text-ink-muted">{labels.projects}</p>
+            {/* Opens the project in the drawer; without JS it scrolls to the card. */}
+            <ul class="mt-2 flex flex-wrap gap-2">
+              {item.project_slugs.map((slug) => (
+                <li>
+                  <a
+                    href={`#project-${slug}`}
+                    class="project-link pressable inline-flex items-center gap-1.5 rounded-sm border border-line bg-paper-raised px-3 py-1.5 text-small font-semibold pointer-fine:hover:border-ink"
+                  >
+                    {project_titles[slug] ?? slug}
+                    <span aria-hidden="true" class="project-link-arrow">
+                      →
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {item.techs.map((tech, index) => (
+            <li
+              class="reveal-item rounded-full bg-paper-raised px-2.5 py-0.5 font-mono text-[0.75rem] text-ink-muted"
+              style={`--reveal-index: ${2 + index}; --reveal-distance: 8px`}
+            >
+              {tech_labels[tech] ?? tech}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  ))}
+</ol>

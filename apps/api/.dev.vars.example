@@ -1,0 +1,6 @@
+# Local-only values for `wrangler dev` without Docker. Copy to .dev.vars (git-ignored).
+# None of these are real credentials (see docs/security.md).
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+DOWNLOAD_TOKEN_SECRET=local-dev-only-0000000000000000000000000000
+NOTIFY_EMAIL=owner@example.test
+MAILPIT_URL=http://localhost:8025

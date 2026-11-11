@@ -1,0 +1,77 @@
+/*
+ * Design tokens — single source of values. Documented in docs/design-system.md.
+ * Raw values live here; global.css exposes them to Tailwind through `@theme inline`.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Color */
+  --paper: #f7f3ec;
+  --paper-raised: #ffffff;
+  --ink: #16130f;
+  --ink-muted: #5e5850;
+  --line: #e4ddd1;
+  --accent: #ff5a36;
+  --accent-ink: #b8321a;
+  --on-accent: #16130f;
+  --lime: #c8f04b;
+  --violet: #6a4cf0;
+  --sky: #4cc3ff;
+
+  /* Terminal: always dark, in both themes */
+  --terminal-bg: #16130f;
+  --terminal-fg: #f4efe6;
+  --terminal-muted: #a39b8f;
+  --terminal-error: #ff8c70;
+
+  /* Typography */
+  --font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --font-sans: 'Instrument Sans Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --text-hero: clamp(3.5rem, 0.6rem + 10.4vw, 10.5rem);
+  --text-display: clamp(2.5rem, 1.67rem + 3.7vw, 5rem);
+  --text-title: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+  --text-body: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  --text-small: 0.875rem;
+
+  /* Layout */
+  --space-section: clamp(5rem, 12vw, 10rem);
+  --container: 72rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+
+  /* Radius & shadow */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.75rem;
+  --shadow-card: 0 1px 2px rgb(22 19 15 / 0.06), 0 8px 24px -12px rgb(22 19 15 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(22 19 15 / 0.08), 0 24px 48px -16px rgb(22 19 15 / 0.28);
+
+  /* Motion */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-press: 140ms;
+  --duration-fast: 180ms;
+  --duration-base: 240ms;
+  --duration-slow: 420ms;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --paper: #12100e;
+  --paper-raised: #1c1916;
+  --ink: #f4efe6;
+  --ink-muted: #a39b8f;
+  --line: #2e2a25;
+  --accent: #ff6b4a;
+  --accent-ink: #ff8c70;
+  --on-accent: #16130f;
+  --lime: #b5dc3a;
+  --violet: #9a83ff;
+  --sky: #5fcbff;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.5), 0 24px 48px -16px rgb(0 0 0 / 0.7);
+}

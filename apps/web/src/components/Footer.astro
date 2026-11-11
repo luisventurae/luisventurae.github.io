@@ -1,0 +1,49 @@
+---
+import type { Locale } from '@portfolio/shared'
+
+import { SOCIAL_LINKS, SOURCE_URL } from '../data/site'
+import { getUi } from '../i18n'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const ui = getUi(locale)
+const year = new Date().getFullYear()
+---
+
+<footer class="border-t border-line">
+  <div class="container-page flex flex-col gap-6 py-10 text-small text-ink-muted md:flex-row md:items-center md:justify-between">
+    <div class="space-y-1">
+      <p>{ui.footer.built_with}</p>
+      <p>
+        © {year} Luis Ventura E. {ui.footer.rights}
+      </p>
+    </div>
+    <ul class="flex flex-wrap items-center gap-4">
+      {SOCIAL_LINKS.map((link) => (
+        <li>
+          <a
+            href={link.url}
+            rel="me noopener noreferrer"
+            target="_blank"
+            class="font-medium text-ink underline-offset-4 pointer-fine:hover:underline"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href={SOURCE_URL}
+          rel="noopener noreferrer"
+          target="_blank"
+          class="font-medium text-accent-ink underline-offset-4 pointer-fine:hover:underline"
+        >
+          {ui.footer.source} ↗
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>

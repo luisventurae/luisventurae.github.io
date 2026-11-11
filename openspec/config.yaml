@@ -1,0 +1,23 @@
+schema: spec-driven
+
+context: |
+  Language: es
+  All artifacts must be written in es.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+  Proyecto: portafolio personal de Luis Ventura E (Backend Engineer · Node.js).
+  Monorepo npm workspaces: apps/web (Astro + islas React 19, TypeScript 7, Tailwind v4, Motion, Vaul),
+  apps/api (Cloudflare Worker con Hono, arquitectura hexagonal ligera: core/ + adapters/), packages/shared (contratos zod),
+  packages/config (TS/ESLint/Prettier).
+  Web estática publicada en la rama gh-pages (luisventurae.github.io); API en Cloudflare Workers.
+  La terminal usa búsqueda de texto (MiniSearch) sobre search-index.json.
+  Idiomas del sitio: es (por defecto, en /), en (/en/), fr (/fr/).
+  Entorno local completo con docker compose (web, api, mailpit).
+  Flujo de ramas: feat/* -> develop -> master (producción).
+  Las convenciones obligatorias están en docs/development-rules.md (nombres snake_case/camelCase/PascalCase,
+  tipado estricto, SOLID, TDD + E2E, Prettier, docs con índices, branding y design system en archivos dedicados).
+
+rules:
+  tasks:
+    - Agrupar las tareas por chunk de commit; cada grupo termina en un commit con lint, typecheck y tests en verde.
+    - Cada tarea indica cómo se verifica.

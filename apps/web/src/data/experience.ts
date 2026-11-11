@@ -1,0 +1,156 @@
+/**
+ * Locale-independent work history. Localized role and summary live in
+ * src/content/experience/<locale>/<id>.md. Technologies must reference src/data/skills.ts ids
+ * and projects must reference src/data/projects.ts slugs.
+ */
+export type EngagementKind = 'full-time' | 'part-time' | 'freelance'
+
+export interface ExperienceMeta {
+  id: string
+  company: string
+  kind: EngagementKind
+  start: string
+  /** Omitted while the engagement is ongoing. */
+  end?: string
+  project_slugs: string[]
+  techs: string[]
+}
+
+export const EXPERIENCE: ExperienceMeta[] = [
+  {
+    id: 'prestamype',
+    company: 'Prestamype',
+    kind: 'full-time',
+    start: '2024-06',
+    project_slugs: ['prestamype-invoices'],
+    techs: [
+      'nodejs',
+      'typescript',
+      'aws',
+      'aws-cdk',
+      'lambda',
+      'sqs',
+      'sns',
+      'eum',
+      's3',
+      'eventbridge',
+      'ses',
+      'dynamodb',
+      'cloudwatch',
+      'codepipeline',
+      'microservices',
+      'hexagonal-architecture',
+      'mongodb',
+      'koajs',
+      'hono',
+      'bedrock',
+      'chatbots',
+      'claude-code',
+      'sdd',
+      'tdd',
+      'rag',
+      'design-patterns',
+      'docker',
+      'owasp',
+      'scrum',
+    ],
+  },
+  {
+    id: 'securitec',
+    company: 'Securitec',
+    kind: 'full-time',
+    start: '2019-09',
+    end: '2023-10',
+    project_slugs: ['ticker', 'securitec-web'],
+    techs: [
+      'nodejs',
+      'nestjs',
+      'php',
+      'vue',
+      'nuxt',
+      'mongodb',
+      'websockets',
+      'redis',
+      'gcp',
+      'huawei-cloud',
+      'microservices',
+      'html',
+      'css',
+      'javascript',
+      'adonisjs',
+      'payment-gateways',
+      'rabbitmq',
+      'typescript',
+      'scrum',
+    ],
+  },
+  {
+    id: 'pool-work-confort',
+    company: 'Pool Work Confort',
+    kind: 'part-time',
+    start: '2023-11',
+    end: '2024-03',
+    project_slugs: ['pwc-store', 'pwc-mailer', 'pwc-management'],
+    techs: [
+      'nodejs',
+      'typescript',
+      'php',
+      'vue',
+      'nuxt',
+      'astro',
+      'react-pdf',
+      'smtp',
+      'cloudflare',
+      'docker',
+      'seo',
+      'r2',
+      'cf-domains',
+      'cf-dns',
+      'claude-code',
+      'sdd',
+      'tdd',
+      'microservices',
+      'rag',
+      'postgresql',
+      'astro-ssr',
+      'owasp',
+      'design-patterns',
+    ],
+  },
+  {
+    id: 'instituto-cepeban',
+    company: 'Instituto Cepeban',
+    kind: 'freelance',
+    start: '2023-10',
+    end: '2023-11',
+    project_slugs: ['cepeban-crm'],
+    techs: ['nodejs', 'nestjs', 'zoho-crm', 'deluge', 'microservices', 'vps', 'typescript'],
+  },
+  {
+    id: 'busconsulting',
+    company: 'Busconsulting',
+    kind: 'freelance',
+    start: '2018-03',
+    end: '2019-06',
+    project_slugs: ['busconsulting-web', 'busconsulting-admin'],
+    techs: ['html', 'css', 'javascript', 'php', 'java', 'netbeans', 'mysql'],
+  },
+  {
+    id: 'pool-work-confort-2020',
+    company: 'Pool Work Confort',
+    kind: 'freelance',
+    start: '2020-06',
+    end: '2020-08',
+    project_slugs: ['pwc-web-2020'],
+    techs: ['vue', 'nuxt', 'php', 'html', 'css', 'javascript', 'seo'],
+  },
+  {
+    id: 'asu-cuenta',
+    company: 'Asu Cuenta',
+    kind: 'full-time',
+    start: '2019-01',
+    end: '2019-08',
+    project_slugs: ['asu-cuenta'],
+    techs: ['nodejs', 'adonisjs', 'websockets', 'html', 'css', 'javascript'],
+  },
+]

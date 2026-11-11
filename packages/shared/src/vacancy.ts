@@ -1,0 +1,35 @@
+import { z } from 'zod'
+
+/**
+ * Requirements a recruiter can pick in the vacancy match game (openspec vacancy-match).
+ * Shared so the web and the API validate the same identifiers.
+ */
+export const VACANCY_REQUIREMENT_IDS = [
+  'nodejs',
+  'typescript',
+  'aws',
+  'microservices',
+  'mongodb',
+  'clean-architecture',
+  'integrations',
+  'ai-llm',
+  'rag',
+  'ai-guardrails',
+  'leadership',
+  'remote-hybrid',
+  'scrum',
+  'english',
+  'java',
+  'on-site',
+  'kubernetes',
+  'dotnet',
+  'python',
+  'angular',
+  'azure',
+] as const
+
+export const VacancyRequirementIdSchema = z.enum(VACANCY_REQUIREMENT_IDS)
+export type VacancyRequirementId = z.infer<typeof VacancyRequirementIdSchema>
+
+/** Every requirement can be selected at once. */
+export const MAX_INTERESTS = VACANCY_REQUIREMENT_IDS.length

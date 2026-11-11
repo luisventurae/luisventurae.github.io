@@ -1,27 +1,26 @@
 ---
 title: PWC Mailer
-summary: Automated email delivery software
+summary: In-house microservice that sends every platform email
 role: Backend Developer
 ---
 
-Internal tool to schedule and send email campaigns automatically.
+Microservice that processes every email sent by the Pool Work Confort platform.
 
 ### Context
 
-Email campaigns were prepared and sent by hand.
+Emails from the website and internal systems went out through third-party delivery services.
 
 ### Challenge
 
-Schedule bulk sends reliably and know the status of every email.
+Centralize all sending in an in-house service that any application could use.
 
 ### Technical decisions
 
-- Service with AdonisJS on Node.js and MySQL.
-- Reusable templates and send queues so the provider is never flooded.
-- Status tracking for every send.
+- Service with Node.js and TypeScript on Cloudflare Workers.
+- Delivery over SMTP, with no third-party email providers.
+- Secure connection with Cloudflare Zero Trust and security best practices.
+- Integrated with the website and the management system.
 
 ### Outcome
 
-Campaigns are scheduled and sent automatically, with visibility on each email’s status.
-
-<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->
+Every platform email goes out through a single in-house service.

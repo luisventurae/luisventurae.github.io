@@ -1,26 +1,25 @@
 ---
 title: Online store
-summary: Brand website and online store
+summary: Redesign of the website and online store
 role: Full Stack Developer
 ---
 
-Pool Work Confort’s website and online store.
+Redesign of the Pool Work Confort informational site and online store.
 
 ### Context
 
-The brand needed to present its products and sell them online from the same site.
+The brand showed its products and sold them online from a site that needed better search ranking, security and usability.
 
 ### Challenge
 
-A complete catalog and checkout flow on a site that ranks well in search engines.
+Renew the site and store without losing search ranking, and stop depending on third-party email services.
 
 ### Technical decisions
 
-- Vue and Nuxt frontend for a fast, indexable site.
-- AdonisJS backend on Node.js and MongoDB for the catalog and orders.
+- Frontend with Vue and Nuxt for a fast, indexable site, with PHP on the server.
+- SEO optimization, stronger security and UX improvements.
+- Integration with the in-house email microservice.
 
-### Outcome
+### Result
 
-The brand has a website and an online store with a catalog and checkout flow.
-
-<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->
+A redesigned website and online store that are more secure and rank better, with emails sent by an in-house service.

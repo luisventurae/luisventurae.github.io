@@ -1,26 +1,25 @@
 ---
 title: Boutique en ligne
-summary: Site vitrine et boutique en ligne
+summary: Refonte du site web et de la boutique en ligne
 role: Full Stack Developer
 ---
 
-Site vitrine et boutique en ligne de Pool Work Confort.
+Refonte du site vitrine et de la boutique en ligne de Pool Work Confort.
 
 ### Contexte
 
-La marque devait présenter ses produits et les vendre en ligne depuis le même site.
+La marque présentait ses produits et les vendait en ligne depuis un site qui devait gagner en référencement, en sécurité et en confort d’utilisation.
 
 ### Défi
 
-Un catalogue et un parcours d’achat complets sur un site bien référencé.
+Renouveler le site et la boutique sans perdre de positionnement dans les moteurs de recherche, et ne plus dépendre de services d’e-mail tiers.
 
 ### Décisions techniques
 
-- Frontend Vue et Nuxt pour un site rapide et indexable.
-- Backend AdonisJS sur Node.js et MongoDB pour le catalogue et les commandes.
+- Frontend avec Vue et Nuxt pour un site rapide et indexable, avec PHP côté serveur.
+- Optimisation SEO, sécurité renforcée et amélioration de l’expérience utilisateur.
+- Intégration avec le microservice d’e-mails interne.
 
 ### Résultat
 
-La marque dispose d’un site vitrine et d’une boutique avec catalogue et parcours d’achat.
-
-<!-- TODO(content): añadir cifras reales (usuarios, volumen, tiempos, tamaño del equipo). -->
+Un site et une boutique en ligne repensés, plus sûrs et mieux référencés, avec des e-mails envoyés par un service interne.

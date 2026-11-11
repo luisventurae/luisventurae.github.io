@@ -6,7 +6,7 @@ import asu_home_mobile from '../assets/projects/ss-asu-1-mobile.webp'
 import asu_cover from '../assets/projects/ss-asu-1.webp'
 import asu_map from '../assets/projects/ss-asu-2.webp'
 import asu_transactions from '../assets/projects/ss-asu-3.webp'
-import busconsulting_cover from '../assets/projects/ss-busc-1.webp'
+import busconsulting_admin from '../assets/projects/ss-busc-1.webp'
 import busconsulting_site_mobile from '../assets/projects/ss-busconsulting-1-mobile.webp'
 import busconsulting_site from '../assets/projects/ss-busconsulting-1.webp'
 import cepeban_cover from '../assets/projects/ss-cepeban-0.webp'
@@ -150,7 +150,8 @@ export const PROJECTS: ProjectMeta[] = [
     slug: 'cepeban-crm',
     order: 8,
     kind: 'api',
-    start: '2021-03',
+    start: '2023-10',
+    end: '2023-11',
     techs: ['nodejs', 'nestjs', 'zoho-crm', 'deluge'],
     media: [cepeban_cover],
   },
@@ -164,12 +165,22 @@ export const PROJECTS: ProjectMeta[] = [
     media: [asu_cover, asu_home_mobile, asu_map, asu_transactions],
   },
   {
-    slug: 'busconsulting-admin',
+    slug: 'busconsulting-web',
     order: 10,
-    kind: 'desktop-app',
-    start: '2020-09',
-    techs: ['electron', 'vue', 'nodejs', 'mysql'],
-    media: [busconsulting_cover, busconsulting_site, busconsulting_site_mobile],
+    kind: 'website',
+    start: '2018-03',
+    end: '2019-06',
+    techs: ['html', 'css', 'javascript', 'php', 'mysql'],
+    media: [busconsulting_site, busconsulting_site_mobile],
     url: 'https://busconsultingweb.com',
+  },
+  {
+    slug: 'busconsulting-admin',
+    order: 11,
+    kind: 'desktop-app',
+    start: '2018-03',
+    end: '2019-06',
+    techs: ['java', 'netbeans', 'mysql'],
+    media: [busconsulting_admin],
   },
 ]

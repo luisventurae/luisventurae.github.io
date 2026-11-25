@@ -1,0 +1,1 @@
+var e={selected:null,previewed:null,active:null};function t(){let t=e,n=new Set,r=(e,r)=>{t={selected:e,previewed:r,active:r??e};for(let e of n)e()};return{getSnapshot:()=>t,getServerSnapshot:()=>e,subscribe:e=>(n.add(e),()=>n.delete(e)),toggle:e=>r(t.selected===e?null:e,t.previewed),preview:e=>r(t.selected,e),clear:()=>r(null,null)}}var n=t();export{n as t};
